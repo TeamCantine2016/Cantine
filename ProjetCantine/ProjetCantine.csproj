@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Vues\Form_Acceuil.cs">
+    <Compile Include="Vues\Form_Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vues\Form_Acceuil.Designer.cs">
-      <DependentUpon>Form_Acceuil.cs</DependentUpon>
+    <Compile Include="Vues\Form_Accueil.Designer.cs">
+      <DependentUpon>Form_Accueil.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_Connexion.cs">
       <SubType>Form</SubType>
@@ -96,8 +96,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Vues\Form_Acceuil.resx">
-      <DependentUpon>Form_Acceuil.cs</DependentUpon>
+    <EmbeddedResource Include="Vues\Form_Accueil.resx">
+      <DependentUpon>Form_Accueil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Connexion.resx">
       <DependentUpon>Form_Connexion.cs</DependentUpon>

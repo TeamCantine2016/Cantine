@@ -14,3 +14,6 @@ C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCanti
 C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources
 C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources
 C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources
+C:\Users\Rézette\Source\Repos\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe.config
+C:\Users\Rézette\Source\Repos\Cantine\ProjetCantine\obj\Debug\ProjetCantine.exe
+C:\Users\Rézette\Source\Repos\Cantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
