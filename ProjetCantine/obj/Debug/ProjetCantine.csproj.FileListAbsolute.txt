@@ -1,0 +1,16 @@
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\bin\Debug\ProjetCantine.exe.config
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\bin\Debug\ProjetCantine.exe
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Acceuil.resources
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.exe
+c:\users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
+C:\Users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionEleve.resources
+C:\Users\florian\documents\visual studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageElève.resources
+C:\Users\Florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
+C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Connexion.resources
+C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources
+C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources
+C:\Users\florian\Documents\Visual Studio 2015\Projects\ProjetCantine\ProjetCantine\obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources
