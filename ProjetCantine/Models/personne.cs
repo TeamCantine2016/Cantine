@@ -12,18 +12,18 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_personne
+    public partial class personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_personne()
+        public personne()
         {
-            this.tbl_relation_activite = new HashSet<tbl_relation_activite>();
-            this.tbl_relation_repas = new HashSet<tbl_relation_repas>();
-            this.tbl_utilisateur = new HashSet<tbl_utilisateur>();
-            this.tbl_historique_facture = new HashSet<tbl_historique_facture>();
-            this.tbl_facture = new HashSet<tbl_facture>();
-            this.tbl_personne1 = new HashSet<tbl_personne>();
-            this.tbl_personne2 = new HashSet<tbl_personne>();
+            this.relation_activite = new HashSet<relation_activite>();
+            this.relation_repas = new HashSet<relation_repas>();
+            this.utilisateur = new HashSet<utilisateur>();
+            this.historique_facture = new HashSet<historique_facture>();
+            this.facture = new HashSet<facture>();
+            this.personne1 = new HashSet<personne>();
+            this.personne2 = new HashSet<personne>();
         }
     
         public int id { get; set; }
@@ -32,24 +32,24 @@ namespace ProjetCantine.Models
         public System.DateTime date_naissance { get; set; }
         public string courriel { get; set; }
         public Nullable<long> telephone { get; set; }
-        public byte type_personne { get; set; }
-        public int adresse { get; set; }
+        public byte type_personne_id { get; set; }
+        public int adresse_id { get; set; }
     
-        public virtual tbl_adresse tbl_adresse { get; set; }
+        public virtual adresse adresse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_relation_activite> tbl_relation_activite { get; set; }
+        public virtual ICollection<relation_activite> relation_activite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_relation_repas> tbl_relation_repas { get; set; }
+        public virtual ICollection<relation_repas> relation_repas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_utilisateur> tbl_utilisateur { get; set; }
+        public virtual ICollection<utilisateur> utilisateur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_historique_facture> tbl_historique_facture { get; set; }
-        public virtual tbl_type_personne tbl_type_personne { get; set; }
+        public virtual ICollection<historique_facture> historique_facture { get; set; }
+        public virtual type_personne type_personne { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_facture> tbl_facture { get; set; }
+        public virtual ICollection<facture> facture { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_personne> tbl_personne1 { get; set; }
+        public virtual ICollection<personne> personne1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_personne> tbl_personne2 { get; set; }
+        public virtual ICollection<personne> personne2 { get; set; }
     }
 }

@@ -12,22 +12,20 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_adresse
+    public partial class repas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_adresse()
+        public repas()
         {
-            this.tbl_personne = new HashSet<tbl_personne>();
+            this.relation_repas = new HashSet<relation_repas>();
         }
     
         public int id { get; set; }
-        public string pays { get; set; }
-        public string ville { get; set; }
-        public int code_postal { get; set; }
-        public string rue { get; set; }
-        public string numero { get; set; }
+        public string type_repas { get; set; }
+        public int prix { get; set; }
     
+        public virtual prix_repas prix_repas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_personne> tbl_personne { get; set; }
+        public virtual ICollection<relation_repas> relation_repas { get; set; }
     }
 }

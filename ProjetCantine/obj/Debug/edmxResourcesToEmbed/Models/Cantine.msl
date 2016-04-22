@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="cantineModelStoreContainer" CdmEntityContainer="cantineEntities">
-    <EntitySetMapping Name="tbl_activite">
-      <EntityTypeMapping TypeName="cantineModel.tbl_activite">
+    <EntitySetMapping Name="activite">
+      <EntityTypeMapping TypeName="cantineModel.activite">
         <MappingFragment StoreEntitySet="tbl_activite">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="type_activite" ColumnName="type_activite" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_adresse">
-      <EntityTypeMapping TypeName="cantineModel.tbl_adresse">
+    <EntitySetMapping Name="adresse">
+      <EntityTypeMapping TypeName="cantineModel.adresse">
         <MappingFragment StoreEntitySet="tbl_adresse">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="pays" ColumnName="pays" />
@@ -21,8 +21,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_facture">
-      <EntityTypeMapping TypeName="cantineModel.tbl_facture">
+    <EntitySetMapping Name="facture">
+      <EntityTypeMapping TypeName="cantineModel.facture">
         <MappingFragment StoreEntitySet="tbl_facture">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="total_a_payer" ColumnName="total_a_payer" />
@@ -31,8 +31,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_personne">
-      <EntityTypeMapping TypeName="cantineModel.tbl_personne">
+    <EntitySetMapping Name="personne">
+      <EntityTypeMapping TypeName="cantineModel.personne">
         <MappingFragment StoreEntitySet="tbl_personne">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="prenom" ColumnName="prenom" />
@@ -40,13 +40,13 @@
           <ScalarProperty Name="date_naissance" ColumnName="date_naissance" />
           <ScalarProperty Name="courriel" ColumnName="courriel" />
           <ScalarProperty Name="telephone" ColumnName="telephone" />
-          <ScalarProperty Name="type_personne" ColumnName="type_personne" />
-          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="type_personne_id" ColumnName="type_personne" />
+          <ScalarProperty Name="adresse_id" ColumnName="adresse" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_prix_repas">
-      <EntityTypeMapping TypeName="cantineModel.tbl_prix_repas">
+    <EntitySetMapping Name="prix_repas">
+      <EntityTypeMapping TypeName="cantineModel.prix_repas">
         <MappingFragment StoreEntitySet="tbl_prix_repas">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="prix" ColumnName="prix" />
@@ -55,8 +55,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_repas">
-      <EntityTypeMapping TypeName="cantineModel.tbl_repas">
+    <EntitySetMapping Name="repas">
+      <EntityTypeMapping TypeName="cantineModel.repas">
         <MappingFragment StoreEntitySet="tbl_repas">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="type_repas" ColumnName="type_repas" />
@@ -64,18 +64,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_type_personne">
-      <EntityTypeMapping TypeName="cantineModel.tbl_type_personne">
+    <EntitySetMapping Name="type_personne">
+      <EntityTypeMapping TypeName="cantineModel.type_personne">
         <MappingFragment StoreEntitySet="tbl_type_personne">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="type" ColumnName="type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_historique_facture">
-      <EntityTypeMapping TypeName="cantineModel.tbl_historique_facture">
+    <EntitySetMapping Name="historique_facture">
+      <EntityTypeMapping TypeName="cantineModel.historique_facture">
         <MappingFragment StoreEntitySet="tbl_historique_facture">
-          <ScalarProperty Name="facture" ColumnName="facture" />
+          <ScalarProperty Name="facture_id" ColumnName="facture" />
           <ScalarProperty Name="tuteur" ColumnName="tuteur" />
           <ScalarProperty Name="statut_payement" ColumnName="statut_payement" />
           <ScalarProperty Name="statut_envoye" ColumnName="statut_envoye" />
@@ -85,27 +85,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_relation_activite">
-      <EntityTypeMapping TypeName="cantineModel.tbl_relation_activite">
+    <EntitySetMapping Name="relation_activite">
+      <EntityTypeMapping TypeName="cantineModel.relation_activite">
         <MappingFragment StoreEntitySet="tbl_relation_activite">
           <ScalarProperty Name="date_debut" ColumnName="date_debut" />
           <ScalarProperty Name="date_fin" ColumnName="date_fin" />
-          <ScalarProperty Name="personne" ColumnName="personne" />
-          <ScalarProperty Name="activite" ColumnName="activite" />
+          <ScalarProperty Name="personne_id" ColumnName="personne" />
+          <ScalarProperty Name="activite_id" ColumnName="activite" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_relation_repas">
-      <EntityTypeMapping TypeName="cantineModel.tbl_relation_repas">
+    <EntitySetMapping Name="relation_repas">
+      <EntityTypeMapping TypeName="cantineModel.relation_repas">
         <MappingFragment StoreEntitySet="tbl_relation_repas">
           <ScalarProperty Name="date_repas" ColumnName="date_repas" />
-          <ScalarProperty Name="personne" ColumnName="personne" />
-          <ScalarProperty Name="repas" ColumnName="repas" />
+          <ScalarProperty Name="personne_id" ColumnName="personne" />
+          <ScalarProperty Name="repas_id" ColumnName="repas" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbl_utilisateur">
-      <EntityTypeMapping TypeName="cantineModel.tbl_utilisateur">
+    <EntitySetMapping Name="utilisateur">
+      <EntityTypeMapping TypeName="cantineModel.utilisateur">
         <MappingFragment StoreEntitySet="tbl_utilisateur">
           <ScalarProperty Name="pseudo" ColumnName="pseudo" />
           <ScalarProperty Name="mdp" ColumnName="mdp" />

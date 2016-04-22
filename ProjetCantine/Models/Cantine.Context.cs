@@ -25,16 +25,16 @@ namespace ProjetCantine.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbl_activite> tbl_activite { get; set; }
-        public virtual DbSet<tbl_adresse> tbl_adresse { get; set; }
-        public virtual DbSet<tbl_facture> tbl_facture { get; set; }
-        public virtual DbSet<tbl_personne> tbl_personne { get; set; }
-        public virtual DbSet<tbl_prix_repas> tbl_prix_repas { get; set; }
-        public virtual DbSet<tbl_repas> tbl_repas { get; set; }
-        public virtual DbSet<tbl_type_personne> tbl_type_personne { get; set; }
-        public virtual DbSet<tbl_historique_facture> tbl_historique_facture { get; set; }
-        public virtual DbSet<tbl_relation_activite> tbl_relation_activite { get; set; }
-        public virtual DbSet<tbl_relation_repas> tbl_relation_repas { get; set; }
-        public virtual DbSet<tbl_utilisateur> tbl_utilisateur { get; set; }
+        public virtual DbSet<activite> activite { get; set; }
+        public virtual DbSet<adresse> adresse { get; set; }
+        public virtual DbSet<facture> facture { get; set; }
+        public virtual DbSet<personne> personne { get; set; }
+        public virtual DbSet<prix_repas> prix_repas { get; set; }
+        public virtual DbSet<repas> repas { get; set; }
+        public virtual DbSet<type_personne> type_personne { get; set; }
+        public virtual DbSet<historique_facture> historique_facture { get; set; }
+        public virtual DbSet<relation_activite> relation_activite { get; set; }
+        public virtual DbSet<relation_repas> relation_repas { get; set; }
+        public virtual DbSet<utilisateur> utilisateur { get; set; }
     }
 }

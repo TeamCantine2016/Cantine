@@ -12,13 +12,14 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_relation_repas
+    public partial class relation_activite
     {
-        public System.DateTime date_repas { get; set; }
-        public int personne { get; set; }
-        public int repas { get; set; }
+        public System.DateTime date_debut { get; set; }
+        public Nullable<System.DateTime> date_fin { get; set; }
+        public int personne_id { get; set; }
+        public byte activite_id { get; set; }
     
-        public virtual tbl_personne tbl_personne { get; set; }
-        public virtual tbl_repas tbl_repas { get; set; }
+        public virtual activite activite { get; set; }
+        public virtual personne personne { get; set; }
     }
 }

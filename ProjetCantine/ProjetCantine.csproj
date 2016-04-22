@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\activite.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\adresse.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cantine.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,37 +78,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cantine.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_activite.cs">
+    <Compile Include="Models\facture.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_adresse.cs">
+    <Compile Include="Models\historique_facture.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_facture.cs">
+    <Compile Include="Models\personne.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_historique_facture.cs">
+    <Compile Include="Models\prix_repas.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_personne.cs">
+    <Compile Include="Models\relation_activite.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_prix_repas.cs">
+    <Compile Include="Models\relation_repas.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_relation_activite.cs">
+    <Compile Include="Models\repas.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_relation_repas.cs">
+    <Compile Include="Models\type_personne.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tbl_repas.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_type_personne.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbl_utilisateur.cs">
+    <Compile Include="Models\utilisateur.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_Accueil.cs">

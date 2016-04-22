@@ -12,7 +12,7 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_utilisateur
+    public partial class utilisateur
     {
         public string pseudo { get; set; }
         public string mdp { get; set; }
@@ -21,6 +21,6 @@ namespace ProjetCantine.Models
         public bool etat { get; set; }
         public int personne_id { get; set; }
     
-        public virtual tbl_personne tbl_personne { get; set; }
+        public virtual personne personne { get; set; }
     }
 }

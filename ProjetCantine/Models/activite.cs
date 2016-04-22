@@ -12,18 +12,18 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_activite
+    public partial class activite
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_activite()
+        public activite()
         {
-            this.tbl_relation_activite = new HashSet<tbl_relation_activite>();
+            this.relation_activite = new HashSet<relation_activite>();
         }
     
         public byte id { get; set; }
         public string type_activite { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_relation_activite> tbl_relation_activite { get; set; }
+        public virtual ICollection<relation_activite> relation_activite { get; set; }
     }
 }

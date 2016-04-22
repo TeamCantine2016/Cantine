@@ -12,13 +12,13 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_facture
+    public partial class facture
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_facture()
+        public facture()
         {
-            this.tbl_historique_facture = new HashSet<tbl_historique_facture>();
-            this.tbl_personne = new HashSet<tbl_personne>();
+            this.historique_facture = new HashSet<historique_facture>();
+            this.personne = new HashSet<personne>();
         }
     
         public int id { get; set; }
@@ -27,8 +27,8 @@ namespace ProjetCantine.Models
         public Nullable<System.DateTime> fin_periode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_historique_facture> tbl_historique_facture { get; set; }
+        public virtual ICollection<historique_facture> historique_facture { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_personne> tbl_personne { get; set; }
+        public virtual ICollection<personne> personne { get; set; }
     }
 }

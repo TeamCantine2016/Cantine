@@ -319,7 +319,7 @@
             // 
             // tblutilisateurBindingSource
             // 
-            this.tblutilisateurBindingSource.DataSource = typeof(ProjetCantine.Models.tbl_utilisateur);
+            this.tblutilisateurBindingSource.DataSource = typeof(ProjetCantine.Models.utilisateur);
             // 
             // Form_EncodageUtilisateur
             // 

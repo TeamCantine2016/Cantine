@@ -12,20 +12,18 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_prix_repas
+    public partial class type_personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_prix_repas()
+        public type_personne()
         {
-            this.tbl_repas = new HashSet<tbl_repas>();
+            this.personne = new HashSet<personne>();
         }
     
-        public int id { get; set; }
-        public double prix { get; set; }
-        public System.DateTime date_debut { get; set; }
-        public Nullable<System.DateTime> date_fin { get; set; }
+        public byte id { get; set; }
+        public string type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_repas> tbl_repas { get; set; }
+        public virtual ICollection<personne> personne { get; set; }
     }
 }

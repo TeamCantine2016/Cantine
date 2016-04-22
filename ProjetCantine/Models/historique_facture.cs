@@ -12,14 +12,17 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_relation_activite
+    public partial class historique_facture
     {
-        public System.DateTime date_debut { get; set; }
-        public Nullable<System.DateTime> date_fin { get; set; }
-        public int personne { get; set; }
-        public byte activite { get; set; }
+        public int facture_id { get; set; }
+        public int tuteur { get; set; }
+        public bool statut_payement { get; set; }
+        public bool statut_envoye { get; set; }
+        public bool detaille { get; set; }
+        public string format_envoye { get; set; }
+        public string archive { get; set; }
     
-        public virtual tbl_activite tbl_activite { get; set; }
-        public virtual tbl_personne tbl_personne { get; set; }
+        public virtual facture facture { get; set; }
+        public virtual personne personne { get; set; }
     }
 }

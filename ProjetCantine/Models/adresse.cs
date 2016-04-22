@@ -12,18 +12,22 @@ namespace ProjetCantine.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_type_personne
+    public partial class adresse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_type_personne()
+        public adresse()
         {
-            this.tbl_personne = new HashSet<tbl_personne>();
+            this.personne = new HashSet<personne>();
         }
     
-        public byte id { get; set; }
-        public string type { get; set; }
+        public int id { get; set; }
+        public string pays { get; set; }
+        public string ville { get; set; }
+        public int code_postal { get; set; }
+        public string rue { get; set; }
+        public string numero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_personne> tbl_personne { get; set; }
+        public virtual ICollection<personne> personne { get; set; }
     }
 }
