@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label_Identifiant = new System.Windows.Forms.Label();
             this.label_MotDePasse = new System.Windows.Forms.Label();
             this.label_Confirmation = new System.Windows.Forms.Label();
@@ -58,6 +59,8 @@
             this.radioButton_Inactif = new System.Windows.Forms.RadioButton();
             this.button_Valider = new System.Windows.Forms.Button();
             this.button_Annuler = new System.Windows.Forms.Button();
+            this.tblutilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.tblutilisateurBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Identifiant
@@ -217,15 +220,14 @@
             // 
             // comboBox_Type
             // 
+            this.comboBox_Type.DataSource = this.tblutilisateurBindingSource;
+            this.comboBox_Type.DisplayMember = "droits";
             this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Items.AddRange(new object[] {
-            "Simple utilisateur",
-            "Super utilisateur",
-            "Administrateur"});
             this.comboBox_Type.Location = new System.Drawing.Point(89, 90);
             this.comboBox_Type.Name = "comboBox_Type";
             this.comboBox_Type.Size = new System.Drawing.Size(150, 21);
             this.comboBox_Type.TabIndex = 20;
+            this.comboBox_Type.ValueMember = "droits";
             // 
             // label_Numero
             // 
@@ -315,6 +317,10 @@
             this.button_Annuler.UseVisualStyleBackColor = true;
             this.button_Annuler.Click += new System.EventHandler(this.button_Annuler_Click);
             // 
+            // tblutilisateurBindingSource
+            // 
+            this.tblutilisateurBindingSource.DataSource = typeof(ProjetCantine.Models.tbl_utilisateur);
+            // 
             // Form_EncodageUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,6 +361,7 @@
             this.Name = "Form_EncodageUtilisateur";
             this.Text = "Paramètres de l\'utilisateur";
             this.Load += new System.EventHandler(this.Form_EncodageUtilisateur_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tblutilisateurBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +399,6 @@
         private System.Windows.Forms.RadioButton radioButton_Inactif;
         private System.Windows.Forms.Button button_Valider;
         private System.Windows.Forms.Button button_Annuler;
+        private System.Windows.Forms.BindingSource tblutilisateurBindingSource;
     }
 }
