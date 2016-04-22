@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cantineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_activite">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_activite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_relation_activite" Relationship="Self.FK_activite_personne" FromRole="tbl_activite" ToRole="tbl_relation_activite" />
+  </EntityType>
+  <EntityType Name="tbl_adresse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pays" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ville" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="code_postal" Type="Int32" Nullable="false" />
+    <Property Name="rue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_adresse_personne" FromRole="tbl_adresse" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_facture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="total_a_payer" Type="Double" Nullable="false" />
+    <Property Name="debut_periode" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fin_periode" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tbl_historique_facture" Relationship="Self.FK_facture_historique" FromRole="tbl_facture" ToRole="tbl_historique_facture" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.tbl_relation_facture" FromRole="tbl_facture" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_personne">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_naissance" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="courriel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="telephone" Type="Int64" />
+    <Property Name="type_personne" Type="Byte" Nullable="false" />
+    <Property Name="adresse" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_adresse" Relationship="Self.FK_adresse_personne" FromRole="tbl_personne" ToRole="tbl_adresse" />
+    <NavigationProperty Name="tbl_relation_activite" Relationship="Self.FK_personne_activite" FromRole="tbl_personne" ToRole="tbl_relation_activite" />
+    <NavigationProperty Name="tbl_relation_repas" Relationship="Self.FK_personne_repas" FromRole="tbl_personne" ToRole="tbl_relation_repas" />
+    <NavigationProperty Name="tbl_utilisateur" Relationship="Self.FK_personne_utilisateur" FromRole="tbl_personne" ToRole="tbl_utilisateur" />
+    <NavigationProperty Name="tbl_historique_facture" Relationship="Self.FK_tuteur_facture_historique" FromRole="tbl_personne" ToRole="tbl_historique_facture" />
+    <NavigationProperty Name="tbl_type_personne" Relationship="Self.FK_typepersonne_personne" FromRole="tbl_personne" ToRole="tbl_type_personne" />
+    <NavigationProperty Name="tbl_facture" Relationship="Self.tbl_relation_facture" FromRole="tbl_personne" ToRole="tbl_facture" />
+    <NavigationProperty Name="tbl_personne1" Relationship="Self.tbl_relation_tuteur_enfant" FromRole="tbl_personne" ToRole="tbl_personne1" />
+    <NavigationProperty Name="tbl_personne2" Relationship="Self.tbl_relation_tuteur_enfant" FromRole="tbl_personne1" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_prix_repas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prix" Type="Double" Nullable="false" />
+    <Property Name="date_debut" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_fin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tbl_repas" Relationship="Self.FK_prix_repas" FromRole="tbl_prix_repas" ToRole="tbl_repas" />
+  </EntityType>
+  <EntityType Name="tbl_repas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_repas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_prix_repas" Relationship="Self.FK_prix_repas" FromRole="tbl_repas" ToRole="tbl_prix_repas" />
+    <NavigationProperty Name="tbl_relation_repas" Relationship="Self.FK_repas_personne" FromRole="tbl_repas" ToRole="tbl_relation_repas" />
+  </EntityType>
+  <EntityType Name="tbl_type_personne">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_typepersonne_personne" FromRole="tbl_type_personne" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_historique_facture">
+    <Key>
+      <PropertyRef Name="facture" />
+      <PropertyRef Name="tuteur" />
+      <PropertyRef Name="statut_payement" />
+      <PropertyRef Name="statut_envoye" />
+      <PropertyRef Name="detaille" />
+      <PropertyRef Name="archive" />
+    </Key>
+    <Property Name="facture" Type="Int32" Nullable="false" />
+    <Property Name="tuteur" Type="Int32" Nullable="false" />
+    <Property Name="statut_payement" Type="Boolean" Nullable="false" />
+    <Property Name="statut_envoye" Type="Boolean" Nullable="false" />
+    <Property Name="detaille" Type="Boolean" Nullable="false" />
+    <Property Name="format_envoye" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="archive" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_facture" Relationship="Self.FK_facture_historique" FromRole="tbl_historique_facture" ToRole="tbl_facture" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_tuteur_facture_historique" FromRole="tbl_historique_facture" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_relation_activite">
+    <Key>
+      <PropertyRef Name="date_debut" />
+      <PropertyRef Name="personne" />
+      <PropertyRef Name="activite" />
+    </Key>
+    <Property Name="date_debut" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="date_fin" Type="DateTime" Precision="0" />
+    <Property Name="personne" Type="Int32" Nullable="false" />
+    <Property Name="activite" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="tbl_activite" Relationship="Self.FK_activite_personne" FromRole="tbl_relation_activite" ToRole="tbl_activite" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_personne_activite" FromRole="tbl_relation_activite" ToRole="tbl_personne" />
+  </EntityType>
+  <EntityType Name="tbl_relation_repas">
+    <Key>
+      <PropertyRef Name="date_repas" />
+      <PropertyRef Name="personne" />
+      <PropertyRef Name="repas" />
+    </Key>
+    <Property Name="date_repas" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="personne" Type="Int32" Nullable="false" />
+    <Property Name="repas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_personne_repas" FromRole="tbl_relation_repas" ToRole="tbl_personne" />
+    <NavigationProperty Name="tbl_repas" Relationship="Self.FK_repas_personne" FromRole="tbl_relation_repas" ToRole="tbl_repas" />
+  </EntityType>
+  <EntityType Name="tbl_utilisateur">
+    <Key>
+      <PropertyRef Name="pseudo" />
+      <PropertyRef Name="mdp" />
+      <PropertyRef Name="mdp_controle" />
+      <PropertyRef Name="droits" />
+      <PropertyRef Name="etat" />
+      <PropertyRef Name="personne_id" />
+    </Key>
+    <Property Name="pseudo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mdp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mdp_controle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="droits" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="etat" Type="Boolean" Nullable="false" />
+    <Property Name="personne_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_personne" Relationship="Self.FK_personne_utilisateur" FromRole="tbl_utilisateur" ToRole="tbl_personne" />
+  </EntityType>
+  <Association Name="FK_activite_personne">
+    <End Role="tbl_activite" Type="Self.tbl_activite" Multiplicity="1" />
+    <End Role="tbl_relation_activite" Type="Self.tbl_relation_activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_activite">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_activite">
+        <PropertyRef Name="activite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_adresse_personne">
+    <End Role="tbl_adresse" Type="Self.tbl_adresse" Multiplicity="1" />
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_adresse">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_personne">
+        <PropertyRef Name="adresse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facture_historique">
+    <End Role="tbl_facture" Type="Self.tbl_facture" Multiplicity="1" />
+    <End Role="tbl_historique_facture" Type="Self.tbl_historique_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_facture">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_historique_facture">
+        <PropertyRef Name="facture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_activite">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_activite" Type="Self.tbl_relation_activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_activite">
+        <PropertyRef Name="personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_repas">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_repas" Type="Self.tbl_relation_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_repas">
+        <PropertyRef Name="personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_utilisateur">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_utilisateur" Type="Self.tbl_utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_utilisateur">
+        <PropertyRef Name="personne_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tuteur_facture_historique">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_historique_facture" Type="Self.tbl_historique_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_historique_facture">
+        <PropertyRef Name="tuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_typepersonne_personne">
+    <End Role="tbl_type_personne" Type="Self.tbl_type_personne" Multiplicity="1" />
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_type_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_personne">
+        <PropertyRef Name="type_personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prix_repas">
+    <End Role="tbl_prix_repas" Type="Self.tbl_prix_repas" Multiplicity="1" />
+    <End Role="tbl_repas" Type="Self.tbl_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_prix_repas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_repas">
+        <PropertyRef Name="prix" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_repas_personne">
+    <End Role="tbl_repas" Type="Self.tbl_repas" Multiplicity="1" />
+    <End Role="tbl_relation_repas" Type="Self.tbl_relation_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_repas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_repas">
+        <PropertyRef Name="repas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_relation_facture">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <End Role="tbl_facture" Type="Self.tbl_facture" Multiplicity="*" />
+  </Association>
+  <Association Name="tbl_relation_tuteur_enfant">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <End Role="tbl_personne1" Type="Self.tbl_personne" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="cantineEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_activite" EntityType="Self.tbl_activite" />
+    <EntitySet Name="tbl_adresse" EntityType="Self.tbl_adresse" />
+    <EntitySet Name="tbl_facture" EntityType="Self.tbl_facture" />
+    <EntitySet Name="tbl_personne" EntityType="Self.tbl_personne" />
+    <EntitySet Name="tbl_prix_repas" EntityType="Self.tbl_prix_repas" />
+    <EntitySet Name="tbl_repas" EntityType="Self.tbl_repas" />
+    <EntitySet Name="tbl_type_personne" EntityType="Self.tbl_type_personne" />
+    <EntitySet Name="tbl_historique_facture" EntityType="Self.tbl_historique_facture" />
+    <EntitySet Name="tbl_relation_activite" EntityType="Self.tbl_relation_activite" />
+    <EntitySet Name="tbl_relation_repas" EntityType="Self.tbl_relation_repas" />
+    <EntitySet Name="tbl_utilisateur" EntityType="Self.tbl_utilisateur" />
+    <AssociationSet Name="FK_activite_personne" Association="Self.FK_activite_personne">
+      <End Role="tbl_activite" EntitySet="tbl_activite" />
+      <End Role="tbl_relation_activite" EntitySet="tbl_relation_activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_adresse_personne" Association="Self.FK_adresse_personne">
+      <End Role="tbl_adresse" EntitySet="tbl_adresse" />
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facture_historique" Association="Self.FK_facture_historique">
+      <End Role="tbl_facture" EntitySet="tbl_facture" />
+      <End Role="tbl_historique_facture" EntitySet="tbl_historique_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_activite" Association="Self.FK_personne_activite">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_activite" EntitySet="tbl_relation_activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_repas" Association="Self.FK_personne_repas">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_repas" EntitySet="tbl_relation_repas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_utilisateur" Association="Self.FK_personne_utilisateur">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_utilisateur" EntitySet="tbl_utilisateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tuteur_facture_historique" Association="Self.FK_tuteur_facture_historique">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_historique_facture" EntitySet="tbl_historique_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_typepersonne_personne" Association="Self.FK_typepersonne_personne">
+      <End Role="tbl_type_personne" EntitySet="tbl_type_personne" />
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prix_repas" Association="Self.FK_prix_repas">
+      <End Role="tbl_prix_repas" EntitySet="tbl_prix_repas" />
+      <End Role="tbl_repas" EntitySet="tbl_repas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_repas_personne" Association="Self.FK_repas_personne">
+      <End Role="tbl_repas" EntitySet="tbl_repas" />
+      <End Role="tbl_relation_repas" EntitySet="tbl_relation_repas" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_relation_facture" Association="Self.tbl_relation_facture">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_facture" EntitySet="tbl_facture" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_relation_tuteur_enfant" Association="Self.tbl_relation_tuteur_enfant">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_personne1" EntitySet="tbl_personne" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="cantineModelStoreContainer" CdmEntityContainer="cantineEntities">
+    <EntitySetMapping Name="tbl_activite">
+      <EntityTypeMapping TypeName="cantineModel.tbl_activite">
+        <MappingFragment StoreEntitySet="tbl_activite">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_activite" ColumnName="type_activite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_adresse">
+      <EntityTypeMapping TypeName="cantineModel.tbl_adresse">
+        <MappingFragment StoreEntitySet="tbl_adresse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pays" ColumnName="pays" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="code_postal" ColumnName="code_postal" />
+          <ScalarProperty Name="rue" ColumnName="rue" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_facture">
+      <EntityTypeMapping TypeName="cantineModel.tbl_facture">
+        <MappingFragment StoreEntitySet="tbl_facture">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="total_a_payer" ColumnName="total_a_payer" />
+          <ScalarProperty Name="debut_periode" ColumnName="debut_periode" />
+          <ScalarProperty Name="fin_periode" ColumnName="fin_periode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_personne">
+      <EntityTypeMapping TypeName="cantineModel.tbl_personne">
+        <MappingFragment StoreEntitySet="tbl_personne">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="date_naissance" ColumnName="date_naissance" />
+          <ScalarProperty Name="courriel" ColumnName="courriel" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="type_personne" ColumnName="type_personne" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_prix_repas">
+      <EntityTypeMapping TypeName="cantineModel.tbl_prix_repas">
+        <MappingFragment StoreEntitySet="tbl_prix_repas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="date_debut" ColumnName="date_debut" />
+          <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_repas">
+      <EntityTypeMapping TypeName="cantineModel.tbl_repas">
+        <MappingFragment StoreEntitySet="tbl_repas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_repas" ColumnName="type_repas" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_type_personne">
+      <EntityTypeMapping TypeName="cantineModel.tbl_type_personne">
+        <MappingFragment StoreEntitySet="tbl_type_personne">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_historique_facture">
+      <EntityTypeMapping TypeName="cantineModel.tbl_historique_facture">
+        <MappingFragment StoreEntitySet="tbl_historique_facture">
+          <ScalarProperty Name="facture" ColumnName="facture" />
+          <ScalarProperty Name="tuteur" ColumnName="tuteur" />
+          <ScalarProperty Name="statut_payement" ColumnName="statut_payement" />
+          <ScalarProperty Name="statut_envoye" ColumnName="statut_envoye" />
+          <ScalarProperty Name="detaille" ColumnName="detaille" />
+          <ScalarProperty Name="format_envoye" ColumnName="format_envoye" />
+          <ScalarProperty Name="archive" ColumnName="archive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_relation_activite">
+      <EntityTypeMapping TypeName="cantineModel.tbl_relation_activite">
+        <MappingFragment StoreEntitySet="tbl_relation_activite">
+          <ScalarProperty Name="date_debut" ColumnName="date_debut" />
+          <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+          <ScalarProperty Name="personne" ColumnName="personne" />
+          <ScalarProperty Name="activite" ColumnName="activite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_relation_repas">
+      <EntityTypeMapping TypeName="cantineModel.tbl_relation_repas">
+        <MappingFragment StoreEntitySet="tbl_relation_repas">
+          <ScalarProperty Name="date_repas" ColumnName="date_repas" />
+          <ScalarProperty Name="personne" ColumnName="personne" />
+          <ScalarProperty Name="repas" ColumnName="repas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_utilisateur">
+      <EntityTypeMapping TypeName="cantineModel.tbl_utilisateur">
+        <MappingFragment StoreEntitySet="tbl_utilisateur">
+          <ScalarProperty Name="pseudo" ColumnName="pseudo" />
+          <ScalarProperty Name="mdp" ColumnName="mdp" />
+          <ScalarProperty Name="mdp_controle" ColumnName="mdp_controle" />
+          <ScalarProperty Name="droits" ColumnName="droits" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="personne_id" ColumnName="personne_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tbl_relation_facture" TypeName="cantineModel.tbl_relation_facture" StoreEntitySet="tbl_relation_facture">
+      <EndProperty Name="tbl_personne">
+        <ScalarProperty Name="id" ColumnName="tuteur" />
+      </EndProperty>
+      <EndProperty Name="tbl_facture">
+        <ScalarProperty Name="id" ColumnName="facture" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tbl_relation_tuteur_enfant" TypeName="cantineModel.tbl_relation_tuteur_enfant" StoreEntitySet="tbl_relation_tuteur_enfant">
+      <EndProperty Name="tbl_personne">
+        <ScalarProperty Name="id" ColumnName="tuteur" />
+      </EndProperty>
+      <EndProperty Name="tbl_personne1">
+        <ScalarProperty Name="id" ColumnName="enfant" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

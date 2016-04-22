@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad0e314316ad49c88ef52fab781a73b9" Name="Diagram1">
+        <EntityTypeShape EntityType="cantineModel.tbl_activite" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_adresse" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_facture" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_personne" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_prix_repas" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_repas" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_type_personne" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_historique_facture" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_relation_activite" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_relation_repas" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cantineModel.tbl_utilisateur" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
+        <AssociationConnector Association="cantineModel.FK_activite_personne" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_adresse_personne" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_facture_historique" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_personne_activite" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_personne_repas" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_personne_utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_tuteur_facture_historique" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_typepersonne_personne" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_prix_repas" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.FK_repas_personne" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.tbl_relation_facture" ManuallyRouted="false" />
+        <AssociationConnector Association="cantineModel.tbl_relation_tuteur_enfant" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

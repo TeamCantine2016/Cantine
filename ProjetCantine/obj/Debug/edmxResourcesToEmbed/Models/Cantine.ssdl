@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cantineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_activite">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_activite" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_adresse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pays" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ville" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="code_postal" Type="int" Nullable="false" />
+    <Property Name="rue" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_facture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="total_a_payer" Type="float" Nullable="false" />
+    <Property Name="debut_periode" Type="date" Nullable="false" />
+    <Property Name="fin_periode" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_historique_facture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_historique_facture">
+    <Key>
+      <PropertyRef Name="facture" />
+      <PropertyRef Name="tuteur" />
+      <PropertyRef Name="statut_payement" />
+      <PropertyRef Name="statut_envoye" />
+      <PropertyRef Name="detaille" />
+      <PropertyRef Name="archive" />
+    </Key>
+    <Property Name="facture" Type="int" Nullable="false" />
+    <Property Name="tuteur" Type="int" Nullable="false" />
+    <Property Name="statut_payement" Type="bit" Nullable="false" />
+    <Property Name="statut_envoye" Type="bit" Nullable="false" />
+    <Property Name="detaille" Type="bit" Nullable="false" />
+    <Property Name="format_envoye" Type="varchar" MaxLength="20" />
+    <Property Name="archive" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_personne">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date_naissance" Type="date" Nullable="false" />
+    <Property Name="courriel" Type="varchar" MaxLength="255" />
+    <Property Name="telephone" Type="bigint" />
+    <Property Name="type_personne" Type="tinyint" Nullable="false" />
+    <Property Name="adresse" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_prix_repas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prix" Type="float" Nullable="false" />
+    <Property Name="date_debut" Type="date" Nullable="false" />
+    <Property Name="date_fin" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_relation_activite' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_relation_activite">
+    <Key>
+      <PropertyRef Name="date_debut" />
+      <PropertyRef Name="personne" />
+      <PropertyRef Name="activite" />
+    </Key>
+    <Property Name="date_debut" Type="date" Nullable="false" />
+    <Property Name="date_fin" Type="date" />
+    <Property Name="personne" Type="int" Nullable="false" />
+    <Property Name="activite" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_relation_facture' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_relation_facture">
+    <Key>
+      <PropertyRef Name="facture" />
+      <PropertyRef Name="tuteur" />
+    </Key>
+    <Property Name="facture" Type="int" Nullable="false" />
+    <Property Name="tuteur" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_relation_repas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_relation_repas">
+    <Key>
+      <PropertyRef Name="date_repas" />
+      <PropertyRef Name="personne" />
+      <PropertyRef Name="repas" />
+    </Key>
+    <Property Name="date_repas" Type="date" Nullable="false" />
+    <Property Name="personne" Type="int" Nullable="false" />
+    <Property Name="repas" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_relation_tuteur_enfant' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_relation_tuteur_enfant">
+    <Key>
+      <PropertyRef Name="tuteur" />
+      <PropertyRef Name="enfant" />
+    </Key>
+    <Property Name="tuteur" Type="int" Nullable="false" />
+    <Property Name="enfant" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_repas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_repas" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prix" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_type_personne">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'db_cantine.dbo.tbl_utilisateur' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_utilisateur">
+    <Key>
+      <PropertyRef Name="pseudo" />
+      <PropertyRef Name="mdp" />
+      <PropertyRef Name="mdp_controle" />
+      <PropertyRef Name="droits" />
+      <PropertyRef Name="etat" />
+      <PropertyRef Name="personne_id" />
+    </Key>
+    <Property Name="pseudo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mdp" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mdp_controle" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="droits" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="etat" Type="bit" Nullable="false" />
+    <Property Name="personne_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_activite_personne">
+    <End Role="tbl_activite" Type="Self.tbl_activite" Multiplicity="1" />
+    <End Role="tbl_relation_activite" Type="Self.tbl_relation_activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_activite">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_activite">
+        <PropertyRef Name="activite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_adresse_personne">
+    <End Role="tbl_adresse" Type="Self.tbl_adresse" Multiplicity="1" />
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_adresse">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_personne">
+        <PropertyRef Name="adresse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facture_historique">
+    <End Role="tbl_facture" Type="Self.tbl_facture" Multiplicity="1" />
+    <End Role="tbl_historique_facture" Type="Self.tbl_historique_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_facture">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_historique_facture">
+        <PropertyRef Name="facture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_activite">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_activite" Type="Self.tbl_relation_activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_activite">
+        <PropertyRef Name="personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_facture">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_facture" Type="Self.tbl_relation_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_facture">
+        <PropertyRef Name="tuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_repas">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_repas" Type="Self.tbl_relation_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_repas">
+        <PropertyRef Name="personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_tuteur">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_tuteur_enfant" Type="Self.tbl_relation_tuteur_enfant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_tuteur_enfant">
+        <PropertyRef Name="tuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personne_utilisateur">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_utilisateur" Type="Self.tbl_utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_utilisateur">
+        <PropertyRef Name="personne_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prix_repas">
+    <End Role="tbl_prix_repas" Type="Self.tbl_prix_repas" Multiplicity="1" />
+    <End Role="tbl_repas" Type="Self.tbl_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_prix_repas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_repas">
+        <PropertyRef Name="prix" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_relationfacture_personne">
+    <End Role="tbl_facture" Type="Self.tbl_facture" Multiplicity="1" />
+    <End Role="tbl_relation_facture" Type="Self.tbl_relation_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_facture">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_facture">
+        <PropertyRef Name="facture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_repas_personne">
+    <End Role="tbl_repas" Type="Self.tbl_repas" Multiplicity="1" />
+    <End Role="tbl_relation_repas" Type="Self.tbl_relation_repas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_repas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_repas">
+        <PropertyRef Name="repas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tuteur_facture_historique">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_historique_facture" Type="Self.tbl_historique_facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_historique_facture">
+        <PropertyRef Name="tuteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tuteur_personne">
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="1" />
+    <End Role="tbl_relation_tuteur_enfant" Type="Self.tbl_relation_tuteur_enfant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_relation_tuteur_enfant">
+        <PropertyRef Name="enfant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_typepersonne_personne">
+    <End Role="tbl_type_personne" Type="Self.tbl_type_personne" Multiplicity="1" />
+    <End Role="tbl_personne" Type="Self.tbl_personne" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_type_personne">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_personne">
+        <PropertyRef Name="type_personne" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="cantineModelStoreContainer">
+    <EntitySet Name="tbl_activite" EntityType="Self.tbl_activite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_adresse" EntityType="Self.tbl_adresse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_facture" EntityType="Self.tbl_facture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_personne" EntityType="Self.tbl_personne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_prix_repas" EntityType="Self.tbl_prix_repas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_repas" EntityType="Self.tbl_repas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_type_personne" EntityType="Self.tbl_type_personne" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_historique_facture" EntityType="Self.tbl_historique_facture" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_historique_facture].[facture] AS [facture], 
+    [tbl_historique_facture].[tuteur] AS [tuteur], 
+    [tbl_historique_facture].[statut_payement] AS [statut_payement], 
+    [tbl_historique_facture].[statut_envoye] AS [statut_envoye], 
+    [tbl_historique_facture].[detaille] AS [detaille], 
+    [tbl_historique_facture].[format_envoye] AS [format_envoye], 
+    [tbl_historique_facture].[archive] AS [archive]
+    FROM [dbo].[tbl_historique_facture] AS [tbl_historique_facture]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_relation_activite" EntityType="Self.tbl_relation_activite" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_relation_activite].[date_debut] AS [date_debut], 
+    [tbl_relation_activite].[date_fin] AS [date_fin], 
+    [tbl_relation_activite].[personne] AS [personne], 
+    [tbl_relation_activite].[activite] AS [activite]
+    FROM [dbo].[tbl_relation_activite] AS [tbl_relation_activite]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_relation_facture" EntityType="Self.tbl_relation_facture" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_relation_facture].[facture] AS [facture], 
+    [tbl_relation_facture].[tuteur] AS [tuteur]
+    FROM [dbo].[tbl_relation_facture] AS [tbl_relation_facture]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_relation_repas" EntityType="Self.tbl_relation_repas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_relation_repas].[date_repas] AS [date_repas], 
+    [tbl_relation_repas].[personne] AS [personne], 
+    [tbl_relation_repas].[repas] AS [repas]
+    FROM [dbo].[tbl_relation_repas] AS [tbl_relation_repas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_relation_tuteur_enfant" EntityType="Self.tbl_relation_tuteur_enfant" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_relation_tuteur_enfant].[tuteur] AS [tuteur], 
+    [tbl_relation_tuteur_enfant].[enfant] AS [enfant]
+    FROM [dbo].[tbl_relation_tuteur_enfant] AS [tbl_relation_tuteur_enfant]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_utilisateur" EntityType="Self.tbl_utilisateur" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_utilisateur].[pseudo] AS [pseudo], 
+    [tbl_utilisateur].[mdp] AS [mdp], 
+    [tbl_utilisateur].[mdp_controle] AS [mdp_controle], 
+    [tbl_utilisateur].[droits] AS [droits], 
+    [tbl_utilisateur].[etat] AS [etat], 
+    [tbl_utilisateur].[personne_id] AS [personne_id]
+    FROM [dbo].[tbl_utilisateur] AS [tbl_utilisateur]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_activite_personne" Association="Self.FK_activite_personne">
+      <End Role="tbl_activite" EntitySet="tbl_activite" />
+      <End Role="tbl_relation_activite" EntitySet="tbl_relation_activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_adresse_personne" Association="Self.FK_adresse_personne">
+      <End Role="tbl_adresse" EntitySet="tbl_adresse" />
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facture_historique" Association="Self.FK_facture_historique">
+      <End Role="tbl_facture" EntitySet="tbl_facture" />
+      <End Role="tbl_historique_facture" EntitySet="tbl_historique_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_activite" Association="Self.FK_personne_activite">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_activite" EntitySet="tbl_relation_activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_facture" Association="Self.FK_personne_facture">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_facture" EntitySet="tbl_relation_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_repas" Association="Self.FK_personne_repas">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_repas" EntitySet="tbl_relation_repas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_tuteur" Association="Self.FK_personne_tuteur">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_tuteur_enfant" EntitySet="tbl_relation_tuteur_enfant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personne_utilisateur" Association="Self.FK_personne_utilisateur">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_utilisateur" EntitySet="tbl_utilisateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prix_repas" Association="Self.FK_prix_repas">
+      <End Role="tbl_prix_repas" EntitySet="tbl_prix_repas" />
+      <End Role="tbl_repas" EntitySet="tbl_repas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_relationfacture_personne" Association="Self.FK_relationfacture_personne">
+      <End Role="tbl_facture" EntitySet="tbl_facture" />
+      <End Role="tbl_relation_facture" EntitySet="tbl_relation_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_repas_personne" Association="Self.FK_repas_personne">
+      <End Role="tbl_repas" EntitySet="tbl_repas" />
+      <End Role="tbl_relation_repas" EntitySet="tbl_relation_repas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tuteur_facture_historique" Association="Self.FK_tuteur_facture_historique">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_historique_facture" EntitySet="tbl_historique_facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tuteur_personne" Association="Self.FK_tuteur_personne">
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+      <End Role="tbl_relation_tuteur_enfant" EntitySet="tbl_relation_tuteur_enfant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_typepersonne_personne" Association="Self.FK_typepersonne_personne">
+      <End Role="tbl_type_personne" EntitySet="tbl_type_personne" />
+      <End Role="tbl_personne" EntitySet="tbl_personne" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

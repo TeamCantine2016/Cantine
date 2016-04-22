@@ -33,8 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +57,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Cantine.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cantine.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cantine.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cantine.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cantine.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_activite.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_adresse.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_facture.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_historique_facture.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_personne.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_prix_repas.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_relation_activite.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_relation_repas.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_repas.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_type_personne.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_utilisateur.cs">
+      <DependentUpon>Cantine.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vues\Form_Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +188,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="Models\Cantine.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Cantine.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Cantine.edmx.diagram">
+      <DependentUpon>Cantine.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,6 +208,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\Cantine.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cantine.edmx</DependentUpon>
+      <LastGenOutput>Cantine.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Cantine.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cantine.edmx</DependentUpon>
+      <LastGenOutput>Cantine.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
