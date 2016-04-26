@@ -37,3 +37,6 @@ D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_ParamRepasPrix.reso
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+C:\Users\Asus X751L\Source\Repos\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe.config
+C:\Users\Asus X751L\Source\Repos\Cantine\ProjetCantine\obj\Debug\ProjetCantine.exe
+C:\Users\Asus X751L\Source\Repos\Cantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
