@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Historiq_fact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Historiq_fact.Designer.cs">
+      <DependentUpon>Historiq_fact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\activite.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
@@ -161,6 +167,9 @@
     <Compile Include="Vues\TestOscar.Designer.cs">
       <DependentUpon>TestOscar.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Historiq_fact.resx">
+      <DependentUpon>Historiq_fact.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Accueil.resx">
       <DependentUpon>Form_Accueil.cs</DependentUpon>
     </EmbeddedResource>
