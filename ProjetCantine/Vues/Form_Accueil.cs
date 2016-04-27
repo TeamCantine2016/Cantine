@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetCantine.Vues;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace ProjetCantine
         Form_VisualisationFamille form_VisuFamille;
         Form_GestionUtilisateur form_GestionUtilisateur;
         Form_ParamRepasPrix form_ParamRepasPrix;
+        Form_EncodageRepas form_EncodageRepas;
 
 
         private void gestionDesÉlèvesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,5 +79,23 @@ namespace ProjetCantine
         {
             this.Close();
         }
+
+        private void configurationDuMenuDeLaSemaineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void encodageRepasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (form_EncodageRepas == null)
+            {
+                form_EncodageRepas = new Form_EncodageRepas();
+                form_EncodageRepas.MdiParent = this;
+                form_EncodageRepas.Show();
+                form_EncodageRepas.WindowState = FormWindowState.Maximized;
+            }
+            else form_EncodageRepas.Activate();
+        }
     }
+
 }
