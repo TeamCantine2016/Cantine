@@ -34,5 +34,12 @@ namespace ProjetCantine
             Form_EncodageEleve = new Form_EncodageElève(flag);
             Form_EncodageEleve.ShowDialog();
         }
+
+        private void Form_GestionEleve_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSet_Cantine.tbl_personne' table. You can move, or remove it, as needed.
+            this.tbl_personneTableAdapter.Fill(this.dataSet_Cantine.tbl_personne);
+
+        }
     }
 }

@@ -14,8 +14,7 @@ namespace ProjetCantine
 {
     public partial class Form_EncodageUtilisateur : Form
     {
-
-        cantineEntities ce = new cantineEntities();   
+  
         public Form_EncodageUtilisateur(int flag)
         {
             InitializeComponent();
@@ -33,13 +32,5 @@ namespace ProjetCantine
             this.Close();
         }
 
-        private void Form_EncodageUtilisateur_Load(object sender, EventArgs e)
-        {
-            //charger la table utilisateur
-            ce.utilisateur.Load();
-
-            //chercher les données dans la combobox de droits et Distinct pour ne pas avoir des doublants
-            tblutilisateurBindingSource.DataSource = ce.utilisateur.Local.Select(var => var.droits).Distinct();
-        }
     }
 }

@@ -317,10 +317,6 @@
             this.button_Annuler.UseVisualStyleBackColor = true;
             this.button_Annuler.Click += new System.EventHandler(this.button_Annuler_Click);
             // 
-            // tblutilisateurBindingSource
-            // 
-            this.tblutilisateurBindingSource.DataSource = typeof(ProjetCantine.Models.utilisateur);
-            // 
             // Form_EncodageUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,7 +356,6 @@
             this.MaximizeBox = false;
             this.Name = "Form_EncodageUtilisateur";
             this.Text = "Paramètres de l\'utilisateur";
-            this.Load += new System.EventHandler(this.Form_EncodageUtilisateur_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblutilisateurBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

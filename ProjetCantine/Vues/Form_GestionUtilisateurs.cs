@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace ProjetCantine
 {
@@ -33,6 +34,13 @@ namespace ProjetCantine
             flag = 1;
             form_EncodageUtilisateur = new Form_EncodageUtilisateur(flag);
             form_EncodageUtilisateur.ShowDialog();
+        }
+
+        private void Form_GestionUtilisateur_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSet_Cantine.utilisateurs_details' table. You can move, or remove it, as needed.
+            this.tA_utilisateurs_details.Fill(this.dataSet_Cantine.utilisateurs_details);
+
         }
     }
 }

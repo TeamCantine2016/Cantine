@@ -28,50 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView_RepasPrix = new System.Windows.Forms.DataGridView();
-            this.Id_Repas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomRepas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tAprixdesrepasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet_Cantine = new ProjetCantine.Models.DataSet_Cantine();
             this.label_Nom = new System.Windows.Forms.Label();
             this.label_Prix = new System.Windows.Forms.Label();
             this.textBox_Nom = new System.Windows.Forms.TextBox();
             this.textBox_Prix = new System.Windows.Forms.TextBox();
             this.button_Ajouter = new System.Windows.Forms.Button();
             this.button_Supprimer = new System.Windows.Forms.Button();
+            this.tA_prix_des_repasTableAdapter = new ProjetCantine.Models.DataSet_CantineTableAdapters.TA_prix_des_repasTableAdapter();
+            this.typerepasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datedebutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datefinDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prix = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RepasPrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAprixdesrepasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Cantine)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView_RepasPrix
             // 
+            this.dataGridView_RepasPrix.AutoGenerateColumns = false;
             this.dataGridView_RepasPrix.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_RepasPrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_RepasPrix.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id_Repas,
-            this.NomRepas,
-            this.Prix});
+            this.typerepasDataGridViewTextBoxColumn,
+            this.datedebutDataGridViewTextBoxColumn,
+            this.datefinDataGridViewTextBoxColumn,
+            this.prix});
+            this.dataGridView_RepasPrix.DataSource = this.tAprixdesrepasBindingSource;
             this.dataGridView_RepasPrix.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_RepasPrix.Name = "dataGridView_RepasPrix";
             this.dataGridView_RepasPrix.Size = new System.Drawing.Size(1060, 513);
             this.dataGridView_RepasPrix.TabIndex = 0;
             this.dataGridView_RepasPrix.TabStop = false;
             // 
-            // Id_Repas
+            // tAprixdesrepasBindingSource
             // 
-            this.Id_Repas.HeaderText = "Id_Repas";
-            this.Id_Repas.Name = "Id_Repas";
-            this.Id_Repas.ReadOnly = true;
+            this.tAprixdesrepasBindingSource.DataMember = "TA_prix_des_repas";
+            this.tAprixdesrepasBindingSource.DataSource = this.dataSet_Cantine;
             // 
-            // NomRepas
+            // dataSet_Cantine
             // 
-            this.NomRepas.HeaderText = "Nom du repas";
-            this.NomRepas.Name = "NomRepas";
-            this.NomRepas.ReadOnly = true;
-            // 
-            // Prix
-            // 
-            this.Prix.HeaderText = "Prix";
-            this.Prix.Name = "Prix";
-            this.Prix.ReadOnly = true;
+            this.dataSet_Cantine.DataSetName = "DataSet_Cantine";
+            this.dataSet_Cantine.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label_Nom
             // 
@@ -123,6 +125,34 @@
             this.button_Supprimer.Text = "Supprimer";
             this.button_Supprimer.UseVisualStyleBackColor = true;
             // 
+            // tA_prix_des_repasTableAdapter
+            // 
+            this.tA_prix_des_repasTableAdapter.ClearBeforeFill = true;
+            // 
+            // typerepasDataGridViewTextBoxColumn
+            // 
+            this.typerepasDataGridViewTextBoxColumn.DataPropertyName = "type_repas";
+            this.typerepasDataGridViewTextBoxColumn.HeaderText = "Type de repas";
+            this.typerepasDataGridViewTextBoxColumn.Name = "typerepasDataGridViewTextBoxColumn";
+            // 
+            // datedebutDataGridViewTextBoxColumn
+            // 
+            this.datedebutDataGridViewTextBoxColumn.DataPropertyName = "date_debut";
+            this.datedebutDataGridViewTextBoxColumn.HeaderText = "Date début";
+            this.datedebutDataGridViewTextBoxColumn.Name = "datedebutDataGridViewTextBoxColumn";
+            // 
+            // datefinDataGridViewTextBoxColumn
+            // 
+            this.datefinDataGridViewTextBoxColumn.DataPropertyName = "date_fin";
+            this.datefinDataGridViewTextBoxColumn.HeaderText = "Date fin";
+            this.datefinDataGridViewTextBoxColumn.Name = "datefinDataGridViewTextBoxColumn";
+            // 
+            // prix
+            // 
+            this.prix.DataPropertyName = "prix";
+            this.prix.HeaderText = "Prix en €";
+            this.prix.Name = "prix";
+            // 
             // Form_ParamRepasPrix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,7 +168,10 @@
             this.Controls.Add(this.dataGridView_RepasPrix);
             this.Name = "Form_ParamRepasPrix";
             this.Text = "Paramétrage des repas et des prix";
+            this.Load += new System.EventHandler(this.Form_ParamRepasPrix_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RepasPrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAprixdesrepasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Cantine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,14 +180,19 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView_RepasPrix;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id_Repas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomRepas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prix;
         private System.Windows.Forms.Label label_Nom;
         private System.Windows.Forms.Label label_Prix;
         private System.Windows.Forms.TextBox textBox_Nom;
         private System.Windows.Forms.TextBox textBox_Prix;
         private System.Windows.Forms.Button button_Ajouter;
         private System.Windows.Forms.Button button_Supprimer;
+        private Models.DataSet_Cantine dataSet_Cantine;
+        private System.Windows.Forms.BindingSource tAprixdesrepasBindingSource;
+        private Models.DataSet_CantineTableAdapters.TA_prix_des_repasTableAdapter tA_prix_des_repasTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expr1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typerepasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datedebutDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datefinDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prix;
     }
 }

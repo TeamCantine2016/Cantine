@@ -57,53 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\activite.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
+    <Compile Include="Models\DataSet_Cantine.cs">
+      <DependentUpon>DataSet_Cantine.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Models\adresse.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cantine.Context.cs">
+    <Compile Include="Models\DataSet_Cantine.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Cantine.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cantine.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cantine.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cantine.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\facture.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\historique_facture.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\personne.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\prix_repas.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\relation_activite.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\relation_repas.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\repas.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\type_personne.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\utilisateur.cs">
-      <DependentUpon>Cantine.tt</DependentUpon>
+      <DependentUpon>DataSet_Cantine.xsd</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_Accueil.cs">
       <SubType>Form</SubType>
@@ -188,12 +148,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Models\Cantine.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Cantine.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\Cantine.edmx.diagram">
-      <DependentUpon>Cantine.edmx</DependentUpon>
+    <None Include="Models\DataSet_Cantine.xsc">
+      <DependentUpon>DataSet_Cantine.xsd</DependentUpon>
+    </None>
+    <None Include="Models\DataSet_Cantine.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet_Cantine.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\DataSet_Cantine.xss">
+      <DependentUpon>DataSet_Cantine.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ProjetCantine.Models.tbl_utilisateur.datasource" />
@@ -209,18 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Cantine.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Cantine.edmx</DependentUpon>
-      <LastGenOutput>Cantine.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Cantine.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Cantine.edmx</DependentUpon>
-      <LastGenOutput>Cantine.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView_Eleve = new System.Windows.Forms.DataGridView();
             this.Id_Elève = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,7 +37,12 @@
             this.button_Nouveau = new System.Windows.Forms.Button();
             this.button_Editer = new System.Windows.Forms.Button();
             this.button_Supprimer = new System.Windows.Forms.Button();
+            this.dataSet_Cantine = new ProjetCantine.Models.DataSet_Cantine();
+            this.tblpersonneBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tbl_personneTableAdapter = new ProjetCantine.Models.DataSet_CantineTableAdapters.tbl_personneTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Eleve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Cantine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblpersonneBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView_Eleve
@@ -48,6 +54,7 @@
             this.Nom,
             this.Prénom,
             this.Adresse});
+            this.dataGridView_Eleve.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.tblpersonneBindingSource, "id", true));
             this.dataGridView_Eleve.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_Eleve.Name = "dataGridView_Eleve";
             this.dataGridView_Eleve.Size = new System.Drawing.Size(1060, 565);
@@ -103,6 +110,20 @@
             this.button_Supprimer.Text = "Supprimer l\'élève";
             this.button_Supprimer.UseVisualStyleBackColor = true;
             // 
+            // dataSet_Cantine
+            // 
+            this.dataSet_Cantine.DataSetName = "DataSet_Cantine";
+            this.dataSet_Cantine.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblpersonneBindingSource
+            // 
+            this.tblpersonneBindingSource.DataMember = "tbl_personne";
+            this.tblpersonneBindingSource.DataSource = this.dataSet_Cantine;
+            // 
+            // tbl_personneTableAdapter
+            // 
+            this.tbl_personneTableAdapter.ClearBeforeFill = true;
+            // 
             // Form_GestionEleve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,7 +136,10 @@
             this.Controls.Add(this.dataGridView_Eleve);
             this.Name = "Form_GestionEleve";
             this.Text = "Gestion des élèves";
+            this.Load += new System.EventHandler(this.Form_GestionEleve_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Eleve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet_Cantine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblpersonneBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -130,5 +154,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prénom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Adresse;
+        private Models.DataSet_Cantine dataSet_Cantine;
+        private System.Windows.Forms.BindingSource tblpersonneBindingSource;
+        private Models.DataSet_CantineTableAdapters.tbl_personneTableAdapter tbl_personneTableAdapter;
     }
 }
