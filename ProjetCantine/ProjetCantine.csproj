@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Vues\Form_EncodageFactures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageFactures.designer.cs">
+      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\activite.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
+      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Accueil.resx">
       <DependentUpon>Form_Accueil.cs</DependentUpon>
     </EmbeddedResource>
