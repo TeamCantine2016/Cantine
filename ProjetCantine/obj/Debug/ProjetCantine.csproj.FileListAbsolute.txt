@@ -54,3 +54,6 @@ C:\Users\Rézette\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.Pr
 C:\Users\Rézette\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_EncodageRepas.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_HistoriqueFacture.resources
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe.config
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.exe
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
