@@ -33,7 +33,10 @@
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechID = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FamilleNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Adresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -47,11 +50,8 @@
             this.lbPeriode1 = new System.Windows.Forms.Label();
             this.lbEnvoi = new System.Windows.Forms.Label();
             this.lbPeriode = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FamilleNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Adresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             this.tabDetail.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,19 +107,40 @@
             this.dGdVw_DetailFamille.TabIndex = 7;
             this.dGdVw_DetailFamille.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellContentClick);
             // 
-            // dataGridView1
+            // ID
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // FamilleNom
+            // 
+            this.FamilleNom.HeaderText = "Famille(Nom)";
+            this.FamilleNom.Name = "FamilleNom";
+            this.FamilleNom.ReadOnly = true;
+            this.FamilleNom.Width = 150;
+            // 
+            // Adresse
+            // 
+            this.Adresse.HeaderText = "Adresse";
+            this.Adresse.Name = "Adresse";
+            this.Adresse.ReadOnly = true;
+            this.Adresse.Width = 300;
+            // 
+            // dataGridView_Membres
+            // 
+            this.dataGridView_Membres.AllowUserToAddRows = false;
+            this.dataGridView_Membres.AllowUserToDeleteRows = false;
+            this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Membres.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
-            this.dataGridView1.Location = new System.Drawing.Point(559, 56);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(245, 161);
-            this.dataGridView1.TabIndex = 8;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
+            this.dataGridView_Membres.Name = "dataGridView_Membres";
+            this.dataGridView_Membres.ReadOnly = true;
+            this.dataGridView_Membres.Size = new System.Drawing.Size(245, 161);
+            this.dataGridView_Membres.TabIndex = 8;
+            this.dataGridView_Membres.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -245,27 +266,6 @@
             this.lbPeriode.Text = "Selectionner la periode";
             this.lbPeriode.Click += new System.EventHandler(this.label1_Click);
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // FamilleNom
-            // 
-            this.FamilleNom.HeaderText = "Famille(Nom)";
-            this.FamilleNom.Name = "FamilleNom";
-            this.FamilleNom.ReadOnly = true;
-            this.FamilleNom.Width = 150;
-            // 
-            // Adresse
-            // 
-            this.Adresse.HeaderText = "Adresse";
-            this.Adresse.Name = "Adresse";
-            this.Adresse.ReadOnly = true;
-            this.Adresse.Width = 300;
-            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,7 +278,7 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.monthCalendar1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView_Membres);
             this.Controls.Add(this.dGdVw_DetailFamille);
             this.Controls.Add(this.txtBx_RechID);
             this.Controls.Add(this.txtBx_RechNom);
@@ -291,7 +291,7 @@
             this.Text = "Encodage des factures";
             this.Load += new System.EventHandler(this.Form_EncodageFactures_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             this.tabDetail.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -304,7 +304,7 @@
         private System.Windows.Forms.TextBox txtBx_RechNom;
         private System.Windows.Forms.Label label_RechID;
         private System.Windows.Forms.DataGridView dGdVw_DetailFamille;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView_Membres;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.ComboBox comboBox1;

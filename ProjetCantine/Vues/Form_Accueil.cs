@@ -24,6 +24,7 @@ namespace ProjetCantine
         Form_ParamRepasPrix form_ParamRepasPrix;
         Form_EncodageRepas form_EncodageRepas;
         Form_HistoriqueFacture form_HistoriqueFacture;
+        Form_EncodageFactures form_EncodageFactures;
 
 
         private void gestionDesÉlèvesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,6 +109,18 @@ namespace ProjetCantine
                 form_HistoriqueFacture.WindowState = FormWindowState.Maximized;
             }
             else form_EncodageRepas.Activate();
+        }
+
+        private void générationDesFacturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (form_EncodageFactures == null)
+            {
+                form_EncodageFactures = new Form_EncodageFactures();
+                form_EncodageFactures.MdiParent = this;
+                form_EncodageFactures.Show();
+                form_EncodageFactures.WindowState = FormWindowState.Maximized;
+            }
+            else form_EncodageFactures.Activate();
         }
     }
 

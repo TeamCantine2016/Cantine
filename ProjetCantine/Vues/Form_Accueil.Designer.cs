@@ -156,6 +156,7 @@
             this.générationDesFacturesToolStripMenuItem.Name = "générationDesFacturesToolStripMenuItem";
             this.générationDesFacturesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.générationDesFacturesToolStripMenuItem.Text = "Génération des factures";
+            this.générationDesFacturesToolStripMenuItem.Click += new System.EventHandler(this.générationDesFacturesToolStripMenuItem_Click);
             // 
             // historiqueDesFacturesToolStripMenuItem
             // 
