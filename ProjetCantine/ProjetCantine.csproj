@@ -57,12 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Historiq_fact.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Historiq_fact.Designer.cs">
-      <DependentUpon>Historiq_fact.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\activite.cs">
       <DependentUpon>Cantine.tt</DependentUpon>
     </Compile>
@@ -153,6 +147,12 @@
     <Compile Include="Vues\Form_GestionUtilisateurs.designer.cs">
       <DependentUpon>Form_GestionUtilisateurs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vues\Form_HistoriqueFacture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_HistoriqueFacture.Designer.cs">
+      <DependentUpon>Form_HistoriqueFacture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vues\Form_ParamRepasPris.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,13 +167,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vues\TestOscar.cs" />
-    <Compile Include="Vues\TestOscar.Designer.cs">
-      <DependentUpon>TestOscar.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Historiq_fact.resx">
-      <DependentUpon>Historiq_fact.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Accueil.resx">
       <DependentUpon>Form_Accueil.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_GestionUtilisateurs.resx">
       <DependentUpon>Form_GestionUtilisateurs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Form_HistoriqueFacture.resx">
+      <DependentUpon>Form_HistoriqueFacture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_ParamRepasPris.resx">
       <DependentUpon>Form_ParamRepasPris.cs</DependentUpon>
@@ -247,6 +243,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

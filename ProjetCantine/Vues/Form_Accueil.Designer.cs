@@ -141,7 +141,6 @@
             this.encodageDesRepasParÉlèveToolStripMenuItem.Name = "encodageDesRepasParÉlèveToolStripMenuItem";
             this.encodageDesRepasParÉlèveToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.encodageDesRepasParÉlèveToolStripMenuItem.Text = "Encodage des repas par élève";
-            this.encodageDesRepasParÉlèveToolStripMenuItem.Click += new System.EventHandler(this.encodageDesRepasParÉlèveToolStripMenuItem_Click);
             // 
             // facturationToolStripMenuItem
             // 
@@ -163,6 +162,7 @@
             this.historiqueDesFacturesToolStripMenuItem.Name = "historiqueDesFacturesToolStripMenuItem";
             this.historiqueDesFacturesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.historiqueDesFacturesToolStripMenuItem.Text = "Historique des factures";
+            this.historiqueDesFacturesToolStripMenuItem.Click += new System.EventHandler(this.historiqueDesFacturesToolStripMenuItem_Click);
             // 
             // récapitulatifToolStripMenuItem
             // 

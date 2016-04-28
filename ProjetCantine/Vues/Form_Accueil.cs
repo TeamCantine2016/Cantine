@@ -23,6 +23,7 @@ namespace ProjetCantine
         Form_GestionUtilisateur form_GestionUtilisateur;
         Form_ParamRepasPrix form_ParamRepasPrix;
         Form_EncodageRepas form_EncodageRepas;
+        Form_HistoriqueFacture form_HistoriqueFacture;
 
 
         private void gestionDesÉlèvesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +94,18 @@ namespace ProjetCantine
                 form_EncodageRepas.MdiParent = this;
                 form_EncodageRepas.Show();
                 form_EncodageRepas.WindowState = FormWindowState.Maximized;
+            }
+            else form_EncodageRepas.Activate();
+        }
+
+        private void historiqueDesFacturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (form_EncodageRepas == null)
+            {
+                form_HistoriqueFacture = new Form_HistoriqueFacture();
+                form_HistoriqueFacture.MdiParent = this;
+                form_HistoriqueFacture.Show();
+                form_HistoriqueFacture.WindowState = FormWindowState.Maximized;
             }
             else form_EncodageRepas.Activate();
         }
