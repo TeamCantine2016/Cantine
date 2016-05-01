@@ -91,26 +91,19 @@ namespace ProjetCantine
 
         private void encodageRepasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (form_EncodageRepas == null)
-            {
-                form_EncodageRepas = new Form_EncodageRepas();
-                form_EncodageRepas.MdiParent = this;
-                form_EncodageRepas.Show();
-                form_EncodageRepas.WindowState = FormWindowState.Maximized;
-            }
-            else form_EncodageRepas.Activate();
+            
         }
 
         private void historiqueDesFacturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (form_EncodageRepas == null)
+            if (form_HistoriqueFacture == null)
             {
                 form_HistoriqueFacture = new Form_HistoriqueFacture();
                 form_HistoriqueFacture.MdiParent = this;
                 form_HistoriqueFacture.Show();
                 form_HistoriqueFacture.WindowState = FormWindowState.Maximized;
             }
-            else form_EncodageRepas.Activate();
+            else form_HistoriqueFacture.Activate();
         }
 
         private void générationDesFacturesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +141,18 @@ namespace ProjetCantine
             }
             else form_GestionEtablissement.Activate();
 
+        }
+
+        private void encodageDesRepasParÉlèveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (form_EncodageRepas == null)
+            {
+                form_EncodageRepas = new Form_EncodageRepas();
+                form_EncodageRepas.MdiParent = this;
+                form_EncodageRepas.Show();
+                form_EncodageRepas.WindowState = FormWindowState.Maximized;
+            }
+            else form_EncodageRepas.Activate();
         }
     }
 

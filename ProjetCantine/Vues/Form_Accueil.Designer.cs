@@ -37,7 +37,6 @@
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encodageRepasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paramétrageDesRepasEtPrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encodageDesRepasParÉlèveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.générationDesFacturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,7 +116,6 @@
             // 
             this.encodageRepasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paramétrageDesRepasEtPrixToolStripMenuItem,
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem,
             this.encodageDesRepasParÉlèveToolStripMenuItem});
             this.encodageRepasToolStripMenuItem.Name = "encodageRepasToolStripMenuItem";
             this.encodageRepasToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
@@ -131,18 +129,12 @@
             this.paramétrageDesRepasEtPrixToolStripMenuItem.Text = "Paramétrage des repas et prix";
             this.paramétrageDesRepasEtPrixToolStripMenuItem.Click += new System.EventHandler(this.paramétrageDesRepasEtPrixToolStripMenuItem_Click);
             // 
-            // configurationDuMenuDeLaSemaineToolStripMenuItem
-            // 
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem.Name = "configurationDuMenuDeLaSemaineToolStripMenuItem";
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem.Text = "Configuration du menu de la semaine";
-            this.configurationDuMenuDeLaSemaineToolStripMenuItem.Click += new System.EventHandler(this.configurationDuMenuDeLaSemaineToolStripMenuItem_Click);
-            // 
             // encodageDesRepasParÉlèveToolStripMenuItem
             // 
             this.encodageDesRepasParÉlèveToolStripMenuItem.Name = "encodageDesRepasParÉlèveToolStripMenuItem";
             this.encodageDesRepasParÉlèveToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.encodageDesRepasParÉlèveToolStripMenuItem.Text = "Encodage des repas par élève";
+            this.encodageDesRepasParÉlèveToolStripMenuItem.Click += new System.EventHandler(this.encodageDesRepasParÉlèveToolStripMenuItem_Click);
             // 
             // facturationToolStripMenuItem
             // 
@@ -208,7 +200,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 662);
-            this.ControlBox = false;
             this.Controls.Add(this.menuStrip_Acceuil);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
@@ -234,7 +225,6 @@
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encodageRepasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paramétrageDesRepasEtPrixToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configurationDuMenuDeLaSemaineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encodageDesRepasParÉlèveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem générationDesFacturesToolStripMenuItem;
