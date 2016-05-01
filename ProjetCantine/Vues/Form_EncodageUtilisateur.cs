@@ -39,7 +39,7 @@ namespace ProjetCantine
            // ce.utilisateur.Load();
 
             //chercher les données dans la combobox de droits et Distinct pour ne pas avoir des doublants
-           // tblutilisateurBindingSource.DataSource = ce.utilisateur.Local.Select(var => var.droits).Distinct();
+          // tblutilisateurBindingSource.DataSource = ce.utilisateur.Local.Select(var => var.droits).Distinct();
         }
     }
 }

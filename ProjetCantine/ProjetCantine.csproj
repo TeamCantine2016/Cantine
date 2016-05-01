@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\cantineDataSet.cs">
+      <DependentUpon>cantineDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\cantineDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

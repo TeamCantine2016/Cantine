@@ -33,11 +33,6 @@
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.txtBx_RechID = new System.Windows.Forms.TextBox();
             this.dGdVw_DetailEleve = new System.Windows.Forms.DataGridView();
-            this.IDEleve = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Adresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_Nom = new System.Windows.Forms.Label();
             this.label_Prenom = new System.Windows.Forms.Label();
             this.label_Adresse = new System.Windows.Forms.Label();
@@ -95,51 +90,12 @@
             this.dGdVw_DetailEleve.AllowUserToAddRows = false;
             this.dGdVw_DetailEleve.AllowUserToDeleteRows = false;
             this.dGdVw_DetailEleve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGdVw_DetailEleve.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IDEleve,
-            this.Nom,
-            this.Prenom,
-            this.Age,
-            this.Adresse});
-            this.dGdVw_DetailEleve.Location = new System.Drawing.Point(34, 58);
+            this.dGdVw_DetailEleve.Location = new System.Drawing.Point(168, 58);
             this.dGdVw_DetailEleve.Name = "dGdVw_DetailEleve";
             this.dGdVw_DetailEleve.ReadOnly = true;
-            this.dGdVw_DetailEleve.Size = new System.Drawing.Size(995, 161);
+            this.dGdVw_DetailEleve.Size = new System.Drawing.Size(686, 161);
             this.dGdVw_DetailEleve.TabIndex = 4;
             this.dGdVw_DetailEleve.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // IDEleve
-            // 
-            this.IDEleve.HeaderText = "IDElève";
-            this.IDEleve.Name = "IDEleve";
-            this.IDEleve.ReadOnly = true;
-            // 
-            // Nom
-            // 
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            this.Nom.Width = 150;
-            // 
-            // Prenom
-            // 
-            this.Prenom.HeaderText = "Prénom";
-            this.Prenom.Name = "Prenom";
-            this.Prenom.ReadOnly = true;
-            this.Prenom.Width = 150;
-            // 
-            // Age
-            // 
-            this.Age.HeaderText = "Age";
-            this.Age.Name = "Age";
-            this.Age.ReadOnly = true;
-            // 
-            // Adresse
-            // 
-            this.Adresse.HeaderText = "Adresse";
-            this.Adresse.Name = "Adresse";
-            this.Adresse.ReadOnly = true;
-            this.Adresse.Width = 450;
             // 
             // label_Nom
             // 
@@ -295,11 +251,6 @@
         private System.Windows.Forms.TextBox txtBx_RechNom;
         private System.Windows.Forms.TextBox txtBx_RechID;
         private System.Windows.Forms.DataGridView dGdVw_DetailEleve;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDEleve;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prenom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Adresse;
         private System.Windows.Forms.Label label_Nom;
         private System.Windows.Forms.Label label_Prenom;
         private System.Windows.Forms.Label label_Adresse;

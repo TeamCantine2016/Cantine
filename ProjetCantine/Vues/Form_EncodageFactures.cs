@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjetCantine.Models;
 
 namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
+        cantineDataSet cds = new cantineDataSet();
+
         public Form_EncodageFactures()
         {
             InitializeComponent();
@@ -19,27 +22,13 @@ namespace ProjetCantine.Vues
 
         private void Form_EncodageFactures_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'cantineDataSet.tbl_historique_facture' table. You can move, or remove it, as needed.
+            this.tbl_historique_factureTableAdapter.Fill(this.cantineDataSet.tbl_historique_facture);
+
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label_RechID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dGdVw_DetailEleve_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label_RechNom = new System.Windows.Forms.Label();
             this.txtBx_RechID = new System.Windows.Forms.TextBox();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
@@ -50,9 +51,14 @@
             this.lbPeriode1 = new System.Windows.Forms.Label();
             this.lbEnvoi = new System.Windows.Forms.Label();
             this.lbPeriode = new System.Windows.Forms.Label();
+            this.cantineDataSet = new ProjetCantine.Models.cantineDataSet();
+            this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tbl_historique_factureTableAdapter = new ProjetCantine.Models.cantineDataSetTableAdapters.tbl_historique_factureTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             this.tabDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cantineDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -63,7 +69,6 @@
             this.label_RechNom.Size = new System.Drawing.Size(101, 13);
             this.label_RechNom.TabIndex = 1;
             this.label_RechNom.Text = "Recherche par nom";
-            this.label_RechNom.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtBx_RechID
             // 
@@ -89,7 +94,6 @@
             this.label_RechID.Size = new System.Drawing.Size(92, 13);
             this.label_RechID.TabIndex = 4;
             this.label_RechID.Text = "Recherche par ID";
-            this.label_RechID.Click += new System.EventHandler(this.label_RechID_Click);
             // 
             // dGdVw_DetailFamille
             // 
@@ -105,7 +109,6 @@
             this.dGdVw_DetailFamille.ReadOnly = true;
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 7;
-            this.dGdVw_DetailFamille.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellContentClick);
             // 
             // ID
             // 
@@ -140,7 +143,6 @@
             this.dataGridView_Membres.ReadOnly = true;
             this.dataGridView_Membres.Size = new System.Drawing.Size(245, 161);
             this.dataGridView_Membres.TabIndex = 8;
-            this.dataGridView_Membres.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -158,14 +160,14 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DataSource = this.tblhistoriquefactureBindingSource;
+            this.comboBox1.DisplayMember = "format_envoye";
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Mois",
-            "Semaine"});
             this.comboBox1.Location = new System.Drawing.Point(810, 333);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(227, 21);
             this.comboBox1.TabIndex = 20;
+            this.comboBox1.ValueMember = "format_envoye";
             // 
             // comboBox2
             // 
@@ -244,7 +246,6 @@
             this.lbPeriode1.Size = new System.Drawing.Size(110, 13);
             this.lbPeriode1.TabIndex = 1;
             this.lbPeriode1.Text = "Générer la facture par";
-            this.lbPeriode1.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbEnvoi
             // 
@@ -254,7 +255,6 @@
             this.lbEnvoi.Size = new System.Drawing.Size(111, 13);
             this.lbEnvoi.TabIndex = 1;
             this.lbEnvoi.Text = "Envoyer la facture par";
-            this.lbEnvoi.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbPeriode
             // 
@@ -264,7 +264,20 @@
             this.lbPeriode.Size = new System.Drawing.Size(115, 13);
             this.lbPeriode.TabIndex = 1;
             this.lbPeriode.Text = "Selectionner la periode";
-            this.lbPeriode.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // cantineDataSet
+            // 
+            this.cantineDataSet.DataSetName = "cantineDataSet";
+            this.cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblhistoriquefactureBindingSource
+            // 
+            this.tblhistoriquefactureBindingSource.DataMember = "tbl_historique_facture";
+            this.tblhistoriquefactureBindingSource.DataSource = this.cantineDataSet;
+            // 
+            // tbl_historique_factureTableAdapter
+            // 
+            this.tbl_historique_factureTableAdapter.ClearBeforeFill = true;
             // 
             // Form_EncodageFactures
             // 
@@ -294,6 +307,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             this.tabDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cantineDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +337,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FamilleNom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Adresse;
         private System.Windows.Forms.Label lbPeriode;
+        private Models.cantineDataSet cantineDataSet;
+        private System.Windows.Forms.BindingSource tblhistoriquefactureBindingSource;
+        private Models.cantineDataSetTableAdapters.tbl_historique_factureTableAdapter tbl_historique_factureTableAdapter;
     }
 }
