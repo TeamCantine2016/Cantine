@@ -46,6 +46,7 @@
             this.repasParFamilleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionÉtablissementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Acceuil.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             // administrationToolStripMenuItem
             // 
             this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestionÉtablissementToolStripMenuItem,
             this.gestionDesUtilisateursToolStripMenuItem,
             this.gestionDesÉlèvesToolStripMenuItem,
             this.visualisationDesFamillesToolStripMenuItem,
@@ -191,8 +193,15 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(79, 22);
             this.toolStripMenuItem2.Text = "?";
+            // 
+            // gestionÉtablissementToolStripMenuItem
+            // 
+            this.gestionÉtablissementToolStripMenuItem.Name = "gestionÉtablissementToolStripMenuItem";
+            this.gestionÉtablissementToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.gestionÉtablissementToolStripMenuItem.Text = "Gestion établissement";
+            this.gestionÉtablissementToolStripMenuItem.Click += new System.EventHandler(this.gestionÉtablissementToolStripMenuItem_Click);
             // 
             // Form_Acceuil
             // 
@@ -234,6 +243,7 @@
         private System.Windows.Forms.ToolStripMenuItem repasParFamilleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem gestionÉtablissementToolStripMenuItem;
     }
 }
 
