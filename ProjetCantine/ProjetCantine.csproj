@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -57,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbAccess\DbConnection.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Vues\Form_EncodageFactures.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +170,12 @@
     <Compile Include="Vues\Form_ParamRepasPris.designer.cs">
       <DependentUpon>Form_ParamRepasPris.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vues\Form_RecapRepasFamilleMois.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_RecapRepasFamilleMois.Designer.cs">
+      <DependentUpon>Form_RecapRepasFamilleMois.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vues\Form_VisualisationFamille.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +184,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_Acceuil.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_Connexion.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageElève.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionEleve.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_VisualisationFamille.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_EncodageFactures.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_EncodageRepas.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_HistoriqueFacture.resources" />
     <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
       <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +226,9 @@
     <EmbeddedResource Include="Vues\Form_ParamRepasPris.resx">
       <DependentUpon>Form_ParamRepasPris.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Form_RecapRepasFamilleMois.resx">
+      <DependentUpon>Form_RecapRepasFamilleMois.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_VisualisationFamille.resx">
       <DependentUpon>Form_VisualisationFamille.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +245,19 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Cantine.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="bin\Debug\ProjetCantine.exe.config" />
+    <None Include="bin\Debug\ProjetCantine.vshost.exe.config" />
+    <None Include="bin\Debug\ProjetCantine.vshost.exe.manifest" />
     <None Include="Models\Cantine.edmx.diagram">
       <DependentUpon>Cantine.edmx</DependentUpon>
     </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\Cantine.csdl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\Cantine.msl" />
+    <None Include="obj\Debug\edmxResourcesToEmbed\Models\Cantine.ssdl" />
+    <None Include="obj\Debug\ProjetCantine.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ProjetCantine.Models.tbl_utilisateur.datasource" />
     <None Include="Properties\Settings.settings">
@@ -238,6 +274,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\ProjetCantine.exe" />
+    <Content Include="bin\Debug\ProjetCantine.pdb" />
+    <Content Include="bin\Debug\ProjetCantine.vshost.exe" />
     <Content Include="Models\Cantine.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Cantine.edmx</DependentUpon>
@@ -248,11 +291,18 @@
       <DependentUpon>Cantine.edmx</DependentUpon>
       <LastGenOutput>Cantine.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\ProjetCantine.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ProjetCantine.exe" />
+    <Content Include="obj\Debug\ProjetCantine.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.Cantine.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.Cantine.Designer.cs.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

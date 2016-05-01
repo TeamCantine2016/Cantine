@@ -178,6 +178,7 @@
             this.repasParFamilleToolStripMenuItem.Name = "repasParFamilleToolStripMenuItem";
             this.repasParFamilleToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.repasParFamilleToolStripMenuItem.Text = "Repas par famille ";
+            this.repasParFamilleToolStripMenuItem.Click += new System.EventHandler(this.repasParFamilleToolStripMenuItem_Click);
             // 
             // aideToolStripMenuItem
             // 
@@ -190,7 +191,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(79, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "?";
             // 
             // Form_Acceuil

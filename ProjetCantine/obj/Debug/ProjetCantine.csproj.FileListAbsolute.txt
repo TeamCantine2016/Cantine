@@ -59,8 +59,6 @@ C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCan
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
-C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.dll
-C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.xml
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache
@@ -77,3 +75,4 @@ C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCan
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_RecapRepasFamilleMois.resources

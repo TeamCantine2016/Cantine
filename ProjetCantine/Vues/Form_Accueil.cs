@@ -25,6 +25,7 @@ namespace ProjetCantine
         Form_EncodageRepas form_EncodageRepas;
         Form_HistoriqueFacture form_HistoriqueFacture;
         Form_EncodageFactures form_EncodageFactures;
+        Form_RecapRepasFamilleMois form_RecapRepasFamilleMois;
 
 
         private void gestionDesÉlèvesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -121,6 +122,18 @@ namespace ProjetCantine
                 form_EncodageFactures.WindowState = FormWindowState.Maximized;
             }
             else form_EncodageFactures.Activate();
+        }
+
+        private void repasParFamilleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (form_RecapRepasFamilleMois == null)
+            {
+                form_RecapRepasFamilleMois = new Form_RecapRepasFamilleMois();
+                form_RecapRepasFamilleMois.MdiParent = this;
+                form_RecapRepasFamilleMois.Show();
+                form_RecapRepasFamilleMois.WindowState = FormWindowState.Maximized;
+            }
+            else form_RecapRepasFamilleMois.Activate();
         }
     }
 
