@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
-using ProjetCantine.Models;
+//using ProjetCantine.Models;
 
 namespace ProjetCantine
 {
     public partial class Form_EncodageUtilisateur : Form
     {
 
-        cantineEntities ce = new cantineEntities();   
+        //cantineEntities ce = new cantineEntities();   
         public Form_EncodageUtilisateur(int flag)
         {
             InitializeComponent();
-          //  comboBox_Type.SelectedIndex = 0;
+           comboBox_Type.SelectedIndex = 0;
             if (flag == 0)
             {
                 button_Valider.Text = "Valider";
@@ -36,10 +36,10 @@ namespace ProjetCantine
         private void Form_EncodageUtilisateur_Load(object sender, EventArgs e)
         {
             //charger la table utilisateur
-            ce.utilisateur.Load();
+           // ce.utilisateur.Load();
 
             //chercher les données dans la combobox de droits et Distinct pour ne pas avoir des doublants
-            tblutilisateurBindingSource.DataSource = ce.utilisateur.Local.Select(var => var.droits).Distinct();
+           // tblutilisateurBindingSource.DataSource = ce.utilisateur.Local.Select(var => var.droits).Distinct();
         }
     }
 }

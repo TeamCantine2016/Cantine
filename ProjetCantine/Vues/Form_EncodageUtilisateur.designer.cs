@@ -317,10 +317,6 @@
             this.button_Annuler.UseVisualStyleBackColor = true;
             this.button_Annuler.Click += new System.EventHandler(this.button_Annuler_Click);
             // 
-            // tblutilisateurBindingSource
-            // 
-            this.tblutilisateurBindingSource.DataSource = typeof(ProjetCantine.Models.utilisateur);
-            // 
             // Form_EncodageUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

@@ -12,7 +12,7 @@ namespace ProjetCantine.DbAccess
     class DbConnection
     {
         public static SqlConnection connection;
-        public static string connectionString = ConfigurationManager.ConnectionStrings["cantineEntities"].ConnectionString;
+        public static string connectionString = ConfigurationManager.ConnectionStrings["cantineConnectionString"].ConnectionString;
    
         public static SqlConnection getConnection()
         {
