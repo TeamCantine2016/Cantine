@@ -34,13 +34,11 @@
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechID = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FamilleNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Adresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tab2 = new System.Windows.Forms.TabPage();
             this.tab1 = new System.Windows.Forms.TabPage();
@@ -51,11 +49,20 @@
             this.lbPeriode1 = new System.Windows.Forms.Label();
             this.lbEnvoi = new System.Windows.Forms.Label();
             this.lbPeriode = new System.Windows.Forms.Label();
-            this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
+            this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
+            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
-            this.tabDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
+            this.tabDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -96,37 +103,20 @@
             // 
             this.dGdVw_DetailFamille.AllowUserToAddRows = false;
             this.dGdVw_DetailFamille.AllowUserToDeleteRows = false;
+            this.dGdVw_DetailFamille.AutoGenerateColumns = false;
             this.dGdVw_DetailFamille.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGdVw_DetailFamille.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.FamilleNom,
-            this.Adresse});
+            this.nomDataGridViewTextBoxColumn,
+            this.prénomDataGridViewTextBoxColumn,
+            this.adresseDataGridViewTextBoxColumn,
+            this.villeDataGridViewTextBoxColumn,
+            this.paysDataGridViewTextBoxColumn});
+            this.dGdVw_DetailFamille.DataSource = this.tAListesPersonnesBindingSource;
             this.dGdVw_DetailFamille.Location = new System.Drawing.Point(12, 56);
             this.dGdVw_DetailFamille.Name = "dGdVw_DetailFamille";
             this.dGdVw_DetailFamille.ReadOnly = true;
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 7;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // FamilleNom
-            // 
-            this.FamilleNom.HeaderText = "Famille(Nom)";
-            this.FamilleNom.Name = "FamilleNom";
-            this.FamilleNom.ReadOnly = true;
-            this.FamilleNom.Width = 150;
-            // 
-            // Adresse
-            // 
-            this.Adresse.HeaderText = "Adresse";
-            this.Adresse.Name = "Adresse";
-            this.Adresse.ReadOnly = true;
-            this.Adresse.Width = 300;
             // 
             // dataGridView_Membres
             // 
@@ -165,6 +155,10 @@
             this.comboBox1.Size = new System.Drawing.Size(227, 21);
             this.comboBox1.TabIndex = 20;
             this.comboBox1.ValueMember = "format_envoye";
+            // 
+            // tblhistoriquefactureBindingSource
+            // 
+            this.tblhistoriquefactureBindingSource.CurrentChanged += new System.EventHandler(this.tblhistoriquefactureBindingSource_CurrentChanged);
             // 
             // comboBox2
             // 
@@ -262,6 +256,55 @@
             this.lbPeriode.TabIndex = 1;
             this.lbPeriode.Text = "Selectionner la periode";
             // 
+            // db_cantineDataSet
+            // 
+            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
+            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tAListesPersonnesBindingSource
+            // 
+            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
+            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
+            // 
+            // tA_Listes_Personnes_query
+            // 
+            this.tA_Listes_Personnes_query.ClearBeforeFill = true;
+            // 
+            // nomDataGridViewTextBoxColumn
+            // 
+            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn
+            // 
+            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
+            this.prénomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,8 +332,10 @@
             this.Load += new System.EventHandler(this.Form_EncodageFactures_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
-            this.tabDetail.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
+            this.tabDetail.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,10 +360,15 @@
         private System.Windows.Forms.Button btAnnuler;
         private System.Windows.Forms.Label lbPeriode1;
         private System.Windows.Forms.Label lbEnvoi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FamilleNom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Adresse;
         private System.Windows.Forms.Label lbPeriode;
         private System.Windows.Forms.BindingSource tblhistoriquefactureBindingSource;
+        private Models.db_cantineDataSet db_cantineDataSet;
+        private System.Windows.Forms.BindingSource tAListesPersonnesBindingSource;
+        private Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query tA_Listes_Personnes_query;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
     }
 }

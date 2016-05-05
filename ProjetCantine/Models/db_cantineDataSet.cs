@@ -7,9 +7,11 @@
     }
 }
 
-namespace ProjetCantine.Models.db_cantineDataSetTableAdapters {
-    
-    
-    public partial class TA_F_EncodageRepas_query {
+namespace ProjetCantine.Models.db_cantineDataSetTableAdapters
+{
+
+
+    public partial class TA_Listes_Personnes_query
+    {
     }
 }

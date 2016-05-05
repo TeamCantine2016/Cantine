@@ -52,7 +52,7 @@ namespace ProjetCantine.Models {
         
         private tbl_utilisateurDataTable tabletbl_utilisateur;
         
-        private TA_F_EncodageRepasDataTable tableTA_F_EncodageRepas;
+        private TA_Listes_PersonnesDataTable tableTA_Listes_Personnes;
         
         private global::System.Data.DataRelation relationFK_etablissement_adresse;
         
@@ -154,8 +154,8 @@ namespace ProjetCantine.Models {
                 if ((ds.Tables["tbl_utilisateur"] != null)) {
                     base.Tables.Add(new tbl_utilisateurDataTable(ds.Tables["tbl_utilisateur"]));
                 }
-                if ((ds.Tables["TA_F_EncodageRepas"] != null)) {
-                    base.Tables.Add(new TA_F_EncodageRepasDataTable(ds.Tables["TA_F_EncodageRepas"]));
+                if ((ds.Tables["TA_Listes_Personnes"] != null)) {
+                    base.Tables.Add(new TA_Listes_PersonnesDataTable(ds.Tables["TA_Listes_Personnes"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -319,9 +319,9 @@ namespace ProjetCantine.Models {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TA_F_EncodageRepasDataTable TA_F_EncodageRepas {
+        public TA_Listes_PersonnesDataTable TA_Listes_Personnes {
             get {
-                return this.tableTA_F_EncodageRepas;
+                return this.tableTA_Listes_Personnes;
             }
         }
         
@@ -434,8 +434,8 @@ namespace ProjetCantine.Models {
                 if ((ds.Tables["tbl_utilisateur"] != null)) {
                     base.Tables.Add(new tbl_utilisateurDataTable(ds.Tables["tbl_utilisateur"]));
                 }
-                if ((ds.Tables["TA_F_EncodageRepas"] != null)) {
-                    base.Tables.Add(new TA_F_EncodageRepasDataTable(ds.Tables["TA_F_EncodageRepas"]));
+                if ((ds.Tables["TA_Listes_Personnes"] != null)) {
+                    base.Tables.Add(new TA_Listes_PersonnesDataTable(ds.Tables["TA_Listes_Personnes"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -554,10 +554,10 @@ namespace ProjetCantine.Models {
                     this.tabletbl_utilisateur.InitVars();
                 }
             }
-            this.tableTA_F_EncodageRepas = ((TA_F_EncodageRepasDataTable)(base.Tables["TA_F_EncodageRepas"]));
+            this.tableTA_Listes_Personnes = ((TA_Listes_PersonnesDataTable)(base.Tables["TA_Listes_Personnes"]));
             if ((initTable == true)) {
-                if ((this.tableTA_F_EncodageRepas != null)) {
-                    this.tableTA_F_EncodageRepas.InitVars();
+                if ((this.tableTA_Listes_Personnes != null)) {
+                    this.tableTA_Listes_Personnes.InitVars();
                 }
             }
             this.relationFK_etablissement_adresse = this.Relations["FK_etablissement_adresse"];
@@ -613,8 +613,8 @@ namespace ProjetCantine.Models {
             base.Tables.Add(this.tabletbl_type_personne);
             this.tabletbl_utilisateur = new tbl_utilisateurDataTable();
             base.Tables.Add(this.tabletbl_utilisateur);
-            this.tableTA_F_EncodageRepas = new TA_F_EncodageRepasDataTable();
-            base.Tables.Add(this.tableTA_F_EncodageRepas);
+            this.tableTA_Listes_Personnes = new TA_Listes_PersonnesDataTable();
+            base.Tables.Add(this.tableTA_Listes_Personnes);
             this.relationFK_etablissement_adresse = new global::System.Data.DataRelation("FK_etablissement_adresse", new global::System.Data.DataColumn[] {
                         this.tabletbl_adresse.idColumn}, new global::System.Data.DataColumn[] {
                         this.tabletbl_etablissement.adresse_idColumn}, false);
@@ -763,7 +763,7 @@ namespace ProjetCantine.Models {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTA_F_EncodageRepas() {
+        private bool ShouldSerializeTA_Listes_Personnes() {
             return false;
         }
         
@@ -865,7 +865,7 @@ namespace ProjetCantine.Models {
         public delegate void tbl_utilisateurRowChangeEventHandler(object sender, tbl_utilisateurRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void TA_F_EncodageRepasRowChangeEventHandler(object sender, TA_F_EncodageRepasRowChangeEvent e);
+        public delegate void TA_Listes_PersonnesRowChangeEventHandler(object sender, TA_Listes_PersonnesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5444,7 +5444,7 @@ namespace ProjetCantine.Models {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TA_F_EncodageRepasDataTable : global::System.Data.TypedTableBase<TA_F_EncodageRepasRow> {
+        public partial class TA_Listes_PersonnesDataTable : global::System.Data.TypedTableBase<TA_Listes_PersonnesRow> {
             
             private global::System.Data.DataColumn columnPrénom;
             
@@ -5460,8 +5460,8 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasDataTable() {
-                this.TableName = "TA_F_EncodageRepas";
+            public TA_Listes_PersonnesDataTable() {
+                this.TableName = "TA_Listes_Personnes";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -5469,7 +5469,7 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TA_F_EncodageRepasDataTable(global::System.Data.DataTable table) {
+            internal TA_Listes_PersonnesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -5486,7 +5486,7 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected TA_F_EncodageRepasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TA_Listes_PersonnesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -5550,34 +5550,34 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasRow this[int index] {
+            public TA_Listes_PersonnesRow this[int index] {
                 get {
-                    return ((TA_F_EncodageRepasRow)(this.Rows[index]));
+                    return ((TA_Listes_PersonnesRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TA_F_EncodageRepasRowChangeEventHandler TA_F_EncodageRepasRowChanging;
+            public event TA_Listes_PersonnesRowChangeEventHandler TA_Listes_PersonnesRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TA_F_EncodageRepasRowChangeEventHandler TA_F_EncodageRepasRowChanged;
+            public event TA_Listes_PersonnesRowChangeEventHandler TA_Listes_PersonnesRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TA_F_EncodageRepasRowChangeEventHandler TA_F_EncodageRepasRowDeleting;
+            public event TA_Listes_PersonnesRowChangeEventHandler TA_Listes_PersonnesRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TA_F_EncodageRepasRowChangeEventHandler TA_F_EncodageRepasRowDeleted;
+            public event TA_Listes_PersonnesRowChangeEventHandler TA_Listes_PersonnesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTA_F_EncodageRepasRow(TA_F_EncodageRepasRow row) {
+            public void AddTA_Listes_PersonnesRow(TA_Listes_PersonnesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasRow AddTA_F_EncodageRepasRow(string Prénom, System.DateTime Date_de_naissance, string Adresse, string Ville, string Pays, string Nom) {
-                TA_F_EncodageRepasRow rowTA_F_EncodageRepasRow = ((TA_F_EncodageRepasRow)(this.NewRow()));
+            public TA_Listes_PersonnesRow AddTA_Listes_PersonnesRow(string Prénom, System.DateTime Date_de_naissance, string Adresse, string Ville, string Pays, string Nom) {
+                TA_Listes_PersonnesRow rowTA_Listes_PersonnesRow = ((TA_Listes_PersonnesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Prénom,
                         Date_de_naissance,
@@ -5585,15 +5585,15 @@ namespace ProjetCantine.Models {
                         Ville,
                         Pays,
                         Nom};
-                rowTA_F_EncodageRepasRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTA_F_EncodageRepasRow);
-                return rowTA_F_EncodageRepasRow;
+                rowTA_Listes_PersonnesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTA_Listes_PersonnesRow);
+                return rowTA_Listes_PersonnesRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TA_F_EncodageRepasDataTable cln = ((TA_F_EncodageRepasDataTable)(base.Clone()));
+                TA_Listes_PersonnesDataTable cln = ((TA_Listes_PersonnesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5601,7 +5601,7 @@ namespace ProjetCantine.Models {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TA_F_EncodageRepasDataTable();
+                return new TA_Listes_PersonnesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5645,28 +5645,28 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasRow NewTA_F_EncodageRepasRow() {
-                return ((TA_F_EncodageRepasRow)(this.NewRow()));
+            public TA_Listes_PersonnesRow NewTA_Listes_PersonnesRow() {
+                return ((TA_Listes_PersonnesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TA_F_EncodageRepasRow(builder);
+                return new TA_Listes_PersonnesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TA_F_EncodageRepasRow);
+                return typeof(TA_Listes_PersonnesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TA_F_EncodageRepasRowChanged != null)) {
-                    this.TA_F_EncodageRepasRowChanged(this, new TA_F_EncodageRepasRowChangeEvent(((TA_F_EncodageRepasRow)(e.Row)), e.Action));
+                if ((this.TA_Listes_PersonnesRowChanged != null)) {
+                    this.TA_Listes_PersonnesRowChanged(this, new TA_Listes_PersonnesRowChangeEvent(((TA_Listes_PersonnesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5674,8 +5674,8 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TA_F_EncodageRepasRowChanging != null)) {
-                    this.TA_F_EncodageRepasRowChanging(this, new TA_F_EncodageRepasRowChangeEvent(((TA_F_EncodageRepasRow)(e.Row)), e.Action));
+                if ((this.TA_Listes_PersonnesRowChanging != null)) {
+                    this.TA_Listes_PersonnesRowChanging(this, new TA_Listes_PersonnesRowChangeEvent(((TA_Listes_PersonnesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5683,8 +5683,8 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TA_F_EncodageRepasRowDeleted != null)) {
-                    this.TA_F_EncodageRepasRowDeleted(this, new TA_F_EncodageRepasRowChangeEvent(((TA_F_EncodageRepasRow)(e.Row)), e.Action));
+                if ((this.TA_Listes_PersonnesRowDeleted != null)) {
+                    this.TA_Listes_PersonnesRowDeleted(this, new TA_Listes_PersonnesRowChangeEvent(((TA_Listes_PersonnesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5692,14 +5692,14 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TA_F_EncodageRepasRowDeleting != null)) {
-                    this.TA_F_EncodageRepasRowDeleting(this, new TA_F_EncodageRepasRowChangeEvent(((TA_F_EncodageRepasRow)(e.Row)), e.Action));
+                if ((this.TA_Listes_PersonnesRowDeleting != null)) {
+                    this.TA_Listes_PersonnesRowDeleting(this, new TA_Listes_PersonnesRowChangeEvent(((TA_Listes_PersonnesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTA_F_EncodageRepasRow(TA_F_EncodageRepasRow row) {
+            public void RemoveTA_Listes_PersonnesRow(TA_Listes_PersonnesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -5726,7 +5726,7 @@ namespace ProjetCantine.Models {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TA_F_EncodageRepasDataTable";
+                attribute2.FixedValue = "TA_Listes_PersonnesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7313,25 +7313,25 @@ namespace ProjetCantine.Models {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TA_F_EncodageRepasRow : global::System.Data.DataRow {
+        public partial class TA_Listes_PersonnesRow : global::System.Data.DataRow {
             
-            private TA_F_EncodageRepasDataTable tableTA_F_EncodageRepas;
+            private TA_Listes_PersonnesDataTable tableTA_Listes_Personnes;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TA_F_EncodageRepasRow(global::System.Data.DataRowBuilder rb) : 
+            internal TA_Listes_PersonnesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTA_F_EncodageRepas = ((TA_F_EncodageRepasDataTable)(this.Table));
+                this.tableTA_Listes_Personnes = ((TA_Listes_PersonnesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Prénom {
                 get {
-                    return ((string)(this[this.tableTA_F_EncodageRepas.PrénomColumn]));
+                    return ((string)(this[this.tableTA_Listes_Personnes.PrénomColumn]));
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.PrénomColumn] = value;
+                    this[this.tableTA_Listes_Personnes.PrénomColumn] = value;
                 }
             }
             
@@ -7339,10 +7339,10 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime Date_de_naissance {
                 get {
-                    return ((global::System.DateTime)(this[this.tableTA_F_EncodageRepas.Date_de_naissanceColumn]));
+                    return ((global::System.DateTime)(this[this.tableTA_Listes_Personnes.Date_de_naissanceColumn]));
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.Date_de_naissanceColumn] = value;
+                    this[this.tableTA_Listes_Personnes.Date_de_naissanceColumn] = value;
                 }
             }
             
@@ -7351,14 +7351,14 @@ namespace ProjetCantine.Models {
             public string Adresse {
                 get {
                     try {
-                        return ((string)(this[this.tableTA_F_EncodageRepas.AdresseColumn]));
+                        return ((string)(this[this.tableTA_Listes_Personnes.AdresseColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Adresse\' in table \'TA_F_EncodageRepas\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Adresse\' in table \'TA_Listes_Personnes\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.AdresseColumn] = value;
+                    this[this.tableTA_Listes_Personnes.AdresseColumn] = value;
                 }
             }
             
@@ -7367,14 +7367,14 @@ namespace ProjetCantine.Models {
             public string Ville {
                 get {
                     try {
-                        return ((string)(this[this.tableTA_F_EncodageRepas.VilleColumn]));
+                        return ((string)(this[this.tableTA_Listes_Personnes.VilleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Ville\' in table \'TA_F_EncodageRepas\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Ville\' in table \'TA_Listes_Personnes\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.VilleColumn] = value;
+                    this[this.tableTA_Listes_Personnes.VilleColumn] = value;
                 }
             }
             
@@ -7382,10 +7382,10 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Pays {
                 get {
-                    return ((string)(this[this.tableTA_F_EncodageRepas.PaysColumn]));
+                    return ((string)(this[this.tableTA_Listes_Personnes.PaysColumn]));
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.PaysColumn] = value;
+                    this[this.tableTA_Listes_Personnes.PaysColumn] = value;
                 }
             }
             
@@ -7393,35 +7393,35 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Nom {
                 get {
-                    return ((string)(this[this.tableTA_F_EncodageRepas.NomColumn]));
+                    return ((string)(this[this.tableTA_Listes_Personnes.NomColumn]));
                 }
                 set {
-                    this[this.tableTA_F_EncodageRepas.NomColumn] = value;
+                    this[this.tableTA_Listes_Personnes.NomColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAdresseNull() {
-                return this.IsNull(this.tableTA_F_EncodageRepas.AdresseColumn);
+                return this.IsNull(this.tableTA_Listes_Personnes.AdresseColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAdresseNull() {
-                this[this.tableTA_F_EncodageRepas.AdresseColumn] = global::System.Convert.DBNull;
+                this[this.tableTA_Listes_Personnes.AdresseColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsVilleNull() {
-                return this.IsNull(this.tableTA_F_EncodageRepas.VilleColumn);
+                return this.IsNull(this.tableTA_Listes_Personnes.VilleColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetVilleNull() {
-                this[this.tableTA_F_EncodageRepas.VilleColumn] = global::System.Convert.DBNull;
+                this[this.tableTA_Listes_Personnes.VilleColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7905,22 +7905,22 @@ namespace ProjetCantine.Models {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class TA_F_EncodageRepasRowChangeEvent : global::System.EventArgs {
+        public class TA_Listes_PersonnesRowChangeEvent : global::System.EventArgs {
             
-            private TA_F_EncodageRepasRow eventRow;
+            private TA_Listes_PersonnesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasRowChangeEvent(TA_F_EncodageRepasRow row, global::System.Data.DataRowAction action) {
+            public TA_Listes_PersonnesRowChangeEvent(TA_Listes_PersonnesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TA_F_EncodageRepasRow Row {
+            public TA_Listes_PersonnesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -13219,7 +13219,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TA_F_EncodageRepas_query : global::System.ComponentModel.Component {
+    public partial class TA_Listes_Personnes_query : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -13233,7 +13233,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TA_F_EncodageRepas_query() {
+        public TA_Listes_Personnes_query() {
             this.ClearBeforeFill = true;
         }
         
@@ -13330,7 +13330,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TA_F_EncodageRepas";
+            tableMapping.DataSetTable = "TA_Listes_Personnes";
             tableMapping.ColumnMappings.Add("Prénom", "Prénom");
             tableMapping.ColumnMappings.Add("Date de naissance", "Date de naissance");
             tableMapping.ColumnMappings.Add("Adresse", "Adresse");
@@ -13350,7 +13350,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
@@ -13360,13 +13360,22 @@ FROM            tbl_personne INNER JOIN
                          tbl_type_personne ON tbl_personne.type_personne_id = tbl_type_personne.id
 WHERE        (tbl_type_personne.type_personne = 'élève')";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+                         } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
+FROM            tbl_personne INNER JOIN
+                         tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN
+                         tbl_type_personne ON tbl_personne.type_personne_id = tbl_type_personne.id
+WHERE        (tbl_type_personne.type_personne = 'tuteur')";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(db_cantineDataSet.TA_F_EncodageRepasDataTable dataTable) {
+        public virtual int Fill_Eleves(db_cantineDataSet.TA_Listes_PersonnesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -13379,9 +13388,33 @@ WHERE        (tbl_type_personne.type_personne = 'élève')";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual db_cantineDataSet.TA_F_EncodageRepasDataTable GetData() {
+        public virtual db_cantineDataSet.TA_Listes_PersonnesDataTable Get_ListeEleves() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            db_cantineDataSet.TA_F_EncodageRepasDataTable dataTable = new db_cantineDataSet.TA_F_EncodageRepasDataTable();
+            db_cantineDataSet.TA_Listes_PersonnesDataTable dataTable = new db_cantineDataSet.TA_Listes_PersonnesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int Fill_Tuteurs(db_cantineDataSet.TA_Listes_PersonnesDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual db_cantineDataSet.TA_Listes_PersonnesDataTable Get_ListeTuteurs() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            db_cantineDataSet.TA_Listes_PersonnesDataTable dataTable = new db_cantineDataSet.TA_Listes_PersonnesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

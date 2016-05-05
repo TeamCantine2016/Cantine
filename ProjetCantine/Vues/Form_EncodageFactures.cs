@@ -21,11 +21,17 @@ namespace ProjetCantine.Vues
 
         private void Form_EncodageFactures_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cantineDataSet.tbl_historique_facture' table. You can move, or remove it, as needed.
-
+            // requête du dataset pour remplir le datagridview
+            this.tA_Listes_Personnes_query.Fill_Tuteurs(this.db_cantineDataSet.TA_Listes_Personnes);
+            // pour adapter la largeur de colonnes
+            dGdVw_DetailFamille.AutoResizeColumns();
+            // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
+            dGdVw_DetailFamille.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
+        private void tblhistoriquefactureBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

@@ -36,11 +36,11 @@ namespace ProjetCantine.Vues
         private void Form_EncodageRepas_Load(object sender, EventArgs e)
         {
             // requête du dataset pour remplir le datagridview
-            this.tA_F_EncodageRepas_query.Fill(this.db_cantineDataSet.TA_F_EncodageRepas);
+            this.tA_Listes_Personnes_query.Fill_Eleves(this.db_cantineDataSet.TA_Listes_Personnes);
             // pour adapter la largeur de colonnes
             dGdVw_DetailEleve.AutoResizeColumns();
             // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
-            dGdVw_DetailEleve.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dGdVw_DetailEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void tAFEncodageRepasBindingSource1_CurrentChanged(object sender, EventArgs e)

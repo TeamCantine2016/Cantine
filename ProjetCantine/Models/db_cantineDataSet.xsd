@@ -906,9 +906,9 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_F_EncodageRepas_query" GeneratorDataComponentClassName="TA_F_EncodageRepas_query" Name="TA_F_EncodageRepas" UserDataComponentName="TA_F_EncodageRepas_query">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_Listes_Personnes_query" GeneratorDataComponentClassName="TA_Listes_Personnes_query" Name="TA_Listes_Personnes" UserDataComponentName="TA_Listes_Personnes_query">
             <MainSource>
-              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Eleves" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="Get_ListeEleves" GeneratorSourceName="Fill_Eleves" GetMethodModifier="Public" GetMethodName="Get_ListeEleves" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Get_ListeEleves" UserSourceName="Fill_Eleves">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
@@ -930,7 +930,21 @@ WHERE        (tbl_type_personne.type_personne = 'élève')</CommandText>
               <Mapping SourceColumn="Pays" DataSetColumn="Pays" />
               <Mapping SourceColumn="Nom" DataSetColumn="Nom" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Tuteurs" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="Get_ListeTuteurs" GeneratorSourceName="Fill_Tuteurs" GetMethodModifier="Public" GetMethodName="Get_ListeTuteurs" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Get_ListeTuteurs" UserSourceName="Fill_Tuteurs">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+                         } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
+FROM            tbl_personne INNER JOIN
+                         tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN
+                         tbl_type_personne ON tbl_personne.type_personne_id = tbl_type_personne.id
+WHERE        (tbl_type_personne.type_personne = 'tuteur')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -1233,7 +1247,7 @@ WHERE        (tbl_type_personne.type_personne = 'élève')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TA_F_EncodageRepas" msprop:Generator_TableClassName="TA_F_EncodageRepasDataTable" msprop:Generator_TableVarName="tableTA_F_EncodageRepas" msprop:Generator_TablePropName="TA_F_EncodageRepas" msprop:Generator_RowDeletingName="TA_F_EncodageRepasRowDeleting" msprop:Generator_RowChangingName="TA_F_EncodageRepasRowChanging" msprop:Generator_RowEvHandlerName="TA_F_EncodageRepasRowChangeEventHandler" msprop:Generator_RowDeletedName="TA_F_EncodageRepasRowDeleted" msprop:Generator_UserTableName="TA_F_EncodageRepas" msprop:Generator_RowChangedName="TA_F_EncodageRepasRowChanged" msprop:Generator_RowEvArgName="TA_F_EncodageRepasRowChangeEvent" msprop:Generator_RowClassName="TA_F_EncodageRepasRow">
+        <xs:element name="TA_Listes_Personnes" msprop:Generator_TableClassName="TA_Listes_PersonnesDataTable" msprop:Generator_TableVarName="tableTA_Listes_Personnes" msprop:Generator_TablePropName="TA_Listes_Personnes" msprop:Generator_RowDeletingName="TA_Listes_PersonnesRowDeleting" msprop:Generator_RowChangingName="TA_Listes_PersonnesRowChanging" msprop:Generator_RowEvHandlerName="TA_Listes_PersonnesRowChangeEventHandler" msprop:Generator_RowDeletedName="TA_Listes_PersonnesRowDeleted" msprop:Generator_UserTableName="TA_Listes_Personnes" msprop:Generator_RowChangedName="TA_Listes_PersonnesRowChanged" msprop:Generator_RowEvArgName="TA_Listes_PersonnesRowChangeEvent" msprop:Generator_RowClassName="TA_Listes_PersonnesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Prénom" msprop:Generator_ColumnVarNameInTable="columnPrénom" msprop:Generator_ColumnPropNameInRow="Prénom" msprop:Generator_ColumnPropNameInTable="PrénomColumn" msprop:Generator_UserColumnName="Prénom">
