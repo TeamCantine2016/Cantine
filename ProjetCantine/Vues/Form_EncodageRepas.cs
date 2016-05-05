@@ -8,13 +8,8 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageRepas : Form
     {
-        //SqlCommand cmd = new SqlCommand();
-        //SqlDataAdapter da = new SqlDataAdapter();
-        //cantineDataSet ds = new cantineDataSet();
-
         public Form_EncodageRepas()
         {
-
             InitializeComponent();
         }
 
@@ -40,12 +35,17 @@ namespace ProjetCantine.Vues
 
         private void Form_EncodageRepas_Load(object sender, EventArgs e)
         {
-            //cmd.Connection = DbConnection.getConnection(); 
-            //cmd.CommandText = "SELECT tbl_personne.id, Prenom, nom, date_naissance, rue, numero, ville, code_postal, pays FROM tbl_personne INNER JOIN tbl_type_personne ON tbl_type_personne.id = tbl_personne.type_personne_id INNER JOIN tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id WHERE type_personne = 'élève'";
-            //da.SelectCommand = cmd;
+            // requête du dataset pour remplir le datagridview
+            this.tA_F_EncodageRepas_query.Fill(this.db_cantineDataSet.TA_F_EncodageRepas);
+            // pour adapter la largeur de colonnes
+            dGdVw_DetailEleve.AutoResizeColumns();
+            // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
+            dGdVw_DetailEleve.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
 
-            //da.Fill(ds, "Eleve");
-            //dGdVw_DetailEleve.DataSource = ds.Tables["Eleve"];
+        private void tAFEncodageRepasBindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

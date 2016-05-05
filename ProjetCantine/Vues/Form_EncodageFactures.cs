@@ -13,7 +13,6 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
-        cantineDataSet cds = new cantineDataSet();
 
         public Form_EncodageFactures()
         {
@@ -23,8 +22,6 @@ namespace ProjetCantine.Vues
         private void Form_EncodageFactures_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'cantineDataSet.tbl_historique_facture' table. You can move, or remove it, as needed.
-            this.tbl_historique_factureTableAdapter.Fill(this.cantineDataSet.tbl_historique_facture);
-
 
         }
 

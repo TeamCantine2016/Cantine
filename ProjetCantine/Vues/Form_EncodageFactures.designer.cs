@@ -51,13 +51,10 @@
             this.lbPeriode1 = new System.Windows.Forms.Label();
             this.lbEnvoi = new System.Windows.Forms.Label();
             this.lbPeriode = new System.Windows.Forms.Label();
-            this.cantineDataSet = new ProjetCantine.Models.cantineDataSet();
             this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbl_historique_factureTableAdapter = new ProjetCantine.Models.cantineDataSetTableAdapters.tbl_historique_factureTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             this.tabDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cantineDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -265,20 +262,6 @@
             this.lbPeriode.TabIndex = 1;
             this.lbPeriode.Text = "Selectionner la periode";
             // 
-            // cantineDataSet
-            // 
-            this.cantineDataSet.DataSetName = "cantineDataSet";
-            this.cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblhistoriquefactureBindingSource
-            // 
-            this.tblhistoriquefactureBindingSource.DataMember = "tbl_historique_facture";
-            this.tblhistoriquefactureBindingSource.DataSource = this.cantineDataSet;
-            // 
-            // tbl_historique_factureTableAdapter
-            // 
-            this.tbl_historique_factureTableAdapter.ClearBeforeFill = true;
-            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +290,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             this.tabDetail.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cantineDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -337,8 +319,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FamilleNom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Adresse;
         private System.Windows.Forms.Label lbPeriode;
-        private Models.cantineDataSet cantineDataSet;
         private System.Windows.Forms.BindingSource tblhistoriquefactureBindingSource;
-        private Models.cantineDataSetTableAdapters.tbl_historique_factureTableAdapter tbl_historique_factureTableAdapter;
     }
 }
