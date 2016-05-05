@@ -57,6 +57,7 @@
             this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
             this.textbox_Ajouter = new System.Windows.Forms.Button();
             this.button_Annuler = new System.Windows.Forms.Button();
+            this.button_Parcourir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,84 +183,84 @@
             this.textBox_Domination.Location = new System.Drawing.Point(245, 28);
             this.textBox_Domination.Name = "textBox_Domination";
             this.textBox_Domination.Size = new System.Drawing.Size(277, 20);
-            this.textBox_Domination.TabIndex = 14;
+            this.textBox_Domination.TabIndex = 0;
             // 
             // textBox_NumEtablissement
             // 
             this.textBox_NumEtablissement.Location = new System.Drawing.Point(245, 67);
             this.textBox_NumEtablissement.Name = "textBox_NumEtablissement";
             this.textBox_NumEtablissement.Size = new System.Drawing.Size(277, 20);
-            this.textBox_NumEtablissement.TabIndex = 15;
+            this.textBox_NumEtablissement.TabIndex = 5;
             // 
             // textBox_Responsable
             // 
             this.textBox_Responsable.Location = new System.Drawing.Point(245, 116);
             this.textBox_Responsable.Name = "textBox_Responsable";
             this.textBox_Responsable.Size = new System.Drawing.Size(277, 20);
-            this.textBox_Responsable.TabIndex = 16;
+            this.textBox_Responsable.TabIndex = 10;
             // 
             // textBox_Rue
             // 
             this.textBox_Rue.Location = new System.Drawing.Point(245, 212);
             this.textBox_Rue.Name = "textBox_Rue";
             this.textBox_Rue.Size = new System.Drawing.Size(277, 20);
-            this.textBox_Rue.TabIndex = 17;
+            this.textBox_Rue.TabIndex = 15;
             // 
             // textBox_Ville
             // 
             this.textBox_Ville.Location = new System.Drawing.Point(245, 258);
             this.textBox_Ville.Name = "textBox_Ville";
             this.textBox_Ville.Size = new System.Drawing.Size(167, 20);
-            this.textBox_Ville.TabIndex = 18;
+            this.textBox_Ville.TabIndex = 25;
             // 
             // textBox_Pays
             // 
             this.textBox_Pays.Location = new System.Drawing.Point(245, 310);
             this.textBox_Pays.Name = "textBox_Pays";
             this.textBox_Pays.Size = new System.Drawing.Size(167, 20);
-            this.textBox_Pays.TabIndex = 19;
+            this.textBox_Pays.TabIndex = 35;
             // 
             // textBox_NumTelephone
             // 
             this.textBox_NumTelephone.Location = new System.Drawing.Point(245, 352);
             this.textBox_NumTelephone.Name = "textBox_NumTelephone";
             this.textBox_NumTelephone.Size = new System.Drawing.Size(277, 20);
-            this.textBox_NumTelephone.TabIndex = 20;
+            this.textBox_NumTelephone.TabIndex = 40;
             // 
             // textBox_NumFax
             // 
             this.textBox_NumFax.Location = new System.Drawing.Point(245, 397);
             this.textBox_NumFax.Name = "textBox_NumFax";
             this.textBox_NumFax.Size = new System.Drawing.Size(277, 20);
-            this.textBox_NumFax.TabIndex = 21;
+            this.textBox_NumFax.TabIndex = 45;
             // 
             // textBox_Email
             // 
             this.textBox_Email.Location = new System.Drawing.Point(245, 445);
             this.textBox_Email.Name = "textBox_Email";
             this.textBox_Email.Size = new System.Drawing.Size(277, 20);
-            this.textBox_Email.TabIndex = 22;
+            this.textBox_Email.TabIndex = 50;
             // 
             // textBox_Iban
             // 
             this.textBox_Iban.Location = new System.Drawing.Point(245, 489);
             this.textBox_Iban.Name = "textBox_Iban";
             this.textBox_Iban.Size = new System.Drawing.Size(277, 20);
-            this.textBox_Iban.TabIndex = 23;
+            this.textBox_Iban.TabIndex = 55;
             // 
             // textBox_CodePostal
             // 
             this.textBox_CodePostal.Location = new System.Drawing.Point(567, 258);
             this.textBox_CodePostal.Name = "textBox_CodePostal";
             this.textBox_CodePostal.Size = new System.Drawing.Size(64, 20);
-            this.textBox_CodePostal.TabIndex = 25;
+            this.textBox_CodePostal.TabIndex = 30;
             // 
             // textBox_Num
             // 
             this.textBox_Num.Location = new System.Drawing.Point(567, 212);
             this.textBox_Num.Name = "textBox_Num";
             this.textBox_Num.Size = new System.Drawing.Size(48, 20);
-            this.textBox_Num.TabIndex = 28;
+            this.textBox_Num.TabIndex = 20;
             // 
             // label13
             // 
@@ -283,7 +284,7 @@
             this.textbox_Ajouter.Location = new System.Drawing.Point(245, 561);
             this.textbox_Ajouter.Name = "textbox_Ajouter";
             this.textbox_Ajouter.Size = new System.Drawing.Size(200, 35);
-            this.textbox_Ajouter.TabIndex = 30;
+            this.textbox_Ajouter.TabIndex = 65;
             this.textbox_Ajouter.Text = "Ajouter";
             this.textbox_Ajouter.UseVisualStyleBackColor = true;
             // 
@@ -292,15 +293,25 @@
             this.button_Annuler.Location = new System.Drawing.Point(600, 561);
             this.button_Annuler.Name = "button_Annuler";
             this.button_Annuler.Size = new System.Drawing.Size(200, 35);
-            this.button_Annuler.TabIndex = 31;
+            this.button_Annuler.TabIndex = 70;
             this.button_Annuler.Text = "Annuler";
             this.button_Annuler.UseVisualStyleBackColor = true;
+            // 
+            // button_Parcourir
+            // 
+            this.button_Parcourir.Location = new System.Drawing.Point(802, 265);
+            this.button_Parcourir.Name = "button_Parcourir";
+            this.button_Parcourir.Size = new System.Drawing.Size(99, 23);
+            this.button_Parcourir.TabIndex = 60;
+            this.button_Parcourir.Text = "Parcourir ...";
+            this.button_Parcourir.UseVisualStyleBackColor = true;
             // 
             // Form_GestionEtablissement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
+            this.Controls.Add(this.button_Parcourir);
             this.Controls.Add(this.button_Annuler);
             this.Controls.Add(this.textbox_Ajouter);
             this.Controls.Add(this.pictureBox_Logo);
@@ -370,5 +381,6 @@
         private System.Windows.Forms.PictureBox pictureBox_Logo;
         private System.Windows.Forms.Button textbox_Ajouter;
         private System.Windows.Forms.Button button_Annuler;
+        private System.Windows.Forms.Button button_Parcourir;
     }
 }
