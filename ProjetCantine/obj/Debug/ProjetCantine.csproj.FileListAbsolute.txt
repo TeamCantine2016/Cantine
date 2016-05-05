@@ -100,3 +100,6 @@ C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCant
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\bin\Debug\ProjetCantine.exe.config
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\obj\Debug\ProjetCantine.exe
+C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\obj\Debug\ProjetCantine.pdb

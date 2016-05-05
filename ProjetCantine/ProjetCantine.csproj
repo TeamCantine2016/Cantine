@@ -58,15 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\cantineDataSet.cs">
-      <DependentUpon>cantineDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cantineDataSet.Designer.cs">
+    <Compile Include="Models\db_cantineDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>cantineDataSet.xsd</DependentUpon>
+      <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DbAccess\DbConnection.cs" />
+    <Compile Include="Models\DbConnection.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -213,16 +210,16 @@
     <None Include="bin\Debug\ProjetCantine.exe.config" />
     <None Include="bin\Debug\ProjetCantine.vshost.exe.config" />
     <None Include="bin\Debug\ProjetCantine.vshost.exe.manifest" />
-    <None Include="Models\cantineDataSet.xsc">
-      <DependentUpon>cantineDataSet.xsd</DependentUpon>
+    <None Include="Models\db_cantineDataSet.xsc">
+      <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Models\cantineDataSet.xsd">
+    <None Include="Models\db_cantineDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cantineDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>db_cantineDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Models\cantineDataSet.xss">
-      <DependentUpon>cantineDataSet.xsd</DependentUpon>
+    <None Include="Models\db_cantineDataSet.xss">
+      <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
