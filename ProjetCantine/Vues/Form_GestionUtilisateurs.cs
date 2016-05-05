@@ -34,5 +34,15 @@ namespace ProjetCantine
             form_EncodageUtilisateur = new Form_EncodageUtilisateur(flag);
             form_EncodageUtilisateur.ShowDialog();
         }
+
+        private void Form_GestionUtilisateur_Load(object sender, EventArgs e)
+        {
+            // requête du dataset pour remplir le datagridview
+            this.tA_Liste_Utilisateurs_query.Fill_Utilisateurs(this.db_cantineDataSet.TA_Liste_Utilisateurs);
+            // pour adapter la largeur de colonnes
+            dataGridView_GestionUtilisateur.AutoResizeColumns();
+            // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
+            dataGridView_GestionUtilisateur.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
     }
 }

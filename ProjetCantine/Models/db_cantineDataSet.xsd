@@ -946,6 +946,29 @@ WHERE        (tbl_type_personne.type_personne = 'tuteur')</CommandText>
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_Liste_Utilisateurs_query" GeneratorDataComponentClassName="TA_Liste_Utilisateurs_query" Name="TA_Liste_Utilisateurs" UserDataComponentName="TA_Liste_Utilisateurs_query">
+            <MainSource>
+              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Utilisateurs" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="Get_ListeUtilisateurs" GeneratorSourceName="Fill_Utilisateurs" GetMethodModifier="Public" GetMethodName="Get_ListeUtilisateurs" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Get_ListeUtilisateurs" UserSourceName="Fill_Utilisateurs">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tbl_utilisateur.pseudo AS 'Pseudonyme', tbl_personne.prenom As 'Prénom', tbl_personne.nom AS 'Nom', tbl_personne.courriel AS 'Adresse mail', tbl_utilisateur.droits AS 'Droits', tbl_utilisateur.etat AS 'Etat'
+FROM            tbl_personne INNER JOIN
+                         tbl_utilisateur ON tbl_personne.id = tbl_utilisateur.personne_id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Pseudonyme" DataSetColumn="Pseudonyme" />
+              <Mapping SourceColumn="Prénom" DataSetColumn="Prénom" />
+              <Mapping SourceColumn="Nom" DataSetColumn="Nom" />
+              <Mapping SourceColumn="Adresse mail" DataSetColumn="Adresse mail" />
+              <Mapping SourceColumn="Droits" DataSetColumn="Droits" />
+              <Mapping SourceColumn="Etat" DataSetColumn="Etat" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1286,6 +1309,48 @@ WHERE        (tbl_type_personne.type_personne = 'tuteur')</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TA_Liste_Utilisateurs" msprop:Generator_TableClassName="TA_Liste_UtilisateursDataTable" msprop:Generator_TableVarName="tableTA_Liste_Utilisateurs" msprop:Generator_TablePropName="TA_Liste_Utilisateurs" msprop:Generator_RowDeletingName="TA_Liste_UtilisateursRowDeleting" msprop:Generator_RowChangingName="TA_Liste_UtilisateursRowChanging" msprop:Generator_RowEvHandlerName="TA_Liste_UtilisateursRowChangeEventHandler" msprop:Generator_RowDeletedName="TA_Liste_UtilisateursRowDeleted" msprop:Generator_UserTableName="TA_Liste_Utilisateurs" msprop:Generator_RowChangedName="TA_Liste_UtilisateursRowChanged" msprop:Generator_RowEvArgName="TA_Liste_UtilisateursRowChangeEvent" msprop:Generator_RowClassName="TA_Liste_UtilisateursRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pseudonyme" msprop:Generator_ColumnVarNameInTable="columnPseudonyme" msprop:Generator_ColumnPropNameInRow="Pseudonyme" msprop:Generator_ColumnPropNameInTable="PseudonymeColumn" msprop:Generator_UserColumnName="Pseudonyme">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Prénom" msprop:Generator_ColumnVarNameInTable="columnPrénom" msprop:Generator_ColumnPropNameInRow="Prénom" msprop:Generator_ColumnPropNameInTable="PrénomColumn" msprop:Generator_UserColumnName="Prénom">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nom" msprop:Generator_ColumnVarNameInTable="columnNom" msprop:Generator_ColumnPropNameInRow="Nom" msprop:Generator_ColumnPropNameInTable="NomColumn" msprop:Generator_UserColumnName="Nom">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Adresse_x0020_mail" msprop:Generator_ColumnVarNameInTable="columnAdresse_mail" msprop:Generator_ColumnPropNameInRow="Adresse_mail" msprop:Generator_ColumnPropNameInTable="Adresse_mailColumn" msprop:Generator_UserColumnName="Adresse mail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Droits" msprop:Generator_ColumnVarNameInTable="columnDroits" msprop:Generator_ColumnPropNameInRow="Droits" msprop:Generator_ColumnPropNameInTable="DroitsColumn" msprop:Generator_UserColumnName="Droits">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Etat" msprop:Generator_ColumnVarNameInTable="columnEtat" msprop:Generator_ColumnPropNameInRow="Etat" msprop:Generator_ColumnPropNameInTable="EtatColumn" msprop:Generator_UserColumnName="Etat" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
