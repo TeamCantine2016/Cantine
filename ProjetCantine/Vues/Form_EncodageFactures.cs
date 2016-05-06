@@ -33,5 +33,10 @@ namespace ProjetCantine.Vues
         {
 
         }
+
+        private void dGdVw_DetailFamille_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
