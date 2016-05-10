@@ -38,5 +38,22 @@ namespace ProjetCantine.Vues
         {
 
         }
+
+        private void btApercu_Click(object sender, EventArgs e)
+        {
+            ApercuFacture facture = new ApercuFacture();
+            String msgRetour = facture.facture();
+
+            // teste si le fichier a bien été creer           
+            if (msgRetour.LastIndexOf(".pdf") == -1)
+            {
+                MessageBox.Show(msgRetour);
+            }
+            else
+            {
+                MessageBox.Show("La création à bien été éffectué à l'adresse: " + msgRetour);
+                facture.affichageFacture(msgRetour);
+            }
+        }
     }
 }

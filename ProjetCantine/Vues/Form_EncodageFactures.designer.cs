@@ -256,6 +256,7 @@
             this.btApercu.TabIndex = 23;
             this.btApercu.Text = "Aperçu";
             this.btApercu.UseVisualStyleBackColor = true;
+            this.btApercu.Click += new System.EventHandler(this.btApercu_Click);
             // 
             // btEnvoi
             // 
