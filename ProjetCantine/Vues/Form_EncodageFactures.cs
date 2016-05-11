@@ -25,6 +25,8 @@ namespace ProjetCantine.Vues
 
         private void Form_EncodageFactures_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'db_cantineDataSet.TA_Remplir_CB_FormatEnvoie' table. You can move, or remove it, as needed.
+            this.tA_Remplir_CB_FormatEnvoieTableAdapter.Fill_FormatEnvoi(this.db_cantineDataSet.TA_Remplir_CB_FormatEnvoie);
             // requête du dataset pour remplir le datagridview
             this.tA_Listes_Personnes_query.Fill_Tuteurs(this.db_cantineDataSet.TA_Listes_Personnes);
             // pour adapter la largeur de colonnes
@@ -32,13 +34,10 @@ namespace ProjetCantine.Vues
             // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
             dGdVw_DetailFamille.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGdVw_DetailFamille.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView_Membres.AutoResizeColumns();
         }
 
-     
-        private void dGdVw_DetailFamille_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void btApercu_Click(object sender, EventArgs e)
         {
@@ -86,6 +85,24 @@ namespace ProjetCantine.Vues
             dGdVw_DetailFamille.DataSource = t;
 
             con.Close();
+        }
+
+        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int cmp = dGdVw_DetailFamille.CurrentRow.Index;
+            DataGridViewRow line = dGdVw_DetailFamille.Rows[cmp];
+            String query = "WITH Tuteur AS(SELECT prenom, nom, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id Where tbl_personne.nom = '"+ line.Cells[0].Value.ToString() + "' ),Enfant AS( SELECT prenom, nom, date_naissance, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' FROM Tuteur, Enfant, tbl_relation_tuteur_enfant WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            DataTable t = new DataTable();
+            t.Load(dr);
+            dataGridView_Membres.DataSource = t;
+
+            con.Close();
+
+
         }
     }
 }

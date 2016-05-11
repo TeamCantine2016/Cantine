@@ -44,11 +44,11 @@
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tARemplirCBFormatEnvoieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tab2 = new System.Windows.Forms.TabPage();
             this.tab1 = new System.Windows.Forms.TabPage();
             this.tabDetail = new System.Windows.Forms.TabControl();
@@ -63,11 +63,13 @@
             this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prénom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tA_Remplir_CB_FormatEnvoieTableAdapter = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).BeginInit();
             this.tabDetail.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +130,7 @@
             this.dGdVw_DetailFamille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
-            this.dGdVw_DetailFamille.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellContentClick);
+            this.dGdVw_DetailFamille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellClick);
             // 
             // nomDataGridViewTextBoxColumn1
             // 
@@ -194,21 +196,12 @@
             this.dataGridView_Membres.AllowUserToAddRows = false;
             this.dataGridView_Membres.AllowUserToDeleteRows = false;
             this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Membres.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
             this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
             this.dataGridView_Membres.Name = "dataGridView_Membres";
             this.dataGridView_Membres.ReadOnly = true;
+            this.dataGridView_Membres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Membres.Size = new System.Drawing.Size(245, 161);
             this.dataGridView_Membres.TabIndex = 16;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Membres";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Membres";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 200;
             // 
             // monthCalendar1
             // 
@@ -229,15 +222,19 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DataSource = this.tARemplirCBFormatEnvoieBindingSource;
+            this.comboBox2.DisplayMember = "format_envoye";
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Courrier",
-            "Email",
-            "Les 2"});
             this.comboBox2.Location = new System.Drawing.Point(810, 409);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(227, 21);
             this.comboBox2.TabIndex = 21;
+            this.comboBox2.ValueMember = "format_envoye";
+            // 
+            // tARemplirCBFormatEnvoieBindingSource
+            // 
+            this.tARemplirCBFormatEnvoieBindingSource.DataMember = "TA_Remplir_CB_FormatEnvoie";
+            this.tARemplirCBFormatEnvoieBindingSource.DataSource = this.db_cantineDataSet;
             // 
             // tab2
             // 
@@ -352,6 +349,10 @@
             this.Prénom.HeaderText = "Prénom";
             this.Prénom.Name = "Prénom";
             // 
+            // tA_Remplir_CB_FormatEnvoieTableAdapter
+            // 
+            this.tA_Remplir_CB_FormatEnvoieTableAdapter.ClearBeforeFill = true;
+            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +383,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).EndInit();
             this.tabDetail.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -395,7 +397,6 @@
         private System.Windows.Forms.Label label_RechNumTel;
         private System.Windows.Forms.DataGridView dGdVw_DetailFamille;
         private System.Windows.Forms.DataGridView dataGridView_Membres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -423,5 +424,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource tARemplirCBFormatEnvoieBindingSource;
+        private Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter tA_Remplir_CB_FormatEnvoieTableAdapter;
     }
 }
