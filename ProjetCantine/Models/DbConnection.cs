@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 
-namespace ProjetCantine.DbAccess
+namespace ProjetCantine.Models
 {
     class DbConnection
     {

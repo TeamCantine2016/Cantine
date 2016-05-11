@@ -908,10 +908,10 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TA_Listes_Personnes_query" GeneratorDataComponentClassName="TA_Listes_Personnes_query" Name="TA_Listes_Personnes" UserDataComponentName="TA_Listes_Personnes_query">
             <MainSource>
-              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Eleves" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="Get_ListeEleves" GeneratorSourceName="Fill_Eleves" GetMethodModifier="Public" GetMethodName="Get_ListeEleves" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Get_ListeEleves" UserSourceName="Fill_Eleves">
+              <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Eleves" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="Get_ListeEleves" GeneratorSourceName="Fill_Eleves" GetMethodModifier="Public" GetMethodName="Get_ListeEleves" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="Get_ListeEleves" UserSourceName="Fill_Eleves">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.telephone AS 'Numéro de Téléphone',  tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
                          } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
 FROM            tbl_personne INNER JOIN
                          tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN
@@ -929,12 +929,13 @@ WHERE        (tbl_type_personne.type_personne = 'élève')</CommandText>
               <Mapping SourceColumn="Ville" DataSetColumn="Ville" />
               <Mapping SourceColumn="Pays" DataSetColumn="Pays" />
               <Mapping SourceColumn="Nom" DataSetColumn="Nom" />
+              <Mapping SourceColumn="Numéro de Téléphone" DataSetColumn="Numéro de Téléphone" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cantineConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Tuteurs" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="Get_ListeTuteurs" GeneratorSourceName="Fill_Tuteurs" GetMethodModifier="Public" GetMethodName="Get_ListeTuteurs" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="Get_ListeTuteurs" UserSourceName="Fill_Tuteurs">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+                    <CommandText>SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom',  tbl_personne.telephone AS 'Numéro de Téléphone', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
                          } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
 FROM            tbl_personne INNER JOIN
                          tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN
@@ -1336,6 +1337,7 @@ WHERE        (tbl_type_personne.type_personne = 'tuteur')</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Numéro_x0020_de_x0020_Téléphone" msprop:Generator_ColumnVarNameInTable="columnNuméro_de_Téléphone" msprop:Generator_ColumnPropNameInRow="Numéro_de_Téléphone" msprop:Generator_ColumnPropNameInTable="Numéro_de_TéléphoneColumn" msprop:Generator_UserColumnName="Numéro de Téléphone" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
