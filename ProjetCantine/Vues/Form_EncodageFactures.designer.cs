@@ -125,12 +125,13 @@
             this.paysDataGridViewTextBoxColumn});
             this.dGdVw_DetailFamille.DataSource = this.tAListesPersonnesBindingSource;
             this.dGdVw_DetailFamille.Location = new System.Drawing.Point(12, 56);
+            this.dGdVw_DetailFamille.MultiSelect = false;
             this.dGdVw_DetailFamille.Name = "dGdVw_DetailFamille";
             this.dGdVw_DetailFamille.ReadOnly = true;
             this.dGdVw_DetailFamille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
-            this.dGdVw_DetailFamille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellClick);
+            this.dGdVw_DetailFamille.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellEnter);
             // 
             // nomDataGridViewTextBoxColumn1
             // 
@@ -197,6 +198,7 @@
             this.dataGridView_Membres.AllowUserToDeleteRows = false;
             this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
+            this.dataGridView_Membres.MultiSelect = false;
             this.dataGridView_Membres.Name = "dataGridView_Membres";
             this.dataGridView_Membres.ReadOnly = true;
             this.dataGridView_Membres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
