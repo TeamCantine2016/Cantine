@@ -64,11 +64,14 @@ namespace ProjetCantine.Vues
 
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataReader dr = cmd.ExecuteReader();
+           
             DataTable t = new DataTable();
             t.Load(dr);
+            con.Close();
+
             dGdVw_DetailFamille.DataSource = t;
 
-            con.Close();
+            
         }
 
         private void txtBx_RechNumTel_TextChanged(object sender, EventArgs e)
@@ -82,28 +85,29 @@ namespace ProjetCantine.Vues
             SqlDataReader dr = cmd.ExecuteReader();
             DataTable t = new DataTable();
             t.Load(dr);
+            con.Close();
             dGdVw_DetailFamille.DataSource = t;
 
-            con.Close();
-        }
-
-        private void dGdVw_DetailFamille_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
             
-            int cmp = dGdVw_DetailFamille.CurrentRow.Index;
-            DataGridViewRow line = dGdVw_DetailFamille.Rows[cmp];
-            String query = "WITH Tuteur AS(SELECT prenom, nom, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id Where tbl_personne.nom = '"+ line.Cells[0].Value.ToString() + "' ),Enfant AS( SELECT prenom, nom, date_naissance, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' FROM Tuteur, Enfant, tbl_relation_tuteur_enfant WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            DataTable t = new DataTable();
-            t.Load(dr);
-            dataGridView_Membres.DataSource = t;
-
-            con.Close();
-
-
         }
+
+         private void dGdVw_DetailFamille_CellEnter(object sender, DataGridViewCellEventArgs e)
+         {
+
+             int cmp = dGdVw_DetailFamille.CurrentRow.Index;
+             DataGridViewRow line = dGdVw_DetailFamille.Rows[cmp];
+             String query = "WITH Tuteur AS(SELECT prenom, nom, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id Where tbl_personne.nom = '"+ line.Cells[0].Value.ToString() + "' ),Enfant AS( SELECT prenom, nom, date_naissance, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' FROM Tuteur, Enfant, tbl_relation_tuteur_enfant WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
+             con.Open();
+
+             SqlCommand cmd = new SqlCommand(query, con);
+             SqlDataReader dr = cmd.ExecuteReader();
+             DataTable t = new DataTable();
+             t.Load(dr);
+             dataGridView_Membres.DataSource = t;
+
+             con.Close();
+
+
+         } 
     }
 }

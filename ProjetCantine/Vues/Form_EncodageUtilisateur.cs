@@ -19,7 +19,7 @@ namespace ProjetCantine
         public Form_EncodageUtilisateur(int flag)
         {
             InitializeComponent();
-           comboBox_Type.SelectedIndex = 0;
+          // comboBox_Type.SelectedIndex = 0;
             if (flag == 0)
             {
                 button_Valider.Text = "Valider";
