@@ -47,5 +47,15 @@ namespace ProjetCantine.Vues
         {
 
         }
+
+        private void btApercu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tAListesPersonnesBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

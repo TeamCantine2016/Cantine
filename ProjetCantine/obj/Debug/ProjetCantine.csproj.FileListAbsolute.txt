@@ -123,3 +123,4 @@ C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCanti
 C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\bin\Debug\ProjetCantine.pdb
 C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\bin\Debug\EntityFramework.xml
 C:\Users\Daniel\Documents\Visual Studio 2015\Projects\Cantine - Copy\ProjetCantine\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_GestionEtablissement.resources
