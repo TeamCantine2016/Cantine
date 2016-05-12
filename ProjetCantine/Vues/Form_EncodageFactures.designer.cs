@@ -34,13 +34,6 @@
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechNumTel = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
-            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDeNaissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
@@ -64,6 +57,12 @@
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prénom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tA_Remplir_CB_FormatEnvoieTableAdapter = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter();
+            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
@@ -118,7 +117,6 @@
             this.dGdVw_DetailFamille.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nomDataGridViewTextBoxColumn1,
             this.prénomDataGridViewTextBoxColumn1,
-            this.dateDeNaissanceDataGridViewTextBoxColumn,
             this.numéroDeTéléphoneDataGridViewTextBoxColumn,
             this.adresseDataGridViewTextBoxColumn,
             this.villeDataGridViewTextBoxColumn,
@@ -132,55 +130,6 @@
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
             this.dGdVw_DetailFamille.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellEnter);
-            // 
-            // nomDataGridViewTextBoxColumn1
-            // 
-            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
-            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // prénomDataGridViewTextBoxColumn1
-            // 
-            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
-            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dateDeNaissanceDataGridViewTextBoxColumn
-            // 
-            this.dateDeNaissanceDataGridViewTextBoxColumn.DataPropertyName = "Date de naissance";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.HeaderText = "Date de naissance";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.Name = "dateDeNaissanceDataGridViewTextBoxColumn";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // numéroDeTéléphoneDataGridViewTextBoxColumn
-            // 
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tAListesPersonnesBindingSource
             // 
@@ -355,6 +304,48 @@
             // 
             this.tA_Remplir_CB_FormatEnvoieTableAdapter.ClearBeforeFill = true;
             // 
+            // nomDataGridViewTextBoxColumn1
+            // 
+            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
+            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn1
+            // 
+            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
+            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // numéroDeTéléphoneDataGridViewTextBoxColumn
+            // 
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,14 +410,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prénom;
+        private System.Windows.Forms.BindingSource tARemplirCBFormatEnvoieBindingSource;
+        private Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter tA_Remplir_CB_FormatEnvoieTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDeNaissanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numéroDeTéléphoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource tARemplirCBFormatEnvoieBindingSource;
-        private Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter tA_Remplir_CB_FormatEnvoieTableAdapter;
     }
 }
