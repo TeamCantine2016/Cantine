@@ -34,22 +34,12 @@
             this.label_NomRech = new System.Windows.Forms.Label();
             this.label_TéléphoneRech = new System.Windows.Forms.Label();
             this.dataGridView_Famille = new System.Windows.Forms.DataGridView();
-            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telephoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codePostalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListeFamillesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.groupBox_Récap = new System.Windows.Forms.GroupBox();
             this.button_Annuler = new System.Windows.Forms.Button();
             this.button_Valider = new System.Windows.Forms.Button();
             this.dataGridView_Membre = new System.Windows.Forms.DataGridView();
-            this.NomMembre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrénomMembre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_EnvoyerFacture = new System.Windows.Forms.Label();
             this.label_GénérerFacture = new System.Windows.Forms.Label();
             this.comboBox_Envoi = new System.Windows.Forms.ComboBox();
@@ -76,7 +66,7 @@
             this.textBox_NomRech.Name = "textBox_NomRech";
             this.textBox_NomRech.Size = new System.Drawing.Size(282, 20);
             this.textBox_NomRech.TabIndex = 0;
-           
+            this.textBox_NomRech.TextChanged += new System.EventHandler(this.Form_VisualisationFamille_Load);
             // 
             // textBox_TéléphoneRech
             // 
@@ -84,6 +74,7 @@
             this.textBox_TéléphoneRech.Name = "textBox_TéléphoneRech";
             this.textBox_TéléphoneRech.Size = new System.Drawing.Size(282, 20);
             this.textBox_TéléphoneRech.TabIndex = 5;
+            this.textBox_TéléphoneRech.TextChanged += new System.EventHandler(this.Form_VisualisationFamille_Load);
             // 
             // label_NomRech
             // 
@@ -107,75 +98,16 @@
             // 
             this.dataGridView_Famille.AllowUserToAddRows = false;
             this.dataGridView_Famille.AllowUserToDeleteRows = false;
-            this.dataGridView_Famille.AutoGenerateColumns = false;
             this.dataGridView_Famille.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_Famille.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Famille.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nomDataGridViewTextBoxColumn,
-            this.telephoneDataGridViewTextBoxColumn,
-            this.adresseDataGridViewTextBoxColumn,
-            this.villeDataGridViewTextBoxColumn,
-            this.codePostalDataGridViewTextBoxColumn,
-            this.paysDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
-            this.dataGridView_Famille.DataSource = this.tAListeFamillesBindingSource;
             this.dataGridView_Famille.Location = new System.Drawing.Point(72, 90);
             this.dataGridView_Famille.Name = "dataGridView_Famille";
             this.dataGridView_Famille.ReadOnly = true;
             this.dataGridView_Famille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Famille.Size = new System.Drawing.Size(938, 150);
             this.dataGridView_Famille.TabIndex = 4;
-            this.dataGridView_Famille.TabStop = false;
-            this.dataGridView_Famille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Famille_CellClick);
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // telephoneDataGridViewTextBoxColumn
-            // 
-            this.telephoneDataGridViewTextBoxColumn.DataPropertyName = "Telephone";
-            this.telephoneDataGridViewTextBoxColumn.HeaderText = "Telephone";
-            this.telephoneDataGridViewTextBoxColumn.Name = "telephoneDataGridViewTextBoxColumn";
-            this.telephoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // codePostalDataGridViewTextBoxColumn
-            // 
-            this.codePostalDataGridViewTextBoxColumn.DataPropertyName = "CodePostal";
-            this.codePostalDataGridViewTextBoxColumn.HeaderText = "CodePostal";
-            this.codePostalDataGridViewTextBoxColumn.Name = "codePostalDataGridViewTextBoxColumn";
-            this.codePostalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridView_Famille.TabStop = false; 
+            this.dataGridView_Famille.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Famille_CellEnter);
             // 
             // tAListeFamillesBindingSource
             // 
@@ -231,32 +163,16 @@
             // 
             // dataGridView_Membre
             // 
+            this.dataGridView_Membre.AllowUserToAddRows = false;
+            this.dataGridView_Membre.AllowUserToDeleteRows = false;
             this.dataGridView_Membre.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_Membre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Membre.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NomMembre,
-            this.PrénomMembre,
-            this.Age});
             this.dataGridView_Membre.Location = new System.Drawing.Point(6, 140);
             this.dataGridView_Membre.Name = "dataGridView_Membre";
+            this.dataGridView_Membre.ReadOnly = true;
             this.dataGridView_Membre.Size = new System.Drawing.Size(938, 150);
             this.dataGridView_Membre.TabIndex = 19;
             this.dataGridView_Membre.TabStop = false;
-            // 
-            // NomMembre
-            // 
-            this.NomMembre.HeaderText = "Nom";
-            this.NomMembre.Name = "NomMembre";
-            // 
-            // PrénomMembre
-            // 
-            this.PrénomMembre.HeaderText = "Prénom";
-            this.PrénomMembre.Name = "PrénomMembre";
-            // 
-            // Age
-            // 
-            this.Age.HeaderText = "Age";
-            this.Age.Name = "Age";
             // 
             // label_EnvoyerFacture
             // 
@@ -420,18 +336,8 @@
         private System.Windows.Forms.Button button_Annuler;
         private System.Windows.Forms.Button button_Valider;
         private System.Windows.Forms.DataGridView dataGridView_Membre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomMembre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrénomMembre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
         private Models.db_cantineDataSet db_cantineDataSet;
         private System.Windows.Forms.BindingSource tAListeFamillesBindingSource;
         private Models.db_cantineDataSetTableAdapters.TA_Liste_FamillesTableAdapter tA_Liste_FamillesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn telephoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codePostalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
     }
 }
