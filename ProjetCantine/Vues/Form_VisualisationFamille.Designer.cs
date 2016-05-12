@@ -106,7 +106,7 @@
             this.dataGridView_Famille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Famille.Size = new System.Drawing.Size(938, 150);
             this.dataGridView_Famille.TabIndex = 4;
-            this.dataGridView_Famille.TabStop = false; 
+            this.dataGridView_Famille.TabStop = false;
             this.dataGridView_Famille.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Famille_CellEnter);
             // 
             // tAListeFamillesBindingSource
@@ -151,6 +151,7 @@
             this.button_Annuler.TabIndex = 25;
             this.button_Annuler.Text = "Annuler";
             this.button_Annuler.UseVisualStyleBackColor = true;
+            this.button_Annuler.Click += new System.EventHandler(this.button_Annuler_Click);
             // 
             // button_Valider
             // 

@@ -25,10 +25,13 @@ namespace ProjetCantine
             // TODO: cette ligne de code charge les données dans la table 'db_cantineDataSet.TA_Liste_Familles'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
             // this.tA_Liste_FamillesTableAdapter.Fill_Famille(this.db_cantineDataSet.TA_Liste_Familles);
 
-            String query = "SELECT nom as Famille, telephone as Téléphone, numero+' '+ rue as Adresse, ville as Ville,code_postal as CodePostal, pays as Pays, ";
-            query += "courriel as Email FROM tbl_personne inner join tbl_type_personne on tbl_personne.type_personne_id = tbl_type_personne.id ";
-            query += "inner join tbl_adresse on tbl_personne.adresse_id = tbl_adresse.id WHERE tbl_type_personne.type_personne = 'tuteur' and nom like '" + textBox_NomRech.Text + "%' ";
-            query += "and telephone like '" + textBox_TéléphoneRech.Text + "%'";
+            String query = "SELECT nom as Famille, telephone as Téléphone, numero+' '+ rue as Adresse, ville as Ville, ";
+            query += "code_postal as CodePostal, pays as Pays, courriel as Email ";
+            query += "FROM tbl_personne inner join tbl_type_personne on tbl_personne.type_personne_id = tbl_type_personne.id ";
+            query += "inner join tbl_adresse on tbl_personne.adresse_id = tbl_adresse.id ";
+            query += "WHERE tbl_type_personne.type_personne = 'tuteur' and nom like '" + textBox_NomRech.Text + "%' and telephone like '" + textBox_TéléphoneRech.Text + "%'";
+
+
 
             maCon.Open();
 
@@ -54,7 +57,12 @@ namespace ProjetCantine
             textBox_Email.Text = ligne.Cells[6].Value.ToString();
         }
 
-       
-       
+        private void button_Annuler_Click(object sender, EventArgs e)
+        {
+            textBox_NomRech.Text = "";
+            textBox_TéléphoneRech.Text = "";
+            comboBox_Envoi.SelectedIndex = -1;
+            comboBox_Génération.SelectedIndex = -1;
+        }
     }
 }
