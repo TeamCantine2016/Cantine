@@ -21,29 +21,32 @@ namespace ProjetCantine
                 xlApp.Visible = false;
 
                 object misValue = System.Reflection.Missing.Value;
-                string pathFacture = @"D:\GitHub\Factures\Facture.xlsx";
-                string pathSortie = @"D:\GitHub\";
+                string pathFacture = @"C:\Users\Florian\Desktop\Facture.xlsx";
+                string pathSortie = @"C:\Users\Florian\Desktop\";
                 Excel.Workbook wbk = xlApp.Workbooks.Open(pathFacture);
+                Excel.Worksheet ws = new Excel.Worksheet();
+
+                ws = (Excel.Worksheet)wbk.Worksheets[1];
 
                 //Phase d'encodage des données
 
                 //Encodage établissement
 
-                xlApp.Cells[7, "A"] = "Institut technique E.Lenoir";
-                xlApp.Cells[8, "A"] = "2" + "," + " Chemin de Weyler";
-                xlApp.Cells[9, "A"] = "Arlon" + "6700" + "Belgique";
-                xlApp.Cells[11, "A"] = "Tél: " + "063/00.00.00";
-                xlApp.Cells[13, "A"] = "Fax: " + "063/00.00.01";
-                xlApp.Cells[15, "A"] = "Email: " + " itela@gmail.com";
+                ws.Cells[7, "A"] = "Institut technique E.Lenoir";
+                ws.Cells[8, "A"] = "2" + "," + " Chemin de Weyler";
+                ws.Cells[9, "A"] = "Arlon" + "6700" + "Belgique";
+                ws.Cells[11, "A"] = "Tél: " + "063/00.00.00";
+                ws.Cells[13, "A"] = "Fax: " + "063/00.00.01";
+                ws.Cells[15, "A"] = "Email: " + " itela@gmail.com";
 
                 //Encodage Client
 
-                xlApp.Cells[7, "D"] = "55256"; //N° facture
-                xlApp.Cells[7, "E"] = "09-02-2016"; // Date Facture
-                xlApp.Cells[7, "F"] = "69"; //Code Client
-                xlApp.Cells[9, "D"] = "Hommer Simpson";
-                xlApp.Cells[11, "D"] = "742" + "," + " Evergreen Terracenn";
-                xlApp.Cells[13, "D"] = "Springfield" + "158" + "USA";
+                ws.Cells[7, "D"] = "55256"; //N° facture
+                ws.Cells[7, "E"] = "09-02-2016"; // Date Facture
+                ws.Cells[7, "F"] = "69"; //Code Client
+                ws.Cells[9, "D"] = "Hommer Simpson";
+                ws.Cells[11, "D"] = "742" + "," + " Evergreen Terracenn";
+                ws.Cells[13, "D"] = "Springfield" + "158" + "USA";
 
                 // Encodage des repas 
 
@@ -51,11 +54,11 @@ namespace ProjetCantine
 
                 //Ecodage Banque
 
-                xlApp.Cells[40, "A"] = "21"; //TVA
-                xlApp.Cells[47, "B"] = "BE89 0015 1589 5985 5460"; //Banque BE
-                xlApp.Cells[48, "B"] = "BCEELLLLL"; //Bic BE
-                xlApp.Cells[47, "E"] = "LU89 0015 1589 5985 5460"; //Banque LU
-                xlApp.Cells[48, "E"] = "BBRELLLLL"; //Bic LU
+                ws.Cells[40, "A"] = "21"; //TVA
+                ws.Cells[47, "B"] = "BE89 0015 1589 5985 5460"; //Banque BE
+                ws.Cells[48, "B"] = "BCEELLLLL"; //Bic BE
+                ws.Cells[47, "E"] = "LU89 0015 1589 5985 5460"; //Banque LU
+                ws.Cells[48, "E"] = "BBRELLLLL"; //Bic LU
 
 
                 // sauvegarde et fermeture du programme
@@ -66,15 +69,17 @@ namespace ProjetCantine
 
                 pathSortie = pathSortie + "09-02-2016" + "_" + "55256" + ".pdf";
 
-                wbk.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, pathSortie);
+                ws.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, pathSortie);
                 //wbk.SaveAs(@"C:\Users\Florian\Desktop\test.xls"); //sauver dans un autre document Excel
 
                 wbk.Close(false, misValue, misValue);
                 xlApp.Quit();
-
+               
+                releaseObject(ws);
                 releaseObject(wbk);
                 releaseObject(xlApp);
-
+      
+                
                 return pathSortie;
 
             }
@@ -82,6 +87,7 @@ namespace ProjetCantine
             {
                 return "Problème lors de la  phase de création du pdf :" + msg;
             }
+            
         }
 
         private void releaseObject(object obj)
@@ -89,7 +95,7 @@ namespace ProjetCantine
             try
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
+                obj = null;               
             }
             catch
             {

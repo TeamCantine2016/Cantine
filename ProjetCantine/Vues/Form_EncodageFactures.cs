@@ -96,7 +96,7 @@ namespace ProjetCantine.Vues
         private void dGdVw_DetailFamille_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
 
-            int i = dGdVw_DetailFamille.CurrentRow.Index;
+            /*int i = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
             String query = "WITH Tuteur AS(SELECT prenom, nom, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id Where tbl_personne.nom = '" + r.Cells[0].Value.ToString() + "' ),Enfant AS( SELECT prenom, nom, date_naissance, id FROM tbl_relation_tuteur_enfant INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' FROM Tuteur, Enfant, tbl_relation_tuteur_enfant WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
             con.Open();
@@ -107,7 +107,7 @@ namespace ProjetCantine.Vues
             t.Load(dr);
             dataGridView_Membres.DataSource = t;
 
-            con.Close();
+            con.Close();*/
 
 
         }
