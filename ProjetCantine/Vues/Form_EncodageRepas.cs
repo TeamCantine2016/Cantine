@@ -63,6 +63,8 @@ namespace ProjetCantine.Vues
             dGdVw_DetailEleve.AutoResizeColumns();
             // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
             dGdVw_DetailEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        
+
         }
 
 
@@ -136,6 +138,7 @@ namespace ProjetCantine.Vues
                 {
                     // Si le dr contient des information, alors on lie les données aux radio buttons
                     labelEtat.Visible = false;
+                    btConfirmation.Text = "Modification";
                     while (dr.Read())
                     {
                         repas_id = dr["repas_id"].ToString();
@@ -240,6 +243,7 @@ namespace ProjetCantine.Vues
                 {
                     // Si le DR est vide, aucun encodage n'a été effectué
                     labelEtat.Visible = true;
+                    btConfirmation.Text = "Confirmation"; 
                     radioButtonAucunLundi.Checked = true;
                     radioButtonAucunMardi.Checked = true;
                     radioButtonAucunMercredi.Checked = true;
@@ -262,7 +266,8 @@ namespace ProjetCantine.Vues
 
         private void btConfirmation_Click(object sender, EventArgs e)
         {
-            int resultat = 0;
+            int resultat = 0; 
+            int modif = 0;
             DateTime startDate = Convert.ToDateTime(labelDebut.Text);
             for (int i = 0; i < 5; i++)
             {
@@ -277,12 +282,22 @@ namespace ProjetCantine.Vues
                     con.Close();
                 }else
                 {
-
+               
+                    string query = "UPDATE tbl_relation_repas SET tbl_relation_repas.repas_id =" + tab_id_repas[i] + " " ;
+                    query += "WHERE(date_repas = '" + startDate.AddDays(i).ToString("yyyy-MM-dd") + "' AND personne_id = '" + id_eleve + "')";
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    modif = cmd.ExecuteNonQuery();
+                    con.Close();
                 }
             }
             if (resultat > 0)
             {
-                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été ajouté pour la semaine du " + labelDebut.Text);
+                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été ajouté pour la semaine du " + labelDebut.Text + " au " + labelFin.Text);
+            }
+            if (modif > 0)
+            {
+                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été modifié pour la semaine du " + labelDebut.Text + " au " +labelFin.Text );
             }
         }
 
@@ -389,6 +404,11 @@ namespace ProjetCantine.Vues
         private void radioButtonAucunVendredi_CheckedChanged(object sender, EventArgs e)
         {
             tab_id_repas[4] = 4;
+        }
+
+        private void btAnnuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

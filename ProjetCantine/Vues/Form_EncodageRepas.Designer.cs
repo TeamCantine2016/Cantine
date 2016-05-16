@@ -82,7 +82,6 @@
             this.radioButtonRepasChaud1Vendredi = new System.Windows.Forms.RadioButton();
             this.btAnnuler = new System.Windows.Forms.Button();
             this.btConfirmation = new System.Windows.Forms.Button();
-            this.btSupprimer = new System.Windows.Forms.Button();
             this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             this.groupBoxPeriode = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -619,31 +618,23 @@
             // 
             // btAnnuler
             // 
-            this.btAnnuler.Location = new System.Drawing.Point(764, 596);
+            this.btAnnuler.Location = new System.Drawing.Point(567, 596);
             this.btAnnuler.Name = "btAnnuler";
             this.btAnnuler.Size = new System.Drawing.Size(200, 35);
             this.btAnnuler.TabIndex = 24;
             this.btAnnuler.Text = "Annuler";
             this.btAnnuler.UseVisualStyleBackColor = true;
+            this.btAnnuler.Click += new System.EventHandler(this.btAnnuler_Click);
             // 
             // btConfirmation
             // 
-            this.btConfirmation.Location = new System.Drawing.Point(439, 596);
+            this.btConfirmation.Location = new System.Drawing.Point(202, 596);
             this.btConfirmation.Name = "btConfirmation";
             this.btConfirmation.Size = new System.Drawing.Size(200, 35);
             this.btConfirmation.TabIndex = 25;
-            this.btConfirmation.Text = "Confirmation/Modification";
+            this.btConfirmation.Text = "Confirmation";
             this.btConfirmation.UseVisualStyleBackColor = true;
             this.btConfirmation.Click += new System.EventHandler(this.btConfirmation_Click);
-            // 
-            // btSupprimer
-            // 
-            this.btSupprimer.Location = new System.Drawing.Point(104, 596);
-            this.btSupprimer.Name = "btSupprimer";
-            this.btSupprimer.Size = new System.Drawing.Size(200, 35);
-            this.btSupprimer.TabIndex = 26;
-            this.btSupprimer.Text = "Supprimer";
-            this.btSupprimer.UseVisualStyleBackColor = true;
             // 
             // tA_Listes_Personnes_query
             // 
@@ -718,7 +709,6 @@
             this.Controls.Add(this.groupBoxPeriode);
             this.Controls.Add(this.btAnnuler);
             this.Controls.Add(this.btConfirmation);
-            this.Controls.Add(this.btSupprimer);
             this.Controls.Add(this.groupBoxVendredi);
             this.Controls.Add(this.groupBoxJeudi);
             this.Controls.Add(this.groupBoxMercredi);
@@ -813,7 +803,6 @@
         private System.Windows.Forms.RadioButton radioButtonRepasChaud1Vendredi;
         private System.Windows.Forms.Button btAnnuler;
         private System.Windows.Forms.Button btConfirmation;
-        private System.Windows.Forms.Button btSupprimer;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn;
