@@ -15,3 +15,10 @@ namespace ProjetCantine.Models.db_cantineDataSetTableAdapters
     {
     }
 }
+
+namespace ProjetCantine.db_cantineDataSetTableAdapters {
+    
+    
+    public partial class TA_Listes_Personnes_query {
+    }
+}

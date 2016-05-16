@@ -32,7 +32,7 @@
             this.label_RechNom = new System.Windows.Forms.Label();
             this.label_RechID = new System.Windows.Forms.Label();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
-            this.txtBx_RechID = new System.Windows.Forms.TextBox();
+            this.txtBx_RechNumTel = new System.Windows.Forms.TextBox();
             this.dGdVw_DetailEleve = new System.Windows.Forms.DataGridView();
             this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,10 +58,10 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             this.groupBoxLundi = new System.Windows.Forms.GroupBox();
-            this.radioButtonRepasChaud1Lundi = new System.Windows.Forms.RadioButton();
-            this.radioButtonRepasChaud2Lundi = new System.Windows.Forms.RadioButton();
-            this.radioButtonRepasFroidLundi = new System.Windows.Forms.RadioButton();
             this.radioButtonAucunLundi = new System.Windows.Forms.RadioButton();
+            this.radioButtonRepasFroidLundi = new System.Windows.Forms.RadioButton();
+            this.radioButtonRepasChaud2Lundi = new System.Windows.Forms.RadioButton();
+            this.radioButtonRepasChaud1Lundi = new System.Windows.Forms.RadioButton();
             this.groupBoxMardi = new System.Windows.Forms.GroupBox();
             this.radioButtonAucunMardi = new System.Windows.Forms.RadioButton();
             this.radioButtonRepasFroidMardi = new System.Windows.Forms.RadioButton();
@@ -109,9 +109,10 @@
             this.label_RechID.AutoSize = true;
             this.label_RechID.Location = new System.Drawing.Point(489, 24);
             this.label_RechID.Name = "label_RechID";
-            this.label_RechID.Size = new System.Drawing.Size(92, 13);
+            this.label_RechID.Size = new System.Drawing.Size(96, 13);
             this.label_RechID.TabIndex = 1;
-            this.label_RechID.Text = "Recherche par ID";
+            this.label_RechID.Text = "Recherche par Tel";
+            this.label_RechID.Click += new System.EventHandler(this.label_RechID_Click);
             // 
             // txtBx_RechNom
             // 
@@ -122,13 +123,13 @@
             this.txtBx_RechNom.TabIndex = 2;
             this.txtBx_RechNom.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // txtBx_RechID
+            // txtBx_RechNumTel
             // 
-            this.txtBx_RechID.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtBx_RechID.Location = new System.Drawing.Point(598, 21);
-            this.txtBx_RechID.Name = "txtBx_RechID";
-            this.txtBx_RechID.Size = new System.Drawing.Size(226, 20);
-            this.txtBx_RechID.TabIndex = 3;
+            this.txtBx_RechNumTel.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtBx_RechNumTel.Location = new System.Drawing.Point(598, 21);
+            this.txtBx_RechNumTel.Name = "txtBx_RechNumTel";
+            this.txtBx_RechNumTel.Size = new System.Drawing.Size(226, 20);
+            this.txtBx_RechNumTel.TabIndex = 3;
             // 
             // dGdVw_DetailEleve
             // 
@@ -335,27 +336,16 @@
             this.groupBoxLundi.TabStop = false;
             this.groupBoxLundi.Text = "Lundi";
             // 
-            // radioButtonRepasChaud1Lundi
+            // radioButtonAucunLundi
             // 
-            this.radioButtonRepasChaud1Lundi.AutoSize = true;
-            this.radioButtonRepasChaud1Lundi.Location = new System.Drawing.Point(7, 39);
-            this.radioButtonRepasChaud1Lundi.Name = "radioButtonRepasChaud1Lundi";
-            this.radioButtonRepasChaud1Lundi.Size = new System.Drawing.Size(99, 17);
-            this.radioButtonRepasChaud1Lundi.TabIndex = 0;
-            this.radioButtonRepasChaud1Lundi.TabStop = true;
-            this.radioButtonRepasChaud1Lundi.Text = "Repas Chaud 1";
-            this.radioButtonRepasChaud1Lundi.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRepasChaud2Lundi
-            // 
-            this.radioButtonRepasChaud2Lundi.AutoSize = true;
-            this.radioButtonRepasChaud2Lundi.Location = new System.Drawing.Point(7, 62);
-            this.radioButtonRepasChaud2Lundi.Name = "radioButtonRepasChaud2Lundi";
-            this.radioButtonRepasChaud2Lundi.Size = new System.Drawing.Size(99, 17);
-            this.radioButtonRepasChaud2Lundi.TabIndex = 1;
-            this.radioButtonRepasChaud2Lundi.TabStop = true;
-            this.radioButtonRepasChaud2Lundi.Text = "Repas Chaud 2";
-            this.radioButtonRepasChaud2Lundi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunLundi.AutoSize = true;
+            this.radioButtonAucunLundi.Location = new System.Drawing.Point(7, 108);
+            this.radioButtonAucunLundi.Name = "radioButtonAucunLundi";
+            this.radioButtonAucunLundi.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonAucunLundi.TabIndex = 3;
+            this.radioButtonAucunLundi.TabStop = true;
+            this.radioButtonAucunLundi.Text = "Aucun";
+            this.radioButtonAucunLundi.UseVisualStyleBackColor = true;
             // 
             // radioButtonRepasFroidLundi
             // 
@@ -368,16 +358,27 @@
             this.radioButtonRepasFroidLundi.Text = "Repas Froid";
             this.radioButtonRepasFroidLundi.UseVisualStyleBackColor = true;
             // 
-            // radioButtonAucunLundi
+            // radioButtonRepasChaud2Lundi
             // 
-            this.radioButtonAucunLundi.AutoSize = true;
-            this.radioButtonAucunLundi.Location = new System.Drawing.Point(7, 108);
-            this.radioButtonAucunLundi.Name = "radioButtonAucunLundi";
-            this.radioButtonAucunLundi.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonAucunLundi.TabIndex = 3;
-            this.radioButtonAucunLundi.TabStop = true;
-            this.radioButtonAucunLundi.Text = "Aucun";
-            this.radioButtonAucunLundi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Lundi.AutoSize = true;
+            this.radioButtonRepasChaud2Lundi.Location = new System.Drawing.Point(7, 62);
+            this.radioButtonRepasChaud2Lundi.Name = "radioButtonRepasChaud2Lundi";
+            this.radioButtonRepasChaud2Lundi.Size = new System.Drawing.Size(99, 17);
+            this.radioButtonRepasChaud2Lundi.TabIndex = 1;
+            this.radioButtonRepasChaud2Lundi.TabStop = true;
+            this.radioButtonRepasChaud2Lundi.Text = "Repas Chaud 2";
+            this.radioButtonRepasChaud2Lundi.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonRepasChaud1Lundi
+            // 
+            this.radioButtonRepasChaud1Lundi.AutoSize = true;
+            this.radioButtonRepasChaud1Lundi.Location = new System.Drawing.Point(7, 39);
+            this.radioButtonRepasChaud1Lundi.Name = "radioButtonRepasChaud1Lundi";
+            this.radioButtonRepasChaud1Lundi.Size = new System.Drawing.Size(99, 17);
+            this.radioButtonRepasChaud1Lundi.TabIndex = 0;
+            this.radioButtonRepasChaud1Lundi.TabStop = true;
+            this.radioButtonRepasChaud1Lundi.Text = "Repas Chaud 1";
+            this.radioButtonRepasChaud1Lundi.UseVisualStyleBackColor = true;
             // 
             // groupBoxMardi
             // 
@@ -664,7 +665,7 @@
             this.Controls.Add(this.label_Prenom);
             this.Controls.Add(this.label_Nom);
             this.Controls.Add(this.dGdVw_DetailEleve);
-            this.Controls.Add(this.txtBx_RechID);
+            this.Controls.Add(this.txtBx_RechNumTel);
             this.Controls.Add(this.txtBx_RechNom);
             this.Controls.Add(this.label_RechID);
             this.Controls.Add(this.label_RechNom);
@@ -694,7 +695,7 @@
         private System.Windows.Forms.Label label_RechNom;
         private System.Windows.Forms.Label label_RechID;
         private System.Windows.Forms.TextBox txtBx_RechNom;
-        private System.Windows.Forms.TextBox txtBx_RechID;
+        private System.Windows.Forms.TextBox txtBx_RechNumTel;
         private System.Windows.Forms.DataGridView dGdVw_DetailEleve;
         private System.Windows.Forms.Label label_Nom;
         private System.Windows.Forms.Label label_Prenom;

@@ -1,21 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using ProjetCantine.Models;
+using System.Data.SqlClient;
 
 
 namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageRepas : Form
     {
+        SqlCommand cmd = new SqlCommand();
+        SqlDataAdapter da = new SqlDataAdapter();
+        db_cantineDataSet ds = new db_cantineDataSet();
+        SqlConnection con = new SqlConnection(DbConnection.connectionString);
         public Form_EncodageRepas()
         {
             InitializeComponent();
         }
+        public void filtre()
+        {
+            con.Open();
 
+            SqlCommand cmd = new SqlCommand("PS_Filtre_Nom_Tel", con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
+            cmd.Parameters.Add("@tel", SqlDbType.NVarChar);
+
+            cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
+            cmd.Parameters["@tel"].Direction = ParameterDirection.Input;
+
+            cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
+            cmd.Parameters["@tel"].Value = txtBx_RechNumTel.Text;
+
+            DataTable t = new DataTable();
+            SqlDataReader dr = cmd.ExecuteReader();
+            t.Load(dr);
+            con.Close();
+
+            dGdVw_DetailEleve.DataSource = t;
+
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            filtre();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,6 +89,11 @@ namespace ProjetCantine.Vues
         }
 
         private void tAListesPersonnesBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_RechID_Click(object sender, EventArgs e)
         {
 
         }
