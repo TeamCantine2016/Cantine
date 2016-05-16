@@ -32,6 +32,15 @@
             this.label_RechNom = new System.Windows.Forms.Label();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.dGdVw_DetailEleve = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.label_Nom = new System.Windows.Forms.Label();
             this.label_Prenom = new System.Windows.Forms.Label();
             this.label_Adresse = new System.Windows.Forms.Label();
@@ -45,7 +54,7 @@
             this.txtBx_Telephone = new System.Windows.Forms.TextBox();
             this.txtBx_Email = new System.Windows.Forms.TextBox();
             this.label_Periode = new System.Windows.Forms.Label();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.groupBoxLundi = new System.Windows.Forms.GroupBox();
             this.radioButtonAucunLundi = new System.Windows.Forms.RadioButton();
             this.radioButtonRepasFroidLundi = new System.Windows.Forms.RadioButton();
@@ -74,24 +83,21 @@
             this.btAnnuler = new System.Windows.Forms.Button();
             this.btConfirmation = new System.Windows.Forms.Button();
             this.btSupprimer = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
+            this.groupBoxPeriode = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelFin = new System.Windows.Forms.Label();
+            this.labelDebut = new System.Windows.Forms.Label();
+            this.lbDebut = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailEleve)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             this.groupBoxLundi.SuspendLayout();
             this.groupBoxMardi.SuspendLayout();
             this.groupBoxMercredi.SuspendLayout();
             this.groupBoxJeudi.SuspendLayout();
             this.groupBoxVendredi.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
+            this.groupBoxPeriode.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -132,7 +138,68 @@
             this.dGdVw_DetailEleve.ReadOnly = true;
             this.dGdVw_DetailEleve.Size = new System.Drawing.Size(686, 161);
             this.dGdVw_DetailEleve.TabIndex = 4;
-            this.dGdVw_DetailEleve.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellEnter);
+            this.dGdVw_DetailEleve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellClick);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // nomDataGridViewTextBoxColumn
+            // 
+            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn
+            // 
+            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
+            this.prénomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Date de naissance";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Date De Naissance";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 8;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.adresseDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tAListesPersonnesBindingSource
+            // 
+            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
+            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
+            // 
+            // db_cantineDataSet
+            // 
+            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
+            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label_Nom
             // 
@@ -178,7 +245,6 @@
             this.label_Telephone.Size = new System.Drawing.Size(98, 13);
             this.label_Telephone.TabIndex = 9;
             this.label_Telephone.Text = "Téléphone (Tuteur)";
-
             // 
             // label_Email
             // 
@@ -246,11 +312,13 @@
             this.label_Periode.TabIndex = 17;
             this.label_Periode.Text = "Période";
             // 
-            // monthCalendar1
+            // monthCalendar
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(659, 231);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 18;
+            this.monthCalendar.Enabled = false;
+            this.monthCalendar.Location = new System.Drawing.Point(659, 231);
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 18;
+            this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateSelected);
             // 
             // groupBoxLundi
             // 
@@ -268,6 +336,7 @@
             // radioButtonAucunLundi
             // 
             this.radioButtonAucunLundi.AutoSize = true;
+            this.radioButtonAucunLundi.Checked = true;
             this.radioButtonAucunLundi.Location = new System.Drawing.Point(7, 108);
             this.radioButtonAucunLundi.Name = "radioButtonAucunLundi";
             this.radioButtonAucunLundi.Size = new System.Drawing.Size(56, 17);
@@ -283,7 +352,6 @@
             this.radioButtonRepasFroidLundi.Name = "radioButtonRepasFroidLundi";
             this.radioButtonRepasFroidLundi.Size = new System.Drawing.Size(82, 17);
             this.radioButtonRepasFroidLundi.TabIndex = 2;
-            this.radioButtonRepasFroidLundi.TabStop = true;
             this.radioButtonRepasFroidLundi.Text = "Repas Froid";
             this.radioButtonRepasFroidLundi.UseVisualStyleBackColor = true;
             // 
@@ -294,7 +362,6 @@
             this.radioButtonRepasChaud2Lundi.Name = "radioButtonRepasChaud2Lundi";
             this.radioButtonRepasChaud2Lundi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud2Lundi.TabIndex = 1;
-            this.radioButtonRepasChaud2Lundi.TabStop = true;
             this.radioButtonRepasChaud2Lundi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Lundi.UseVisualStyleBackColor = true;
             // 
@@ -305,7 +372,6 @@
             this.radioButtonRepasChaud1Lundi.Name = "radioButtonRepasChaud1Lundi";
             this.radioButtonRepasChaud1Lundi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Lundi.TabIndex = 0;
-            this.radioButtonRepasChaud1Lundi.TabStop = true;
             this.radioButtonRepasChaud1Lundi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Lundi.UseVisualStyleBackColor = true;
             // 
@@ -325,6 +391,7 @@
             // radioButtonAucunMardi
             // 
             this.radioButtonAucunMardi.AutoSize = true;
+            this.radioButtonAucunMardi.Checked = true;
             this.radioButtonAucunMardi.Location = new System.Drawing.Point(7, 108);
             this.radioButtonAucunMardi.Name = "radioButtonAucunMardi";
             this.radioButtonAucunMardi.Size = new System.Drawing.Size(56, 17);
@@ -340,7 +407,6 @@
             this.radioButtonRepasFroidMardi.Name = "radioButtonRepasFroidMardi";
             this.radioButtonRepasFroidMardi.Size = new System.Drawing.Size(82, 17);
             this.radioButtonRepasFroidMardi.TabIndex = 2;
-            this.radioButtonRepasFroidMardi.TabStop = true;
             this.radioButtonRepasFroidMardi.Text = "Repas Froid";
             this.radioButtonRepasFroidMardi.UseVisualStyleBackColor = true;
             // 
@@ -351,7 +417,6 @@
             this.radioButtonRepasChaud2Mardi.Name = "radioButtonRepasChaud2Mardi";
             this.radioButtonRepasChaud2Mardi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud2Mardi.TabIndex = 1;
-            this.radioButtonRepasChaud2Mardi.TabStop = true;
             this.radioButtonRepasChaud2Mardi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Mardi.UseVisualStyleBackColor = true;
             // 
@@ -362,7 +427,6 @@
             this.radioButtonRepasChaud1Mardi.Name = "radioButtonRepasChaud1Mardi";
             this.radioButtonRepasChaud1Mardi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Mardi.TabIndex = 0;
-            this.radioButtonRepasChaud1Mardi.TabStop = true;
             this.radioButtonRepasChaud1Mardi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Mardi.UseVisualStyleBackColor = true;
             // 
@@ -382,6 +446,7 @@
             // radioButtonAucunMercredi
             // 
             this.radioButtonAucunMercredi.AutoSize = true;
+            this.radioButtonAucunMercredi.Checked = true;
             this.radioButtonAucunMercredi.Location = new System.Drawing.Point(7, 108);
             this.radioButtonAucunMercredi.Name = "radioButtonAucunMercredi";
             this.radioButtonAucunMercredi.Size = new System.Drawing.Size(56, 17);
@@ -397,7 +462,6 @@
             this.radioButtonRepasFroidMercredi.Name = "radioButtonRepasFroidMercredi";
             this.radioButtonRepasFroidMercredi.Size = new System.Drawing.Size(82, 17);
             this.radioButtonRepasFroidMercredi.TabIndex = 2;
-            this.radioButtonRepasFroidMercredi.TabStop = true;
             this.radioButtonRepasFroidMercredi.Text = "Repas Froid";
             this.radioButtonRepasFroidMercredi.UseVisualStyleBackColor = true;
             // 
@@ -408,7 +472,6 @@
             this.radioButtonRepasChaud2Mercredi.Name = "radioButtonRepasChaud2Mercredi";
             this.radioButtonRepasChaud2Mercredi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud2Mercredi.TabIndex = 1;
-            this.radioButtonRepasChaud2Mercredi.TabStop = true;
             this.radioButtonRepasChaud2Mercredi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Mercredi.UseVisualStyleBackColor = true;
             // 
@@ -419,7 +482,6 @@
             this.radioButtonRepasChaud1Mercredi.Name = "radioButtonRepasChaud1Mercredi";
             this.radioButtonRepasChaud1Mercredi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Mercredi.TabIndex = 0;
-            this.radioButtonRepasChaud1Mercredi.TabStop = true;
             this.radioButtonRepasChaud1Mercredi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Mercredi.UseVisualStyleBackColor = true;
             // 
@@ -439,6 +501,7 @@
             // radioButtonAucunJeudi
             // 
             this.radioButtonAucunJeudi.AutoSize = true;
+            this.radioButtonAucunJeudi.Checked = true;
             this.radioButtonAucunJeudi.Location = new System.Drawing.Point(7, 108);
             this.radioButtonAucunJeudi.Name = "radioButtonAucunJeudi";
             this.radioButtonAucunJeudi.Size = new System.Drawing.Size(56, 17);
@@ -454,7 +517,6 @@
             this.radioButtonRepasFroidJeudi.Name = "radioButtonRepasFroidJeudi";
             this.radioButtonRepasFroidJeudi.Size = new System.Drawing.Size(82, 17);
             this.radioButtonRepasFroidJeudi.TabIndex = 2;
-            this.radioButtonRepasFroidJeudi.TabStop = true;
             this.radioButtonRepasFroidJeudi.Text = "Repas Froid";
             this.radioButtonRepasFroidJeudi.UseVisualStyleBackColor = true;
             // 
@@ -465,7 +527,6 @@
             this.radioButtonRepasChaud2Jeudi.Name = "radioButtonRepasChaud2Jeudi";
             this.radioButtonRepasChaud2Jeudi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud2Jeudi.TabIndex = 1;
-            this.radioButtonRepasChaud2Jeudi.TabStop = true;
             this.radioButtonRepasChaud2Jeudi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Jeudi.UseVisualStyleBackColor = true;
             // 
@@ -476,7 +537,6 @@
             this.radioButtonRepasChaud1Jeudi.Name = "radioButtonRepasChaud1Jeudi";
             this.radioButtonRepasChaud1Jeudi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Jeudi.TabIndex = 0;
-            this.radioButtonRepasChaud1Jeudi.TabStop = true;
             this.radioButtonRepasChaud1Jeudi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Jeudi.UseVisualStyleBackColor = true;
             // 
@@ -496,6 +556,7 @@
             // radioButtonAucunVendredi
             // 
             this.radioButtonAucunVendredi.AutoSize = true;
+            this.radioButtonAucunVendredi.Checked = true;
             this.radioButtonAucunVendredi.Location = new System.Drawing.Point(7, 108);
             this.radioButtonAucunVendredi.Name = "radioButtonAucunVendredi";
             this.radioButtonAucunVendredi.Size = new System.Drawing.Size(56, 17);
@@ -511,7 +572,6 @@
             this.radioButtonRepasFroidVendredi.Name = "radioButtonRepasFroidVendredi";
             this.radioButtonRepasFroidVendredi.Size = new System.Drawing.Size(82, 17);
             this.radioButtonRepasFroidVendredi.TabIndex = 2;
-            this.radioButtonRepasFroidVendredi.TabStop = true;
             this.radioButtonRepasFroidVendredi.Text = "Repas Froid";
             this.radioButtonRepasFroidVendredi.UseVisualStyleBackColor = true;
             // 
@@ -522,7 +582,6 @@
             this.radioButtonRepasChaud2Vendredi.Name = "radioButtonRepasChaud2Vendredi";
             this.radioButtonRepasChaud2Vendredi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud2Vendredi.TabIndex = 1;
-            this.radioButtonRepasChaud2Vendredi.TabStop = true;
             this.radioButtonRepasChaud2Vendredi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Vendredi.UseVisualStyleBackColor = true;
             // 
@@ -533,7 +592,6 @@
             this.radioButtonRepasChaud1Vendredi.Name = "radioButtonRepasChaud1Vendredi";
             this.radioButtonRepasChaud1Vendredi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Vendredi.TabIndex = 0;
-            this.radioButtonRepasChaud1Vendredi.TabStop = true;
             this.radioButtonRepasChaud1Vendredi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Vendredi.UseVisualStyleBackColor = true;
             // 
@@ -564,69 +622,56 @@
             this.btSupprimer.Text = "Supprimer";
             this.btSupprimer.UseVisualStyleBackColor = true;
             // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prénomDataGridViewTextBoxColumn
-            // 
-            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
-            this.prénomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Date de naissance";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Date De Naissance";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            this.adresseDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tAListesPersonnesBindingSource
-            // 
-            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
-            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
-            // 
-            // db_cantineDataSet
-            // 
-            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
-            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tA_Listes_Personnes_query
             // 
             this.tA_Listes_Personnes_query.ClearBeforeFill = true;
+            // 
+            // groupBoxPeriode
+            // 
+            this.groupBoxPeriode.Controls.Add(this.label1);
+            this.groupBoxPeriode.Controls.Add(this.labelFin);
+            this.groupBoxPeriode.Controls.Add(this.labelDebut);
+            this.groupBoxPeriode.Controls.Add(this.lbDebut);
+            this.groupBoxPeriode.Location = new System.Drawing.Point(13, 405);
+            this.groupBoxPeriode.Name = "groupBoxPeriode";
+            this.groupBoxPeriode.Size = new System.Drawing.Size(173, 139);
+            this.groupBoxPeriode.TabIndex = 27;
+            this.groupBoxPeriode.TabStop = false;
+            this.groupBoxPeriode.Text = "Période";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Au Vendredi :";
+            // 
+            // labelFin
+            // 
+            this.labelFin.AutoSize = true;
+            this.labelFin.Location = new System.Drawing.Point(72, 108);
+            this.labelFin.Name = "labelFin";
+            this.labelFin.Size = new System.Drawing.Size(0, 13);
+            this.labelFin.TabIndex = 0;
+            // 
+            // labelDebut
+            // 
+            this.labelDebut.AutoSize = true;
+            this.labelDebut.Location = new System.Drawing.Point(72, 62);
+            this.labelDebut.Name = "labelDebut";
+            this.labelDebut.Size = new System.Drawing.Size(0, 13);
+            this.labelDebut.TabIndex = 0;
+            // 
+            // lbDebut
+            // 
+            this.lbDebut.AutoSize = true;
+            this.lbDebut.Location = new System.Drawing.Point(6, 39);
+            this.lbDebut.Name = "lbDebut";
+            this.lbDebut.Size = new System.Drawing.Size(56, 13);
+            this.lbDebut.TabIndex = 0;
+            this.lbDebut.Text = "Du Lundi :";
             // 
             // Form_EncodageRepas
             // 
@@ -634,6 +679,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBoxPeriode);
             this.Controls.Add(this.btAnnuler);
             this.Controls.Add(this.btConfirmation);
             this.Controls.Add(this.btSupprimer);
@@ -642,7 +688,7 @@
             this.Controls.Add(this.groupBoxMercredi);
             this.Controls.Add(this.groupBoxMardi);
             this.Controls.Add(this.groupBoxLundi);
-            this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.monthCalendar);
             this.Controls.Add(this.label_Periode);
             this.Controls.Add(this.txtBx_Email);
             this.Controls.Add(this.txtBx_Telephone);
@@ -663,6 +709,8 @@
             this.Text = "Encodage des repas par l\'élève";
             this.Load += new System.EventHandler(this.Form_EncodageRepas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailEleve)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
             this.groupBoxLundi.ResumeLayout(false);
             this.groupBoxLundi.PerformLayout();
             this.groupBoxMardi.ResumeLayout(false);
@@ -673,8 +721,8 @@
             this.groupBoxJeudi.PerformLayout();
             this.groupBoxVendredi.ResumeLayout(false);
             this.groupBoxVendredi.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
+            this.groupBoxPeriode.ResumeLayout(false);
+            this.groupBoxPeriode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -698,7 +746,7 @@
         private System.Windows.Forms.TextBox txtBx_Telephone;
         private System.Windows.Forms.TextBox txtBx_Email;
         private System.Windows.Forms.Label label_Periode;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
         private Models.db_cantineDataSet db_cantineDataSet;
         private System.Windows.Forms.BindingSource tAListesPersonnesBindingSource;
         private Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query tA_Listes_Personnes_query;
@@ -737,5 +785,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBoxPeriode;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFin;
+        private System.Windows.Forms.Label labelDebut;
+        private System.Windows.Forms.Label lbDebut;
     }
 }
