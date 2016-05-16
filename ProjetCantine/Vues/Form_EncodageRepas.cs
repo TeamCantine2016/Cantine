@@ -15,11 +15,13 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageRepas : Form
     {
+        int id_eleve = 0;
+        int[] tab_id_repas = new int[5];
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
         SqlConnection con = new SqlConnection(DbConnection.connectionString);
-        
+
         public Form_EncodageRepas()
         {
             InitializeComponent();
@@ -65,11 +67,6 @@ namespace ProjetCantine.Vues
 
 
 
-        private void txtBx_RechNumTel_TextChanged(object sender, EventArgs e)
-        {
-            filtre();
-        }
-
         private void dGdVw_DetailEleve_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = dGdVw_DetailEleve.CurrentRow.Index;
@@ -77,9 +74,11 @@ namespace ProjetCantine.Vues
             txtBx_Nom.Text = ligne.Cells[1].Value.ToString();
             txtBx_Prenom.Text = ligne.Cells[2].Value.ToString();
             txtBox_Adresse.Text = ligne.Cells[4].Value.ToString();
-
-            txtBx_DateNaissce.Text = ligne.Cells[3].Value.ToString().Substring(0,8);
-            if (ligne.Cells[0].Value.ToString() != null) {
+            txtBx_DateNaissce.Text = ligne.Cells[3].Value.ToString().Substring(0, 8);
+            //on transmet l'ID de l'étudiant à la variable globale index
+            id_eleve = Convert.ToInt16(ligne.Cells[0].Value);
+            if (ligne.Cells[0].Value.ToString() != null)
+            {
                 string query = "SELECT telephone, courriel FROM tbl_personne ";
                 query += "where(id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id = '" + Convert.ToInt32(ligne.Cells[0].Value.ToString()) + "')))";
                 con.Open();
@@ -99,10 +98,12 @@ namespace ProjetCantine.Vues
             if (txtBx_Nom.Text.Length > 0)
             {
                 monthCalendar.Enabled = true;
-            }else
+            }
+            else
             {
                 monthCalendar.Enabled = false;
             }
+
             //txtBx_Email.Text = ligne.Cells[0].Value.ToString();
         }
 
@@ -115,38 +116,279 @@ namespace ProjetCantine.Vues
             labelDebut.Text = startDate.ToString("d");
             monthCalendar.SelectionEnd = startDate.AddDays(4);
             labelFin.Text = startDate.AddDays(4).ToString("d");
+            chargement_Repas(startDate);
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void chargement_Repas(DateTime startDate)
         {
+            string repas_id;
+            for (int i = 0; i < 5; i++)
+            {
+
+                string query = "SELECT repas_id FROM[db_cantine].[dbo].[tbl_relation_repas]";
+                query += "where date_repas = '" + startDate.AddDays(i).ToString("yyyy-MM-dd") + "' and personne_id = '" + id_eleve + "'";
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    // Si le dr contient des information, alors on lie les données aux radio buttons
+                    labelEtat.Visible = false;
+                    while (dr.Read())
+                    {
+                        repas_id = dr["repas_id"].ToString();
+                        switch (i)
+                        {
+                            case 0:
+                                switch (repas_id)
+                                {
+                                    case "1":
+                                        radioButtonRepasChaud1Lundi.Checked = true;
+                                        break;
+                                    case "2":
+                                        radioButtonRepasChaud2Lundi.Checked = true;
+                                        break;
+                                    case "3":
+                                        radioButtonRepasFroidLundi.Checked = true;
+                                        break;
+                                    default:
+                                        radioButtonAucunLundi.Checked = true;
+                                        break;
+                                }
+                                break;
+                            case 1:
+                                switch (repas_id)
+                                {
+                                    case "1":
+                                        radioButtonRepasChaud1Mardi.Checked = true;
+                                        break;
+                                    case "2":
+                                        radioButtonRepasChaud2Mardi.Checked = true;
+                                        break;
+                                    case "3":
+                                        radioButtonRepasFroidMardi.Checked = true;
+                                        break;
+                                    default:
+                                        radioButtonAucunMardi.Checked = true;
+                                        break;
+                                }
+                                break;
+
+
+                            case 2:
+                                switch (repas_id)
+                                {
+                                    case "1":
+                                        radioButtonRepasChaud1Mercredi.Checked = true;
+                                        break;
+                                    case "2":
+                                        radioButtonRepasChaud2Mercredi.Checked = true;
+                                        break;
+                                    case "3":
+                                        radioButtonRepasFroidMercredi.Checked = true;
+                                        break;
+                                    default:
+                                        radioButtonAucunMercredi.Checked = true;
+                                        break;
+                                }
+                                break;
+
+                            case 3:
+                                switch (repas_id)
+                                {
+                                    case "1":
+                                        radioButtonRepasChaud1Jeudi.Checked = true;
+                                        break;
+                                    case "2":
+                                        radioButtonRepasChaud2Jeudi.Checked = true;
+                                        break;
+                                    case "3":
+                                        radioButtonRepasFroidJeudi.Checked = true;
+                                        break;
+                                    default:
+                                        radioButtonAucunJeudi.Checked = true;
+                                        break;
+                                }
+                                break;
+
+                            case 4:
+                                switch (repas_id)
+                                {
+                                    case "1":
+                                        radioButtonRepasChaud1Vendredi.Checked = true;
+                                        break;
+                                    case "2":
+                                        radioButtonRepasChaud2Vendredi.Checked = true;
+                                        break;
+                                    case "3":
+                                        radioButtonRepasFroidVendredi.Checked = true;
+                                        break;
+                                    case "4":
+                                        radioButtonAucunVendredi.Checked = true;
+                                        break;
+                                }
+                                break;
+
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    // Si le DR est vide, aucun encodage n'a été effectué
+                    labelEtat.Visible = true;
+                    radioButtonAucunLundi.Checked = true;
+                    radioButtonAucunMardi.Checked = true;
+                    radioButtonAucunMercredi.Checked = true;
+                    radioButtonAucunJeudi.Checked = true;
+                    radioButtonAucunVendredi.Checked = true;
+                    //mise à zéro du tableau d'ID des repas
+                    for(int j=0; j < 5; j++)
+                    {
+                        tab_id_repas[j] = 4;
+                        // 4 est le ID de aucun repas
+                    }
+                }
+                dr.Close();
+                dr.Dispose();
+                con.Close();
+
+            }
 
         }
 
+        private void btConfirmation_Click(object sender, EventArgs e)
+        {
+            int resultat = 0;
+            DateTime startDate = Convert.ToDateTime(labelDebut.Text);
+            for (int i = 0; i < 5; i++)
+            {
+                // On vérifie si la période a déjà été introduite dans la DB, si oui, on fait un update, sinon un insert
+                if (labelEtat.Visible)
+                {
+                    string query = "INSERT Into tbl_relation_repas (date_repas,personne_id,repas_id)";
+                    query += "VALUES ('" + startDate.AddDays(i).ToString("yyyy-MM-dd")+ "','"+id_eleve + "','" +  tab_id_repas[i]+"')";
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    resultat = cmd.ExecuteNonQuery();
+                    con.Close();
+                }else
+                {
 
+                }
+            }
+            if (resultat > 0)
+            {
+                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été ajouté pour la semaine du " + labelDebut.Text);
+            }
+        }
 
+        private void radioButtonRepasChaud1Lundi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[0] = 1;
+        }
 
-        //static void GetSchemaInfo(SqlConnection connection,string query)
-        //{
-        //    using (connection)
-        //    {
-        //        SqlCommand command = new SqlCommand(
-        //          query,
-        //          connection);
-        //        connection.Open();
+        private void radioButtonRepasChaud2Lundi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[0] = 2;
+        }
 
-        //        SqlDataReader reader = command.ExecuteReader();
-        //        DataTable schemaTable = reader.GetSchemaTable();
+        private void radioButtonRepasFroidLundi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[0] = 3;
+        }
 
-        //        foreach (DataRow row in schemaTable.Rows)
-        //        {
-        //            foreach (DataColumn column in schemaTable.Columns)
-        //            {
-        //                Console.WriteLine(String.Format("{0} = {1}",
-        //                   column.ColumnName, row[column]));
-        //            }
-        //        }
-        //    }
-        //}
+        private void radioButtonAucunLundi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[0] = 4;
+        }
+
+        private void radioButtonRepasChaud1Mardi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[1] = 1;
+        }
+
+        private void radioButtonRepasChaud2Mardi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[1] = 2;
+        }
+
+        private void radioButtonRepasFroidMardi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[1] = 3;
+        }
+
+        private void radioButtonAucunMardi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[1] = 4;
+        }
+
+        private void radioButtonRepasChaud1Mercredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[2] = 1;
+        }
+
+        private void radioButtonRepasChaud2Mercredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[2] = 2;
+        }
+
+        private void radioButtonRepasFroidMercredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[2] = 3;
+        }
+
+        private void radioButtonAucunMercredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[2] = 4;
+        }
+
+        private void radioButtonRepasChaud1Jeudi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[3] = 1;
+        }
+
+        private void radioButtonRepasChaud2Jeudi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[3] = 2;
+
+        }
+
+        private void radioButtonRepasFroidJeudi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[3] = 3;
+
+        }
+
+        private void radioButtonAucunJeudi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[3] = 4;
+
+        }
+
+        private void radioButtonRepasChaud1Vendredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[4] = 1;
+
+        }
+
+        private void radioButtonRepasChaud2Vendredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[4] = 2;
+
+        }
+
+        private void radioButtonRepasFroidVendredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[4] = 3;
+        }
+
+        private void radioButtonAucunVendredi_CheckedChanged(object sender, EventArgs e)
+        {
+            tab_id_repas[4] = 4;
+        }
     }
 }

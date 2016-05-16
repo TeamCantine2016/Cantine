@@ -89,6 +89,7 @@
             this.labelFin = new System.Windows.Forms.Label();
             this.labelDebut = new System.Windows.Forms.Label();
             this.lbDebut = new System.Windows.Forms.Label();
+            this.labelEtat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailEleve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
@@ -344,6 +345,7 @@
             this.radioButtonAucunLundi.TabStop = true;
             this.radioButtonAucunLundi.Text = "Aucun";
             this.radioButtonAucunLundi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunLundi.CheckedChanged += new System.EventHandler(this.radioButtonAucunLundi_CheckedChanged);
             // 
             // radioButtonRepasFroidLundi
             // 
@@ -354,6 +356,7 @@
             this.radioButtonRepasFroidLundi.TabIndex = 2;
             this.radioButtonRepasFroidLundi.Text = "Repas Froid";
             this.radioButtonRepasFroidLundi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasFroidLundi.CheckedChanged += new System.EventHandler(this.radioButtonRepasFroidLundi_CheckedChanged);
             // 
             // radioButtonRepasChaud2Lundi
             // 
@@ -364,6 +367,7 @@
             this.radioButtonRepasChaud2Lundi.TabIndex = 1;
             this.radioButtonRepasChaud2Lundi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Lundi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Lundi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud2Lundi_CheckedChanged);
             // 
             // radioButtonRepasChaud1Lundi
             // 
@@ -372,8 +376,10 @@
             this.radioButtonRepasChaud1Lundi.Name = "radioButtonRepasChaud1Lundi";
             this.radioButtonRepasChaud1Lundi.Size = new System.Drawing.Size(99, 17);
             this.radioButtonRepasChaud1Lundi.TabIndex = 0;
+            this.radioButtonRepasChaud1Lundi.Tag = "";
             this.radioButtonRepasChaud1Lundi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Lundi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud1Lundi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud1Lundi_CheckedChanged);
             // 
             // groupBoxMardi
             // 
@@ -399,6 +405,7 @@
             this.radioButtonAucunMardi.TabStop = true;
             this.radioButtonAucunMardi.Text = "Aucun";
             this.radioButtonAucunMardi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunMardi.CheckedChanged += new System.EventHandler(this.radioButtonAucunMardi_CheckedChanged);
             // 
             // radioButtonRepasFroidMardi
             // 
@@ -409,6 +416,7 @@
             this.radioButtonRepasFroidMardi.TabIndex = 2;
             this.radioButtonRepasFroidMardi.Text = "Repas Froid";
             this.radioButtonRepasFroidMardi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasFroidMardi.CheckedChanged += new System.EventHandler(this.radioButtonRepasFroidMardi_CheckedChanged);
             // 
             // radioButtonRepasChaud2Mardi
             // 
@@ -419,6 +427,7 @@
             this.radioButtonRepasChaud2Mardi.TabIndex = 1;
             this.radioButtonRepasChaud2Mardi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Mardi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Mardi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud2Mardi_CheckedChanged);
             // 
             // radioButtonRepasChaud1Mardi
             // 
@@ -429,6 +438,7 @@
             this.radioButtonRepasChaud1Mardi.TabIndex = 0;
             this.radioButtonRepasChaud1Mardi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Mardi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud1Mardi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud1Mardi_CheckedChanged);
             // 
             // groupBoxMercredi
             // 
@@ -454,6 +464,7 @@
             this.radioButtonAucunMercredi.TabStop = true;
             this.radioButtonAucunMercredi.Text = "Aucun";
             this.radioButtonAucunMercredi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunMercredi.CheckedChanged += new System.EventHandler(this.radioButtonAucunMercredi_CheckedChanged);
             // 
             // radioButtonRepasFroidMercredi
             // 
@@ -464,6 +475,7 @@
             this.radioButtonRepasFroidMercredi.TabIndex = 2;
             this.radioButtonRepasFroidMercredi.Text = "Repas Froid";
             this.radioButtonRepasFroidMercredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasFroidMercredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasFroidMercredi_CheckedChanged);
             // 
             // radioButtonRepasChaud2Mercredi
             // 
@@ -474,6 +486,7 @@
             this.radioButtonRepasChaud2Mercredi.TabIndex = 1;
             this.radioButtonRepasChaud2Mercredi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Mercredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Mercredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud2Mercredi_CheckedChanged);
             // 
             // radioButtonRepasChaud1Mercredi
             // 
@@ -484,6 +497,7 @@
             this.radioButtonRepasChaud1Mercredi.TabIndex = 0;
             this.radioButtonRepasChaud1Mercredi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Mercredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud1Mercredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud1Mercredi_CheckedChanged);
             // 
             // groupBoxJeudi
             // 
@@ -509,6 +523,7 @@
             this.radioButtonAucunJeudi.TabStop = true;
             this.radioButtonAucunJeudi.Text = "Aucun";
             this.radioButtonAucunJeudi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunJeudi.CheckedChanged += new System.EventHandler(this.radioButtonAucunJeudi_CheckedChanged);
             // 
             // radioButtonRepasFroidJeudi
             // 
@@ -519,6 +534,7 @@
             this.radioButtonRepasFroidJeudi.TabIndex = 2;
             this.radioButtonRepasFroidJeudi.Text = "Repas Froid";
             this.radioButtonRepasFroidJeudi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasFroidJeudi.CheckedChanged += new System.EventHandler(this.radioButtonRepasFroidJeudi_CheckedChanged);
             // 
             // radioButtonRepasChaud2Jeudi
             // 
@@ -529,6 +545,7 @@
             this.radioButtonRepasChaud2Jeudi.TabIndex = 1;
             this.radioButtonRepasChaud2Jeudi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Jeudi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Jeudi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud2Jeudi_CheckedChanged);
             // 
             // radioButtonRepasChaud1Jeudi
             // 
@@ -539,6 +556,7 @@
             this.radioButtonRepasChaud1Jeudi.TabIndex = 0;
             this.radioButtonRepasChaud1Jeudi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Jeudi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud1Jeudi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud1Jeudi_CheckedChanged);
             // 
             // groupBoxVendredi
             // 
@@ -564,6 +582,7 @@
             this.radioButtonAucunVendredi.TabStop = true;
             this.radioButtonAucunVendredi.Text = "Aucun";
             this.radioButtonAucunVendredi.UseVisualStyleBackColor = true;
+            this.radioButtonAucunVendredi.CheckedChanged += new System.EventHandler(this.radioButtonAucunVendredi_CheckedChanged);
             // 
             // radioButtonRepasFroidVendredi
             // 
@@ -574,6 +593,7 @@
             this.radioButtonRepasFroidVendredi.TabIndex = 2;
             this.radioButtonRepasFroidVendredi.Text = "Repas Froid";
             this.radioButtonRepasFroidVendredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasFroidVendredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasFroidVendredi_CheckedChanged);
             // 
             // radioButtonRepasChaud2Vendredi
             // 
@@ -584,6 +604,7 @@
             this.radioButtonRepasChaud2Vendredi.TabIndex = 1;
             this.radioButtonRepasChaud2Vendredi.Text = "Repas Chaud 2";
             this.radioButtonRepasChaud2Vendredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud2Vendredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud2Vendredi_CheckedChanged);
             // 
             // radioButtonRepasChaud1Vendredi
             // 
@@ -594,6 +615,7 @@
             this.radioButtonRepasChaud1Vendredi.TabIndex = 0;
             this.radioButtonRepasChaud1Vendredi.Text = "Repas Chaud 1";
             this.radioButtonRepasChaud1Vendredi.UseVisualStyleBackColor = true;
+            this.radioButtonRepasChaud1Vendredi.CheckedChanged += new System.EventHandler(this.radioButtonRepasChaud1Vendredi_CheckedChanged);
             // 
             // btAnnuler
             // 
@@ -612,6 +634,7 @@
             this.btConfirmation.TabIndex = 25;
             this.btConfirmation.Text = "Confirmation/Modification";
             this.btConfirmation.UseVisualStyleBackColor = true;
+            this.btConfirmation.Click += new System.EventHandler(this.btConfirmation_Click);
             // 
             // btSupprimer
             // 
@@ -673,12 +696,25 @@
             this.lbDebut.TabIndex = 0;
             this.lbDebut.Text = "Du Lundi :";
             // 
+            // labelEtat
+            // 
+            this.labelEtat.AutoSize = true;
+            this.labelEtat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEtat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelEtat.Location = new System.Drawing.Point(19, 547);
+            this.labelEtat.Name = "labelEtat";
+            this.labelEtat.Size = new System.Drawing.Size(296, 20);
+            this.labelEtat.TabIndex = 28;
+            this.labelEtat.Text = "Aucun encodage pour cette période";
+            this.labelEtat.Visible = false;
+            // 
             // Form_EncodageRepas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
             this.ControlBox = false;
+            this.Controls.Add(this.labelEtat);
             this.Controls.Add(this.groupBoxPeriode);
             this.Controls.Add(this.btAnnuler);
             this.Controls.Add(this.btConfirmation);
@@ -790,5 +826,6 @@
         private System.Windows.Forms.Label labelFin;
         private System.Windows.Forms.Label labelDebut;
         private System.Windows.Forms.Label lbDebut;
+        private System.Windows.Forms.Label labelEtat;
     }
 }
