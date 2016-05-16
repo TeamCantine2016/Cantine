@@ -90,6 +90,10 @@ namespace ProjetCantine.Models {
         
         private global::System.Data.DataRelation relationFK_personne_utilisateur;
         
+        private global::System.Data.DataRelation relationFK_etablissement_adresse1;
+        
+        private global::System.Data.DataRelation relationFK_adresse_personne1;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -647,6 +651,8 @@ namespace ProjetCantine.Models {
             this.relationFK_personne_tuteur = this.Relations["FK_personne_tuteur"];
             this.relationFK_tuteur_personne = this.Relations["FK_tuteur_personne"];
             this.relationFK_personne_utilisateur = this.Relations["FK_personne_utilisateur"];
+            this.relationFK_etablissement_adresse1 = this.Relations["FK_etablissement_adresse1"];
+            this.relationFK_adresse_personne1 = this.Relations["FK_adresse_personne1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -753,6 +759,14 @@ namespace ProjetCantine.Models {
                         this.tabletbl_personne.idColumn}, new global::System.Data.DataColumn[] {
                         this.tabletbl_utilisateur.personne_idColumn}, false);
             this.Relations.Add(this.relationFK_personne_utilisateur);
+            this.relationFK_etablissement_adresse1 = new global::System.Data.DataRelation("FK_etablissement_adresse1", new global::System.Data.DataColumn[] {
+                        this.tableTA_Listes_Personnes.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletbl_etablissement.adresse_idColumn}, false);
+            this.Relations.Add(this.relationFK_etablissement_adresse1);
+            this.relationFK_adresse_personne1 = new global::System.Data.DataRelation("FK_adresse_personne1", new global::System.Data.DataColumn[] {
+                        this.tableTA_Listes_Personnes.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletbl_personne.adresse_idColumn}, false);
+            this.Relations.Add(this.relationFK_adresse_personne1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5565,6 +5579,8 @@ namespace ProjetCantine.Models {
             
             private global::System.Data.DataColumn columnNuméro_de_Téléphone;
             
+            private global::System.Data.DataColumn columnID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TA_Listes_PersonnesDataTable() {
@@ -5656,6 +5672,14 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5700,10 +5724,18 @@ namespace ProjetCantine.Models {
                         Ville,
                         Pays,
                         Nom,
-                        Numéro_de_Téléphone};
+                        Numéro_de_Téléphone,
+                        null};
                 rowTA_Listes_PersonnesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTA_Listes_PersonnesRow);
                 return rowTA_Listes_PersonnesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TA_Listes_PersonnesRow FindByID(int ID) {
+                return ((TA_Listes_PersonnesRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5730,6 +5762,7 @@ namespace ProjetCantine.Models {
                 this.columnPays = base.Columns["Pays"];
                 this.columnNom = base.Columns["Nom"];
                 this.columnNuméro_de_Téléphone = base.Columns["Numéro de Téléphone"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5749,6 +5782,10 @@ namespace ProjetCantine.Models {
                 base.Columns.Add(this.columnNom);
                 this.columnNuméro_de_Téléphone = new global::System.Data.DataColumn("Numéro de Téléphone", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNuméro_de_Téléphone);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
                 this.columnPrénom.AllowDBNull = false;
                 this.columnPrénom.MaxLength = 255;
                 this.columnDate_de_naissance.AllowDBNull = false;
@@ -5760,6 +5797,12 @@ namespace ProjetCantine.Models {
                 this.columnPays.MaxLength = 255;
                 this.columnNom.AllowDBNull = false;
                 this.columnNom.MaxLength = 255;
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7148,6 +7191,17 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TA_Listes_PersonnesRow TA_Listes_PersonnesRow {
+                get {
+                    return ((TA_Listes_PersonnesRow)(this.GetParentRow(this.Table.ParentRelations["FK_etablissement_adresse1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_etablissement_adresse1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsfaxNull() {
                 return this.IsNull(this.tabletbl_etablissement.faxColumn);
             }
@@ -7603,6 +7657,17 @@ namespace ProjetCantine.Models {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_typepersonne_personne"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TA_Listes_PersonnesRow TA_Listes_PersonnesRow {
+                get {
+                    return ((TA_Listes_PersonnesRow)(this.GetParentRow(this.Table.ParentRelations["FK_adresse_personne1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_adresse_personne1"]);
                 }
             }
             
@@ -8455,6 +8520,17 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableTA_Listes_Personnes.IDColumn]));
+                }
+                set {
+                    this[this.tableTA_Listes_Personnes.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsAdresseNull() {
                 return this.IsNull(this.tableTA_Listes_Personnes.AdresseColumn);
             }
@@ -8487,6 +8563,28 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNuméro_de_TéléphoneNull() {
                 this[this.tableTA_Listes_Personnes.Numéro_de_TéléphoneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tbl_etablissementRow[] Gettbl_etablissementRows() {
+                if ((this.Table.ChildRelations["FK_etablissement_adresse1"] == null)) {
+                    return new tbl_etablissementRow[0];
+                }
+                else {
+                    return ((tbl_etablissementRow[])(base.GetChildRows(this.Table.ChildRelations["FK_etablissement_adresse1"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tbl_personneRow[] Gettbl_personneRows() {
+                if ((this.Table.ChildRelations["FK_adresse_personne1"] == null)) {
+                    return new tbl_personneRow[0];
+                }
+                else {
+                    return ((tbl_personneRow[])(base.GetChildRows(this.Table.ChildRelations["FK_adresse_personne1"])));
+                }
             }
         }
         
@@ -14807,6 +14905,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
             tableMapping.ColumnMappings.Add("Pays", "Pays");
             tableMapping.ColumnMappings.Add("Nom", "Nom");
             tableMapping.ColumnMappings.Add("Numéro de Téléphone", "Numéro de Téléphone");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -14823,7 +14922,7 @@ SELECT id, pseudo, mdp, mdp_controle, droits, etat, personne_id FROM tbl_utilisa
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.telephone AS 'Numéro de Téléphone',  tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+            this._commandCollection[0].CommandText = @"SELECT        tbl_personne.id AS 'ID', tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom', tbl_personne.telephone AS 'Numéro de Téléphone',  tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
                          } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
 FROM            tbl_personne INNER JOIN
                          tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN

@@ -30,18 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label_RechNom = new System.Windows.Forms.Label();
-            this.label_RechID = new System.Windows.Forms.Label();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
-            this.txtBx_RechNumTel = new System.Windows.Forms.TextBox();
             this.dGdVw_DetailEleve = new System.Windows.Forms.DataGridView();
-            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDeNaissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.label_Nom = new System.Windows.Forms.Label();
             this.label_Prenom = new System.Windows.Forms.Label();
             this.label_Adresse = new System.Windows.Forms.Label();
@@ -56,7 +46,6 @@
             this.txtBx_Email = new System.Windows.Forms.TextBox();
             this.label_Periode = new System.Windows.Forms.Label();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             this.groupBoxLundi = new System.Windows.Forms.GroupBox();
             this.radioButtonAucunLundi = new System.Windows.Forms.RadioButton();
             this.radioButtonRepasFroidLundi = new System.Windows.Forms.RadioButton();
@@ -85,14 +74,24 @@
             this.btAnnuler = new System.Windows.Forms.Button();
             this.btConfirmation = new System.Windows.Forms.Button();
             this.btSupprimer = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
+            this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailEleve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             this.groupBoxLundi.SuspendLayout();
             this.groupBoxMardi.SuspendLayout();
             this.groupBoxMercredi.SuspendLayout();
             this.groupBoxJeudi.SuspendLayout();
             this.groupBoxVendredi.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -104,16 +103,6 @@
             this.label_RechNom.TabIndex = 0;
             this.label_RechNom.Text = "Recherche par nom";
             // 
-            // label_RechID
-            // 
-            this.label_RechID.AutoSize = true;
-            this.label_RechID.Location = new System.Drawing.Point(489, 24);
-            this.label_RechID.Name = "label_RechID";
-            this.label_RechID.Size = new System.Drawing.Size(96, 13);
-            this.label_RechID.TabIndex = 1;
-            this.label_RechID.Text = "Recherche par Tel";
-            this.label_RechID.Click += new System.EventHandler(this.label_RechID_Click);
-            // 
             // txtBx_RechNom
             // 
             this.txtBx_RechNom.ForeColor = System.Drawing.SystemColors.GrayText;
@@ -123,14 +112,6 @@
             this.txtBx_RechNom.TabIndex = 2;
             this.txtBx_RechNom.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // txtBx_RechNumTel
-            // 
-            this.txtBx_RechNumTel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtBx_RechNumTel.Location = new System.Drawing.Point(598, 21);
-            this.txtBx_RechNumTel.Name = "txtBx_RechNumTel";
-            this.txtBx_RechNumTel.Size = new System.Drawing.Size(226, 20);
-            this.txtBx_RechNumTel.TabIndex = 3;
-            // 
             // dGdVw_DetailEleve
             // 
             this.dGdVw_DetailEleve.AllowUserToAddRows = false;
@@ -138,73 +119,20 @@
             this.dGdVw_DetailEleve.AutoGenerateColumns = false;
             this.dGdVw_DetailEleve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGdVw_DetailEleve.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.nomDataGridViewTextBoxColumn,
             this.prénomDataGridViewTextBoxColumn,
-            this.dateDeNaissanceDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn1,
             this.adresseDataGridViewTextBoxColumn,
             this.villeDataGridViewTextBoxColumn,
             this.paysDataGridViewTextBoxColumn});
             this.dGdVw_DetailEleve.DataSource = this.tAListesPersonnesBindingSource;
-            this.dGdVw_DetailEleve.Location = new System.Drawing.Point(200, 58);
+            this.dGdVw_DetailEleve.Location = new System.Drawing.Point(200, 59);
             this.dGdVw_DetailEleve.Name = "dGdVw_DetailEleve";
             this.dGdVw_DetailEleve.ReadOnly = true;
             this.dGdVw_DetailEleve.Size = new System.Drawing.Size(686, 161);
             this.dGdVw_DetailEleve.TabIndex = 4;
-            this.dGdVw_DetailEleve.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prénomDataGridViewTextBoxColumn
-            // 
-            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
-            this.prénomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDeNaissanceDataGridViewTextBoxColumn
-            // 
-            this.dateDeNaissanceDataGridViewTextBoxColumn.DataPropertyName = "Date de naissance";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.HeaderText = "Date de naissance";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.Name = "dateDeNaissanceDataGridViewTextBoxColumn";
-            this.dateDeNaissanceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            this.adresseDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tAListesPersonnesBindingSource
-            // 
-            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
-            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
-            this.tAListesPersonnesBindingSource.CurrentChanged += new System.EventHandler(this.tAListesPersonnesBindingSource_CurrentChanged);
-            // 
-            // db_cantineDataSet
-            // 
-            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
-            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dGdVw_DetailEleve.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellEnter);
             // 
             // label_Nom
             // 
@@ -232,7 +160,6 @@
             this.label_Adresse.Size = new System.Drawing.Size(45, 13);
             this.label_Adresse.TabIndex = 7;
             this.label_Adresse.Text = "Adresse";
-            this.label_Adresse.Click += new System.EventHandler(this.label_Adresse_Click);
             // 
             // label_DateNaissce
             // 
@@ -248,24 +175,25 @@
             this.label_Telephone.AutoSize = true;
             this.label_Telephone.Location = new System.Drawing.Point(74, 340);
             this.label_Telephone.Name = "label_Telephone";
-            this.label_Telephone.Size = new System.Drawing.Size(58, 13);
+            this.label_Telephone.Size = new System.Drawing.Size(98, 13);
             this.label_Telephone.TabIndex = 9;
-            this.label_Telephone.Text = "Téléphone";
+            this.label_Telephone.Text = "Téléphone (Tuteur)";
+
             // 
             // label_Email
             // 
             this.label_Email.AutoSize = true;
             this.label_Email.Location = new System.Drawing.Point(74, 366);
             this.label_Email.Name = "label_Email";
-            this.label_Email.Size = new System.Drawing.Size(32, 13);
+            this.label_Email.Size = new System.Drawing.Size(72, 13);
             this.label_Email.TabIndex = 10;
-            this.label_Email.Text = "Email";
-            this.label_Email.Click += new System.EventHandler(this.label_Email_Click);
+            this.label_Email.Text = "Email (Tuteur)";
             // 
             // txtBx_Nom
             // 
             this.txtBx_Nom.Location = new System.Drawing.Point(200, 233);
             this.txtBx_Nom.Name = "txtBx_Nom";
+            this.txtBx_Nom.ReadOnly = true;
             this.txtBx_Nom.Size = new System.Drawing.Size(250, 20);
             this.txtBx_Nom.TabIndex = 11;
             // 
@@ -273,6 +201,7 @@
             // 
             this.txtBx_Prenom.Location = new System.Drawing.Point(200, 259);
             this.txtBx_Prenom.Name = "txtBx_Prenom";
+            this.txtBx_Prenom.ReadOnly = true;
             this.txtBx_Prenom.Size = new System.Drawing.Size(250, 20);
             this.txtBx_Prenom.TabIndex = 12;
             // 
@@ -280,6 +209,7 @@
             // 
             this.txtBox_Adresse.Location = new System.Drawing.Point(200, 285);
             this.txtBox_Adresse.Name = "txtBox_Adresse";
+            this.txtBox_Adresse.ReadOnly = true;
             this.txtBox_Adresse.Size = new System.Drawing.Size(250, 20);
             this.txtBox_Adresse.TabIndex = 13;
             // 
@@ -287,6 +217,7 @@
             // 
             this.txtBx_DateNaissce.Location = new System.Drawing.Point(200, 311);
             this.txtBx_DateNaissce.Name = "txtBx_DateNaissce";
+            this.txtBx_DateNaissce.ReadOnly = true;
             this.txtBx_DateNaissce.Size = new System.Drawing.Size(250, 20);
             this.txtBx_DateNaissce.TabIndex = 14;
             // 
@@ -294,6 +225,7 @@
             // 
             this.txtBx_Telephone.Location = new System.Drawing.Point(200, 337);
             this.txtBx_Telephone.Name = "txtBx_Telephone";
+            this.txtBx_Telephone.ReadOnly = true;
             this.txtBx_Telephone.Size = new System.Drawing.Size(250, 20);
             this.txtBx_Telephone.TabIndex = 15;
             // 
@@ -301,6 +233,7 @@
             // 
             this.txtBx_Email.Location = new System.Drawing.Point(200, 363);
             this.txtBx_Email.Name = "txtBx_Email";
+            this.txtBx_Email.ReadOnly = true;
             this.txtBx_Email.Size = new System.Drawing.Size(250, 20);
             this.txtBx_Email.TabIndex = 16;
             // 
@@ -318,10 +251,6 @@
             this.monthCalendar1.Location = new System.Drawing.Point(659, 231);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 18;
-            // 
-            // tA_Listes_Personnes_query
-            // 
-            this.tA_Listes_Personnes_query.ClearBeforeFill = true;
             // 
             // groupBoxLundi
             // 
@@ -634,7 +563,70 @@
             this.btSupprimer.TabIndex = 26;
             this.btSupprimer.Text = "Supprimer";
             this.btSupprimer.UseVisualStyleBackColor = true;
-            this.btSupprimer.Click += new System.EventHandler(this.btApercu_Click);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // nomDataGridViewTextBoxColumn
+            // 
+            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn
+            // 
+            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
+            this.prénomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Date de naissance";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Date De Naissance";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.adresseDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tAListesPersonnesBindingSource
+            // 
+            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
+            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
+            // 
+            // db_cantineDataSet
+            // 
+            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
+            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tA_Listes_Personnes_query
+            // 
+            this.tA_Listes_Personnes_query.ClearBeforeFill = true;
             // 
             // Form_EncodageRepas
             // 
@@ -665,16 +657,12 @@
             this.Controls.Add(this.label_Prenom);
             this.Controls.Add(this.label_Nom);
             this.Controls.Add(this.dGdVw_DetailEleve);
-            this.Controls.Add(this.txtBx_RechNumTel);
             this.Controls.Add(this.txtBx_RechNom);
-            this.Controls.Add(this.label_RechID);
             this.Controls.Add(this.label_RechNom);
             this.Name = "Form_EncodageRepas";
             this.Text = "Encodage des repas par l\'élève";
             this.Load += new System.EventHandler(this.Form_EncodageRepas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailEleve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
             this.groupBoxLundi.ResumeLayout(false);
             this.groupBoxLundi.PerformLayout();
             this.groupBoxMardi.ResumeLayout(false);
@@ -685,6 +673,8 @@
             this.groupBoxJeudi.PerformLayout();
             this.groupBoxVendredi.ResumeLayout(false);
             this.groupBoxVendredi.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,9 +683,7 @@
         #endregion
 
         private System.Windows.Forms.Label label_RechNom;
-        private System.Windows.Forms.Label label_RechID;
         private System.Windows.Forms.TextBox txtBx_RechNom;
-        private System.Windows.Forms.TextBox txtBx_RechNumTel;
         private System.Windows.Forms.DataGridView dGdVw_DetailEleve;
         private System.Windows.Forms.Label label_Nom;
         private System.Windows.Forms.Label label_Prenom;
@@ -712,13 +700,6 @@
         private System.Windows.Forms.Label label_Periode;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private Models.db_cantineDataSet db_cantineDataSet;
-        private Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query tA_F_EncodageRepas_query;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDeNaissanceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource tAListesPersonnesBindingSource;
         private Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query tA_Listes_Personnes_query;
         private System.Windows.Forms.GroupBox groupBoxLundi;
@@ -749,5 +730,12 @@
         private System.Windows.Forms.Button btAnnuler;
         private System.Windows.Forms.Button btConfirmation;
         private System.Windows.Forms.Button btSupprimer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
     }
 }

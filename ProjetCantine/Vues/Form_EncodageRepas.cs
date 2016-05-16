@@ -27,18 +27,15 @@ namespace ProjetCantine.Vues
         {
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("PS_Filtre_Nom_Tel", con);
+            SqlCommand cmd = new SqlCommand("PS_Filtre_Eleve", con);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
-            cmd.Parameters.Add("@tel", SqlDbType.NVarChar);
 
             cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
-            cmd.Parameters["@tel"].Direction = ParameterDirection.Input;
 
             cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
-            cmd.Parameters["@tel"].Value = txtBx_RechNumTel.Text;
 
             DataTable t = new DataTable();
             SqlDataReader dr = cmd.ExecuteReader();
@@ -53,20 +50,7 @@ namespace ProjetCantine.Vues
             filtre();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-        private void label_Email_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label_Adresse_Click(object sender, EventArgs e)
-        {
-  
-        }
 
         private void Form_EncodageRepas_Load(object sender, EventArgs e)
         {
@@ -78,24 +62,60 @@ namespace ProjetCantine.Vues
             dGdVw_DetailEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        private void tAFEncodageRepasBindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
 
+
+        private void txtBx_RechNumTel_TextChanged(object sender, EventArgs e)
+        {
+            filtre();
         }
 
-        private void btApercu_Click(object sender, EventArgs e)
+        private void dGdVw_DetailEleve_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            int i = dGdVw_DetailEleve.CurrentRow.Index;
+            DataGridViewRow ligne = dGdVw_DetailEleve.Rows[i];
+            txtBx_Nom.Text = ligne.Cells[1].Value.ToString();
+            txtBx_Prenom.Text = ligne.Cells[2].Value.ToString();
+            txtBox_Adresse.Text = ligne.Cells[4].Value.ToString();
+            txtBx_DateNaissce.Text = ligne.Cells[3].Value.ToString();
+            string query = "SELECT telephone, courriel FROM tbl_personne ";
+            query += "where(id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id = '" + Convert.ToInt32(ligne.Cells[0].Value.ToString()) + "')))";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
 
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                txtBx_Telephone.Text = dr["telephone"].ToString();
+                txtBx_Email.Text = dr["courriel"].ToString();
+            }
+
+            dr.Close();
+            dr.Dispose();
+            con.Close();
+            //txtBx_Email.Text = ligne.Cells[0].Value.ToString();
         }
 
-        private void tAListesPersonnesBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
+        //static void GetSchemaInfo(SqlConnection connection,string query)
+        //{
+        //    using (connection)
+        //    {
+        //        SqlCommand command = new SqlCommand(
+        //          query,
+        //          connection);
+        //        connection.Open();
 
-        }
+        //        SqlDataReader reader = command.ExecuteReader();
+        //        DataTable schemaTable = reader.GetSchemaTable();
 
-        private void label_RechID_Click(object sender, EventArgs e)
-        {
-
-        }
+        //        foreach (DataRow row in schemaTable.Rows)
+        //        {
+        //            foreach (DataColumn column in schemaTable.Columns)
+        //            {
+        //                Console.WriteLine(String.Format("{0} = {1}",
+        //                   column.ColumnName, row[column]));
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
