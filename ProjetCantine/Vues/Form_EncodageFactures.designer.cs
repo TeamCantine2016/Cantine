@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+           
             this.components = new System.ComponentModel.Container();
             this.label_RechNom = new System.Windows.Forms.Label();
             this.txtBx_RechNumTel = new System.Windows.Forms.TextBox();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechNumTel = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
+            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
@@ -42,8 +49,6 @@
             this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tARemplirCBFormatEnvoieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tab2 = new System.Windows.Forms.TabPage();
-            this.tab1 = new System.Windows.Forms.TabPage();
             this.tabDetail = new System.Windows.Forms.TabControl();
             this.btApercu = new System.Windows.Forms.Button();
             this.btEnvoi = new System.Windows.Forms.Button();
@@ -57,19 +62,12 @@
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prénom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tA_Remplir_CB_FormatEnvoieTableAdapter = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter();
-            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).BeginInit();
-            this.tabDetail.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -129,7 +127,49 @@
             this.dGdVw_DetailFamille.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
-            this.dGdVw_DetailFamille.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellEnter);
+            this.dGdVw_DetailFamille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellClick);
+            // 
+            // nomDataGridViewTextBoxColumn1
+            // 
+            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
+            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn1
+            // 
+            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
+            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // numéroDeTéléphoneDataGridViewTextBoxColumn
+            // 
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tAListesPersonnesBindingSource
             // 
@@ -187,30 +227,8 @@
             this.tARemplirCBFormatEnvoieBindingSource.DataMember = "TA_Remplir_CB_FormatEnvoie";
             this.tARemplirCBFormatEnvoieBindingSource.DataSource = this.db_cantineDataSet;
             // 
-            // tab2
-            // 
-            this.tab2.Location = new System.Drawing.Point(4, 22);
-            this.tab2.Name = "tab2";
-            this.tab2.Padding = new System.Windows.Forms.Padding(3);
-            this.tab2.Size = new System.Drawing.Size(764, 189);
-            this.tab2.TabIndex = 1;
-            this.tab2.Text = "Membre2";
-            this.tab2.UseVisualStyleBackColor = true;
-            // 
-            // tab1
-            // 
-            this.tab1.Location = new System.Drawing.Point(4, 22);
-            this.tab1.Name = "tab1";
-            this.tab1.Padding = new System.Windows.Forms.Padding(3);
-            this.tab1.Size = new System.Drawing.Size(764, 189);
-            this.tab1.TabIndex = 0;
-            this.tab1.Text = "Membre1";
-            this.tab1.UseVisualStyleBackColor = true;
-            // 
             // tabDetail
             // 
-            this.tabDetail.Controls.Add(this.tab1);
-            this.tabDetail.Controls.Add(this.tab2);
             this.tabDetail.Location = new System.Drawing.Point(12, 284);
             this.tabDetail.Name = "tabDetail";
             this.tabDetail.SelectedIndex = 0;
@@ -304,48 +322,6 @@
             // 
             this.tA_Remplir_CB_FormatEnvoieTableAdapter.ClearBeforeFill = true;
             // 
-            // nomDataGridViewTextBoxColumn1
-            // 
-            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
-            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // prénomDataGridViewTextBoxColumn1
-            // 
-            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
-            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // numéroDeTéléphoneDataGridViewTextBoxColumn
-            // 
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,7 +353,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).EndInit();
-            this.tabDetail.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,8 +368,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TabPage tab2;
-        private System.Windows.Forms.TabPage tab1;
         private System.Windows.Forms.TabControl tabDetail;
         private System.Windows.Forms.Button btApercu;
         private System.Windows.Forms.Button btEnvoi;
