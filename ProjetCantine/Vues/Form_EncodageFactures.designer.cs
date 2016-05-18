@@ -28,33 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-           
             this.components = new System.ComponentModel.Container();
             this.label_RechNom = new System.Windows.Forms.Label();
             this.txtBx_RechNumTel = new System.Windows.Forms.TextBox();
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechNumTel = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
-            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tARemplirCBFormatEnvoieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabDetail = new System.Windows.Forms.TabControl();
             this.btApercu = new System.Windows.Forms.Button();
             this.btEnvoi = new System.Windows.Forms.Button();
             this.btAnnuler = new System.Windows.Forms.Button();
-            this.lbPeriode1 = new System.Windows.Forms.Label();
-            this.lbEnvoi = new System.Windows.Forms.Label();
             this.lbPeriode = new System.Windows.Forms.Label();
             this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,12 +50,39 @@
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prénom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tA_Remplir_CB_FormatEnvoieTableAdapter = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter();
+            this.dateTimePicker_debut = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_fin = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label_aucun = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label_froid = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label_chaud2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label_chaud1 = new System.Windows.Forms.Label();
+            this.label_prix = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label_dateCloture = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button_visualiser = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -113,6 +128,7 @@
             this.dGdVw_DetailFamille.AutoGenerateColumns = false;
             this.dGdVw_DetailFamille.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGdVw_DetailFamille.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.nomDataGridViewTextBoxColumn1,
             this.prénomDataGridViewTextBoxColumn1,
             this.numéroDeTéléphoneDataGridViewTextBoxColumn,
@@ -128,6 +144,300 @@
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
             this.dGdVw_DetailFamille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellClick);
+            // 
+            // tAListesPersonnesBindingSource
+            // 
+            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
+            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
+            // 
+            // db_cantineDataSet
+            // 
+            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
+            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridView_Membres
+            // 
+            this.dataGridView_Membres.AllowUserToAddRows = false;
+            this.dataGridView_Membres.AllowUserToDeleteRows = false;
+            this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
+            this.dataGridView_Membres.MultiSelect = false;
+            this.dataGridView_Membres.Name = "dataGridView_Membres";
+            this.dataGridView_Membres.ReadOnly = true;
+            this.dataGridView_Membres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_Membres.Size = new System.Drawing.Size(332, 161);
+            this.dataGridView_Membres.TabIndex = 16;
+            // 
+            // tARemplirCBFormatEnvoieBindingSource
+            // 
+            this.tARemplirCBFormatEnvoieBindingSource.DataMember = "TA_Remplir_CB_FormatEnvoie";
+            this.tARemplirCBFormatEnvoieBindingSource.DataSource = this.db_cantineDataSet;
+            // 
+            // tabDetail
+            // 
+            this.tabDetail.Location = new System.Drawing.Point(12, 284);
+            this.tabDetail.Name = "tabDetail";
+            this.tabDetail.SelectedIndex = 0;
+            this.tabDetail.Size = new System.Drawing.Size(417, 215);
+            this.tabDetail.TabIndex = 22;
+            // 
+            // btApercu
+            // 
+            this.btApercu.Location = new System.Drawing.Point(110, 583);
+            this.btApercu.Name = "btApercu";
+            this.btApercu.Size = new System.Drawing.Size(200, 35);
+            this.btApercu.TabIndex = 23;
+            this.btApercu.Text = "Aperçu";
+            this.btApercu.UseVisualStyleBackColor = true;
+            this.btApercu.Click += new System.EventHandler(this.btApercu_Click);
+            // 
+            // btEnvoi
+            // 
+            this.btEnvoi.Location = new System.Drawing.Point(445, 583);
+            this.btEnvoi.Name = "btEnvoi";
+            this.btEnvoi.Size = new System.Drawing.Size(200, 35);
+            this.btEnvoi.TabIndex = 23;
+            this.btEnvoi.Text = "Envoi";
+            this.btEnvoi.UseVisualStyleBackColor = true;
+            // 
+            // btAnnuler
+            // 
+            this.btAnnuler.Location = new System.Drawing.Point(770, 583);
+            this.btAnnuler.Name = "btAnnuler";
+            this.btAnnuler.Size = new System.Drawing.Size(200, 35);
+            this.btAnnuler.TabIndex = 23;
+            this.btAnnuler.Text = "Annuler";
+            this.btAnnuler.UseVisualStyleBackColor = true;
+            // 
+            // lbPeriode
+            // 
+            this.lbPeriode.AutoSize = true;
+            this.lbPeriode.Location = new System.Drawing.Point(910, 24);
+            this.lbPeriode.Name = "lbPeriode";
+            this.lbPeriode.Size = new System.Drawing.Size(115, 13);
+            this.lbPeriode.TabIndex = 1;
+            this.lbPeriode.Text = "Selectionner la periode";
+            // 
+            // tA_Listes_Personnes_query
+            // 
+            this.tA_Listes_Personnes_query.ClearBeforeFill = true;
+            // 
+            // nomDataGridViewTextBoxColumn
+            // 
+            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+            // 
+            // prénomDataGridViewTextBoxColumn
+            // 
+            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "Nom";
+            this.Nom.HeaderText = "Nom";
+            this.Nom.Name = "Nom";
+            // 
+            // Prénom
+            // 
+            this.Prénom.DataPropertyName = "Prénom";
+            this.Prénom.HeaderText = "Prénom";
+            this.Prénom.Name = "Prénom";
+            // 
+            // tA_Remplir_CB_FormatEnvoieTableAdapter
+            // 
+            this.tA_Remplir_CB_FormatEnvoieTableAdapter.ClearBeforeFill = true;
+            // 
+            // dateTimePicker_debut
+            // 
+            this.dateTimePicker_debut.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker_debut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_debut.Location = new System.Drawing.Point(914, 151);
+            this.dateTimePicker_debut.Name = "dateTimePicker_debut";
+            this.dateTimePicker_debut.Size = new System.Drawing.Size(150, 20);
+            this.dateTimePicker_debut.TabIndex = 24;
+            // 
+            // dateTimePicker_fin
+            // 
+            this.dateTimePicker_fin.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker_fin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_fin.Location = new System.Drawing.Point(913, 197);
+            this.dateTimePicker_fin.Name = "dateTimePicker_fin";
+            this.dateTimePicker_fin.Size = new System.Drawing.Size(150, 20);
+            this.dateTimePicker_fin.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(910, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Du :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(911, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Au :";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label_prix);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label_aucun);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label_froid);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label_chaud2);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label_chaud1);
+            this.groupBox1.Location = new System.Drawing.Point(435, 284);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(349, 215);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Récap pour : ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 136);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Aucun";
+            // 
+            // label_aucun
+            // 
+            this.label_aucun.AutoSize = true;
+            this.label_aucun.Location = new System.Drawing.Point(126, 136);
+            this.label_aucun.Name = "label_aucun";
+            this.label_aucun.Size = new System.Drawing.Size(31, 13);
+            this.label_aucun.TabIndex = 29;
+            this.label_aucun.Text = "0000";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 13);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Repas Froid";
+            // 
+            // label_froid
+            // 
+            this.label_froid.AutoSize = true;
+            this.label_froid.Location = new System.Drawing.Point(126, 100);
+            this.label_froid.Name = "label_froid";
+            this.label_froid.Size = new System.Drawing.Size(31, 13);
+            this.label_froid.TabIndex = 31;
+            this.label_froid.Text = "3333";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Repas Chaud 2";
+            // 
+            // label_chaud2
+            // 
+            this.label_chaud2.AutoSize = true;
+            this.label_chaud2.Location = new System.Drawing.Point(124, 63);
+            this.label_chaud2.Name = "label_chaud2";
+            this.label_chaud2.Size = new System.Drawing.Size(31, 13);
+            this.label_chaud2.TabIndex = 33;
+            this.label_chaud2.Text = "2222";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Repas Chaud 1";
+            // 
+            // label_chaud1
+            // 
+            this.label_chaud1.AutoSize = true;
+            this.label_chaud1.Location = new System.Drawing.Point(124, 33);
+            this.label_chaud1.Name = "label_chaud1";
+            this.label_chaud1.Size = new System.Drawing.Size(31, 13);
+            this.label_chaud1.TabIndex = 35;
+            this.label_chaud1.Text = "1111";
+            // 
+            // label_prix
+            // 
+            this.label_prix.AutoSize = true;
+            this.label_prix.Location = new System.Drawing.Point(283, 182);
+            this.label_prix.Name = "label_prix";
+            this.label_prix.Size = new System.Drawing.Size(37, 13);
+            this.label_prix.TabIndex = 29;
+            this.label_prix.Text = "€€€€€";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(146, 177);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(121, 20);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "PRIX TOTAL :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(911, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Dernière date de clôturation";
+            // 
+            // label_dateCloture
+            // 
+            this.label_dateCloture.AutoSize = true;
+            this.label_dateCloture.Location = new System.Drawing.Point(911, 79);
+            this.label_dateCloture.Name = "label_dateCloture";
+            this.label_dateCloture.Size = new System.Drawing.Size(0, 13);
+            this.label_dateCloture.TabIndex = 29;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(911, 110);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Générer Détails :";
+            // 
+            // button_visualiser
+            // 
+            this.button_visualiser.Location = new System.Drawing.Point(913, 236);
+            this.button_visualiser.Name = "button_visualiser";
+            this.button_visualiser.Size = new System.Drawing.Size(150, 32);
+            this.button_visualiser.TabIndex = 31;
+            this.button_visualiser.Text = "Visualiser détail";
+            this.button_visualiser.UseVisualStyleBackColor = true;
+            this.button_visualiser.Click += new System.EventHandler(this.button_visualiser_Click);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             // 
             // nomDataGridViewTextBoxColumn1
             // 
@@ -171,178 +481,31 @@
             this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
             this.paysDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // tAListesPersonnesBindingSource
-            // 
-            this.tAListesPersonnesBindingSource.DataMember = "TA_Listes_Personnes";
-            this.tAListesPersonnesBindingSource.DataSource = this.db_cantineDataSet;
-            // 
-            // db_cantineDataSet
-            // 
-            this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
-            this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataGridView_Membres
-            // 
-            this.dataGridView_Membres.AllowUserToAddRows = false;
-            this.dataGridView_Membres.AllowUserToDeleteRows = false;
-            this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
-            this.dataGridView_Membres.MultiSelect = false;
-            this.dataGridView_Membres.Name = "dataGridView_Membres";
-            this.dataGridView_Membres.ReadOnly = true;
-            this.dataGridView_Membres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Membres.Size = new System.Drawing.Size(245, 161);
-            this.dataGridView_Membres.TabIndex = 16;
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(810, 56);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 20;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DataSource = this.tblhistoriquefactureBindingSource;
-            this.comboBox1.DisplayMember = "format_envoye";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(810, 333);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(227, 21);
-            this.comboBox1.TabIndex = 20;
-            this.comboBox1.ValueMember = "format_envoye";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DataSource = this.tARemplirCBFormatEnvoieBindingSource;
-            this.comboBox2.DisplayMember = "format_envoye";
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(810, 409);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(227, 21);
-            this.comboBox2.TabIndex = 21;
-            this.comboBox2.ValueMember = "format_envoye";
-            // 
-            // tARemplirCBFormatEnvoieBindingSource
-            // 
-            this.tARemplirCBFormatEnvoieBindingSource.DataMember = "TA_Remplir_CB_FormatEnvoie";
-            this.tARemplirCBFormatEnvoieBindingSource.DataSource = this.db_cantineDataSet;
-            // 
-            // tabDetail
-            // 
-            this.tabDetail.Location = new System.Drawing.Point(12, 284);
-            this.tabDetail.Name = "tabDetail";
-            this.tabDetail.SelectedIndex = 0;
-            this.tabDetail.Size = new System.Drawing.Size(772, 215);
-            this.tabDetail.TabIndex = 22;
-            // 
-            // btApercu
-            // 
-            this.btApercu.Location = new System.Drawing.Point(110, 583);
-            this.btApercu.Name = "btApercu";
-            this.btApercu.Size = new System.Drawing.Size(200, 35);
-            this.btApercu.TabIndex = 23;
-            this.btApercu.Text = "Aperçu";
-            this.btApercu.UseVisualStyleBackColor = true;
-            this.btApercu.Click += new System.EventHandler(this.btApercu_Click);
-            // 
-            // btEnvoi
-            // 
-            this.btEnvoi.Location = new System.Drawing.Point(445, 583);
-            this.btEnvoi.Name = "btEnvoi";
-            this.btEnvoi.Size = new System.Drawing.Size(200, 35);
-            this.btEnvoi.TabIndex = 23;
-            this.btEnvoi.Text = "Envoi";
-            this.btEnvoi.UseVisualStyleBackColor = true;
-            // 
-            // btAnnuler
-            // 
-            this.btAnnuler.Location = new System.Drawing.Point(770, 583);
-            this.btAnnuler.Name = "btAnnuler";
-            this.btAnnuler.Size = new System.Drawing.Size(200, 35);
-            this.btAnnuler.TabIndex = 23;
-            this.btAnnuler.Text = "Annuler";
-            this.btAnnuler.UseVisualStyleBackColor = true;
-            // 
-            // lbPeriode1
-            // 
-            this.lbPeriode1.AutoSize = true;
-            this.lbPeriode1.Location = new System.Drawing.Point(807, 306);
-            this.lbPeriode1.Name = "lbPeriode1";
-            this.lbPeriode1.Size = new System.Drawing.Size(110, 13);
-            this.lbPeriode1.TabIndex = 1;
-            this.lbPeriode1.Text = "Générer la facture par";
-            // 
-            // lbEnvoi
-            // 
-            this.lbEnvoi.AutoSize = true;
-            this.lbEnvoi.Location = new System.Drawing.Point(807, 384);
-            this.lbEnvoi.Name = "lbEnvoi";
-            this.lbEnvoi.Size = new System.Drawing.Size(111, 13);
-            this.lbEnvoi.TabIndex = 1;
-            this.lbEnvoi.Text = "Envoyer la facture par";
-            // 
-            // lbPeriode
-            // 
-            this.lbPeriode.AutoSize = true;
-            this.lbPeriode.Location = new System.Drawing.Point(808, 24);
-            this.lbPeriode.Name = "lbPeriode";
-            this.lbPeriode.Size = new System.Drawing.Size(115, 13);
-            this.lbPeriode.TabIndex = 1;
-            this.lbPeriode.Text = "Selectionner la periode";
-            // 
-            // tA_Listes_Personnes_query
-            // 
-            this.tA_Listes_Personnes_query.ClearBeforeFill = true;
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            // 
-            // prénomDataGridViewTextBoxColumn
-            // 
-            this.prénomDataGridViewTextBoxColumn.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn.Name = "prénomDataGridViewTextBoxColumn";
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "Nom";
-            this.Nom.HeaderText = "Nom";
-            this.Nom.Name = "Nom";
-            // 
-            // Prénom
-            // 
-            this.Prénom.DataPropertyName = "Prénom";
-            this.Prénom.HeaderText = "Prénom";
-            this.Prénom.Name = "Prénom";
-            // 
-            // tA_Remplir_CB_FormatEnvoieTableAdapter
-            // 
-            this.tA_Remplir_CB_FormatEnvoieTableAdapter.ClearBeforeFill = true;
-            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
             this.ControlBox = false;
+            this.Controls.Add(this.button_visualiser);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label_dateCloture);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePicker_fin);
+            this.Controls.Add(this.dateTimePicker_debut);
             this.Controls.Add(this.btAnnuler);
             this.Controls.Add(this.btEnvoi);
             this.Controls.Add(this.btApercu);
             this.Controls.Add(this.tabDetail);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.dataGridView_Membres);
             this.Controls.Add(this.dGdVw_DetailFamille);
             this.Controls.Add(this.txtBx_RechNumTel);
             this.Controls.Add(this.txtBx_RechNom);
             this.Controls.Add(this.label_RechNumTel);
-            this.Controls.Add(this.lbEnvoi);
             this.Controls.Add(this.lbPeriode);
-            this.Controls.Add(this.lbPeriode1);
             this.Controls.Add(this.label_RechNom);
             this.Name = "Form_EncodageFactures";
             this.Text = "Encodage des factures";
@@ -353,6 +516,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,15 +530,10 @@
         private System.Windows.Forms.Label label_RechNumTel;
         private System.Windows.Forms.DataGridView dGdVw_DetailFamille;
         private System.Windows.Forms.DataGridView dataGridView_Membres;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TabControl tabDetail;
         private System.Windows.Forms.Button btApercu;
         private System.Windows.Forms.Button btEnvoi;
         private System.Windows.Forms.Button btAnnuler;
-        private System.Windows.Forms.Label lbPeriode1;
-        private System.Windows.Forms.Label lbEnvoi;
         private System.Windows.Forms.Label lbPeriode;
         private System.Windows.Forms.BindingSource tblhistoriquefactureBindingSource;
         private Models.db_cantineDataSet db_cantineDataSet;
@@ -385,6 +545,26 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Prénom;
         private System.Windows.Forms.BindingSource tARemplirCBFormatEnvoieBindingSource;
         private Models.db_cantineDataSetTableAdapters.TA_Remplir_CB_FormatEnvoieTableAdapter tA_Remplir_CB_FormatEnvoieTableAdapter;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_debut;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_fin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label_prix;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_aucun;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label_froid;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label_chaud2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_chaud1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_dateCloture;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button_visualiser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn numéroDeTéléphoneDataGridViewTextBoxColumn;

@@ -76,7 +76,7 @@ namespace ProjetCantine.Vues
             txtBx_Nom.Text = ligne.Cells[1].Value.ToString();
             txtBx_Prenom.Text = ligne.Cells[2].Value.ToString();
             txtBox_Adresse.Text = ligne.Cells[4].Value.ToString();
-            txtBx_DateNaissce.Text = ligne.Cells[3].Value.ToString().Substring(0, 8);
+            txtBx_DateNaissce.Text = ligne.Cells[3].Value.ToString().Substring(0, 10);
             //on transmet l'ID de l'étudiant à la variable globale index
             id_eleve = Convert.ToInt16(ligne.Cells[0].Value);
             if (ligne.Cells[0].Value.ToString() != null)

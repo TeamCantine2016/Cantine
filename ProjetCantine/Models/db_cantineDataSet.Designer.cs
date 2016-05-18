@@ -14931,7 +14931,7 @@ WHERE        (tbl_type_personne.type_personne = 'élève')";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom',  tbl_personne.telephone AS 'Numéro de Téléphone', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
+            this._commandCollection[1].CommandText = @"SELECT      tbl_personne.id AS 'ID',  tbl_personne.nom AS 'Nom', tbl_personne.prenom AS 'Prénom',  tbl_personne.telephone AS 'Numéro de Téléphone', tbl_personne.date_naissance AS 'Date de naissance', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.numero AS VARCHAR(3)), ', ') }, tbl_adresse.rue) 
                          } AS 'Adresse', { fn CONCAT({ fn CONCAT(CAST(tbl_adresse.code_postal AS varchar(5)), ' - ') }, tbl_adresse.ville) } AS 'Ville', tbl_adresse.pays AS 'Pays'
 FROM            tbl_personne INNER JOIN
                          tbl_adresse ON tbl_personne.adresse_id = tbl_adresse.id INNER JOIN
