@@ -40,6 +40,7 @@ namespace ProjetCantine
             maCon.Close();
             dataGridView_Famille.DataSource = dt;
 
+          
         }
                
         private void dataGridView_Famille_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -70,18 +71,23 @@ namespace ProjetCantine
             SqlDataReader dr = cmd.ExecuteReader();
             DataTable t = new DataTable();
             t.Load(dr);
+          
 
             maCon.Close();
             dataGridView_Membre.DataSource = t;
-            
-        }
 
-        private void button_Annuler_Click(object sender, EventArgs e)
+            textBox_nbEnfant.Text = dataGridView_Membre.RowCount.ToString();
+
+        }
+               
+        private void button_NomReset_Click(object sender, EventArgs e)
         {
             textBox_NomRech.Text = "";
+        }
+
+        private void button_TelReset_Click(object sender, EventArgs e)
+        {
             textBox_TéléphoneRech.Text = "";
-            comboBox_Envoi.SelectedIndex = -1;
-            comboBox_Génération.SelectedIndex = -1;
         }
     }
 }
