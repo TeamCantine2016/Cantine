@@ -34,6 +34,13 @@
             this.txtBx_RechNom = new System.Windows.Forms.TextBox();
             this.label_RechNumTel = new System.Windows.Forms.Label();
             this.dGdVw_DetailFamille = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
@@ -43,7 +50,6 @@
             this.btApercu = new System.Windows.Forms.Button();
             this.btEnvoi = new System.Windows.Forms.Button();
             this.btAnnuler = new System.Windows.Forms.Button();
-            this.lbPeriode = new System.Windows.Forms.Label();
             this.tA_Listes_Personnes_query = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Listes_Personnes_query();
             this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prénomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,7 +60,9 @@
             this.dateTimePicker_fin = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox_recap = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label_prix = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label_aucun = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -63,26 +71,19 @@
             this.label_chaud2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label_chaud1 = new System.Windows.Forms.Label();
-            this.label_prix = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label_dateCloture = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1_selectperiode = new System.Windows.Forms.GroupBox();
             this.button_visualiser = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prénomDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.villeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupBox_recap.SuspendLayout();
+            this.groupBox1_selectperiode.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_RechNom
@@ -144,6 +145,55 @@
             this.dGdVw_DetailFamille.Size = new System.Drawing.Size(537, 161);
             this.dGdVw_DetailFamille.TabIndex = 12;
             this.dGdVw_DetailFamille.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailFamille_CellClick);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // nomDataGridViewTextBoxColumn1
+            // 
+            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
+            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // prénomDataGridViewTextBoxColumn1
+            // 
+            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
+            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
+            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // numéroDeTéléphoneDataGridViewTextBoxColumn
+            // 
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
+            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // villeDataGridViewTextBoxColumn
+            // 
+            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
+            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
+            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
+            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // paysDataGridViewTextBoxColumn
+            // 
+            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
+            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
+            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
+            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tAListesPersonnesBindingSource
             // 
@@ -209,15 +259,6 @@
             this.btAnnuler.Text = "Annuler";
             this.btAnnuler.UseVisualStyleBackColor = true;
             // 
-            // lbPeriode
-            // 
-            this.lbPeriode.AutoSize = true;
-            this.lbPeriode.Location = new System.Drawing.Point(910, 24);
-            this.lbPeriode.Name = "lbPeriode";
-            this.lbPeriode.Size = new System.Drawing.Size(115, 13);
-            this.lbPeriode.TabIndex = 1;
-            this.lbPeriode.Text = "Selectionner la periode";
-            // 
             // tA_Listes_Personnes_query
             // 
             this.tA_Listes_Personnes_query.ClearBeforeFill = true;
@@ -254,16 +295,17 @@
             // 
             this.dateTimePicker_debut.CustomFormat = "dd-MM-yyyy";
             this.dateTimePicker_debut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_debut.Location = new System.Drawing.Point(914, 151);
+            this.dateTimePicker_debut.Location = new System.Drawing.Point(19, 121);
             this.dateTimePicker_debut.Name = "dateTimePicker_debut";
             this.dateTimePicker_debut.Size = new System.Drawing.Size(150, 20);
             this.dateTimePicker_debut.TabIndex = 24;
+            this.dateTimePicker_debut.ValueChanged += new System.EventHandler(this.dateTimePicker_debut_ValueChanged);
             // 
             // dateTimePicker_fin
             // 
             this.dateTimePicker_fin.CustomFormat = "dd-MM-yyyy";
             this.dateTimePicker_fin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_fin.Location = new System.Drawing.Point(913, 197);
+            this.dateTimePicker_fin.Location = new System.Drawing.Point(18, 167);
             this.dateTimePicker_fin.Name = "dateTimePicker_fin";
             this.dateTimePicker_fin.Size = new System.Drawing.Size(150, 20);
             this.dateTimePicker_fin.TabIndex = 25;
@@ -271,7 +313,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(910, 132);
+            this.label1.Location = new System.Drawing.Point(15, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 26;
@@ -280,30 +322,48 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(911, 177);
+            this.label2.Location = new System.Drawing.Point(16, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 26;
             this.label2.Text = "Au :";
             // 
-            // groupBox1
+            // groupBox_recap
             // 
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label_prix);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label_aucun);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label_froid);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label_chaud2);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label_chaud1);
-            this.groupBox1.Location = new System.Drawing.Point(435, 284);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 215);
-            this.groupBox1.TabIndex = 27;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Récap pour : ";
+            this.groupBox_recap.Controls.Add(this.label12);
+            this.groupBox_recap.Controls.Add(this.label_prix);
+            this.groupBox_recap.Controls.Add(this.label10);
+            this.groupBox_recap.Controls.Add(this.label_aucun);
+            this.groupBox_recap.Controls.Add(this.label8);
+            this.groupBox_recap.Controls.Add(this.label_froid);
+            this.groupBox_recap.Controls.Add(this.label6);
+            this.groupBox_recap.Controls.Add(this.label_chaud2);
+            this.groupBox_recap.Controls.Add(this.label4);
+            this.groupBox_recap.Controls.Add(this.label_chaud1);
+            this.groupBox_recap.Location = new System.Drawing.Point(435, 284);
+            this.groupBox_recap.Name = "groupBox_recap";
+            this.groupBox_recap.Size = new System.Drawing.Size(349, 215);
+            this.groupBox_recap.TabIndex = 27;
+            this.groupBox_recap.TabStop = false;
+            this.groupBox_recap.Text = "Récap pour : ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(146, 177);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(121, 20);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "PRIX TOTAL :";
+            // 
+            // label_prix
+            // 
+            this.label_prix.AutoSize = true;
+            this.label_prix.Location = new System.Drawing.Point(283, 182);
+            this.label_prix.Name = "label_prix";
+            this.label_prix.Size = new System.Drawing.Size(0, 13);
+            this.label_prix.TabIndex = 29;
             // 
             // label10
             // 
@@ -319,9 +379,8 @@
             this.label_aucun.AutoSize = true;
             this.label_aucun.Location = new System.Drawing.Point(126, 136);
             this.label_aucun.Name = "label_aucun";
-            this.label_aucun.Size = new System.Drawing.Size(31, 13);
+            this.label_aucun.Size = new System.Drawing.Size(0, 13);
             this.label_aucun.TabIndex = 29;
-            this.label_aucun.Text = "0000";
             // 
             // label8
             // 
@@ -337,9 +396,8 @@
             this.label_froid.AutoSize = true;
             this.label_froid.Location = new System.Drawing.Point(126, 100);
             this.label_froid.Name = "label_froid";
-            this.label_froid.Size = new System.Drawing.Size(31, 13);
+            this.label_froid.Size = new System.Drawing.Size(0, 13);
             this.label_froid.TabIndex = 31;
-            this.label_froid.Text = "3333";
             // 
             // label6
             // 
@@ -355,9 +413,8 @@
             this.label_chaud2.AutoSize = true;
             this.label_chaud2.Location = new System.Drawing.Point(124, 63);
             this.label_chaud2.Name = "label_chaud2";
-            this.label_chaud2.Size = new System.Drawing.Size(31, 13);
+            this.label_chaud2.Size = new System.Drawing.Size(0, 13);
             this.label_chaud2.TabIndex = 33;
-            this.label_chaud2.Text = "2222";
             // 
             // label4
             // 
@@ -373,33 +430,13 @@
             this.label_chaud1.AutoSize = true;
             this.label_chaud1.Location = new System.Drawing.Point(124, 33);
             this.label_chaud1.Name = "label_chaud1";
-            this.label_chaud1.Size = new System.Drawing.Size(31, 13);
+            this.label_chaud1.Size = new System.Drawing.Size(0, 13);
             this.label_chaud1.TabIndex = 35;
-            this.label_chaud1.Text = "1111";
-            // 
-            // label_prix
-            // 
-            this.label_prix.AutoSize = true;
-            this.label_prix.Location = new System.Drawing.Point(283, 182);
-            this.label_prix.Name = "label_prix";
-            this.label_prix.Size = new System.Drawing.Size(37, 13);
-            this.label_prix.TabIndex = 29;
-            this.label_prix.Text = "€€€€€";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(146, 177);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(121, 20);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "PRIX TOTAL :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(911, 56);
+            this.label3.Location = new System.Drawing.Point(16, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(138, 13);
             this.label3.TabIndex = 28;
@@ -408,7 +445,7 @@
             // label_dateCloture
             // 
             this.label_dateCloture.AutoSize = true;
-            this.label_dateCloture.Location = new System.Drawing.Point(911, 79);
+            this.label_dateCloture.Location = new System.Drawing.Point(16, 49);
             this.label_dateCloture.Name = "label_dateCloture";
             this.label_dateCloture.Size = new System.Drawing.Size(0, 13);
             this.label_dateCloture.TabIndex = 29;
@@ -416,70 +453,39 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(911, 110);
+            this.label7.Location = new System.Drawing.Point(16, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 13);
             this.label7.TabIndex = 30;
             this.label7.Text = "Générer Détails :";
             // 
+            // groupBox1_selectperiode
+            // 
+            this.groupBox1_selectperiode.Controls.Add(this.button_visualiser);
+            this.groupBox1_selectperiode.Controls.Add(this.label3);
+            this.groupBox1_selectperiode.Controls.Add(this.dateTimePicker_debut);
+            this.groupBox1_selectperiode.Controls.Add(this.label7);
+            this.groupBox1_selectperiode.Controls.Add(this.dateTimePicker_fin);
+            this.groupBox1_selectperiode.Controls.Add(this.label_dateCloture);
+            this.groupBox1_selectperiode.Controls.Add(this.label1);
+            this.groupBox1_selectperiode.Controls.Add(this.label2);
+            this.groupBox1_selectperiode.Enabled = false;
+            this.groupBox1_selectperiode.Location = new System.Drawing.Point(897, 24);
+            this.groupBox1_selectperiode.Name = "groupBox1_selectperiode";
+            this.groupBox1_selectperiode.Size = new System.Drawing.Size(183, 281);
+            this.groupBox1_selectperiode.TabIndex = 32;
+            this.groupBox1_selectperiode.TabStop = false;
+            this.groupBox1_selectperiode.Text = "Selectionner periode";
+            // 
             // button_visualiser
             // 
-            this.button_visualiser.Location = new System.Drawing.Point(913, 236);
+            this.button_visualiser.Location = new System.Drawing.Point(18, 217);
             this.button_visualiser.Name = "button_visualiser";
             this.button_visualiser.Size = new System.Drawing.Size(150, 32);
-            this.button_visualiser.TabIndex = 31;
+            this.button_visualiser.TabIndex = 32;
             this.button_visualiser.Text = "Visualiser détail";
             this.button_visualiser.UseVisualStyleBackColor = true;
             this.button_visualiser.Click += new System.EventHandler(this.button_visualiser_Click);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // nomDataGridViewTextBoxColumn1
-            // 
-            this.nomDataGridViewTextBoxColumn1.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn1.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn1.Name = "nomDataGridViewTextBoxColumn1";
-            this.nomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // prénomDataGridViewTextBoxColumn1
-            // 
-            this.prénomDataGridViewTextBoxColumn1.DataPropertyName = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.HeaderText = "Prénom";
-            this.prénomDataGridViewTextBoxColumn1.Name = "prénomDataGridViewTextBoxColumn1";
-            this.prénomDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // numéroDeTéléphoneDataGridViewTextBoxColumn
-            // 
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.DataPropertyName = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.HeaderText = "Numéro de Téléphone";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.Name = "numéroDeTéléphoneDataGridViewTextBoxColumn";
-            this.numéroDeTéléphoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // villeDataGridViewTextBoxColumn
-            // 
-            this.villeDataGridViewTextBoxColumn.DataPropertyName = "Ville";
-            this.villeDataGridViewTextBoxColumn.HeaderText = "Ville";
-            this.villeDataGridViewTextBoxColumn.Name = "villeDataGridViewTextBoxColumn";
-            this.villeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paysDataGridViewTextBoxColumn
-            // 
-            this.paysDataGridViewTextBoxColumn.DataPropertyName = "Pays";
-            this.paysDataGridViewTextBoxColumn.HeaderText = "Pays";
-            this.paysDataGridViewTextBoxColumn.Name = "paysDataGridViewTextBoxColumn";
-            this.paysDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Form_EncodageFactures
             // 
@@ -487,15 +493,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 661);
             this.ControlBox = false;
-            this.Controls.Add(this.button_visualiser);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label_dateCloture);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker_fin);
-            this.Controls.Add(this.dateTimePicker_debut);
+            this.Controls.Add(this.groupBox1_selectperiode);
+            this.Controls.Add(this.groupBox_recap);
             this.Controls.Add(this.btAnnuler);
             this.Controls.Add(this.btEnvoi);
             this.Controls.Add(this.btApercu);
@@ -505,7 +504,6 @@
             this.Controls.Add(this.txtBx_RechNumTel);
             this.Controls.Add(this.txtBx_RechNom);
             this.Controls.Add(this.label_RechNumTel);
-            this.Controls.Add(this.lbPeriode);
             this.Controls.Add(this.label_RechNom);
             this.Name = "Form_EncodageFactures";
             this.Text = "Encodage des factures";
@@ -516,8 +514,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox_recap.ResumeLayout(false);
+            this.groupBox_recap.PerformLayout();
+            this.groupBox1_selectperiode.ResumeLayout(false);
+            this.groupBox1_selectperiode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,7 +534,6 @@
         private System.Windows.Forms.Button btApercu;
         private System.Windows.Forms.Button btEnvoi;
         private System.Windows.Forms.Button btAnnuler;
-        private System.Windows.Forms.Label lbPeriode;
         private System.Windows.Forms.BindingSource tblhistoriquefactureBindingSource;
         private Models.db_cantineDataSet db_cantineDataSet;
         private System.Windows.Forms.BindingSource tAListesPersonnesBindingSource;
@@ -549,7 +548,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_fin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox_recap;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label_prix;
         private System.Windows.Forms.Label label10;
@@ -563,7 +562,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label_dateCloture;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button_visualiser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn1;
@@ -571,5 +569,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn villeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox1_selectperiode;
+        private System.Windows.Forms.Button button_visualiser;
     }
 }

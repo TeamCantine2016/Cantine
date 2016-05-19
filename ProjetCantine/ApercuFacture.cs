@@ -21,8 +21,8 @@ namespace ProjetCantine
                 xlApp.Visible = false;
 
                 object misValue = System.Reflection.Missing.Value;
-                string pathFacture = @"C:\Users\Florian\Desktop\Facture.xlsx";
-                string pathSortie = @"C:\Users\Florian\Desktop\";
+                string pathFacture = @"D:\GitHub\Factures\Facture.xlsx";
+                string pathSortie = @"D:\GitHub\";
                 Excel.Workbook wbk = xlApp.Workbooks.Open(pathFacture);
                 Excel.Worksheet ws = new Excel.Worksheet();
 

@@ -96,7 +96,8 @@ namespace ProjetCantine.Vues
         }
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
+            groupBox1_selectperiode.Enabled = true;
 
             int i = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
@@ -119,20 +120,41 @@ namespace ProjetCantine.Vues
 
             con.Close();
 
-          
-            String req = "SELECT max(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id WHERE(tbl_relation_facture.tuteur_id = "+ r.Cells[0].Value.ToString() +")";
+
+            String req = "SELECT max(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+            req += "WHERE(tbl_relation_facture.tuteur_id = "+ r.Cells[0].Value.ToString() +")";
             con.Open();
             SqlCommand cmd1 = new SqlCommand(req, con);
 
             SqlDataReader dr1 = cmd1.ExecuteReader();
             while (dr1.Read())
             {
-                label_dateCloture.Text = dr1["fin_periode"].ToString().Substring(0, 10);
+                try
+                {
+                    label_dateCloture.Text = dr1["fin_periode"].ToString().Substring(0,10);
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Aucune facture encodée pour cette personne");
+                    label_dateCloture.Text = " ";
+                }
+                    
             }
             dr1.Close();
             con.Close();
-            dateTimePicker_debut.MinDate = Convert.ToDateTime(label_dateCloture.Text);
-            dateTimePicker_debut.MinDate = dateTimePicker_debut.MinDate.AddDays(1);
+
+            // Si la label pour afficher la date de clôture est vide ça veut dire que cette personne n'a pas encore de facture dans la db
+            if (label_dateCloture.Text != " ")
+            {
+                dateTimePicker_debut.MinDate = Convert.ToDateTime(label_dateCloture.Text); // on initialise la date min de datetimepicker à la date de la derniere facture(impossible de selectionner les date d'avant)
+                dateTimePicker_debut.MinDate = dateTimePicker_debut.MinDate.AddDays(1); // on ajoute un jour à la datetimepicker pour commencer une nouvelle facture
+               // dateTimePicker_debut.MaxDate <= dateTimePicker_fin.MinDate;
+               // DateTimePicker.(dateTimePicker_debut.MaxDate,dateTimePicker_fin.MinDate);
+            }
+            else
+            {
+                dateTimePicker_debut.MinDate = Convert.ToDateTime("01-01-1970");
+            }
             
             
          }
@@ -144,12 +166,12 @@ namespace ProjetCantine.Vues
             int k = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
             
-            groupBox1.Text = "Récap pour : " + r.Cells[1].Value.ToString() + " " + r.Cells[2].Value.ToString() ;
+            groupBox_recap.Text = "Récap pour : " + r.Cells[1].Value.ToString() + " " + r.Cells[2].Value.ToString() ;
 
             tabDetail.TabPages.Clear();
+
             for (int i = 0; i < dataGridView_Membres.Rows.Count; i++)
             {
-
                 string title = dataGridView_Membres.Rows[i].Cells[0].Value.ToString() + " " + dataGridView_Membres.Rows[i].Cells[1].Value.ToString();
 
                 TabPage myTabPage = new TabPage(title);     // Nouvel onglet et le title pour afficher le nom et le prenom sur l'onglet 
@@ -159,9 +181,7 @@ namespace ProjetCantine.Vues
 
                 //====Création de datagridView======================================================
                 DataGridView dataGridView_historique = new DataGridView();      // Nouveau DataGridView pour afficher l'historique de chaque élève
-                                                                                // DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn() { ReadOnly = false, Name = "Selection" }; // Création d'une colonne pour ajouter des checkbox
-                                                                                // dataGridView_historique.Columns.Add(col); // ajouter les colonnes dans la datagridview
-                dataGridView_historique.ReadOnly = true;
+                dataGridView_historique.ReadOnly = true; // juste la lecture dans le datagrid sans modification
                 dataGridView_historique.Size = new System.Drawing.Size(460, 187); // la taille de datagridview          
                 dataGridView_historique.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;  // pour afficher tout la ligne dans le datagridview
                 //=====================================================================================
@@ -299,6 +319,9 @@ namespace ProjetCantine.Vues
             }
         }
 
-       
+        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+        }
     }
 }
