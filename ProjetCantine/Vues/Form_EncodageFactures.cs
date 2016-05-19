@@ -165,7 +165,9 @@ namespace ProjetCantine.Vues
 
             int k = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
-            
+            string debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
+            string fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
+
             groupBox_recap.Text = "Récap pour : " + r.Cells[1].Value.ToString() + " " + r.Cells[2].Value.ToString() ;
 
             tabDetail.TabPages.Clear();
@@ -190,7 +192,7 @@ namespace ProjetCantine.Vues
                 // une requete qui affiche tout les repas avec leur date et prix pris par un élève
                 String query = "SELECT type_repas AS 'Type de Repas', date_repas AS 'Date de repas', CONCAT(tbl_prix_repas.prix,' €') AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 query += "WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id=tbl_prix_repas.id ";
-                query += "  AND CONCAT(nom,' ',prenom) = '" + title + "' AND date_repas BETWEEN' " + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ORDER BY prenom ";
+                query += "  AND CONCAT(nom,' ',prenom) = '" + title + "' AND date_repas BETWEEN '" + debut + "' AND '" + fin + "' ORDER BY prenom ";
 
 
                 con.Open();
@@ -233,7 +235,7 @@ namespace ProjetCantine.Vues
                 //================================ AUCUN===================================================================================
                 string req1 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 req1 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req1 += " AND type_repas = 'Aucun'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                req1 += " AND type_repas = 'aucun'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd1 = new SqlCommand(req1, con);
@@ -251,7 +253,7 @@ namespace ProjetCantine.Vues
 
                 string req2 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 req2 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req2 += " AND type_repas = 'Chaud 1'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                req2 += " AND type_repas = 'chaud1'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd2 = new SqlCommand(req2, con);
@@ -268,7 +270,7 @@ namespace ProjetCantine.Vues
 
                 string req3 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 req3 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req3 += " AND type_repas = 'Chaud 2'  AND  tbl_personne.nom = '" +r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                req3 += " AND type_repas = 'chaud2'  AND  tbl_personne.nom = '" +r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd3 = new SqlCommand(req3, con);
@@ -284,7 +286,7 @@ namespace ProjetCantine.Vues
 
                 string req4 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 req4 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req4 += " AND type_repas = 'Froid'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                req4 += " AND type_repas = 'froid'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd4 = new SqlCommand(req4, con);
@@ -301,7 +303,7 @@ namespace ProjetCantine.Vues
 
                 string req5 = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 req5 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req5 += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                req5 += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd5 = new SqlCommand(req5, con);
@@ -314,6 +316,12 @@ namespace ProjetCantine.Vues
                 dr5.Close();
                 con.Close();
 
+                //================================ Total prix par catégorie de repas ================================================================                //label_Total_Chaud1.Text = calculTotalRepasType(1,ref r);
+                label_Total_Chaud1.Text = calculTotalRepasType(1, ref r,debut,fin);
+                label_Total_Chaud2.Text = calculTotalRepasType(2, ref r,debut,fin);
+                label_Total_Froid.Text = calculTotalRepasType(3, ref r,debut,fin);
+                label_Total_Aucun.Text = calculTotalRepasType(4, ref r,debut,fin);
+
 
 
             }
@@ -322,6 +330,30 @@ namespace ProjetCantine.Vues
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+        }
+
+        private string calculTotalRepasType(int typeRepas, ref DataGridViewRow r, string debut, string fin)
+        {
+            string retour = "";
+            string req = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
+            req += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
+            req += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' AND tbl_repas.id =" + typeRepas;       
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(req, con);        
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                retour = dr["Prix"].ToString() + " €";
+            }
+            dr.Close();
+            con.Close();
+            return retour;
+        }
+
+        private void label_Total_Chaud2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

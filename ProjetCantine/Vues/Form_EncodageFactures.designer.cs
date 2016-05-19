@@ -76,6 +76,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1_selectperiode = new System.Windows.Forms.GroupBox();
             this.button_visualiser = new System.Windows.Forms.Button();
+            this.label_Total_Chaud1 = new System.Windows.Forms.Label();
+            this.label_Total_Chaud2 = new System.Windows.Forms.Label();
+            this.label_Total_Froid = new System.Windows.Forms.Label();
+            this.label_Total_Aucun = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
@@ -330,6 +334,10 @@
             // 
             // groupBox_recap
             // 
+            this.groupBox_recap.Controls.Add(this.label_Total_Aucun);
+            this.groupBox_recap.Controls.Add(this.label_Total_Froid);
+            this.groupBox_recap.Controls.Add(this.label_Total_Chaud2);
+            this.groupBox_recap.Controls.Add(this.label_Total_Chaud1);
             this.groupBox_recap.Controls.Add(this.label12);
             this.groupBox_recap.Controls.Add(this.label_prix);
             this.groupBox_recap.Controls.Add(this.label10);
@@ -487,6 +495,45 @@
             this.button_visualiser.UseVisualStyleBackColor = true;
             this.button_visualiser.Click += new System.EventHandler(this.button_visualiser_Click);
             // 
+            // label_Total_Chaud1
+            // 
+            this.label_Total_Chaud1.AutoSize = true;
+            this.label_Total_Chaud1.Location = new System.Drawing.Point(228, 33);
+            this.label_Total_Chaud1.Name = "label_Total_Chaud1";
+            this.label_Total_Chaud1.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud1.TabIndex = 36;
+            this.label_Total_Chaud1.Text = "label5";
+            // 
+            // label_Total_Chaud2
+            // 
+            this.label_Total_Chaud2.AutoSize = true;
+            this.label_Total_Chaud2.Location = new System.Drawing.Point(228, 63);
+            this.label_Total_Chaud2.Name = "label_Total_Chaud2";
+            this.label_Total_Chaud2.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud2.TabIndex = 36;
+            this.label_Total_Chaud2.Text = "label5";
+            this.label_Total_Chaud2.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+            // 
+            // label_Total_Froid
+            // 
+            this.label_Total_Froid.AutoSize = true;
+            this.label_Total_Froid.Location = new System.Drawing.Point(228, 100);
+            this.label_Total_Froid.Name = "label_Total_Froid";
+            this.label_Total_Froid.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Froid.TabIndex = 36;
+            this.label_Total_Froid.Text = "label5";
+            this.label_Total_Froid.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+            // 
+            // label_Total_Aucun
+            // 
+            this.label_Total_Aucun.AutoSize = true;
+            this.label_Total_Aucun.Location = new System.Drawing.Point(228, 136);
+            this.label_Total_Aucun.Name = "label_Total_Aucun";
+            this.label_Total_Aucun.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Aucun.TabIndex = 36;
+            this.label_Total_Aucun.Text = "label5";
+            this.label_Total_Aucun.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+            // 
             // Form_EncodageFactures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,5 +618,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn paysDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox groupBox1_selectperiode;
         private System.Windows.Forms.Button button_visualiser;
+        private System.Windows.Forms.Label label_Total_Chaud1;
+        private System.Windows.Forms.Label label_Total_Chaud2;
+        private System.Windows.Forms.Label label_Total_Aucun;
+        private System.Windows.Forms.Label label_Total_Froid;
     }
 }
