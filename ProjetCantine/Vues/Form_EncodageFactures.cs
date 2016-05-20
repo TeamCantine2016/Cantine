@@ -158,6 +158,10 @@ namespace ProjetCantine.Vues
             
             
          }
+        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+        }
 
         private void button_visualiser_Click(object sender, EventArgs e)
         {
@@ -207,129 +211,67 @@ namespace ProjetCantine.Vues
                 myTabPage.Controls.Add(dataGridView_historique);                // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
 
 
-                //con.Open();
+                //===============================Pour compter les repas prisent par tuteur par type de repas=============================================
 
-                //SqlCommand cmd1 = new SqlCommand("PS_Calcul_Repas", con);
+                label_chaud1.Text = compteurTypeRepas("chaud1", ref r, debut, fin);
+                label_chaud2.Text = compteurTypeRepas("chaud2", ref r, debut, fin);
+                label_froid.Text = compteurTypeRepas("froid", ref r, debut, fin);
+                label_aucun.Text = compteurTypeRepas("aucun", ref r, debut, fin);
 
-                //cmd1.CommandType = CommandType.StoredProcedure;
-
-                //cmd1.Parameters.Add("@typerepas", SqlDbType.NVarChar);
-                //cmd1.Parameters.Add("@dateD", SqlDbType.NVarChar);
-                //cmd1.Parameters.Add("@dateF", SqlDbType.NVarChar);
-                //cmd1.Parameters.Add("@nom", SqlDbType.NVarChar);
-
-                //cmd1.Parameters["@typerepas"].Value = "Aucun";
-                //cmd1.Parameters["@nom"].Value = dGdVw_DetailFamille.Rows[k].Cells[1].Value.ToString();
-                //cmd1.Parameters["@dateD"].Value = dateTimePicker_debut.Text;
-                //cmd1.Parameters["@dateF"].Value = dateTimePicker_debut.Text;
-
-
-                //SqlDataReader dr1 = cmd1.ExecuteReader();
-                //while (dr1.Read())
-                //{
-                //    label_aucun.Text = dr1["Type_Repas"].ToString();
-                //}
-                //dr1.Close();
-                //con.Close();
-
-                //================================ AUCUN===================================================================================
-                string req1 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                req1 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req1 += " AND type_repas = 'aucun'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
-
-                con.Open();
-                SqlCommand cmd1 = new SqlCommand(req1, con);
-
-                SqlDataReader dr1 = cmd1.ExecuteReader();
-                while (dr1.Read())
-                {
-                    label_aucun.Text = dr1["Type_Repas"].ToString();
-                }
-                dr1.Close();
-                con.Close();
-
-
-                //================================ CHAUD1===================================================================================
-
-                string req2 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                req2 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req2 += " AND type_repas = 'chaud1'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
-
-                con.Open();
-                SqlCommand cmd2 = new SqlCommand(req2, con);
-
-                SqlDataReader dr2 = cmd2.ExecuteReader();
-                while (dr2.Read())
-                {
-                    label_chaud1.Text = dr2["Type_Repas"].ToString();
-                }
-                dr2.Close();
-                con.Close();
-
-                //================================ CHAUD2===================================================================================
-
-                string req3 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                req3 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req3 += " AND type_repas = 'chaud2'  AND  tbl_personne.nom = '" +r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
-
-                con.Open();
-                SqlCommand cmd3 = new SqlCommand(req3, con);
-
-                SqlDataReader dr3 = cmd3.ExecuteReader();
-                while (dr3.Read())
-                {
-                    label_chaud2.Text = dr3["Type_Repas"].ToString();
-                }
-                dr1.Close();
-                con.Close();
-                //================================ FROID===================================================================================
-
-                string req4 = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                req4 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req4 += " AND type_repas = 'froid'  AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
-
-                con.Open();
-                SqlCommand cmd4 = new SqlCommand(req4, con);
-
-                SqlDataReader dr4 = cmd4.ExecuteReader();
-                while (dr4.Read())
-                {
-                    label_froid.Text = dr4["Type_Repas"].ToString();
-                }
-                dr4.Close();
-                con.Close();
-
-                //================================ TOTAL PRIX===================================================================================
-
-                string req5 = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                req5 += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                req5 += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
-
-                con.Open();
-                SqlCommand cmd5 = new SqlCommand(req5, con);
-
-                SqlDataReader dr5 = cmd5.ExecuteReader();
-                while (dr5.Read())
-                {
-                    label_prix.Text = dr5["Prix"].ToString() + " €";
-                }
-                dr5.Close();
-                con.Close();
-
-                //================================ Total prix par catégorie de repas ================================================================                //label_Total_Chaud1.Text = calculTotalRepasType(1,ref r);
+                //================================ Total prix par catégorie de repas ================================================================      
                 label_Total_Chaud1.Text = calculTotalRepasType(1, ref r,debut,fin);
                 label_Total_Chaud2.Text = calculTotalRepasType(2, ref r,debut,fin);
                 label_Total_Froid.Text = calculTotalRepasType(3, ref r,debut,fin);
                 label_Total_Aucun.Text = calculTotalRepasType(4, ref r,debut,fin);
 
-
-
             }
         }
 
-        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
+       
+        private string compteurTypeRepas(string typer, ref DataGridViewRow r, string debut, string fin)
         {
-            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            //string retour = "";
+            //con.Open();
+
+            //SqlCommand cmd = new SqlCommand("PS_Calcul_Repas", con);
+
+            //cmd.CommandType = CommandType.StoredProcedure;
+
+            //cmd.Parameters.Add("@typerepas", SqlDbType.NVarChar);
+            //cmd.Parameters.Add("@dateD", SqlDbType.NVarChar);
+            //cmd.Parameters.Add("@dateF", SqlDbType.NVarChar);
+            //cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
+
+            //cmd.Parameters["@typerepas"].Value = typer;
+            //cmd.Parameters["@nom"].Value = r.Cells[1].Value.ToString();
+            //cmd.Parameters["@dateD"].Value = debut;
+            //cmd.Parameters["@dateF"].Value = fin;
+
+
+            //SqlDataReader dr = cmd.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    retour = dr["Type_Repas"].ToString();
+            //}
+            //dr.Close();
+            //con.Close();
+
+            string retour = "";
+            string query = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
+            query += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
+            query += " AND type_repas = '" + typer + "' AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                retour = dr["Type_Repas"].ToString();
+            }
+            dr.Close();
+            con.Close();
+            return retour;
         }
 
         private string calculTotalRepasType(int typeRepas, ref DataGridViewRow r, string debut, string fin)
@@ -351,9 +293,6 @@ namespace ProjetCantine.Vues
             return retour;
         }
 
-        private void label_Total_Chaud2_Click(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

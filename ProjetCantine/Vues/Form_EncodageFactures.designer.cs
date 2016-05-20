@@ -512,7 +512,7 @@
             this.label_Total_Chaud2.Size = new System.Drawing.Size(35, 13);
             this.label_Total_Chaud2.TabIndex = 36;
             this.label_Total_Chaud2.Text = "label5";
-            this.label_Total_Chaud2.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+         
             // 
             // label_Total_Froid
             // 
@@ -522,7 +522,7 @@
             this.label_Total_Froid.Size = new System.Drawing.Size(35, 13);
             this.label_Total_Froid.TabIndex = 36;
             this.label_Total_Froid.Text = "label5";
-            this.label_Total_Froid.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+         
             // 
             // label_Total_Aucun
             // 
@@ -532,7 +532,7 @@
             this.label_Total_Aucun.Size = new System.Drawing.Size(35, 13);
             this.label_Total_Aucun.TabIndex = 36;
             this.label_Total_Aucun.Text = "label5";
-            this.label_Total_Aucun.Click += new System.EventHandler(this.label_Total_Chaud2_Click);
+          
             // 
             // Form_EncodageFactures
             // 

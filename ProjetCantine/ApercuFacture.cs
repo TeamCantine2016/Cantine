@@ -40,7 +40,9 @@ namespace ProjetCantine
                 ws.Cells[15, "A"] = "Email: " + " itela@gmail.com";
 
                 //Encodage Client
-
+               
+             
+               
                 ws.Cells[7, "D"] = "55256"; //N° facture
                 ws.Cells[7, "E"] = "09-02-2016"; // Date Facture
                 ws.Cells[7, "F"] = "69"; //Code Client
