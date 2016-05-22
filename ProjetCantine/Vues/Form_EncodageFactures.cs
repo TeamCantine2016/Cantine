@@ -68,28 +68,18 @@ namespace ProjetCantine.Vues
 
             groupBox1_selectperiode.Enabled = true;
 
-            int i = dGdVw_DetailFamille.CurrentRow.Index;
-            DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
-            String query = "WITH Tuteur AS(SELECT prenom, nom, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
-            query += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id ";
-            query += "Where tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' ),";
-            query += "Enfant AS( SELECT prenom, nom, date_naissance, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
-            query += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) ";
-            query += "SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' ";
-            query += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
-            query += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            DataTable t = new DataTable();
-            t.Load(dr);
-            dataGridView_Membres.DataSource = t;
-
-            con.Close();
+            int indexLigne = dGdVw_DetailFamille.CurrentRow.Index;
+            
+            // création objet pour remplir datagridview
+            DbConnection objetTableau = new DbConnection();
+            // appelle méthode qui affiche les tuteurs
+            objetTableau.afficheListeEnfantSelonSelection_Factures(ref dataGridView_Membres, ref dGdVw_DetailFamille, indexLigne);
 
 
+            /* cette ligne sera supprimé lorsque la prochaine requête sera également déplacé dans DbConnection.cs */
+            DataGridViewRow r = dGdVw_DetailFamille.Rows[indexLigne];
+
+            
             String req = "SELECT max(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
             req += "WHERE(tbl_relation_facture.tuteur_id = "+ r.Cells[0].Value.ToString() +")";
             con.Open();
