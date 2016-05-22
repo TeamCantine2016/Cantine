@@ -50,6 +50,24 @@ namespace ProjetCantine.Models
             return laRequete;
         }
 
+        //// REGROUPPEMENT DES PROCEDURES STOCKEES
+        //private SqlCommand procedure(string nomProcedure)
+        //{
+        //    switch (nomProcedure)
+        //    {
+        //        case "PS_Filtre_Nom_Tel":
+        //            commande = new SqlCommand(nomProcedure, connexion);
+                    
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    return commande;
+        //}
+
+
+
         // INJECTION DES DONNEES
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
@@ -60,6 +78,8 @@ namespace ProjetCantine.Models
         }
 
         // LES METHODES PUBLIQUES
+
+//****** SANS PROCEDURE STOCKEE
         public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
         {
             // requête pour l'affichage de la dataGridView_Famille
@@ -88,5 +108,22 @@ namespace ProjetCantine.Models
             return tableauCible.RowCount.ToString();
         }
 
+//****** AVEC PROCEDURE STOCKEE
+        public void filtreParNomParTel(ref DataGridView tableauCible, ref TextBox nom, ref TextBox telephone)
+        {
+            commande = new SqlCommand("PS_Filtre_Nom_Tel", connexion);
+            commande.CommandType = CommandType.StoredProcedure;
+
+            commande.Parameters.Add("@nom", SqlDbType.NVarChar);
+            commande.Parameters.Add("@tel", SqlDbType.NVarChar);
+
+            commande.Parameters["@nom"].Direction = ParameterDirection.Input;
+            commande.Parameters["@tel"].Direction = ParameterDirection.Input;
+
+            commande.Parameters["@nom"].Value = nom.Text;
+            commande.Parameters["@tel"].Value = telephone.Text;
+
+            injectionDesDonnees(ref tableauCible);
+        }
     }
 }

@@ -61,6 +61,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox_recap = new System.Windows.Forms.GroupBox();
+            this.label_Total_Aucun = new System.Windows.Forms.Label();
+            this.label_Total_Froid = new System.Windows.Forms.Label();
+            this.label_Total_Chaud2 = new System.Windows.Forms.Label();
+            this.label_Total_Chaud1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label_prix = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -76,10 +80,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1_selectperiode = new System.Windows.Forms.GroupBox();
             this.button_visualiser = new System.Windows.Forms.Button();
-            this.label_Total_Chaud1 = new System.Windows.Forms.Label();
-            this.label_Total_Chaud2 = new System.Windows.Forms.Label();
-            this.label_Total_Froid = new System.Windows.Forms.Label();
-            this.label_Total_Aucun = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
@@ -106,7 +106,7 @@
             this.txtBx_RechNumTel.Name = "txtBx_RechNumTel";
             this.txtBx_RechNumTel.Size = new System.Drawing.Size(226, 20);
             this.txtBx_RechNumTel.TabIndex = 8;
-            this.txtBx_RechNumTel.TextChanged += new System.EventHandler(this.txtBx_RechNumTel_TextChanged);
+            this.txtBx_RechNumTel.TextChanged += new System.EventHandler(this.filtre);
             // 
             // txtBx_RechNom
             // 
@@ -115,7 +115,7 @@
             this.txtBx_RechNom.Name = "txtBx_RechNom";
             this.txtBx_RechNom.Size = new System.Drawing.Size(226, 20);
             this.txtBx_RechNom.TabIndex = 4;
-            this.txtBx_RechNom.TextChanged += new System.EventHandler(this.txtBx_RechNom_TextChanged);
+            this.txtBx_RechNom.TextChanged += new System.EventHandler(this.filtre);
             // 
             // label_RechNumTel
             // 
@@ -355,6 +355,42 @@
             this.groupBox_recap.TabStop = false;
             this.groupBox_recap.Text = "Récap pour : ";
             // 
+            // label_Total_Aucun
+            // 
+            this.label_Total_Aucun.AutoSize = true;
+            this.label_Total_Aucun.Location = new System.Drawing.Point(228, 136);
+            this.label_Total_Aucun.Name = "label_Total_Aucun";
+            this.label_Total_Aucun.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Aucun.TabIndex = 36;
+            this.label_Total_Aucun.Text = "label5";
+            // 
+            // label_Total_Froid
+            // 
+            this.label_Total_Froid.AutoSize = true;
+            this.label_Total_Froid.Location = new System.Drawing.Point(228, 100);
+            this.label_Total_Froid.Name = "label_Total_Froid";
+            this.label_Total_Froid.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Froid.TabIndex = 36;
+            this.label_Total_Froid.Text = "label5";
+            // 
+            // label_Total_Chaud2
+            // 
+            this.label_Total_Chaud2.AutoSize = true;
+            this.label_Total_Chaud2.Location = new System.Drawing.Point(228, 63);
+            this.label_Total_Chaud2.Name = "label_Total_Chaud2";
+            this.label_Total_Chaud2.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud2.TabIndex = 36;
+            this.label_Total_Chaud2.Text = "label5";
+            // 
+            // label_Total_Chaud1
+            // 
+            this.label_Total_Chaud1.AutoSize = true;
+            this.label_Total_Chaud1.Location = new System.Drawing.Point(228, 33);
+            this.label_Total_Chaud1.Name = "label_Total_Chaud1";
+            this.label_Total_Chaud1.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud1.TabIndex = 36;
+            this.label_Total_Chaud1.Text = "label5";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -494,45 +530,6 @@
             this.button_visualiser.Text = "Visualiser détail";
             this.button_visualiser.UseVisualStyleBackColor = true;
             this.button_visualiser.Click += new System.EventHandler(this.button_visualiser_Click);
-            // 
-            // label_Total_Chaud1
-            // 
-            this.label_Total_Chaud1.AutoSize = true;
-            this.label_Total_Chaud1.Location = new System.Drawing.Point(228, 33);
-            this.label_Total_Chaud1.Name = "label_Total_Chaud1";
-            this.label_Total_Chaud1.Size = new System.Drawing.Size(35, 13);
-            this.label_Total_Chaud1.TabIndex = 36;
-            this.label_Total_Chaud1.Text = "label5";
-            // 
-            // label_Total_Chaud2
-            // 
-            this.label_Total_Chaud2.AutoSize = true;
-            this.label_Total_Chaud2.Location = new System.Drawing.Point(228, 63);
-            this.label_Total_Chaud2.Name = "label_Total_Chaud2";
-            this.label_Total_Chaud2.Size = new System.Drawing.Size(35, 13);
-            this.label_Total_Chaud2.TabIndex = 36;
-            this.label_Total_Chaud2.Text = "label5";
-         
-            // 
-            // label_Total_Froid
-            // 
-            this.label_Total_Froid.AutoSize = true;
-            this.label_Total_Froid.Location = new System.Drawing.Point(228, 100);
-            this.label_Total_Froid.Name = "label_Total_Froid";
-            this.label_Total_Froid.Size = new System.Drawing.Size(35, 13);
-            this.label_Total_Froid.TabIndex = 36;
-            this.label_Total_Froid.Text = "label5";
-         
-            // 
-            // label_Total_Aucun
-            // 
-            this.label_Total_Aucun.AutoSize = true;
-            this.label_Total_Aucun.Location = new System.Drawing.Point(228, 136);
-            this.label_Total_Aucun.Name = "label_Total_Aucun";
-            this.label_Total_Aucun.Size = new System.Drawing.Size(35, 13);
-            this.label_Total_Aucun.TabIndex = 36;
-            this.label_Total_Aucun.Text = "label5";
-          
             // 
             // Form_EncodageFactures
             // 

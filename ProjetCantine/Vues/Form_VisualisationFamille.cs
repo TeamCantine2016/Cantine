@@ -47,7 +47,7 @@ namespace ProjetCantine
 
         }
                
-        private void button_Reset_Click(object sender, EventArgs e)
+        private void button_Reset_Click(object sender, EventArgs e) // les deux boutons reset sont directement orientés vers cette fonction
         {
             string type = ((Button)sender).Tag.ToString();
             switch (type)

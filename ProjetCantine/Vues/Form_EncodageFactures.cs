@@ -38,8 +38,6 @@ namespace ProjetCantine.Vues
             dataGridView_Membres.AutoResizeColumns();
         }
 
-
-
         private void btApercu_Click(object sender, EventArgs e)
         {
             ApercuFacture facture = new ApercuFacture();
@@ -57,43 +55,14 @@ namespace ProjetCantine.Vues
             }
         }
 
-        public void filtre()
+        public void filtre(object sender, EventArgs e) // les deux textBox sont directement orientés vers cette fonction
         {
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("PS_Filtre_Nom_Tel", con); 
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
-            cmd.Parameters.Add("@tel", SqlDbType.NVarChar);
-
-            cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
-            cmd.Parameters["@tel"].Direction = ParameterDirection.Input;
-
-            cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
-            cmd.Parameters["@tel"].Value = txtBx_RechNumTel.Text;
-
-            DataTable t = new DataTable();
-            SqlDataReader dr = cmd.ExecuteReader();
-            t.Load(dr);
-            con.Close();
-
-            dGdVw_DetailFamille.DataSource = t;
-
+            // création de l'objet pour filtrer dataGridView
+            DbConnection objetFiltre = new DbConnection();
+            // appelle la méthode liée à la procédure stockée
+            objetFiltre.filtreParNomParTel(ref dGdVw_DetailFamille, ref txtBx_RechNom, ref txtBx_RechNumTel);
         }
 
-        private void txtBx_RechNom_TextChanged(object sender, EventArgs e)
-        {
-            filtre();
-
-        }
-
-        private void txtBx_RechNumTel_TextChanged(object sender, EventArgs e)
-        {
-            filtre();
-
-        }
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
