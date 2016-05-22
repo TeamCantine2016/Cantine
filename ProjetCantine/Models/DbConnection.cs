@@ -25,29 +25,29 @@ namespace ProjetCantine.Models
             tableDeDonnees = new DataTable();
         }
 
-        // REGROUPPEMENT DES REQUETTES
-        private string requette(string selection) {
+        // REGROUPPEMENT DES REQUÊTES
+        private string requete(string selection) {
 
-            string laRequette = null;
+            string laRequete = null;
 
             switch (selection)
             {
                 case "listeTuteur":
-                    laRequette = "SELECT tbl_personne.id as CodeClient, nom as Famille, telephone as Téléphone, numero+' '+ rue as Adresse, ville as Ville, code_postal as CodePostal, pays as Pays, courriel as Email ";
-                    laRequette += "FROM tbl_personne inner join tbl_type_personne on tbl_personne.type_personne_id = tbl_type_personne.id ";
-                    laRequette += "inner join tbl_adresse on tbl_personne.adresse_id = tbl_adresse.id ";
+                    laRequete = "SELECT tbl_personne.id as CodeClient, nom as Famille, telephone as Téléphone, numero+' '+ rue as Adresse, ville as Ville, code_postal as CodePostal, pays as Pays, courriel as Email ";
+                    laRequete += "FROM tbl_personne inner join tbl_type_personne on tbl_personne.type_personne_id = tbl_type_personne.id ";
+                    laRequete += "inner join tbl_adresse on tbl_personne.adresse_id = tbl_adresse.id ";
                     break;
                 case "listeEnfant":
-                    laRequette = "SELECT nom as Nom, prenom as Prénom, DATEDIFF(year, date_naissance, SYSDATETIME()) as Age , date_naissance As DateNaissance";
-                    laRequette += " FROM tbl_personne";
-                    laRequette += " inner join tbl_type_personne on tbl_type_personne.id = tbl_personne.type_personne_id";
-                    laRequette += " inner join tbl_relation_tuteur_enfant on tbl_relation_tuteur_enfant.enfant_id = tbl_personne.id";
+                    laRequete = "SELECT nom as Nom, prenom as Prénom, DATEDIFF(year, date_naissance, SYSDATETIME()) as Age , date_naissance As DateNaissance";
+                    laRequete += " FROM tbl_personne";
+                    laRequete += " inner join tbl_type_personne on tbl_type_personne.id = tbl_personne.type_personne_id";
+                    laRequete += " inner join tbl_relation_tuteur_enfant on tbl_relation_tuteur_enfant.enfant_id = tbl_personne.id";
                     break;
                 default:
                     break;
             }
 
-            return laRequette;
+            return laRequete;
         }
 
         // INJECTION DES DONNEES
@@ -59,30 +59,30 @@ namespace ProjetCantine.Models
             connexion.Close();
         }
 
-        // LES METHODES
+        // LES METHODES PUBLIQUES
         public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
         {
-            // requette pour l'affichage de la dataGridView_Famille
-            String query = requette("listeTuteur");
+            // requête pour l'affichage de la dataGridView_Famille
+            String query = requete("listeTuteur");
             // spécification des critères
             query += "WHERE tbl_type_personne.type_personne = 'tuteur' and nom like '" + nomDeRecherche.Text + "%' and telephone like '" + telephoneDeRecherche.Text + "%'";
 
-            // afectation de la vraible globale avec la requette concernée
+            // afectation de la vraible globale avec la requête concernée
             commande = new SqlCommand(query, connexion);
-            // execution de la requette
+            // execution de la requête
             injectionDesDonnees(ref tableauCible);
         }
 
         public string afficheListeEnfantSelonSelection(ref DataGridView tableauCible, int code)
         {
-            // requette pour l'affichage de la dataGridView_Membre
-            String query = requette("listeEnfant");
+            // requête pour l'affichage de la dataGridView_Membre
+            String query = requete("listeEnfant");
             // spécification des critères
             query += " where type_personne = 'élève' and tuteur_id = '" + code + "'";
 
-            // afectation de la vraible globale avec la requette concernée
+            // afectation de la vraible globale avec la requête concernée
             commande = new SqlCommand(query, connexion);
-            // execution de la requette
+            // execution de la requête
             injectionDesDonnees(ref tableauCible);
             // renvoi le nombre de lignes du tableauCible
             return tableauCible.RowCount.ToString();
