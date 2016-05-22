@@ -50,24 +50,6 @@ namespace ProjetCantine.Models
             return laRequete;
         }
 
-        //// REGROUPPEMENT DES PROCEDURES STOCKEES
-        //private SqlCommand procedure(string nomProcedure)
-        //{
-        //    switch (nomProcedure)
-        //    {
-        //        case "PS_Filtre_Nom_Tel":
-        //            commande = new SqlCommand(nomProcedure, connexion);
-                    
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return commande;
-        //}
-
-
-
         // INJECTION DES DONNEES
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
