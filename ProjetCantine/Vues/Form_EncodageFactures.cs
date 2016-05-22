@@ -101,10 +101,10 @@ namespace ProjetCantine.Vues
 
             int i = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
-            String query = "WITH Tuteur AS(SELECT prenom, nom, id FROM tbl_relation_tuteur_enfant ";
+            String query = "WITH Tuteur AS(SELECT prenom, nom, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
             query += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id ";
             query += "Where tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' ),";
-            query += "Enfant AS( SELECT prenom, nom, date_naissance, id FROM tbl_relation_tuteur_enfant ";
+            query += "Enfant AS( SELECT prenom, nom, date_naissance, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
             query += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) ";
             query += "SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' ";
             query += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
