@@ -37,6 +37,8 @@
             this.tAListeFamillesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
             this.groupBox_Récap = new System.Windows.Forms.GroupBox();
+            this.textBox_nbEnfant = new System.Windows.Forms.TextBox();
+            this.label_nbEnfants = new System.Windows.Forms.Label();
             this.dataGridView_Membre = new System.Windows.Forms.DataGridView();
             this.textBox_Téléphone = new System.Windows.Forms.TextBox();
             this.textBox_Email = new System.Windows.Forms.TextBox();
@@ -49,8 +51,6 @@
             this.tA_Liste_FamillesTableAdapter = new ProjetCantine.Models.db_cantineDataSetTableAdapters.TA_Liste_FamillesTableAdapter();
             this.button_NomReset = new System.Windows.Forms.Button();
             this.button_TelReset = new System.Windows.Forms.Button();
-            this.textBox_nbEnfant = new System.Windows.Forms.TextBox();
-            this.label_nbEnfants = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Famille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListeFamillesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
@@ -136,6 +136,23 @@
             this.groupBox_Récap.TabIndex = 8;
             this.groupBox_Récap.TabStop = false;
             this.groupBox_Récap.Text = "Information Famille";
+            // 
+            // textBox_nbEnfant
+            // 
+            this.textBox_nbEnfant.Enabled = false;
+            this.textBox_nbEnfant.Location = new System.Drawing.Point(591, 29);
+            this.textBox_nbEnfant.Name = "textBox_nbEnfant";
+            this.textBox_nbEnfant.Size = new System.Drawing.Size(62, 20);
+            this.textBox_nbEnfant.TabIndex = 21;
+            // 
+            // label_nbEnfants
+            // 
+            this.label_nbEnfants.AutoSize = true;
+            this.label_nbEnfants.Location = new System.Drawing.Point(455, 32);
+            this.label_nbEnfants.Name = "label_nbEnfants";
+            this.label_nbEnfants.Size = new System.Drawing.Size(130, 13);
+            this.label_nbEnfants.TabIndex = 20;
+            this.label_nbEnfants.Text = "Nombre d\'enfant à charge";
             // 
             // dataGridView_Membre
             // 
@@ -229,9 +246,10 @@
             this.button_NomReset.Name = "button_NomReset";
             this.button_NomReset.Size = new System.Drawing.Size(50, 23);
             this.button_NomReset.TabIndex = 9;
+            this.button_NomReset.Tag = "nom";
             this.button_NomReset.Text = "Reset";
             this.button_NomReset.UseVisualStyleBackColor = true;
-            this.button_NomReset.Click += new System.EventHandler(this.button_NomReset_Click);
+            this.button_NomReset.Click += new System.EventHandler(this.button_Reset_Click);
             // 
             // button_TelReset
             // 
@@ -239,26 +257,10 @@
             this.button_TelReset.Name = "button_TelReset";
             this.button_TelReset.Size = new System.Drawing.Size(50, 23);
             this.button_TelReset.TabIndex = 10;
+            this.button_TelReset.Tag = "tel";
             this.button_TelReset.Text = "Reset";
             this.button_TelReset.UseVisualStyleBackColor = true;
-            this.button_TelReset.Click += new System.EventHandler(this.button_TelReset_Click);
-            // 
-            // textBox_nbEnfant
-            // 
-            this.textBox_nbEnfant.Enabled = false;
-            this.textBox_nbEnfant.Location = new System.Drawing.Point(591, 29);
-            this.textBox_nbEnfant.Name = "textBox_nbEnfant";
-            this.textBox_nbEnfant.Size = new System.Drawing.Size(62, 20);
-            this.textBox_nbEnfant.TabIndex = 21;
-            // 
-            // label_nbEnfants
-            // 
-            this.label_nbEnfants.AutoSize = true;
-            this.label_nbEnfants.Location = new System.Drawing.Point(455, 32);
-            this.label_nbEnfants.Name = "label_nbEnfants";
-            this.label_nbEnfants.Size = new System.Drawing.Size(130, 13);
-            this.label_nbEnfants.TabIndex = 20;
-            this.label_nbEnfants.Text = "Nombre d\'enfant à charge";
+            this.button_TelReset.Click += new System.EventHandler(this.button_Reset_Click);
             // 
             // Form_VisualisationFamille
             // 

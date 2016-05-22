@@ -90,9 +90,9 @@ namespace ProjetCantine.Models {
         
         private global::System.Data.DataRelation relationFK_personne_utilisateur;
         
-        private global::System.Data.DataRelation relationFK_etablissement_adresse1;
-        
         private global::System.Data.DataRelation relationFK_adresse_personne1;
+        
+        private global::System.Data.DataRelation relationFK_etablissement_adresse1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -651,8 +651,8 @@ namespace ProjetCantine.Models {
             this.relationFK_personne_tuteur = this.Relations["FK_personne_tuteur"];
             this.relationFK_tuteur_personne = this.Relations["FK_tuteur_personne"];
             this.relationFK_personne_utilisateur = this.Relations["FK_personne_utilisateur"];
-            this.relationFK_etablissement_adresse1 = this.Relations["FK_etablissement_adresse1"];
             this.relationFK_adresse_personne1 = this.Relations["FK_adresse_personne1"];
+            this.relationFK_etablissement_adresse1 = this.Relations["FK_etablissement_adresse1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -759,14 +759,14 @@ namespace ProjetCantine.Models {
                         this.tabletbl_personne.idColumn}, new global::System.Data.DataColumn[] {
                         this.tabletbl_utilisateur.personne_idColumn}, false);
             this.Relations.Add(this.relationFK_personne_utilisateur);
-            this.relationFK_etablissement_adresse1 = new global::System.Data.DataRelation("FK_etablissement_adresse1", new global::System.Data.DataColumn[] {
-                        this.tableTA_Listes_Personnes.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tabletbl_etablissement.adresse_idColumn}, false);
-            this.Relations.Add(this.relationFK_etablissement_adresse1);
             this.relationFK_adresse_personne1 = new global::System.Data.DataRelation("FK_adresse_personne1", new global::System.Data.DataColumn[] {
                         this.tableTA_Listes_Personnes.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tabletbl_personne.adresse_idColumn}, false);
             this.Relations.Add(this.relationFK_adresse_personne1);
+            this.relationFK_etablissement_adresse1 = new global::System.Data.DataRelation("FK_etablissement_adresse1", new global::System.Data.DataColumn[] {
+                        this.tableTA_Listes_Personnes.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletbl_etablissement.adresse_idColumn}, false);
+            this.Relations.Add(this.relationFK_etablissement_adresse1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8567,23 +8567,23 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbl_etablissementRow[] Gettbl_etablissementRows() {
-                if ((this.Table.ChildRelations["FK_etablissement_adresse1"] == null)) {
-                    return new tbl_etablissementRow[0];
-                }
-                else {
-                    return ((tbl_etablissementRow[])(base.GetChildRows(this.Table.ChildRelations["FK_etablissement_adresse1"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public tbl_personneRow[] Gettbl_personneRows() {
                 if ((this.Table.ChildRelations["FK_adresse_personne1"] == null)) {
                     return new tbl_personneRow[0];
                 }
                 else {
                     return ((tbl_personneRow[])(base.GetChildRows(this.Table.ChildRelations["FK_adresse_personne1"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public tbl_etablissementRow[] Gettbl_etablissementRows() {
+                if ((this.Table.ChildRelations["FK_etablissement_adresse1"] == null)) {
+                    return new tbl_etablissementRow[0];
+                }
+                else {
+                    return ((tbl_etablissementRow[])(base.GetChildRows(this.Table.ChildRelations["FK_etablissement_adresse1"])));
                 }
             }
         }

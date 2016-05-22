@@ -30,6 +30,7 @@
         {
             this.menuStrip_Acceuil = new System.Windows.Forms.MenuStrip();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionÉtablissementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesUtilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionDesÉlèvesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualisationDesFamillesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,6 @@
             this.repasParFamilleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionÉtablissementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Acceuil.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +77,13 @@
             this.administrationToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.administrationToolStripMenuItem.Text = "Administration";
+            // 
+            // gestionÉtablissementToolStripMenuItem
+            // 
+            this.gestionÉtablissementToolStripMenuItem.Name = "gestionÉtablissementToolStripMenuItem";
+            this.gestionÉtablissementToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.gestionÉtablissementToolStripMenuItem.Text = "Gestion établissement";
+            this.gestionÉtablissementToolStripMenuItem.Click += new System.EventHandler(this.gestionÉtablissementToolStripMenuItem_Click);
             // 
             // gestionDesUtilisateursToolStripMenuItem
             // 
@@ -125,14 +132,14 @@
             // paramétrageDesRepasEtPrixToolStripMenuItem
             // 
             this.paramétrageDesRepasEtPrixToolStripMenuItem.Name = "paramétrageDesRepasEtPrixToolStripMenuItem";
-            this.paramétrageDesRepasEtPrixToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.paramétrageDesRepasEtPrixToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.paramétrageDesRepasEtPrixToolStripMenuItem.Text = "Paramétrage des repas et prix";
             this.paramétrageDesRepasEtPrixToolStripMenuItem.Click += new System.EventHandler(this.paramétrageDesRepasEtPrixToolStripMenuItem_Click);
             // 
             // encodageDesRepasParÉlèveToolStripMenuItem
             // 
             this.encodageDesRepasParÉlèveToolStripMenuItem.Name = "encodageDesRepasParÉlèveToolStripMenuItem";
-            this.encodageDesRepasParÉlèveToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.encodageDesRepasParÉlèveToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.encodageDesRepasParÉlèveToolStripMenuItem.Text = "Encodage des repas par élève";
             this.encodageDesRepasParÉlèveToolStripMenuItem.Click += new System.EventHandler(this.encodageDesRepasParÉlèveToolStripMenuItem_Click);
             // 
@@ -187,13 +194,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(79, 22);
             this.toolStripMenuItem2.Text = "?";
-            // 
-            // gestionÉtablissementToolStripMenuItem
-            // 
-            this.gestionÉtablissementToolStripMenuItem.Name = "gestionÉtablissementToolStripMenuItem";
-            this.gestionÉtablissementToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.gestionÉtablissementToolStripMenuItem.Text = "Gestion établissement";
-            this.gestionÉtablissementToolStripMenuItem.Click += new System.EventHandler(this.gestionÉtablissementToolStripMenuItem_Click);
             // 
             // Form_Acceuil
             // 
