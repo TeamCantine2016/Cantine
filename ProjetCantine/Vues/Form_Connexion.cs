@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ProjetCantine
 {
     public partial class Form_Connexion : Form
@@ -28,12 +29,12 @@ namespace ProjetCantine
                 this.Hide();
 
                 form_Acceuil = new Form_Acceuil();          // A contrôler si le Close() dans deconnecter.click,  detruit l'instance de form_Acceuil() ou non
-                form_Acceuil.ShowDialog(); 
-                          
+                form_Acceuil.ShowDialog();
+
                 this.Show();
             }
 
-            
+
         }
     }
 }

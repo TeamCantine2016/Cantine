@@ -77,6 +77,70 @@ namespace ProjetCantine.Models
 
         // LES METHODES PUBLIQUES
 
+        //****** INSERT - DELETE - UPDATE
+
+        public void insert(String tableCible, String donnees) 
+        {
+            /*
+             *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
+             *  exemple:  
+             *              'Marco','Lechef','19590612','lechef@gmail.com',86473563,3,1 
+             *              
+             *  Faites attention aux colonnes qui sont "not null" et celles qui contiennent la relation vers une autre table 
+            */
+
+            // réunir les noms des colonnes cibles de la table concernée pour la requête finale
+            string lesColonnesCibles = nomColonnes(tableCible);
+
+            // créer la requête "insert"
+            string query = "INSERT INTO dbo." + tableCible;
+            query += lesColonnesCibles + " ";
+            query += "VALUES (" + donnees + ");";
+
+            // exécuter la requête
+            commande = new SqlCommand(query, connexion);
+            commande.ExecuteNonQuery();
+            connexion.Close();
+
+        }
+
+        public void delete()
+        {
+
+        }
+
+        public void update()
+        {
+
+        }
+
+        private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
+        { 
+            // créer un reader de la table ciblée
+            String query = "SELECT * FROM " + table + ";";
+            commande = new SqlCommand(query, connexion);
+            lecteurDeDonnees = commande.ExecuteReader();
+
+            // combien de colonnes sont concernées
+            int nombre_colonnes = lecteurDeDonnees.FieldCount;
+
+            // parcourir toutes les colonnes et créer le "string" avec le nom des colonnes
+            string stringNomsColonnes = "( ";
+            for (int i = 1; i < nombre_colonnes; i++)
+            {
+                stringNomsColonnes += lecteurDeDonnees.GetName(i);
+                if (i != nombre_colonnes - 1)
+                {
+                    stringNomsColonnes += ", ";
+                }
+            }
+            stringNomsColonnes += " )";
+
+            lecteurDeDonnees.Close();
+            // renvoyer le "string"
+            return stringNomsColonnes;
+        }
+
 //****** SANS PROCEDURE STOCKEE
         public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
         {
