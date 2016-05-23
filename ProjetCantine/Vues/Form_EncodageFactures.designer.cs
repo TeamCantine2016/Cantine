@@ -248,12 +248,14 @@
             // 
             // btEnvoi
             // 
+            this.btEnvoi.Enabled = false;
             this.btEnvoi.Location = new System.Drawing.Point(445, 583);
             this.btEnvoi.Name = "btEnvoi";
             this.btEnvoi.Size = new System.Drawing.Size(200, 35);
             this.btEnvoi.TabIndex = 23;
             this.btEnvoi.Text = "Envoi";
             this.btEnvoi.UseVisualStyleBackColor = true;
+            this.btEnvoi.Click += new System.EventHandler(this.btEnvoi_Click);
             // 
             // btAnnuler
             // 
@@ -361,36 +363,32 @@
             this.label_Total_Aucun.AutoSize = true;
             this.label_Total_Aucun.Location = new System.Drawing.Point(228, 136);
             this.label_Total_Aucun.Name = "label_Total_Aucun";
-            this.label_Total_Aucun.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Aucun.Size = new System.Drawing.Size(0, 13);
             this.label_Total_Aucun.TabIndex = 36;
-            this.label_Total_Aucun.Text = "label5";
             // 
             // label_Total_Froid
             // 
             this.label_Total_Froid.AutoSize = true;
             this.label_Total_Froid.Location = new System.Drawing.Point(228, 100);
             this.label_Total_Froid.Name = "label_Total_Froid";
-            this.label_Total_Froid.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Froid.Size = new System.Drawing.Size(0, 13);
             this.label_Total_Froid.TabIndex = 36;
-            this.label_Total_Froid.Text = "label5";
             // 
             // label_Total_Chaud2
             // 
             this.label_Total_Chaud2.AutoSize = true;
             this.label_Total_Chaud2.Location = new System.Drawing.Point(228, 63);
             this.label_Total_Chaud2.Name = "label_Total_Chaud2";
-            this.label_Total_Chaud2.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud2.Size = new System.Drawing.Size(0, 13);
             this.label_Total_Chaud2.TabIndex = 36;
-            this.label_Total_Chaud2.Text = "label5";
             // 
             // label_Total_Chaud1
             // 
             this.label_Total_Chaud1.AutoSize = true;
             this.label_Total_Chaud1.Location = new System.Drawing.Point(228, 33);
             this.label_Total_Chaud1.Name = "label_Total_Chaud1";
-            this.label_Total_Chaud1.Size = new System.Drawing.Size(35, 13);
+            this.label_Total_Chaud1.Size = new System.Drawing.Size(0, 13);
             this.label_Total_Chaud1.TabIndex = 36;
-            this.label_Total_Chaud1.Text = "label5";
             // 
             // label12
             // 
