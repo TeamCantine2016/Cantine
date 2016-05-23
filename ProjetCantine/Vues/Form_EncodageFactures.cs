@@ -124,8 +124,11 @@ namespace ProjetCantine.Vues
 
         private void button_visualiser_Click(object sender, EventArgs e)
         {
+            if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
+            {
+               btApercu.Enabled = true;
+            }
             
-
             int k = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
             string debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
@@ -149,7 +152,22 @@ namespace ProjetCantine.Vues
                 dataGridView_historique.ReadOnly = true; // juste la lecture dans le datagrid sans modification
                 dataGridView_historique.Size = new System.Drawing.Size(460, 187); // la taille de datagridview          
                 dataGridView_historique.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;  // pour afficher tout la ligne dans le datagridview
-                //=====================================================================================
+                                                                                                                       //=====================================================================================
+                // une requete pour afficher le prix total de tous les repas par tuteur
+                string requete = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
+                requete += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
+                requete += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+
+                con.Open();
+                SqlCommand cmd1 = new SqlCommand(requete, con);
+
+                SqlDataReader dr1 = cmd1.ExecuteReader();
+                while (dr1.Read())
+                {
+                    label_prix.Text = dr1["Prix"].ToString() + " €";
+                }
+                dr1.Close();
+                con.Close();
 
 
                 // une requete qui affiche tout les repas avec leur date et prix pris par un élève
@@ -189,6 +207,8 @@ namespace ProjetCantine.Vues
        
         private string compteurTypeRepas(string typer, ref DataGridViewRow r, string debut, string fin)
         {
+            //================================Est ce que c'est mieux d'utiliser les Procédures stockées=================================
+
             //string retour = "";
             //con.Open();
 
@@ -214,6 +234,8 @@ namespace ProjetCantine.Vues
             //}
             //dr.Close();
             //con.Close();
+
+            //============================================================================================================
 
             string retour = "";
             string query = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";

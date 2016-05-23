@@ -237,6 +237,7 @@
             // 
             // btApercu
             // 
+            this.btApercu.Enabled = false;
             this.btApercu.Location = new System.Drawing.Point(110, 583);
             this.btApercu.Name = "btApercu";
             this.btApercu.Size = new System.Drawing.Size(200, 35);
