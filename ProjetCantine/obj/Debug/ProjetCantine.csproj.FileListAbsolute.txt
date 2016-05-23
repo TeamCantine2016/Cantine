@@ -22,8 +22,6 @@ D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.exe
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.pdb
 D:\GitHub\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe
 D:\GitHub\Cantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
-D:\GitHub\Cantine\ProjetCantine\bin\Debug\EntityFramework.xml
-D:\GitHub\Cantine\ProjetCantine\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Acceuil.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Connexion.resources
