@@ -19,6 +19,10 @@ namespace ProjetCantine.Vues
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
         SqlConnection con = new SqlConnection(DbConnection.connectionString);
+        string debut = "";
+        string fin = "";
+        float prix = 0;
+        string path_facture = "";
         public Form_EncodageFactures()
         {
             InitializeComponent();
@@ -40,8 +44,36 @@ namespace ProjetCantine.Vues
 
         private void btApercu_Click(object sender, EventArgs e)
         {
+            int i = dGdVw_DetailFamille.CurrentRow.Index;
+            DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
+            string codeClient = r.Cells[0].Value.ToString();
+            string nomClient = r.Cells[1].Value.ToString();
+            string prenomClient = r.Cells[2].Value.ToString();
+            string adresseClient = r.Cells[4].Value.ToString();
+            string villeClient = r.Cells[5].Value.ToString();
+            string paysClient = r.Cells[6].Value.ToString();
+
+
             ApercuFacture facture = new ApercuFacture();
-            String msgRetour = facture.facture();
+            int facture_id = 0;
+               DateTime debut = dateTimePicker_debut.Value;
+               DateTime  fin = dateTimePicker_fin.Value;
+
+            string query = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+            
+            con.Open();
+            cmd = new SqlCommand(query, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                facture_id = (int)dr["facture_id"];
+            }
+            dr.Close();
+            con.Close();
+
+            String msgRetour = facture.facture(label4.Text, label6.Text, label8.Text, label10.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
+                                                ,debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
 
             // teste si le fichier a bien été creer           
             if (msgRetour.LastIndexOf(".pdf") == -1)
@@ -52,6 +84,8 @@ namespace ProjetCantine.Vues
             {
                 MessageBox.Show("La création à bien été éffectué à l'adresse: " + msgRetour);
                 facture.affichageFacture(msgRetour);
+                path_facture = msgRetour;
+                btEnvoi.Enabled = true;
             }
         }
 
@@ -80,8 +114,8 @@ namespace ProjetCantine.Vues
             DataGridViewRow r = dGdVw_DetailFamille.Rows[indexLigne];
 
             
-            String req = "SELECT max(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
-            req += "WHERE(tbl_relation_facture.tuteur_id = "+ r.Cells[0].Value.ToString() +")";
+            String req = "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+            req += "WHERE(tbl_relation_facture.tuteur_id = '"+ r.Cells[0].Value.ToString() +"')";
             con.Open();
             SqlCommand cmd1 = new SqlCommand(req, con);
 
@@ -107,8 +141,7 @@ namespace ProjetCantine.Vues
             {
                 dateTimePicker_debut.MinDate = Convert.ToDateTime(label_dateCloture.Text); // on initialise la date min de datetimepicker à la date de la derniere facture(impossible de selectionner les date d'avant)
                 dateTimePicker_debut.MinDate = dateTimePicker_debut.MinDate.AddDays(1); // on ajoute un jour à la datetimepicker pour commencer une nouvelle facture
-               // dateTimePicker_debut.MaxDate <= dateTimePicker_fin.MinDate;
-               // DateTimePicker.(dateTimePicker_debut.MaxDate,dateTimePicker_fin.MinDate);
+                dateTimePicker_debut.Value = dateTimePicker_debut.MinDate;      
             }
             else
             {
@@ -120,19 +153,16 @@ namespace ProjetCantine.Vues
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
 
         private void button_visualiser_Click(object sender, EventArgs e)
         {
-            if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
-            {
-               btApercu.Enabled = true;
-            }
-            
+
             int k = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
-            string debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
-            string fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
+            debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
+            fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
 
             groupBox_recap.Text = "Récap pour : " + r.Cells[1].Value.ToString() + " " + r.Cells[2].Value.ToString() ;
 
@@ -156,7 +186,7 @@ namespace ProjetCantine.Vues
                 // une requete pour afficher le prix total de tous les repas par tuteur
                 string requete = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 requete += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                requete += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + dateTimePicker_debut.Text + "' AND '" + dateTimePicker_fin.Text + "' ";
+                requete += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
 
                 con.Open();
                 SqlCommand cmd1 = new SqlCommand(requete, con);
@@ -165,6 +195,8 @@ namespace ProjetCantine.Vues
                 while (dr1.Read())
                 {
                     label_prix.Text = dr1["Prix"].ToString() + " €";
+                    //==============================> devra être converti en décimal
+                    prix = (float)Convert.ToDouble(dr1["Prix"].ToString()+",00");
                 }
                 dr1.Close();
                 con.Close();
@@ -201,6 +233,10 @@ namespace ProjetCantine.Vues
                 label_Total_Froid.Text = calculTotalRepasType(3, ref r,debut,fin);
                 label_Total_Aucun.Text = calculTotalRepasType(4, ref r,debut,fin);
 
+            }
+            if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
+            {
+                btApercu.Enabled = true;
             }
         }
 
@@ -274,6 +310,60 @@ namespace ProjetCantine.Vues
             return retour;
         }
 
-      
+        private void btEnvoi_Click(object sender, EventArgs e)
+        {
+            int k = dGdVw_DetailFamille.CurrentRow.Index;
+            DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
+            int resultat = 0;
+            int resultat1 = 0;
+            int resultat2 = 0;
+            //==================================On insere les données dans la table tbl_facture=========================
+            string query = "INSERT Into tbl_facture (total_a_payer,debut_periode,fin_periode) ";
+            query += "VALUES ('"+ prix +"','" + debut + "','" + fin + "')";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            resultat = cmd.ExecuteNonQuery();
+            con.Close();
+            //==================================On récupère l'identifiant de la facture=================================
+            int facture_id = 0;
+            string query1 = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+
+            con.Open();
+            cmd = new SqlCommand(query1, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                facture_id = (int)dr["facture_id"];
+            }
+            dr.Close();
+            con.Close();
+            //=================================On insère les données dans la table tbl_relation_facture======================
+            int tuteur_id = Convert.ToInt32(r.Cells[0].Value.ToString());
+            string query2 = "INSERT Into tbl_relation_facture (facture_id,tuteur_id) ";
+            query2 += "VALUES (" + facture_id + "," + tuteur_id + ")";
+            con.Open();
+            cmd = new SqlCommand(query2, con);
+            resultat1 = cmd.ExecuteNonQuery();
+            con.Close();
+            //================================On insère les données dans la table d'historique=======================
+            string query3 = "INSERT Into tbl_historique_facture (facture_id,tuteur_id,statut_payement,statut_envoye,detaille,format_envoye,archive)";
+            query3 += "VALUES ('" + facture_id + "','" + tuteur_id + "','0','0','0','mail','"+ path_facture + "')";
+            con.Open();
+            cmd = new SqlCommand(query3, con);
+            resultat2 = cmd.ExecuteNonQuery();
+            con.Close();
+
+            if ((resultat + resultat1 + resultat2) == 3)
+            {
+                MessageBox.Show("La facture a été enregistrée avec succès.");
+            }
+            else
+            {
+                MessageBox.Show("Une erreur est intervenue lors de l'enregistrement de la facture.");
+            }
+
+
+        }
     }
 }

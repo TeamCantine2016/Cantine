@@ -207,6 +207,7 @@
             this.MaximizeBox = false;
             this.Name = "Form_Acceuil";
             this.Text = "Menu Accueil";
+            //this.Load += new System.EventHandler(this.Form_Acceuil_Load);
             this.menuStrip_Acceuil.ResumeLayout(false);
             this.menuStrip_Acceuil.PerformLayout();
             this.ResumeLayout(false);

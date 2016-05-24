@@ -32,7 +32,7 @@ namespace ProjetCantine
 
         private void button_Editer_Click(object sender, EventArgs e)
         {
-            flag = 1;
+            flag = Convert.ToInt32(dataGridView_Eleve.CurrentRow.Cells[0].Value);
             Form_EncodageEleve = new Form_EncodageElève(flag);
             Form_EncodageEleve.ShowDialog();
         }

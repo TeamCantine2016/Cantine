@@ -20,9 +20,17 @@ namespace ProjetCantine.Models
 
         public DbConnection() // constructeur
         {
-            connexion = new SqlConnection(connectionString);
-            connexion.Open();
-            tableDeDonnees = new DataTable();
+            try
+            {
+                connexion = new SqlConnection(connectionString);
+                connexion.Open();
+                tableDeDonnees = new DataTable();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("Erreur connexion DB :\r\n" + exception.Message, "Erreur DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         // REGROUPPEMENT DES REQUÊTES
@@ -58,9 +66,8 @@ namespace ProjetCantine.Models
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
-
                 default:
-                    break;
+                    return null;
             }
 
             return laRequete;
@@ -69,13 +76,94 @@ namespace ProjetCantine.Models
         // INJECTION DES DONNEES
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
-            lecteurDeDonnees = commande.ExecuteReader();
-            tableDeDonnees.Load(lecteurDeDonnees);
-            tableauCible.DataSource = tableDeDonnees;
-            connexion.Close();
+            try
+            {
+                lecteurDeDonnees = commande.ExecuteReader();
+                tableDeDonnees.Load(lecteurDeDonnees);
+                tableauCible.DataSource = tableDeDonnees;
+                connexion.Close();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB." + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // LES METHODES PUBLIQUES
+
+        //****** INSERT - DELETE - UPDATE
+
+        public void insert(String tableCible, String donnees) 
+        {
+            /*
+             *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
+             *  exemple:  
+             *              'Marco','Lechef','19590612','lechef@gmail.com',86473563,3,1 
+             *              
+             *  Faites attention aux colonnes qui sont "not null" et celles qui contiennent la relation vers une autre table 
+            */
+
+            // réunir les noms des colonnes cibles de la table concernée pour la requête finale
+            String lesColonnesCibles = nomColonnes(tableCible);
+
+            // créer la requête "insert"
+            String query = "INSERT INTO dbo." + tableCible;
+            query += lesColonnesCibles + " ";
+            query += "VALUES (" + donnees + ");";
+
+            // exécuter la requête
+            commande = new SqlCommand(query, connexion);
+            commande.ExecuteNonQuery();
+            connexion.Close();
+        }
+
+        public void delete(String tableCible, int id)
+        {
+            /*
+             * pour être sûre de supprimer la bonne ligne et uniquement celle concernée, j'utilise l'id comme info!
+             * Il faut donc impérativement donner l'id en argument.
+            */
+
+            // créer la requête "delete"
+            String query = "DELETE FROM dbo." + tableCible + " WHERE dbo." + tableCible + " = " + id + ";";
+
+            // exécuter la requête
+            commande = new SqlCommand(query, connexion);
+            commande.ExecuteNonQuery();
+            connexion.Close();
+        } 
+
+        public void update()
+        {
+            // je ferai cette méthode plus tard, je dois vérifier quelques détails au niveau du code
+        }
+
+        private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
+        { 
+            // créer un reader de la table ciblée
+            String query = "SELECT * FROM " + table + ";";
+            commande = new SqlCommand(query, connexion);
+            lecteurDeDonnees = commande.ExecuteReader();
+
+            // combien de colonnes sont concernées
+            int nombre_colonnes = lecteurDeDonnees.FieldCount;
+
+            // parcourir toutes les colonnes et créer le "string" avec le nom des colonnes
+            string stringNomsColonnes = "( ";
+            for (int i = 1; i < nombre_colonnes; i++)
+            {
+                stringNomsColonnes += lecteurDeDonnees.GetName(i);
+                if (i != nombre_colonnes - 1)
+                {
+                    stringNomsColonnes += ", ";
+                }
+            }
+            stringNomsColonnes += " )";
+
+            lecteurDeDonnees.Close();
+            // renvoyer le "string"
+            return stringNomsColonnes;
+        }
 
 //****** SANS PROCEDURE STOCKEE
         public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
