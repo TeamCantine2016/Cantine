@@ -66,9 +66,8 @@ namespace ProjetCantine.Models
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
-
                 default:
-                    break;
+                    return null;
             }
 
             return laRequete;
@@ -77,10 +76,17 @@ namespace ProjetCantine.Models
         // INJECTION DES DONNEES
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
-            lecteurDeDonnees = commande.ExecuteReader();
-            tableDeDonnees.Load(lecteurDeDonnees);
-            tableauCible.DataSource = tableDeDonnees;
-            connexion.Close();
+            try
+            {
+                lecteurDeDonnees = commande.ExecuteReader();
+                tableDeDonnees.Load(lecteurDeDonnees);
+                tableauCible.DataSource = tableDeDonnees;
+                connexion.Close();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB." + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // LES METHODES PUBLIQUES
