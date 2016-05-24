@@ -174,8 +174,6 @@ C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.exe
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.pdb
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\bin\Debug\ProjetCantine.exe
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\bin\Debug\ProjetCantine.pdb
-C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\bin\Debug\EntityFramework.xml
-C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_EncodageFactures.resources
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.Form_Acceuil.resources
