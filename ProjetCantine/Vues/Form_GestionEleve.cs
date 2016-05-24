@@ -47,7 +47,7 @@ namespace ProjetCantine
              dataGridView_Eleve.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
              */
 
-            String query = "Select nom as Nom, prenom as Prénom, rue as Adresse, ville as Ville, pays as Pays from tbl_personne ";
+            String query = "Select tbl_personne.id as ID, nom as Nom, prenom as Prénom, rue as Adresse, ville as Ville, pays as Pays from tbl_personne ";
             query += "inner join tbl_adresse on tbl_adresse.id = tbl_personne.adresse_id where tbl_personne.type_personne_id = 1;";
             maCon.Open();
 
