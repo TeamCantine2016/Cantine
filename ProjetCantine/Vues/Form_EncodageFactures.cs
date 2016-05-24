@@ -44,8 +44,36 @@ namespace ProjetCantine.Vues
 
         private void btApercu_Click(object sender, EventArgs e)
         {
+            int i = dGdVw_DetailFamille.CurrentRow.Index;
+            DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
+            string codeClient = r.Cells[0].Value.ToString();
+            string nomClient = r.Cells[1].Value.ToString();
+            string prenomClient = r.Cells[2].Value.ToString();
+            string adresseClient = r.Cells[4].Value.ToString();
+            string villeClient = r.Cells[5].Value.ToString();
+            string paysClient = r.Cells[6].Value.ToString();
+
+
             ApercuFacture facture = new ApercuFacture();
-            String msgRetour = facture.facture();
+            int facture_id = 0;
+               DateTime debut = dateTimePicker_debut.Value;
+               DateTime  fin = dateTimePicker_fin.Value;
+
+            string query = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+            
+            con.Open();
+            cmd = new SqlCommand(query, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                facture_id = (int)dr["facture_id"];
+            }
+            dr.Close();
+            con.Close();
+
+            String msgRetour = facture.facture(label4.Text, label6.Text, label8.Text, label10.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
+                                                ,debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
 
             // teste si le fichier a bien été creer           
             if (msgRetour.LastIndexOf(".pdf") == -1)
@@ -86,8 +114,8 @@ namespace ProjetCantine.Vues
             DataGridViewRow r = dGdVw_DetailFamille.Rows[indexLigne];
 
             
-            String req = "SELECT max(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
-            req += "WHERE(tbl_relation_facture.tuteur_id = "+ r.Cells[0].Value.ToString() +")";
+            String req = "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+            req += "WHERE(tbl_relation_facture.tuteur_id = '"+ r.Cells[0].Value.ToString() +"')";
             con.Open();
             SqlCommand cmd1 = new SqlCommand(req, con);
 
@@ -113,9 +141,7 @@ namespace ProjetCantine.Vues
             {
                 dateTimePicker_debut.MinDate = Convert.ToDateTime(label_dateCloture.Text); // on initialise la date min de datetimepicker à la date de la derniere facture(impossible de selectionner les date d'avant)
                 dateTimePicker_debut.MinDate = dateTimePicker_debut.MinDate.AddDays(1); // on ajoute un jour à la datetimepicker pour commencer une nouvelle facture
-                dateTimePicker_debut.Value = dateTimePicker_debut.MinDate;
-                // dateTimePicker_debut.MaxDate <= dateTimePicker_fin.MinDate;
-               // DateTimePicker.(dateTimePicker_debut.MaxDate,dateTimePicker_fin.MinDate);
+                dateTimePicker_debut.Value = dateTimePicker_debut.MinDate;      
             }
             else
             {
@@ -133,7 +159,6 @@ namespace ProjetCantine.Vues
         private void button_visualiser_Click(object sender, EventArgs e)
         {
 
-            
             int k = dGdVw_DetailFamille.CurrentRow.Index;
             DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
             debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
