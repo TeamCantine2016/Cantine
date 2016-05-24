@@ -20,9 +20,17 @@ namespace ProjetCantine.Models
 
         public DbConnection() // constructeur
         {
-            connexion = new SqlConnection(connectionString);
-            connexion.Open();
-            tableDeDonnees = new DataTable();
+            try
+            {
+                connexion = new SqlConnection(connectionString);
+                connexion.Open();
+                tableDeDonnees = new DataTable();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("Erreur connexion DB :\r\n" + exception.Message, "Erreur DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         // REGROUPPEMENT DES REQUÊTES
@@ -58,9 +66,8 @@ namespace ProjetCantine.Models
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
-
                 default:
-                    break;
+                    return null;
             }
 
             return laRequete;
@@ -69,10 +76,17 @@ namespace ProjetCantine.Models
         // INJECTION DES DONNEES
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
-            lecteurDeDonnees = commande.ExecuteReader();
-            tableDeDonnees.Load(lecteurDeDonnees);
-            tableauCible.DataSource = tableDeDonnees;
-            connexion.Close();
+            try
+            {
+                lecteurDeDonnees = commande.ExecuteReader();
+                tableDeDonnees.Load(lecteurDeDonnees);
+                tableauCible.DataSource = tableDeDonnees;
+                connexion.Close();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB." + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // LES METHODES PUBLIQUES
@@ -90,10 +104,10 @@ namespace ProjetCantine.Models
             */
 
             // réunir les noms des colonnes cibles de la table concernée pour la requête finale
-            string lesColonnesCibles = nomColonnes(tableCible);
+            String lesColonnesCibles = nomColonnes(tableCible);
 
             // créer la requête "insert"
-            string query = "INSERT INTO dbo." + tableCible;
+            String query = "INSERT INTO dbo." + tableCible;
             query += lesColonnesCibles + " ";
             query += "VALUES (" + donnees + ");";
 
@@ -101,17 +115,27 @@ namespace ProjetCantine.Models
             commande = new SqlCommand(query, connexion);
             commande.ExecuteNonQuery();
             connexion.Close();
-
         }
 
-        public void delete()
+        public void delete(String tableCible, int id)
         {
+            /*
+             * pour être sûre de supprimer la bonne ligne et uniquement celle concernée, j'utilise l'id comme info!
+             * Il faut donc impérativement donner l'id en argument.
+            */
 
+            // créer la requête "delete"
+            String query = "DELETE FROM dbo." + tableCible + " WHERE dbo." + tableCible + " = " + id + ";";
+
+            // exécuter la requête
+            commande = new SqlCommand(query, connexion);
+            commande.ExecuteNonQuery();
+            connexion.Close();
         } 
 
         public void update()
         {
-
+            // je ferai cette méthode plus tard, je dois vérifier quelques détails au niveau du code
         }
 
         private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
