@@ -247,6 +247,7 @@
     <Content Include="bin\Debug\ProjetCantine.exe" />
     <Content Include="bin\Debug\ProjetCantine.pdb" />
     <Content Include="bin\Debug\ProjetCantine.vshost.exe" />
+    <Content Include="Daniel.txt" />
     <Content Include="obj\Debug\ProjetCantine.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\ProjetCantine.exe" />
     <Content Include="obj\Debug\ProjetCantine.pdb" />
