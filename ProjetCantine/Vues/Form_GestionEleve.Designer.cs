@@ -50,6 +50,7 @@
             this.dataGridView_Eleve.Location = new System.Drawing.Point(12, 12);
             this.dataGridView_Eleve.Name = "dataGridView_Eleve";
             this.dataGridView_Eleve.ReadOnly = true;
+            this.dataGridView_Eleve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Eleve.Size = new System.Drawing.Size(1060, 565);
             this.dataGridView_Eleve.TabIndex = 0;
             this.dataGridView_Eleve.TabStop = false;

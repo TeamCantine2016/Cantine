@@ -15,12 +15,22 @@ namespace ProjetCantine
         public Form_EncodageElève(int flag)
         {
             InitializeComponent();
-             comboBox_Pays.SelectedIndex = 0;
+            comboBox_Pays.SelectedIndex = 0;
+
             if (flag == 0)
             {
                 button_Valider.Text = "Valider";
             }
-            else button_Valider.Text = "Modifier";
+            else
+            {
+                button_Valider.Text = "Modifier";
+                String query = "Select tbl_personne.id as ID, nom as Nom, prenom as Prénom, rue as Adresse, ville as Ville, pays as Pays from tbl_personne ";
+                query += "inner join tbl_adresse on tbl_adresse.id = tbl_personne.adresse_id where tbl_personne.id = "+flag+";";
+            }
+
+            //Select tbl_personne.id as ID, nom as Nom, prenom as Prénom, rue as Adresse, ville as Ville, pays as Pays, date_naissance as Dnaiss, numero as Numero, code_postal as CodePost from tbl_personne 
+           // inner join tbl_adresse on tbl_adresse.id = tbl_personne.adresse_id
+           //where tbl_personne.id = 5;
         }
 
         private void button_Annuler_Click(object sender, EventArgs e)
