@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApercuFacture.cs" />
+    <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
     <Compile Include="Models\db_cantineDataSet.cs">
       <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </Compile>

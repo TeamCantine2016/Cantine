@@ -165,19 +165,28 @@ namespace ProjetCantine.Models
             return stringNomsColonnes;
         }
 
-//****** SANS PROCEDURE STOCKEE
-        public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
+        // Récupérer la requête choisie
+        public String getQuery(String selection)
         {
-            // requête pour l'affichage de la dataGridView_Famille
-            String query = requete("listeTuteurDansVisualFamille");
-            // spécification des critères
-            query += "WHERE tbl_type_personne.type_personne = 'tuteur' and nom like '" + nomDeRecherche.Text + "%' and telephone like '" + telephoneDeRecherche.Text + "%'";
-
-            // affectation de la variable globale avec la requête concernée
-            commande = new SqlCommand(query, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref tableauCible);
+            String selectionResult = requete(selection);
+            if (selectionResult == null)
+            {
+                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            return selectionResult;
         }
+
+        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
+        {
+            // affectation de la variable globale avec la requête reçue
+            commande = new SqlCommand(requete, connexion);
+            // execution de la requête
+            injectionDesDonnees(ref dataGridCible);
+        }
+
+
+        //****** SANS PROCEDURE STOCKEE
 
         public string afficheListeEnfantSelonSelection(ref DataGridView tableauCible, int code)
         {
