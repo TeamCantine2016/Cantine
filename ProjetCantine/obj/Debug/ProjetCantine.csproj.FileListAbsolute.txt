@@ -123,8 +123,6 @@ C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCan
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe.config
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
-C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.xml
-C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csprojResolveAssemblyReference.cache
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_EncodageFactures.resources
 C:\Users\Max\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Acceuil.resources

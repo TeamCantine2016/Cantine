@@ -36,11 +36,10 @@
             this.textBox_Nom = new System.Windows.Forms.TextBox();
             this.textBox_Rue = new System.Windows.Forms.TextBox();
             this.textBox_Numéro = new System.Windows.Forms.TextBox();
-            this.textBox_Vile = new System.Windows.Forms.TextBox();
+            this.textBox_Ville = new System.Windows.Forms.TextBox();
             this.textBox_Téléphone = new System.Windows.Forms.TextBox();
             this.label_Pays = new System.Windows.Forms.Label();
             this.label_DateNaissance = new System.Windows.Forms.Label();
-            this.comboBox_Pays = new System.Windows.Forms.ComboBox();
             this.label_Téléphone = new System.Windows.Forms.Label();
             this.label_Mail = new System.Windows.Forms.Label();
             this.textBox_Mail = new System.Windows.Forms.TextBox();
@@ -48,7 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label_Activité = new System.Windows.Forms.Label();
             this.textBox_Famille = new System.Windows.Forms.TextBox();
-            this.checkBox_Repas = new System.Windows.Forms.CheckBox();
+            this.checkBox_Cantine = new System.Windows.Forms.CheckBox();
             this.checkBox_Natation = new System.Windows.Forms.CheckBox();
             this.checkBox_Bibliothèque = new System.Windows.Forms.CheckBox();
             this.checkBox_Autre1 = new System.Windows.Forms.CheckBox();
@@ -60,6 +59,7 @@
             this.dateTimePicker_DateNaissance = new System.Windows.Forms.DateTimePicker();
             this.textBox_Prénom = new System.Windows.Forms.TextBox();
             this.label_Confirmation = new System.Windows.Forms.Label();
+            this.textBox_Pays = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_Nom
@@ -128,12 +128,12 @@
             this.textBox_Numéro.Size = new System.Drawing.Size(67, 20);
             this.textBox_Numéro.TabIndex = 15;
             // 
-            // textBox_Vile
+            // textBox_Ville
             // 
-            this.textBox_Vile.Location = new System.Drawing.Point(114, 90);
-            this.textBox_Vile.Name = "textBox_Vile";
-            this.textBox_Vile.Size = new System.Drawing.Size(125, 20);
-            this.textBox_Vile.TabIndex = 20;
+            this.textBox_Ville.Location = new System.Drawing.Point(114, 90);
+            this.textBox_Ville.Name = "textBox_Ville";
+            this.textBox_Ville.Size = new System.Drawing.Size(125, 20);
+            this.textBox_Ville.TabIndex = 20;
             // 
             // textBox_Téléphone
             // 
@@ -159,22 +159,6 @@
             this.label_DateNaissance.Size = new System.Drawing.Size(96, 13);
             this.label_DateNaissance.TabIndex = 3;
             this.label_DateNaissance.Text = "Date de naissance";
-            // 
-            // comboBox_Pays
-            // 
-            this.comboBox_Pays.FormattingEnabled = true;
-            this.comboBox_Pays.Items.AddRange(new object[] {
-            "Allemagne",
-            "Belgique",
-            "Espagne",
-            "France",
-            "Italie",
-            "Luxembourg"});
-            this.comboBox_Pays.Location = new System.Drawing.Point(114, 116);
-            this.comboBox_Pays.Name = "comboBox_Pays";
-            this.comboBox_Pays.Size = new System.Drawing.Size(125, 21);
-            this.comboBox_Pays.Sorted = true;
-            this.comboBox_Pays.TabIndex = 30;
             // 
             // label_Téléphone
             // 
@@ -236,15 +220,15 @@
             this.textBox_Famille.TabStop = false;
             this.textBox_Famille.Text = "Id_Famille / Nom";
             // 
-            // checkBox_Repas
+            // checkBox_Cantine
             // 
-            this.checkBox_Repas.AutoSize = true;
-            this.checkBox_Repas.Location = new System.Drawing.Point(114, 258);
-            this.checkBox_Repas.Name = "checkBox_Repas";
-            this.checkBox_Repas.Size = new System.Drawing.Size(57, 17);
-            this.checkBox_Repas.TabIndex = 60;
-            this.checkBox_Repas.Text = "Repas";
-            this.checkBox_Repas.UseVisualStyleBackColor = true;
+            this.checkBox_Cantine.AutoSize = true;
+            this.checkBox_Cantine.Location = new System.Drawing.Point(114, 259);
+            this.checkBox_Cantine.Name = "checkBox_Cantine";
+            this.checkBox_Cantine.Size = new System.Drawing.Size(62, 17);
+            this.checkBox_Cantine.TabIndex = 60;
+            this.checkBox_Cantine.Text = "Cantine";
+            this.checkBox_Cantine.UseVisualStyleBackColor = true;
             // 
             // checkBox_Natation
             // 
@@ -304,6 +288,7 @@
             this.button_Valider.TabIndex = 90;
             this.button_Valider.Text = "Confirmation / Modification";
             this.button_Valider.UseVisualStyleBackColor = true;
+            this.button_Valider.Click += new System.EventHandler(this.button_Valider_Click);
             // 
             // button_Annuler
             // 
@@ -326,6 +311,8 @@
             // 
             // dateTimePicker_DateNaissance
             // 
+            this.dateTimePicker_DateNaissance.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker_DateNaissance.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_DateNaissance.Location = new System.Drawing.Point(114, 142);
             this.dateTimePicker_DateNaissance.Name = "dateTimePicker_DateNaissance";
             this.dateTimePicker_DateNaissance.Size = new System.Drawing.Size(218, 20);
@@ -348,12 +335,20 @@
             this.label_Confirmation.TabIndex = 96;
             this.label_Confirmation.Text = "* Veuillez remplir tous les champs obligatoires ";
             // 
+            // textBox_Pays
+            // 
+            this.textBox_Pays.Location = new System.Drawing.Point(114, 116);
+            this.textBox_Pays.Name = "textBox_Pays";
+            this.textBox_Pays.Size = new System.Drawing.Size(125, 20);
+            this.textBox_Pays.TabIndex = 30;
+            // 
             // Form_EncodageElève
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 382);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Pays);
             this.Controls.Add(this.label_Confirmation);
             this.Controls.Add(this.textBox_Prénom);
             this.Controls.Add(this.dateTimePicker_DateNaissance);
@@ -365,12 +360,11 @@
             this.Controls.Add(this.checkBox_Autre1);
             this.Controls.Add(this.checkBox_Bibliothèque);
             this.Controls.Add(this.checkBox_Natation);
-            this.Controls.Add(this.checkBox_Repas);
-            this.Controls.Add(this.comboBox_Pays);
+            this.Controls.Add(this.checkBox_Cantine);
             this.Controls.Add(this.textBox_Famille);
             this.Controls.Add(this.textBox_Mail);
             this.Controls.Add(this.textBox_Téléphone);
-            this.Controls.Add(this.textBox_Vile);
+            this.Controls.Add(this.textBox_Ville);
             this.Controls.Add(this.textBox_CP);
             this.Controls.Add(this.textBox_Numéro);
             this.Controls.Add(this.textBox_Rue);
@@ -407,11 +401,10 @@
         private System.Windows.Forms.TextBox textBox_Nom;
         private System.Windows.Forms.TextBox textBox_Rue;
         private System.Windows.Forms.TextBox textBox_Numéro;
-        private System.Windows.Forms.TextBox textBox_Vile;
+        private System.Windows.Forms.TextBox textBox_Ville;
         private System.Windows.Forms.TextBox textBox_Téléphone;
         private System.Windows.Forms.Label label_Pays;
         private System.Windows.Forms.Label label_DateNaissance;
-        private System.Windows.Forms.ComboBox comboBox_Pays;
         private System.Windows.Forms.Label label_Téléphone;
         private System.Windows.Forms.Label label_Mail;
         private System.Windows.Forms.TextBox textBox_Mail;
@@ -419,7 +412,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_Activité;
         private System.Windows.Forms.TextBox textBox_Famille;
-        private System.Windows.Forms.CheckBox checkBox_Repas;
+        private System.Windows.Forms.CheckBox checkBox_Cantine;
         private System.Windows.Forms.CheckBox checkBox_Natation;
         private System.Windows.Forms.CheckBox checkBox_Bibliothèque;
         private System.Windows.Forms.CheckBox checkBox_Autre1;
@@ -431,5 +424,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_DateNaissance;
         private System.Windows.Forms.TextBox textBox_Prénom;
         private System.Windows.Forms.Label label_Confirmation;
+        private System.Windows.Forms.TextBox textBox_Pays;
     }
 }
