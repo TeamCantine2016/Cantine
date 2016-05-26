@@ -23,12 +23,10 @@ namespace ProjetCantine
         private void Form_VisualisationFamille_Load(object sender, EventArgs e)
         {            
             // création objet pour remplir datagridview
-            //DbConnection objetTableau = new DbConnection();
             Ctrl_VisualisationFamille controle = new Ctrl_VisualisationFamille();
 
             // appelle méthode qui affiche les tuteurs
             controle.afficheListeTuteurs(ref dataGridView_Famille, ref textBox_NomRech, ref textBox_TéléphoneRech);
-            //objetTableau.afficheListeTuteurs(ref dataGridView_Famille, ref textBox_NomRech, ref textBox_TéléphoneRech);
         }
                
         private void dataGridView_Famille_CellEnter(object sender, DataGridViewCellEventArgs e)
