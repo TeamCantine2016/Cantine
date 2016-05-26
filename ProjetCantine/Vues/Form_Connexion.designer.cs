@@ -60,6 +60,7 @@
             this.textBox_identifiant.Name = "textBox_identifiant";
             this.textBox_identifiant.Size = new System.Drawing.Size(137, 20);
             this.textBox_identifiant.TabIndex = 5;
+            this.textBox_identifiant.Text = "lareine";
             // 
             // textBox_MotDePasse
             // 
@@ -67,6 +68,7 @@
             this.textBox_MotDePasse.Name = "textBox_MotDePasse";
             this.textBox_MotDePasse.Size = new System.Drawing.Size(137, 20);
             this.textBox_MotDePasse.TabIndex = 10;
+            this.textBox_MotDePasse.Text = "royale";
             // 
             // button_Connexion
             // 
