@@ -21,16 +21,18 @@ namespace ProjetCantine
         }
 
         private void Form_VisualisationFamille_Load(object sender, EventArgs e)
-        {            
-            // création objet pour remplir datagridview
+        {
+            // création de l'objet de contrôle pour comuniquer avec le contrôleur
             Ctrl_VisualisationFamille controle = new Ctrl_VisualisationFamille();
-
             // appelle méthode qui affiche les tuteurs
             controle.afficheListeTuteurs(ref dataGridView_Famille, ref textBox_NomRech, ref textBox_TéléphoneRech);
         }
                
         private void dataGridView_Famille_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            // création de l'objet de contrôle pour comuniquer avec le contrôleur
+            Ctrl_VisualisationFamille controle = new Ctrl_VisualisationFamille();
+
             //Affichage des données contenues dans la dataGridView_Famille dans les textbox en fonction du choix de la ligne que l'utilisateur aura selectionné
             int id = dataGridView_Famille.CurrentRow.Index;
             DataGridViewRow ligne = dataGridView_Famille.Rows[id];
@@ -42,10 +44,8 @@ namespace ProjetCantine
             // Partie pour l'affichage des enfants en fonction de la ligne selectionné dans la dataGridView_Famille
             int codeClient = Convert.ToInt16(ligne.Cells[0].Value.ToString());
 
-            // création objet pour remplir datagridview
-            DbConnection objetTableau = new DbConnection();
             // appelle méthode qui affiche les enfants de la famille et renvoie le nombre d'enfants dans la textbox concernée
-            textBox_nbEnfant.Text = objetTableau.afficheListeEnfantSelonSelection(ref dataGridView_Membre, codeClient);
+            textBox_nbEnfant.Text = controle.afficheListeEnfantSelonSelection(ref dataGridView_Membre, codeClient);
 
         }
                

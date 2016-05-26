@@ -10,11 +10,10 @@ namespace ProjetCantine.Controller
 {
     class Ctrl_VisualisationFamille
     {
+        DbConnection dbTalk = new DbConnection(); // variable globale
+
         public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
         {
-            // crééer objet de communication avec la classe DB qui communique avec la DB
-            DbConnection dbTalk = new DbConnection();
-
             // récupérer la requête pour l'affichage de la dataGridView_Famille
             String query = dbTalk.getQuery("listeTuteurDansVisualFamille"); 
 
@@ -24,6 +23,21 @@ namespace ProjetCantine.Controller
             // injection des données dans la datagridview
             dbTalk.injectDataToDataGridView(query, ref tableauCible);
 
+        }
+
+        public string afficheListeEnfantSelonSelection(ref DataGridView tableauCible, int code)
+        {
+            // récupérer la requête pour l'affichage de la dataGridView_Membre
+            String query = dbTalk.getQuery("listeEnfantDansVisualFamille");
+
+            // spécification des critères
+            query += " where type_personne = 'élève' and tuteur_id = '" + code + "'";
+
+            // injection des données dans la datagridview
+            dbTalk.injectDataToDataGridView(query, ref tableauCible);
+
+            // renvoi le nombre de lignes du tableauCible
+            return tableauCible.RowCount.ToString();
         }
     }
 }

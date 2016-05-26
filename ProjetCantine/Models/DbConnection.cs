@@ -85,7 +85,7 @@ namespace ProjetCantine.Models
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB." + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -188,20 +188,6 @@ namespace ProjetCantine.Models
 
         //****** SANS PROCEDURE STOCKEE
 
-        public string afficheListeEnfantSelonSelection(ref DataGridView tableauCible, int code)
-        {
-            // requête pour l'affichage de la dataGridView_Membre
-            String query = requete("listeEnfantDansVisualFamille");
-            // spécification des critères
-            query += " where type_personne = 'élève' and tuteur_id = '" + code + "'";
-
-            // affectation de la variable globale avec la requête concernée
-            commande = new SqlCommand(query, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref tableauCible);
-            // renvoi le nombre de lignes du tableauCible
-            return tableauCible.RowCount.ToString();
-        }
 
         public void afficheListeEnfantSelonSelection_Factures(ref DataGridView tableauCible, ref DataGridView tableauSource, int index)
         {
