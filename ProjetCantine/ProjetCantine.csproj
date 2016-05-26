@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApercuFacture.cs" />
+    <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
     <Compile Include="Models\db_cantineDataSet.cs">
       <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </Compile>
@@ -247,6 +248,7 @@
     <Content Include="bin\Debug\ProjetCantine.exe" />
     <Content Include="bin\Debug\ProjetCantine.pdb" />
     <Content Include="bin\Debug\ProjetCantine.vshost.exe" />
+    <Content Include="Daniel.txt" />
     <Content Include="obj\Debug\ProjetCantine.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\ProjetCantine.exe" />
     <Content Include="obj\Debug\ProjetCantine.pdb" />

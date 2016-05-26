@@ -85,7 +85,7 @@ namespace ProjetCantine.Models
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB." + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -165,34 +165,29 @@ namespace ProjetCantine.Models
             return stringNomsColonnes;
         }
 
-//****** SANS PROCEDURE STOCKEE
-        public void afficheListeTuteurs(ref DataGridView tableauCible, ref TextBox nomDeRecherche, ref TextBox telephoneDeRecherche)
+        // Récupérer la requête choisie
+        public String getQuery(String selection)
         {
-            // requête pour l'affichage de la dataGridView_Famille
-            String query = requete("listeTuteurDansVisualFamille");
-            // spécification des critères
-            query += "WHERE tbl_type_personne.type_personne = 'tuteur' and nom like '" + nomDeRecherche.Text + "%' and telephone like '" + telephoneDeRecherche.Text + "%'";
-
-            // affectation de la variable globale avec la requête concernée
-            commande = new SqlCommand(query, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref tableauCible);
+            String selectionResult = requete(selection);
+            if (selectionResult == null)
+            {
+                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            return selectionResult;
         }
 
-        public string afficheListeEnfantSelonSelection(ref DataGridView tableauCible, int code)
+        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
         {
-            // requête pour l'affichage de la dataGridView_Membre
-            String query = requete("listeEnfantDansVisualFamille");
-            // spécification des critères
-            query += " where type_personne = 'élève' and tuteur_id = '" + code + "'";
-
-            // affectation de la variable globale avec la requête concernée
-            commande = new SqlCommand(query, connexion);
+            // affectation de la variable globale avec la requête reçue
+            commande = new SqlCommand(requete, connexion);
             // execution de la requête
-            injectionDesDonnees(ref tableauCible);
-            // renvoi le nombre de lignes du tableauCible
-            return tableauCible.RowCount.ToString();
+            injectionDesDonnees(ref dataGridCible);
         }
+
+
+        //****** SANS PROCEDURE STOCKEE
+
 
         public void afficheListeEnfantSelonSelection_Factures(ref DataGridView tableauCible, ref DataGridView tableauSource, int index)
         {
