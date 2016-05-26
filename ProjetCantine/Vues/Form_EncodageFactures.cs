@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ProjetCantine.Models;
 using System.Data.SqlClient;
 using System.Globalization;
+using ProjetCantine.Controller;
+using ProjetCantine.Models;
 
 namespace ProjetCantine.Vues
 {
@@ -88,13 +89,13 @@ namespace ProjetCantine.Vues
                 btEnvoi.Enabled = true;
             }
         }
-
+//********************************************************************* ADAPTÉ ci-dessous
         public void filtre(object sender, EventArgs e) // les deux textBox sont directement orientés vers cette fonction
         {
             // création de l'objet pour filtrer dataGridView
-            DbConnection objetFiltre = new DbConnection();
+            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
             // appelle la méthode liée à la procédure stockée
-            objetFiltre.filtreParNomParTel(ref dGdVw_DetailFamille, ref txtBx_RechNom, ref txtBx_RechNumTel);
+            controle.filtreParNomParTel(ref dGdVw_DetailFamille, ref txtBx_RechNom, ref txtBx_RechNumTel);
         }
 
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -105,17 +106,23 @@ namespace ProjetCantine.Vues
             int indexLigne = dGdVw_DetailFamille.CurrentRow.Index;
             
             // création objet pour remplir datagridview
-            DbConnection objetTableau = new DbConnection();
+            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
             // appelle méthode qui affiche les tuteurs
-            objetTableau.afficheListeEnfantSelonSelection_Factures(ref dataGridView_Membres, ref dGdVw_DetailFamille, indexLigne);
+            controle.afficheListeEnfantSelonSelection(ref dataGridView_Membres, ref dGdVw_DetailFamille, indexLigne);
+
+//********************************************************************* FIN ADAPTATION POUR LE MOMENT
 
 
             /* cette ligne sera supprimé lorsque la prochaine requête sera également déplacé dans DbConnection.cs */
             DataGridViewRow r = dGdVw_DetailFamille.Rows[indexLigne];
 
-            
+//### BUG ### ci-dessous il y a un bug qui se forme lorsqu'après avoir fait des sélections ou filtrage de la dgv principale et après on y sélectionne une ligne
             String req = "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
-            req += "WHERE(tbl_relation_facture.tuteur_id = '"+ r.Cells[0].Value.ToString() +"')";
+            req += "WHERE(tbl_relation_facture.tuteur_id = '" + r.Cells[0].Value.ToString() + "')";
+            //### Bug résolu: la procédure stocké ne renvoie pas l'id, donc le datagridview devient erroné après le filtre !!
+            //### Il faut donc uniquement rectifier la procédure stockée
+
+
             con.Open();
             SqlCommand cmd1 = new SqlCommand(req, con);
 

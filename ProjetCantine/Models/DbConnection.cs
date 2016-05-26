@@ -186,28 +186,6 @@ namespace ProjetCantine.Models
         }
 
 
-        //****** SANS PROCEDURE STOCKEE
-
-
-        public void afficheListeEnfantSelonSelection_Factures(ref DataGridView tableauCible, ref DataGridView tableauSource, int index)
-        {
-            // ligne du datagridview courant
-            DataGridViewRow ligne = tableauSource.Rows[index];
-
-            // requête pour l'affichage de la dataGridView_Membre
-            String query = requete("listeIntermediaire_Tuteur");
-            // spécification des critères pour la liste/tableau intermédiaire
-            query += " Where tbl_personne.nom = '" + ligne.Cells[1].Value.ToString() + "' ), ";
-            query += requete("listeIntermediaire_Enfant");
-            // requête utilisant les deux listes/tableaux intermédiaires pour en synthétiser la liste des enfants du tuteur sélectionné
-            query += requete("listeEnfantSelonTuteur_Facture");
-
-            // affectation de la variable globale avec la requête concernée
-            commande = new SqlCommand(query, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref tableauCible);
-        }
-
 //****** AVEC PROCEDURE STOCKEE
         public void filtreParNomParTel(ref DataGridView tableauCible, ref TextBox nom, ref TextBox telephone)
         {
@@ -224,6 +202,7 @@ namespace ProjetCantine.Models
             commande.Parameters["@tel"].Value = telephone.Text;
 
             injectionDesDonnees(ref tableauCible);
+
         }
     }
 }
