@@ -30,11 +30,11 @@ namespace ProjetCantine.Models
             {
                 MessageBox.Show("Erreur connexion DB :\r\n" + exception.Message, "Erreur DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
-        // REGROUPPEMENT DES REQUÊTES
-        private string requete(string selection) {
+// REGROUPPEMENT DES REQUÊTES
+        private string requete(string selection)
+        {
 
             string laRequete = null;
 
@@ -73,7 +73,30 @@ namespace ProjetCantine.Models
             return laRequete;
         }
 
-        // INJECTION DES DONNEES
+// LES METHODES PUBLIQUES
+
+// Récupérer la requête choisie
+        public String getQuery(String selection)
+        {
+            String selectionResult = requete(selection);
+            if (selectionResult == null)
+            {
+                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            return selectionResult;
+        }
+
+// INJECTION DES DONNEES
+
+        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
+        {
+            // affectation de la variable globale avec la requête reçue
+            commande = new SqlCommand(requete, connexion);
+            // execution de la requête
+            injectionDesDonnees(ref dataGridCible);
+        }
+
         private void injectionDesDonnees(ref DataGridView tableauCible)
         {
             try
@@ -84,7 +107,7 @@ namespace ProjetCantine.Models
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n\r\n" + exception.Message, "Load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur injection DB>DataGridView.\r\n\r\n" + exception.Message, "Load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -99,9 +122,7 @@ namespace ProjetCantine.Models
             }
         }
 
-        // LES METHODES PUBLIQUES
-
-        //****** INSERT - DELETE - UPDATE
+//****** INSERT
 
         public void insert(String tableCible, String donnees) 
         {
@@ -127,6 +148,7 @@ namespace ProjetCantine.Models
             connexion.Close();
         }
 
+//****** DELETE
         public void delete(String tableCible, int id)
         {
             /*
@@ -141,15 +163,36 @@ namespace ProjetCantine.Models
             commande = new SqlCommand(query, connexion);
             commande.ExecuteNonQuery();
             connexion.Close();
-        } 
+        }
 
+//****** UPDATE
         public void update()
         {
             // je ferai cette méthode plus tard, je dois vérifier quelques détails au niveau du code
         }
 
+//****** AVEC PROCEDURE STOCKEE
+        public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
+        {
+            commande = new SqlCommand("PS_Filtre_Nom_Tel", connexion);
+            commande.CommandType = CommandType.StoredProcedure;
+
+            commande.Parameters.Add("@nom", SqlDbType.NVarChar);
+            commande.Parameters.Add("@tel", SqlDbType.NVarChar);
+
+            commande.Parameters["@nom"].Direction = ParameterDirection.Input;
+            commande.Parameters["@tel"].Direction = ParameterDirection.Input;
+
+            commande.Parameters["@nom"].Value = nom;
+            commande.Parameters["@tel"].Value = telephone;
+
+            injectionDesDonnees(ref tableauCible);
+
+        }
+
+// FONCTIONS PRIVEES INTERMEDIAIRES
         private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
-        { 
+        {
             // créer un reader de la table ciblée
             String query = "SELECT * FROM " + table + ";";
             commande = new SqlCommand(query, connexion);
@@ -173,46 +216,6 @@ namespace ProjetCantine.Models
             lecteurDeDonnees.Close();
             // renvoyer le "string"
             return stringNomsColonnes;
-        }
-
-        // Récupérer la requête choisie
-        public String getQuery(String selection)
-        {
-            String selectionResult = requete(selection);
-            if (selectionResult == null)
-            {
-                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            return selectionResult;
-        }
-
-        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
-        {
-            // affectation de la variable globale avec la requête reçue
-            commande = new SqlCommand(requete, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref dataGridCible);
-        }
-
-
-//****** AVEC PROCEDURE STOCKEE
-        public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
-        {
-            commande = new SqlCommand("PS_Filtre_Nom_Tel", connexion);
-            commande.CommandType = CommandType.StoredProcedure;
-
-            commande.Parameters.Add("@nom", SqlDbType.NVarChar);
-            commande.Parameters.Add("@tel", SqlDbType.NVarChar);
-
-            commande.Parameters["@nom"].Direction = ParameterDirection.Input;
-            commande.Parameters["@tel"].Direction = ParameterDirection.Input;
-
-            commande.Parameters["@nom"].Value = nom;
-            commande.Parameters["@tel"].Value = telephone;
-
-            injectionDesDonnees(ref tableauCible);
-
         }
     }
 }
