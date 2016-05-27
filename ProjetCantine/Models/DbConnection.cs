@@ -81,11 +81,21 @@ namespace ProjetCantine.Models
                 lecteurDeDonnees = commande.ExecuteReader();
                 tableDeDonnees.Load(lecteurDeDonnees);
                 tableauCible.DataSource = tableDeDonnees;
-                connexion.Close();
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("1. Erreur injection DB>DataGridView.\r\n\r\n" + exception.Message, "Load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                try
+                {
+                    connexion.Close();
+                }
+                catch (SystemException exception)
+                {
+                    MessageBox.Show("Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Close DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -187,7 +197,7 @@ namespace ProjetCantine.Models
 
 
 //****** AVEC PROCEDURE STOCKEE
-        public void filtreParNomParTel(ref DataGridView tableauCible, ref TextBox nom, ref TextBox telephone)
+        public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
         {
             commande = new SqlCommand("PS_Filtre_Nom_Tel", connexion);
             commande.CommandType = CommandType.StoredProcedure;
@@ -198,8 +208,8 @@ namespace ProjetCantine.Models
             commande.Parameters["@nom"].Direction = ParameterDirection.Input;
             commande.Parameters["@tel"].Direction = ParameterDirection.Input;
 
-            commande.Parameters["@nom"].Value = nom.Text;
-            commande.Parameters["@tel"].Value = telephone.Text;
+            commande.Parameters["@nom"].Value = nom;
+            commande.Parameters["@tel"].Value = telephone;
 
             injectionDesDonnees(ref tableauCible);
 

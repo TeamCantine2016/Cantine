@@ -97,7 +97,7 @@ namespace ProjetCantine.Vues
             // création de l'objet pour filtrer dataGridView
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
             // appelle la méthode liée à la procédure stockée
-            controle.filtreParNomParTel(ref dGdVw_DetailFamille, ref txtBx_RechNom, ref txtBx_RechNumTel);
+            controle.filtreParNomParTel(ref dGdVw_DetailFamille, txtBx_RechNom.Text, txtBx_RechNumTel.Text);
         }
 
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)

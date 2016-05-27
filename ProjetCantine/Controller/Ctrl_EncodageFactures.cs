@@ -12,9 +12,9 @@ namespace ProjetCantine.Controller
     {
         DbConnection dbTalk = new DbConnection(); // variable globale
 
-        public void filtreParNomParTel(ref DataGridView tableauCible, ref TextBox nom, ref TextBox telephone)
+        public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
         {
-            dbTalk.filtreParNomParTel(ref tableauCible, ref nom, ref telephone);
+            dbTalk.filtreParNomParTel(ref tableauCible, nom, telephone);
         }
 
         public void afficheListeEnfantSelonSelection(ref DataGridView tableauCible, ref DataGridView tableauSource, int index)
