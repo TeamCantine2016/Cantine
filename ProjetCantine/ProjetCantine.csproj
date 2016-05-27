@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ApercuFacture.cs.old" />
     <Compile Include="ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
     <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
@@ -70,6 +71,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vues\Form_EncodageFactures.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,17 +208,14 @@
       <DependentUpon>Form_VisualisationFamille.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="bin\Debug\ProjetCantine.exe.config" />
     <None Include="bin\Debug\ProjetCantine.vshost.exe.config" />
     <None Include="bin\Debug\ProjetCantine.vshost.exe.manifest" />
+    <None Include="Resources\Facture.xlsx" />
     <None Include="Models\db_cantineDataSet.xsc">
       <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </None>
@@ -249,7 +252,6 @@
     <Content Include="bin\Debug\ProjetCantine.exe" />
     <Content Include="bin\Debug\ProjetCantine.pdb" />
     <Content Include="bin\Debug\ProjetCantine.vshost.exe" />
-    <Content Include="Daniel.txt" />
     <Content Include="obj\Debug\ProjetCantine.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\ProjetCantine.exe" />
     <Content Include="obj\Debug\ProjetCantine.pdb" />

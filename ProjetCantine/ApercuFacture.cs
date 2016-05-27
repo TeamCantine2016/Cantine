@@ -8,6 +8,7 @@ using System.IO;
 using System.Data.SqlClient;
 using ProjetCantine.Models;
 
+
 using ProjetCantine.Vues;
 
 namespace ProjetCantine
@@ -17,7 +18,7 @@ namespace ProjetCantine
         SqlConnection maCon = new SqlConnection(DbConnection.connectionString);
 
         public String facture(string repaschaud1, string repaschaud2, string repasfroid, string aucun, string cmptchaud1, string cmptchaud2, string cmptfroid, string cmptaucun, int facture_id, DateTime debut, DateTime fin
-                                ,string codeClient, string nomClient , string prenomClient , string adresseClient,string villeClient ,string paysClient)
+                                , string codeClient, string nomClient, string prenomClient, string adresseClient, string villeClient, string paysClient)
         {
 
             try
@@ -28,8 +29,16 @@ namespace ProjetCantine
                 xlApp.Visible = false;
 
                 object misValue = System.Reflection.Missing.Value;
-                string pathFacture = @"C:\BDD\Factures\Facture.xlsx";
-                string pathSortie = @"C:\BDD\Factures";
+                /*
+                 * Cette ligne ci-dessous permet d'initializer path sur le repertoire racine d'ou est exécuté l'application
+                 */
+                string path = System.IO.Directory.GetCurrentDirectory();
+                /*
+                 * Avec path initialisé, j'ajoute dans mon fichier de solution dans ..\bin\Debug\ le dossier \Resources\ avec le fichier excel dedans,
+                 * donc on a ..\bin\Debug\Resources\Factures.xlsx
+                 */
+                string pathFacture = path + @"\Resources\Facture.xlsx";
+                string pathSortie = @"C:\Factures";
                 Excel.Workbook wbk = xlApp.Workbooks.Open(pathFacture);
                 Excel.Worksheet ws = new Excel.Worksheet();
 
@@ -65,7 +74,7 @@ namespace ProjetCantine
 
                 }
 
-              
+
 
                 ws.Cells[7, "D"] = facture_id; //N° facture
                 ws.Cells[7, "E"] = DateTime.Today; // Date Facture
@@ -76,8 +85,8 @@ namespace ProjetCantine
 
                 //Encodage période
 
-               ws.Cells[20, "C"] = debut; 
-                ws.Cells[20, "E"] = fin; 
+                ws.Cells[20, "C"] = debut;
+                ws.Cells[20, "E"] = fin;
 
                 //Encodage repas
 
@@ -98,7 +107,13 @@ namespace ProjetCantine
                     DirectoryInfo di = Directory.CreateDirectory(pathSortie);
                 }
 
-                pathSortie = pathSortie +"_"+ nomClient + "-" + prenomClient +  "_" +  facture_id.ToString() +  ".pdf";
+                //pathSortie = pathSortie +"_"+ nomClient + "-" + prenomClient +  "_" +  facture_id.ToString() +  ".pdf";
+                /*
+                 * J'ai modifié la sortie ci-dessus vers celle ci-dessous, parce que celle du haut on enregistre directement dans C:\ ce qui ne marche
+                 * pas sous Windows 7 (normalement), en plus le pathSortie est un dossier pour contenir le facture!!
+                 * Il faut donc pas concatener le path dans le nom du fichier!! Mais concatener en tant que "path\"...                 
+                 */
+                pathSortie = pathSortie + "\\F_" + facture_id.ToString() + ".pdf";
 
                 ws.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, pathSortie);
                 //wbk.SaveAs(@"C:\Users\Florian\Desktop\test.xls"); //sauver dans un autre document Excel

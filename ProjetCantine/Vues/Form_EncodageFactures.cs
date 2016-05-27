@@ -16,6 +16,8 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
+        // Test ... commit ... Daniel
+
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();

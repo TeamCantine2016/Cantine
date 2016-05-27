@@ -31,7 +31,7 @@ namespace ProjetCantine.Controller
             // requête utilisant les deux listes/tableaux intermédiaires pour en synthétiser la liste des enfants du tuteur sélectionné
             query += dbTalk.getQuery("listeEnfantSelonTuteur_Facture");
 
-            // inhection des données dans la datagridview
+            // injection des données dans la datagridview
             dbTalk.injectDataToDataGridView(query, ref tableauCible);
         }
 
