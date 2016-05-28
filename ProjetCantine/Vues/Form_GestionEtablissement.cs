@@ -24,34 +24,15 @@ namespace ProjetCantine.Vues
 
         private void Form_GestionEtablissement_Load(object sender, EventArgs e)
         {
-            //Affichage des informations
-            String query = "SELECT * FROM tbl_etablissement Inner join tbl_adresse on tbl_adresse.id = tbl_etablissement.adresse_id";
-            SqlCommand maCommand = new SqlCommand(query, maCon);
-            maCon.Open();
-
-            SqlDataReader dr = maCommand.ExecuteReader();
-            dr.Read();
-
+            // création de l'objet de contrôle pour comuniquer avec le contrôleur    
+            Ctrl_GestionEtablissement controle = new Ctrl_GestionEtablissement();
+            bool verif = controle.verifExistEtablissement();
             // Test pour voir si il y a déjà des infos dans la db
-            if (dr.HasRows == true)
+            if (verif == true)
             {
-
-                textBox_Dénomination.Text = dr["nom_etablissement"].ToString();
-                textBox_Num.Text = dr["numero"].ToString();
-                textBox_Rue.Text = dr["rue"].ToString();
-                textBox_Ville.Text = dr["ville"].ToString();
-                textBox_Pays.Text = dr["pays"].ToString();
-                textBox_CodePostal.Text = dr["code_postal"].ToString();
-                textBox_Email.Text = dr["courriel"].ToString();
-                textBox_NumTelephone.Text = dr["telephone"].ToString();
-                textBox_NumFax.Text = dr["fax"].ToString();
-                textBox_banqueBe.Text = dr["banque_BE"].ToString();
-                textBox_bicBE.Text = dr["bic_BE"].ToString();
-                textBox_banqueLu.Text = dr["banque_LU"].ToString();
-                textBox_bicLU.Text = dr["bic_LU"].ToString();
-                textBox_tva.Text = dr["tva"].ToString();
-
-                img_path = dr["logo_path"].ToString();
+                // création de l'objet de contrôle pour comuniquer avec le contrôleur              
+                Ctrl_GestionEtablissement controle1 = new Ctrl_GestionEtablissement();
+                controle1.afficheEtablissement(ref textBox_Dénomination, ref textBox_Num, ref textBox_Rue, ref textBox_Ville, ref textBox_Pays, ref textBox_CodePostal, ref textBox_Email, ref textBox_NumTelephone, ref textBox_NumFax, ref textBox_banqueBe, ref textBox_bicBE, ref textBox_banqueLu, ref textBox_bicLU, ref textBox_tva, ref img_path);
 
                 // Verifie si l'image existe 
                 if (File.Exists(img_path))
@@ -86,14 +67,11 @@ namespace ProjetCantine.Vues
                 button_Ajouter.Text = "Modifier";
                 button_Annuler.Enabled = false;
 
-
             }
             else
             {
                 label_erreur.Visible = false;
             }
-            maCon.Close();
-
         }
 
         private void button_Ajouter_Click(object sender, EventArgs e)
@@ -103,35 +81,22 @@ namespace ProjetCantine.Vues
             {
                 case "Ajouter":
 
-                    int resultAd = 0;
-                    int resultEtab = 0;
-                    String id_adresse = "";
-                    string requeteAdresse = "INSERT INTO tbl_adresse(pays, ville, code_postal, rue, numero)";
-                    requeteAdresse += " VALUES('" + textBox_Pays.Text + "','" + textBox_Ville.Text + "','" + textBox_CodePostal.Text + "','" + textBox_Rue.Text + "','" + textBox_Num.Text + "')";
 
-                    maCon.Open();
+                    Ctrl_GestionEtablissement controle = new Ctrl_GestionEtablissement();
+                    int resultAd = controle.insertData("tbl_adresse", textBox_Pays.Text + "','" + textBox_Ville.Text + "','" + textBox_CodePostal.Text + "','" + textBox_Rue.Text + "','" + textBox_Num.Text);
 
-                    SqlCommand cmd = new SqlCommand(requeteAdresse, maCon);
-                    resultAd = cmd.ExecuteNonQuery();
-
-                    //Teste Si la première requette est ok avant de passer a la suite 
                     if (resultAd != 0)
                     {
-                        cmd = new SqlCommand("SELECT id FROM tbl_adresse where rue = '" + textBox_Rue.Text + "' and numero = '" + textBox_Num.Text + "'", maCon);
-                        id_adresse = cmd.ExecuteScalar().ToString();
 
+                        Ctrl_GestionEtablissement controle1 = new Ctrl_GestionEtablissement();
 
-                        String requeteEtabl = "INSERT INTO tbl_etablissement (nom_etablissement, telephone, fax, courriel, tva, banque_BE, bic_BE, banque_LU, bic_LU, logo_path, adresse_id)";
-                        requeteEtabl += " VALUES ('" + textBox_Dénomination.Text + "','" + Convert.ToInt32(textBox_NumTelephone.Text) + "','" + Convert.ToInt32(textBox_NumFax.Text) + "','" + textBox_Email.Text;
-                        requeteEtabl += "','" + textBox_tva.Text + "','" + textBox_banqueBe.Text + "','" + textBox_bicBE.Text + "','" + textBox_banqueLu.Text + "','" + textBox_bicLU.Text + "','" + img_path + "','" + id_adresse + "')";
+                        String valInsert = textBox_Dénomination.Text + "','" + Convert.ToInt32(textBox_NumTelephone.Text) + "','" + Convert.ToInt32(textBox_NumFax.Text) + "','" + textBox_Email.Text;
+                        valInsert += "','" + textBox_tva.Text + "','" + textBox_banqueBe.Text + "','" + textBox_bicBE.Text + "','" + textBox_banqueLu.Text;
+                        valInsert += "','" + textBox_bicLU.Text + "','" + img_path + "','" + controle1.recupId(textBox_Rue.Text, textBox_Num.Text);
 
+                        Ctrl_GestionEtablissement controle2 = new Ctrl_GestionEtablissement();
+                        int resultEtab = controle.insertData("tbl_etablissement", valInsert);
 
-                        cmd = new SqlCommand(requeteEtabl, maCon);
-                        resultEtab = cmd.ExecuteNonQuery();
-
-
-
-                        // gestion affichage
                         if (resultEtab == 0)
                         { MessageBox.Show("L'établissement n'à pas pu etre enregistré "); }
                         else
@@ -159,7 +124,6 @@ namespace ProjetCantine.Vues
                     }
                     break;
 
-
                 case "Modifier":
 
                     // gestion affichage
@@ -183,7 +147,7 @@ namespace ProjetCantine.Vues
                     label_erreur.Visible = false;
                     break;
 
-                case "Valider":
+                /*case "Valider":
 
                     // Partie pour faire le UPDATE de l'adresse et de l'établissement --> recherche de id de l'établissement et de l'adresse_id pour pouvoir faire les requetes suivante
                     maCon.Open();
@@ -229,12 +193,12 @@ namespace ProjetCantine.Vues
                     button_Ajouter.Text = "Modifier";
                     button_Annuler.Enabled = false;
 
-                    break;
+                    break;*/
 
 
             }
 
-            maCon.Close();
+            //maCon.Close();
         }
 
         private void button_Parcourir_Click(object sender, EventArgs e)

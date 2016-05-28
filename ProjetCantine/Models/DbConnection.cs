@@ -66,6 +66,12 @@ namespace ProjetCantine.Models
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
+                case "AffichageEtablissement":
+                    laRequete += "SELECT * FROM tbl_etablissement Inner join tbl_adresse on tbl_adresse.id = tbl_etablissement.adresse_id";
+                    break;
+                case "recupIdAdresse":
+                    laRequete += "SELECT id FROM tbl_adresse";
+                    break;
                 case "dateCloture":
                     laRequete += "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
                     break;
@@ -143,10 +149,55 @@ namespace ProjetCantine.Models
             }
         }
 
-//****** INSERT
-
-        public void insert(String tableCible, String donnees) 
+// recuperer des donnéee d'une requete dans une data reader
+        public SqlDataReader injectDataToDataReader(String requete)
         {
+            try
+            {
+                // affectation de la variable globale avec la requête reçue
+                commande = new SqlCommand(requete, connexion);
+                // execution de la requête
+                lecteurDeDonnees = commande.ExecuteReader();
+                lecteurDeDonnees.Read();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("1. Erreur injection DB>Reader ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // La fermeture de la connexion ce ferra un peut plus loin.
+            // Il y a un problème sinon pour lire les données. Si je la ferme ici j'ai plus d'accèes aux données :/
+
+            return lecteurDeDonnees;
+        }
+
+
+// recuperer une seule donnée d'une requete
+        public string recupDataScalar(string requete)
+        {
+            String temp = "";
+            try
+            {
+                commande = new SqlCommand(requete, connexion);
+                temp = commande.ExecuteScalar().ToString();
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("1. Erreur récuperation donné ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connexion.Close();
+            }
+            return temp;
+
+        }
+
+        //****** INSERT
+
+        public int insert(String tableCible, String donnees) 
+        {
+            int temp;
             /*
              *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
              *  exemple:  
@@ -161,12 +212,14 @@ namespace ProjetCantine.Models
             // créer la requête "insert"
             String query = "INSERT INTO dbo." + tableCible;
             query += lesColonnesCibles + " ";
-            query += "VALUES (" + donnees + ");";
+            query += "VALUES ('" + donnees + "');";
 
             // exécuter la requête
             commande = new SqlCommand(query, connexion);
-            commande.ExecuteNonQuery();
+            temp = commande.ExecuteNonQuery();
             connexion.Close();
+
+            return temp;
         }
 
 //****** DELETE
@@ -237,6 +290,51 @@ namespace ProjetCantine.Models
             lecteurDeDonnees.Close();
             // renvoyer le "string"
             return stringNomsColonnes;
+        }
+
+//******** Assigner a chaque texteBox la valeur de la Db -> pas de dgv utilisée 
+
+        public void afficheEtablissement(string query, ref TextBox Dénomination, ref TextBox Num, ref TextBox Rue, ref TextBox Ville, ref TextBox Pays, ref TextBox Cp, ref TextBox Email, ref TextBox NumTel, ref TextBox NumFax, ref TextBox BanqueBe, ref TextBox BicBe, ref TextBox BanqueLu, ref TextBox BicLu, ref TextBox Tva, ref string path_img)
+        {
+
+            // commande = new SqlCommand(query, connexion);
+            lecteurDeDonnees = injectDataToDataReader(query);
+
+            Dénomination.Text = lecteurDeDonnees["nom_etablissement"].ToString();
+            Num.Text = lecteurDeDonnees["numero"].ToString();
+            Rue.Text = lecteurDeDonnees["rue"].ToString();
+            Ville.Text = lecteurDeDonnees["ville"].ToString();
+            Pays.Text = lecteurDeDonnees["pays"].ToString();
+            Cp.Text = lecteurDeDonnees["code_postal"].ToString();
+            Email.Text = lecteurDeDonnees["courriel"].ToString();
+            NumTel.Text = lecteurDeDonnees["telephone"].ToString();
+            NumFax.Text = lecteurDeDonnees["fax"].ToString();
+            BanqueBe.Text = lecteurDeDonnees["banque_BE"].ToString();
+            BicBe.Text = lecteurDeDonnees["bic_BE"].ToString();
+            BanqueLu.Text = lecteurDeDonnees["banque_LU"].ToString();
+            BicLu.Text = lecteurDeDonnees["bic_LU"].ToString();
+            Tva.Text = lecteurDeDonnees["tva"].ToString();
+            path_img = lecteurDeDonnees["logo_path"].ToString();
+
+            // obligé de fermé la connexion a cette endroit sinon plus d'accès aux données
+            connexion.Close();
+        }
+
+// verifié si l'établisssment existe dans la db
+        public bool existEtablissement(string query)
+        {
+            bool ligneExist = false;
+            lecteurDeDonnees = injectDataToDataReader(query);
+            ligneExist = lecteurDeDonnees.HasRows;
+            connexion.Close();
+            return ligneExist;
+        }
+
+//recupere l'id d'une adresse
+        public int idAdresse(string query)
+        {
+            // convertir l'id recu en string en int et retourner la valeur
+            return Convert.ToInt16(recupDataScalar(query));
         }
     }
 }
