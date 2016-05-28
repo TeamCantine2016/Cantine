@@ -16,8 +16,7 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
-        // Test ... commit ... Daniel
-
+        //*****************************************************************************************************************************************
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
@@ -26,14 +25,17 @@ namespace ProjetCantine.Vues
         string fin = "";
         float prix = 0;
         string path_facture = "";
+        //*****************************************************************************************************************************************
+
         public Form_EncodageFactures()
         {
             InitializeComponent();
         }
 
+        //*****************************************************************************************************************************************
         private void Form_EncodageFactures_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'db_cantineDataSet.TA_Remplir_CB_FormatEnvoie' table. You can move, or remove it, as needed.
+            // requête du dataset pour remplir le datagridview
             this.tA_Remplir_CB_FormatEnvoieTableAdapter.Fill_FormatEnvoi(this.db_cantineDataSet.TA_Remplir_CB_FormatEnvoie);
             // requête du dataset pour remplir le datagridview
             this.tA_Listes_Personnes_query.Fill_Tuteurs(this.db_cantineDataSet.TA_Listes_Personnes);
@@ -44,7 +46,9 @@ namespace ProjetCantine.Vues
             dGdVw_DetailFamille.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Membres.AutoResizeColumns();
         }
+        //*****************************************************************************************************************************************
 
+        //*****************************************************************************************************************************************
         private void btApercu_Click(object sender, EventArgs e)
         {
             int i = dGdVw_DetailFamille.CurrentRow.Index;
@@ -75,7 +79,7 @@ namespace ProjetCantine.Vues
             dr.Close();
             con.Close();
 
-            String msgRetour = facture.facture(label4.Text, label6.Text, label8.Text, label10.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
+            String msgRetour = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
                                                 ,debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
 
             // teste si le fichier a bien été creer           
@@ -91,7 +95,10 @@ namespace ProjetCantine.Vues
                 btEnvoi.Enabled = true;
             }
         }
-//********************************************************************* ADAPTÉ ci-dessous
+        //*****************************************************************************************************************************************
+
+        //*****************************************************************************************************************************************
+        //********************************************************************* ADAPTÉ ci-dessous
         public void filtre(object sender, EventArgs e) // les deux textBox sont directement orientés vers cette fonction
         {
             // création de l'objet pour filtrer dataGridView
@@ -99,7 +106,10 @@ namespace ProjetCantine.Vues
             // appelle la méthode liée à la procédure stockée
             controle.filtreParNomParTel(ref dGdVw_DetailFamille, txtBx_RechNom.Text, txtBx_RechNumTel.Text);
         }
+        //*****************************************************************************************************************************************
 
+
+        //*****************************************************************************************************************************************
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -159,12 +169,17 @@ namespace ProjetCantine.Vues
             
             
          }
+        //*****************************************************************************************************************************************
+
+        //*****************************************************************************************************************************************
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
         {
             dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
             dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
+        //*****************************************************************************************************************************************
 
+        //*****************************************************************************************************************************************
         private void button_visualiser_Click(object sender, EventArgs e)
         {
 
@@ -248,8 +263,9 @@ namespace ProjetCantine.Vues
                 btApercu.Enabled = true;
             }
         }
+        //*****************************************************************************************************************************************
 
-       
+        //*****************************************************************************************************************************************
         private string compteurTypeRepas(string typer, ref DataGridViewRow r, string debut, string fin)
         {
             //================================Est ce que c'est mieux d'utiliser les Procédures stockées=================================
@@ -299,7 +315,9 @@ namespace ProjetCantine.Vues
             con.Close();
             return retour;
         }
+        //*****************************************************************************************************************************************
 
+        //*****************************************************************************************************************************************
         private string calculTotalRepasType(int typeRepas, ref DataGridViewRow r, string debut, string fin)
         {
             string retour = "";
@@ -318,7 +336,9 @@ namespace ProjetCantine.Vues
             con.Close();
             return retour;
         }
+        //*****************************************************************************************************************************************
 
+        //*****************************************************************************************************************************************
         private void btEnvoi_Click(object sender, EventArgs e)
         {
             int k = dGdVw_DetailFamille.CurrentRow.Index;
@@ -371,8 +391,7 @@ namespace ProjetCantine.Vues
             {
                 MessageBox.Show("Une erreur est intervenue lors de l'enregistrement de la facture.");
             }
-
-
         }
+        //*****************************************************************************************************************************************
     }
 }

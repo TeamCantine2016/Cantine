@@ -65,19 +65,19 @@
             this.label_Total_Froid = new System.Windows.Forms.Label();
             this.label_Total_Chaud2 = new System.Windows.Forms.Label();
             this.label_Total_Chaud1 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lb_prixTotal = new System.Windows.Forms.Label();
             this.label_prix = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lb_repasAucun = new System.Windows.Forms.Label();
             this.label_aucun = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lb_repasFroid = new System.Windows.Forms.Label();
             this.label_froid = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lb_repasChaud2 = new System.Windows.Forms.Label();
             this.label_chaud2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lb_repasChaud1 = new System.Windows.Forms.Label();
             this.label_chaud1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lb_dateCloture = new System.Windows.Forms.Label();
             this.label_dateCloture = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lb_genererDetails = new System.Windows.Forms.Label();
             this.groupBox1_selectperiode = new System.Windows.Forms.GroupBox();
             this.button_visualiser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
@@ -341,15 +341,15 @@
             this.groupBox_recap.Controls.Add(this.label_Total_Froid);
             this.groupBox_recap.Controls.Add(this.label_Total_Chaud2);
             this.groupBox_recap.Controls.Add(this.label_Total_Chaud1);
-            this.groupBox_recap.Controls.Add(this.label12);
+            this.groupBox_recap.Controls.Add(this.lb_prixTotal);
             this.groupBox_recap.Controls.Add(this.label_prix);
-            this.groupBox_recap.Controls.Add(this.label10);
+            this.groupBox_recap.Controls.Add(this.lb_repasAucun);
             this.groupBox_recap.Controls.Add(this.label_aucun);
-            this.groupBox_recap.Controls.Add(this.label8);
+            this.groupBox_recap.Controls.Add(this.lb_repasFroid);
             this.groupBox_recap.Controls.Add(this.label_froid);
-            this.groupBox_recap.Controls.Add(this.label6);
+            this.groupBox_recap.Controls.Add(this.lb_repasChaud2);
             this.groupBox_recap.Controls.Add(this.label_chaud2);
-            this.groupBox_recap.Controls.Add(this.label4);
+            this.groupBox_recap.Controls.Add(this.lb_repasChaud1);
             this.groupBox_recap.Controls.Add(this.label_chaud1);
             this.groupBox_recap.Location = new System.Drawing.Point(435, 284);
             this.groupBox_recap.Name = "groupBox_recap";
@@ -390,15 +390,15 @@
             this.label_Total_Chaud1.Size = new System.Drawing.Size(0, 13);
             this.label_Total_Chaud1.TabIndex = 36;
             // 
-            // label12
+            // lb_prixTotal
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(146, 177);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(121, 20);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "PRIX TOTAL :";
+            this.lb_prixTotal.AutoSize = true;
+            this.lb_prixTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_prixTotal.Location = new System.Drawing.Point(146, 177);
+            this.lb_prixTotal.Name = "lb_prixTotal";
+            this.lb_prixTotal.Size = new System.Drawing.Size(121, 20);
+            this.lb_prixTotal.TabIndex = 28;
+            this.lb_prixTotal.Text = "PRIX TOTAL :";
             // 
             // label_prix
             // 
@@ -408,14 +408,14 @@
             this.label_prix.Size = new System.Drawing.Size(0, 13);
             this.label_prix.TabIndex = 29;
             // 
-            // label10
+            // lb_repasAucun
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 136);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Aucun";
+            this.lb_repasAucun.AutoSize = true;
+            this.lb_repasAucun.Location = new System.Drawing.Point(21, 136);
+            this.lb_repasAucun.Name = "lb_repasAucun";
+            this.lb_repasAucun.Size = new System.Drawing.Size(38, 13);
+            this.lb_repasAucun.TabIndex = 28;
+            this.lb_repasAucun.Text = "Aucun";
             // 
             // label_aucun
             // 
@@ -425,14 +425,14 @@
             this.label_aucun.Size = new System.Drawing.Size(0, 13);
             this.label_aucun.TabIndex = 29;
             // 
-            // label8
+            // lb_repasFroid
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 100);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 13);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "Repas Froid";
+            this.lb_repasFroid.AutoSize = true;
+            this.lb_repasFroid.Location = new System.Drawing.Point(18, 100);
+            this.lb_repasFroid.Name = "lb_repasFroid";
+            this.lb_repasFroid.Size = new System.Drawing.Size(64, 13);
+            this.lb_repasFroid.TabIndex = 30;
+            this.lb_repasFroid.Text = "Repas Froid";
             // 
             // label_froid
             // 
@@ -442,14 +442,14 @@
             this.label_froid.Size = new System.Drawing.Size(0, 13);
             this.label_froid.TabIndex = 31;
             // 
-            // label6
+            // lb_repasChaud2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 13);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Repas Chaud 2";
+            this.lb_repasChaud2.AutoSize = true;
+            this.lb_repasChaud2.Location = new System.Drawing.Point(18, 63);
+            this.lb_repasChaud2.Name = "lb_repasChaud2";
+            this.lb_repasChaud2.Size = new System.Drawing.Size(81, 13);
+            this.lb_repasChaud2.TabIndex = 32;
+            this.lb_repasChaud2.Text = "Repas Chaud 2";
             // 
             // label_chaud2
             // 
@@ -459,14 +459,14 @@
             this.label_chaud2.Size = new System.Drawing.Size(0, 13);
             this.label_chaud2.TabIndex = 33;
             // 
-            // label4
+            // lb_repasChaud1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Repas Chaud 1";
+            this.lb_repasChaud1.AutoSize = true;
+            this.lb_repasChaud1.Location = new System.Drawing.Point(18, 33);
+            this.lb_repasChaud1.Name = "lb_repasChaud1";
+            this.lb_repasChaud1.Size = new System.Drawing.Size(81, 13);
+            this.lb_repasChaud1.TabIndex = 34;
+            this.lb_repasChaud1.Text = "Repas Chaud 1";
             // 
             // label_chaud1
             // 
@@ -476,14 +476,14 @@
             this.label_chaud1.Size = new System.Drawing.Size(0, 13);
             this.label_chaud1.TabIndex = 35;
             // 
-            // label3
+            // lb_dateCloture
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(138, 13);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Dernière date de clôturation";
+            this.lb_dateCloture.AutoSize = true;
+            this.lb_dateCloture.Location = new System.Drawing.Point(16, 26);
+            this.lb_dateCloture.Name = "lb_dateCloture";
+            this.lb_dateCloture.Size = new System.Drawing.Size(138, 13);
+            this.lb_dateCloture.TabIndex = 28;
+            this.lb_dateCloture.Text = "Dernière date de clôturation";
             // 
             // label_dateCloture
             // 
@@ -493,21 +493,21 @@
             this.label_dateCloture.Size = new System.Drawing.Size(0, 13);
             this.label_dateCloture.TabIndex = 29;
             // 
-            // label7
+            // lb_genererDetails
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Générer Détails :";
+            this.lb_genererDetails.AutoSize = true;
+            this.lb_genererDetails.Location = new System.Drawing.Point(16, 80);
+            this.lb_genererDetails.Name = "lb_genererDetails";
+            this.lb_genererDetails.Size = new System.Drawing.Size(84, 13);
+            this.lb_genererDetails.TabIndex = 30;
+            this.lb_genererDetails.Text = "Générer détails :";
             // 
             // groupBox1_selectperiode
             // 
             this.groupBox1_selectperiode.Controls.Add(this.button_visualiser);
-            this.groupBox1_selectperiode.Controls.Add(this.label3);
+            this.groupBox1_selectperiode.Controls.Add(this.lb_dateCloture);
             this.groupBox1_selectperiode.Controls.Add(this.dateTimePicker_debut);
-            this.groupBox1_selectperiode.Controls.Add(this.label7);
+            this.groupBox1_selectperiode.Controls.Add(this.lb_genererDetails);
             this.groupBox1_selectperiode.Controls.Add(this.dateTimePicker_fin);
             this.groupBox1_selectperiode.Controls.Add(this.label_dateCloture);
             this.groupBox1_selectperiode.Controls.Add(this.label1);
@@ -592,19 +592,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox_recap;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lb_prixTotal;
         private System.Windows.Forms.Label label_prix;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lb_repasAucun;
         private System.Windows.Forms.Label label_aucun;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lb_repasFroid;
         private System.Windows.Forms.Label label_froid;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lb_repasChaud2;
         private System.Windows.Forms.Label label_chaud2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_repasChaud1;
         private System.Windows.Forms.Label label_chaud1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lb_dateCloture;
         private System.Windows.Forms.Label label_dateCloture;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lb_genererDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn prénomDataGridViewTextBoxColumn1;
