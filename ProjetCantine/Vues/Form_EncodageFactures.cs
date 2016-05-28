@@ -20,10 +20,11 @@ namespace ProjetCantine.Vues
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
         SqlConnection con = new SqlConnection(DbConnection.connectionString);
-        string debut = "";
-        string fin = "";
+        string date_debut = "";
+        string date_fin = "";
         float prix = 0;
         string path_facture = "";
+
 
         public Form_EncodageFactures()
         {
@@ -41,7 +42,7 @@ namespace ProjetCantine.Vues
             // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
             dGdVw_DetailFamille.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGdVw_DetailFamille.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView_Membres.AutoResizeColumns();
+            dgv_enfant_facturation.AutoResizeColumns();
         }
 
 
@@ -120,7 +121,11 @@ namespace ProjetCantine.Vues
             // création objet pour remplir datagridview
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
             // appelle méthode qui affiche les tuteurs
-            controle.afficheListeEnfantSelonSelection(ref dataGridView_Membres, ref dGdVw_DetailFamille, indexLigne);
+            controle.afficheListeEnfantSelonSelection(ref dgv_enfant_facturation, ref dGdVw_DetailFamille, indexLigne);
+            // pour adapter la largeur de colonnes
+            dgv_enfant_facturation.AutoResizeColumns();
+            dgv_enfant_facturation.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_enfant_facturation.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // appelle methode qui recherche la date dernière clôture
             label_dateCloture.Text = controle.get_DateCloture(ref dGdVw_DetailFamille, indexLigne);
@@ -140,49 +145,65 @@ namespace ProjetCantine.Vues
             
          }
 
-
-
-
-        //*****************************************************************************************************************************************
-        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
         {
             dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
             dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
-        //*****************************************************************************************************************************************
+
+
+
 
         //*****************************************************************************************************************************************
         private void button_visualiser_Click(object sender, EventArgs e)
         {
+            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
 
-            int k = dGdVw_DetailFamille.CurrentRow.Index;
-            DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
-            debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
-            fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
+            // la ligne du tuteur sélectionné
+            DataGridViewRow ligneTuteur = dGdVw_DetailFamille.Rows[dGdVw_DetailFamille.CurrentRow.Index];
+            // Periode du récapitulatif selon les dateTimePicker
+            date_debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
+            date_fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
 
-            groupBox_recap.Text = "Récap pour : " + r.Cells[1].Value.ToString() + " " + r.Cells[2].Value.ToString() ;
-
+            // afficher dans le titre du groupbox le tuteur concerné
+            groupBox_recap.Text = "Récap pour le tuteur : " + ligneTuteur.Cells[1].Value.ToString() + " " + ligneTuteur.Cells[2].Value.ToString() ;
+            // reset des pages du tabcontrol
             tabDetail.TabPages.Clear();
 
-            for (int i = 0; i < dataGridView_Membres.Rows.Count; i++)
+            for (int i = 0; i < dgv_enfant_facturation.Rows.Count; i++)
             {
-                string title = dataGridView_Membres.Rows[i].Cells[0].Value.ToString() + " " + dataGridView_Membres.Rows[i].Cells[1].Value.ToString();
-
-                TabPage myTabPage = new TabPage(title);     // Nouvel onglet et le title pour afficher le nom et le prenom sur l'onglet 
-                tabDetail.TabPages.Add(myTabPage);        // J'ajoute l'onglet au tabcontrol
-
-
-
                 //====Création de datagridView======================================================
                 DataGridView dataGridView_historique = new DataGridView();      // Nouveau DataGridView pour afficher l'historique de chaque élève
                 dataGridView_historique.ReadOnly = true; // juste la lecture dans le datagrid sans modification
                 dataGridView_historique.Size = new System.Drawing.Size(460, 187); // la taille de datagridview          
                 dataGridView_historique.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;  // pour afficher tout la ligne dans le datagridview
-                                                                                                                       //=====================================================================================
+                //==================================================================================
+
+                // le nom de l'onglet du tab
+                string nomPrenomEnfant = dgv_enfant_facturation.Rows[i].Cells[1].Value.ToString() + " " + dgv_enfant_facturation.Rows[i].Cells[2].Value.ToString();
+                // créer le tab par enfant
+                TabPage myTabPage = new TabPage(nomPrenomEnfant); // Nouvel onglet et le title pour afficher le nom et le prenom sur l'onglet 
+                tabDetail.TabPages.Add(myTabPage); // J'ajoute l'onglet au tabcontrol
+
+                // une requete qui affiche tout les repas avec leur date et prix pris par un élève
+                controle.show_detailsRepasUnEnfant(ref dataGridView_historique, date_debut, date_fin, dgv_enfant_facturation.Rows[i].Cells[0].Value.ToString());
+                // ajouter le dgv généré dans le tab
+                myTabPage.Controls.Add(dataGridView_historique); // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
+
+
+
+
+
+
+                // calcul de du prix total pour 1 enfant
+                float test = controle.get_sommePrixRepasEnfant(5, date_debut, date_fin); // dans la periode du 01-11-2015 au 30-11-2015 donne pour ID 5 48 euros
+
+  
+
                 // une requete pour afficher le prix total de tous les repas par tuteur
                 string requete = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                 requete += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                requete += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
+                requete += " AND  tbl_personne.nom = '" + ligneTuteur.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + date_debut + "' AND '" + date_fin + "' ";
 
                 con.Open();
                 SqlCommand cmd1 = new SqlCommand(requete, con);
@@ -198,36 +219,21 @@ namespace ProjetCantine.Vues
                 con.Close();
 
 
-                // une requete qui affiche tout les repas avec leur date et prix pris par un élève
-                String query = "SELECT type_repas AS 'Type de Repas', date_repas AS 'Date de repas', CONCAT(tbl_prix_repas.prix,' €') AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                query += "WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id=tbl_prix_repas.id ";
-                query += "  AND CONCAT(nom,' ',prenom) = '" + title + "' AND date_repas BETWEEN '" + debut + "' AND '" + fin + "' ORDER BY prenom ";
-
-
-                con.Open();
-
-                SqlCommand cmd = new SqlCommand(query, con);
-                SqlDataReader dr = cmd.ExecuteReader();
-                DataTable t = new DataTable();
-                t.Load(dr);
-                dataGridView_historique.DataSource = t;
-
-                con.Close();
-                myTabPage.Controls.Add(dataGridView_historique);                // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
+                
 
 
                 //===============================Pour compter les repas prisent par tuteur par type de repas=============================================
 
-                label_chaud1.Text = compteurTypeRepas("chaud1", ref r, debut, fin);
-                label_chaud2.Text = compteurTypeRepas("chaud2", ref r, debut, fin);
-                label_froid.Text = compteurTypeRepas("froid", ref r, debut, fin);
-                label_aucun.Text = compteurTypeRepas("aucun", ref r, debut, fin);
+                label_chaud1.Text = compteurTypeRepas("chaud1", ref ligneTuteur, date_debut, date_fin);
+                label_chaud2.Text = compteurTypeRepas("chaud2", ref ligneTuteur, date_debut, date_fin);
+                label_froid.Text = compteurTypeRepas("froid", ref ligneTuteur, date_debut, date_fin);
+                label_aucun.Text = compteurTypeRepas("aucun", ref ligneTuteur, date_debut, date_fin);
 
                 //================================ Total prix par catégorie de repas ================================================================      
-                label_Total_Chaud1.Text = calculTotalRepasType(1, ref r,debut,fin);
-                label_Total_Chaud2.Text = calculTotalRepasType(2, ref r,debut,fin);
-                label_Total_Froid.Text = calculTotalRepasType(3, ref r,debut,fin);
-                label_Total_Aucun.Text = calculTotalRepasType(4, ref r,debut,fin);
+                label_Total_Chaud1.Text = calculTotalRepasType(1, ref ligneTuteur,date_debut,date_fin);
+                label_Total_Chaud2.Text = calculTotalRepasType(2, ref ligneTuteur,date_debut,date_fin);
+                label_Total_Froid.Text = calculTotalRepasType(3, ref ligneTuteur,date_debut,date_fin);
+                label_Total_Aucun.Text = calculTotalRepasType(4, ref ligneTuteur,date_debut,date_fin);
 
             }
             if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
@@ -240,35 +246,6 @@ namespace ProjetCantine.Vues
         //*****************************************************************************************************************************************
         private string compteurTypeRepas(string typer, ref DataGridViewRow r, string debut, string fin)
         {
-            //================================Est ce que c'est mieux d'utiliser les Procédures stockées=================================
-
-            //string retour = "";
-            //con.Open();
-
-            //SqlCommand cmd = new SqlCommand("PS_Calcul_Repas", con);
-
-            //cmd.CommandType = CommandType.StoredProcedure;
-
-            //cmd.Parameters.Add("@typerepas", SqlDbType.NVarChar);
-            //cmd.Parameters.Add("@dateD", SqlDbType.NVarChar);
-            //cmd.Parameters.Add("@dateF", SqlDbType.NVarChar);
-            //cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
-
-            //cmd.Parameters["@typerepas"].Value = typer;
-            //cmd.Parameters["@nom"].Value = r.Cells[1].Value.ToString();
-            //cmd.Parameters["@dateD"].Value = debut;
-            //cmd.Parameters["@dateF"].Value = fin;
-
-
-            //SqlDataReader dr = cmd.ExecuteReader();
-            //while (dr.Read())
-            //{
-            //    retour = dr["Type_Repas"].ToString();
-            //}
-            //dr.Close();
-            //con.Close();
-
-            //============================================================================================================
 
             string retour = "";
             string query = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
@@ -320,7 +297,7 @@ namespace ProjetCantine.Vues
             int resultat2 = 0;
             //==================================On insere les données dans la table tbl_facture=========================
             string query = "INSERT Into tbl_facture (total_a_payer,debut_periode,fin_periode) ";
-            query += "VALUES ('"+ prix +"','" + debut + "','" + fin + "')";
+            query += "VALUES ('"+ prix +"','" + date_debut + "','" + date_fin + "')";
             con.Open();
             SqlCommand cmd = new SqlCommand(query, con);
             resultat = cmd.ExecuteNonQuery();

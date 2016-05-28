@@ -43,7 +43,7 @@
             this.paysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tAListesPersonnesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.db_cantineDataSet = new ProjetCantine.Models.db_cantineDataSet();
-            this.dataGridView_Membres = new System.Windows.Forms.DataGridView();
+            this.dgv_enfant_facturation = new System.Windows.Forms.DataGridView();
             this.tblhistoriquefactureBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tARemplirCBFormatEnvoieBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabDetail = new System.Windows.Forms.TabControl();
@@ -83,7 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_enfant_facturation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).BeginInit();
             this.groupBox_recap.SuspendLayout();
@@ -209,18 +209,18 @@
             this.db_cantineDataSet.DataSetName = "db_cantineDataSet";
             this.db_cantineDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridView_Membres
+            // dgv_enfant_facturation
             // 
-            this.dataGridView_Membres.AllowUserToAddRows = false;
-            this.dataGridView_Membres.AllowUserToDeleteRows = false;
-            this.dataGridView_Membres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Membres.Location = new System.Drawing.Point(559, 56);
-            this.dataGridView_Membres.MultiSelect = false;
-            this.dataGridView_Membres.Name = "dataGridView_Membres";
-            this.dataGridView_Membres.ReadOnly = true;
-            this.dataGridView_Membres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Membres.Size = new System.Drawing.Size(332, 161);
-            this.dataGridView_Membres.TabIndex = 16;
+            this.dgv_enfant_facturation.AllowUserToAddRows = false;
+            this.dgv_enfant_facturation.AllowUserToDeleteRows = false;
+            this.dgv_enfant_facturation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_enfant_facturation.Location = new System.Drawing.Point(559, 56);
+            this.dgv_enfant_facturation.MultiSelect = false;
+            this.dgv_enfant_facturation.Name = "dgv_enfant_facturation";
+            this.dgv_enfant_facturation.ReadOnly = true;
+            this.dgv_enfant_facturation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_enfant_facturation.Size = new System.Drawing.Size(332, 161);
+            this.dgv_enfant_facturation.TabIndex = 16;
             // 
             // tARemplirCBFormatEnvoieBindingSource
             // 
@@ -542,7 +542,7 @@
             this.Controls.Add(this.btEnvoi);
             this.Controls.Add(this.btApercu);
             this.Controls.Add(this.tabDetail);
-            this.Controls.Add(this.dataGridView_Membres);
+            this.Controls.Add(this.dgv_enfant_facturation);
             this.Controls.Add(this.dGdVw_DetailFamille);
             this.Controls.Add(this.txtBx_RechNumTel);
             this.Controls.Add(this.txtBx_RechNom);
@@ -554,7 +554,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGdVw_DetailFamille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tAListesPersonnesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Membres)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_enfant_facturation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblhistoriquefactureBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tARemplirCBFormatEnvoieBindingSource)).EndInit();
             this.groupBox_recap.ResumeLayout(false);
@@ -572,7 +572,7 @@
         private System.Windows.Forms.TextBox txtBx_RechNom;
         private System.Windows.Forms.Label label_RechNumTel;
         private System.Windows.Forms.DataGridView dGdVw_DetailFamille;
-        private System.Windows.Forms.DataGridView dataGridView_Membres;
+        private System.Windows.Forms.DataGridView dgv_enfant_facturation;
         private System.Windows.Forms.TabControl tabDetail;
         private System.Windows.Forms.Button btApercu;
         private System.Windows.Forms.Button btEnvoi;

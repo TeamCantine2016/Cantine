@@ -19,6 +19,7 @@ namespace ProjetCantine.Vues
         {
             InitializeComponent();
         }
+
         SqlConnection maCon = new SqlConnection(DbConnection.connectionString);
         String img_path = "";
 
@@ -27,6 +28,7 @@ namespace ProjetCantine.Vues
             // création de l'objet de contrôle pour comuniquer avec le contrôleur    
             Ctrl_GestionEtablissement controle = new Ctrl_GestionEtablissement();
             bool verif = controle.verifExistEtablissement();
+
             // Test pour voir si il y a déjà des infos dans la db
             if (verif == true)
             {

@@ -58,22 +58,32 @@ namespace ProjetCantine.Models
                     laRequete += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.tuteur_id= tbl_personne.id ";
                     break;
                 case "listeIntermediaire_Enfant": // LISTE/TABLEAU INTERMEDIAIRE
-                    laRequete += "Enfant AS( SELECT prenom, nom, date_naissance, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
+                    laRequete = "Enfant AS( SELECT prenom, nom, date_naissance, tbl_personne.id FROM tbl_relation_tuteur_enfant ";
                     laRequete += "INNER JOIN tbl_personne ON tbl_relation_tuteur_enfant.enfant_id= tbl_personne.id) ";
                     break;
                 case "listeEnfantSelonTuteur_Facture":
-                    laRequete += "SELECT DISTINCT Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' ";
+                    laRequete = "SELECT DISTINCT Enfant.id AS 'ID', Enfant.nom AS 'Nom', Enfant.prenom AS 'Prénom', Enfant.date_naissance AS 'Date de Naissance' ";
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
                 case "AffichageEtablissement":
-                    laRequete += "SELECT * FROM tbl_etablissement Inner join tbl_adresse on tbl_adresse.id = tbl_etablissement.adresse_id";
+                    laRequete = "SELECT * FROM tbl_etablissement Inner join tbl_adresse on tbl_adresse.id = tbl_etablissement.adresse_id";
                     break;
                 case "recupIdAdresse":
-                    laRequete += "SELECT id FROM tbl_adresse";
+                    laRequete = "SELECT id FROM tbl_adresse";
                     break;
                 case "dateCloture":
-                    laRequete += "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+                    laRequete = "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+                    break;
+                case "detailsRepasConsomesUnEnfant":
+                    laRequete = "SELECT type_repas AS 'Type de Repas', date_repas AS 'Date de repas', CONCAT(tbl_prix_repas.prix,' €') AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
+                    laRequete += "WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id=tbl_prix_repas.id ";
+                    break;
+                case "sommeRepasUnEnfant":
+                    laRequete = "SELECT SUM(prix) as 'Prix total' ";
+                    laRequete += "FROM[db_cantine].[dbo].[tbl_relation_repas] ";
+                    laRequete += "INNER JOIN tbl_repas ON tbl_relation_repas.repas_id = tbl_repas.id ";
+                    laRequete += "INNER JOIN tbl_prix_repas ON tbl_relation_repas.repas_id = tbl_prix_repas.id ";
                     break;
                 default:
                     return null;
@@ -109,7 +119,7 @@ namespace ProjetCantine.Models
         public DateTime get_date(String requete)
         {
             DateTime dateCloture;
-            DateTime.TryParse("01011970", out dateCloture);
+            DateTime.TryParse("01/01/1970", out dateCloture);
             // affectation de la variable globale avec la requête reçue
             commande = new SqlCommand(requete, connexion);
             // execution de la requete
@@ -131,6 +141,8 @@ namespace ProjetCantine.Models
                 lecteurDeDonnees = commande.ExecuteReader();
                 tableDeDonnees.Load(lecteurDeDonnees);
                 tableauCible.DataSource = tableDeDonnees;
+                
+                // pour récupérer l'id de l'enfant lors de l'encodage facture uniquement
             }
             catch (SystemException exception)
             {
@@ -165,9 +177,6 @@ namespace ProjetCantine.Models
                 MessageBox.Show("1. Erreur injection DB>Reader ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // La fermeture de la connexion ce ferra un peut plus loin.
-            // Il y a un problème sinon pour lire les données. Si je la ferme ici j'ai plus d'accèes aux données :/
-
             return lecteurDeDonnees;
         }
 
@@ -197,7 +206,7 @@ namespace ProjetCantine.Models
 
         public int insert(String tableCible, String donnees) 
         {
-            int temp;
+            int nbInsertions;
             /*
              *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
              *  exemple:  
@@ -216,10 +225,10 @@ namespace ProjetCantine.Models
 
             // exécuter la requête
             commande = new SqlCommand(query, connexion);
-            temp = commande.ExecuteNonQuery();
+            nbInsertions = commande.ExecuteNonQuery();
             connexion.Close();
 
-            return temp;
+            return nbInsertions;
         }
 
 //****** DELETE

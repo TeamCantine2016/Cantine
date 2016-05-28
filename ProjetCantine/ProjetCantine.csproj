@@ -58,7 +58,7 @@
     <Compile Include="Controller\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
     <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
-    <Compile Include="Ctrl_GestionEtablissement.cs" />
+    <Compile Include="Controller\Ctrl_GestionEtablissement.cs" />
     <Compile Include="Models\db_cantineDataSet.cs">
       <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </Compile>
