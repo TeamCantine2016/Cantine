@@ -18,7 +18,7 @@ namespace ProjetCantine
         SqlConnection maCon = new SqlConnection(DbConnection.connectionString);
 
         public String facture(string repaschaud1, string repaschaud2, string repasfroid, string aucun, string cmptchaud1, string cmptchaud2, string cmptfroid, string cmptaucun, int facture_id, DateTime debut, DateTime fin
-                                ,string codeClient, string nomClient , string prenomClient , string adresseClient,string villeClient ,string paysClient)
+                                , string codeClient, string nomClient, string prenomClient, string adresseClient, string villeClient, string paysClient)
         {
 
             try
@@ -74,7 +74,7 @@ namespace ProjetCantine
 
                 }
 
-              
+
 
                 ws.Cells[7, "D"] = facture_id; //N° facture
                 ws.Cells[7, "E"] = DateTime.Today; // Date Facture
@@ -85,8 +85,8 @@ namespace ProjetCantine
 
                 //Encodage période
 
-               ws.Cells[20, "C"] = debut; 
-                ws.Cells[20, "E"] = fin; 
+                ws.Cells[20, "C"] = debut;
+                ws.Cells[20, "E"] = fin;
 
                 //Encodage repas
 
@@ -131,7 +131,7 @@ namespace ProjetCantine
             }
             catch (Exception msg)
             {
-                return "Problème lors de la  phase de création du pdf :" + msg;
+                return "Problème lors de la  phase de création du pdf :\r\n\r\n" + msg;
             }
 
         }

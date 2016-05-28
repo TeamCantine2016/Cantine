@@ -55,8 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApercuFacture.cs.old" />
-    <Compile Include="ApercuFacture.cs" />
+    <Compile Include="Controller\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
     <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
     <Compile Include="Models\db_cantineDataSet.cs">

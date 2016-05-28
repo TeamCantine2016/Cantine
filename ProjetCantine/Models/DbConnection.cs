@@ -66,6 +66,9 @@ namespace ProjetCantine.Models
                     laRequete += "FROM Tuteur, Enfant, tbl_relation_tuteur_enfant ";
                     laRequete += "WHERE Tuteur.id = tbl_relation_tuteur_enfant.tuteur_id AND tbl_relation_tuteur_enfant.enfant_id = Enfant.id";
                     break;
+                case "dateCloture":
+                    laRequete += "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
+                    break;
                 default:
                     return null;
             }
@@ -95,6 +98,24 @@ namespace ProjetCantine.Models
             commande = new SqlCommand(requete, connexion);
             // execution de la requête
             injectionDesDonnees(ref dataGridCible);
+        }
+
+        public DateTime get_date(String requete)
+        {
+            DateTime dateCloture;
+            DateTime.TryParse("01011970", out dateCloture);
+            // affectation de la variable globale avec la requête reçue
+            commande = new SqlCommand(requete, connexion);
+            // execution de la requete
+            
+            lecteurDeDonnees = commande.ExecuteReader();
+            while (lecteurDeDonnees.Read())
+            {
+                DateTime.TryParse(lecteurDeDonnees["fin_periode"].ToString().Substring(0,10), out dateCloture);
+            }
+            lecteurDeDonnees.Close();
+            
+            return dateCloture;
         }
 
         private void injectionDesDonnees(ref DataGridView tableauCible)

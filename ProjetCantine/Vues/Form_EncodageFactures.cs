@@ -16,7 +16,6 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
-        //*****************************************************************************************************************************************
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
@@ -25,15 +24,13 @@ namespace ProjetCantine.Vues
         string fin = "";
         float prix = 0;
         string path_facture = "";
-        //*****************************************************************************************************************************************
 
         public Form_EncodageFactures()
         {
             InitializeComponent();
         }
 
-        //*****************************************************************************************************************************************
-        private void Form_EncodageFactures_Load(object sender, EventArgs e)
+        private void Form_EncodageFactures_Load(object sender, EventArgs e) // 99% READY - FILL UP DATAGRIDS 
         {
             // requête du dataset pour remplir le datagridview
             this.tA_Remplir_CB_FormatEnvoieTableAdapter.Fill_FormatEnvoi(this.db_cantineDataSet.TA_Remplir_CB_FormatEnvoie);
@@ -46,26 +43,29 @@ namespace ProjetCantine.Vues
             dGdVw_DetailFamille.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Membres.AutoResizeColumns();
         }
-        //*****************************************************************************************************************************************
+
 
         //*****************************************************************************************************************************************
-        private void btApercu_Click(object sender, EventArgs e)
+        private void btApercu_Click(object sender, EventArgs e) // CREATION FACTURE 
         {
-            int i = dGdVw_DetailFamille.CurrentRow.Index;
-            DataGridViewRow r = dGdVw_DetailFamille.Rows[i];
-            string codeClient = r.Cells[0].Value.ToString();
-            string nomClient = r.Cells[1].Value.ToString();
-            string prenomClient = r.Cells[2].Value.ToString();
-            string adresseClient = r.Cells[4].Value.ToString();
-            string villeClient = r.Cells[5].Value.ToString();
-            string paysClient = r.Cells[6].Value.ToString();
-
-
-            ApercuFacture facture = new ApercuFacture();
+            // création variables
             int facture_id = 0;
-               DateTime debut = dateTimePicker_debut.Value;
-               DateTime  fin = dateTimePicker_fin.Value;
-
+            // capturer la periode de la facture définie
+            DateTime debut = dateTimePicker_debut.Value;
+            DateTime fin = dateTimePicker_fin.Value;
+            // capturer l'index de la ligne cliqué
+            int i = dGdVw_DetailFamille.CurrentRow.Index;
+            // capturer la ligne cliqué
+            DataGridViewRow lineSelected = dGdVw_DetailFamille.Rows[i];
+            // initialisation des variables dont source est la ligne cliquée
+            string codeClient = lineSelected.Cells[0].Value.ToString();
+            string nomClient = lineSelected.Cells[1].Value.ToString();
+            string prenomClient = lineSelected.Cells[2].Value.ToString();
+            string adresseClient = lineSelected.Cells[4].Value.ToString();
+            string villeClient = lineSelected.Cells[5].Value.ToString();
+            string paysClient = lineSelected.Cells[6].Value.ToString();
+            
+            //....................................................................??? toujours aller chercher la facture "max" ???
             string query = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
             
             con.Open();
@@ -79,42 +79,42 @@ namespace ProjetCantine.Vues
             dr.Close();
             con.Close();
 
-            String msgRetour = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
+            // créer objet Facture
+            ApercuFacture facture = new ApercuFacture();
+            // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
+            String pathNouvelleFacture = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
                                                 ,debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
 
             // teste si le fichier a bien été creer           
-            if (msgRetour.LastIndexOf(".pdf") == -1)
-            {
-                MessageBox.Show(msgRetour);
+            if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
+            { // si je ne reçois pas un path, alors message d'erreur
+                MessageBox.Show(pathNouvelleFacture);
             }
             else
-            {
-                MessageBox.Show("La création à bien été éffectué à l'adresse: " + msgRetour);
-                facture.affichageFacture(msgRetour);
-                path_facture = msgRetour;
+            { // si je reçois un path, c'est ok
+                MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
+                facture.affichageFacture(pathNouvelleFacture);
+                path_facture = pathNouvelleFacture;
                 btEnvoi.Enabled = true;
             }
         }
         //*****************************************************************************************************************************************
 
-        //*****************************************************************************************************************************************
-        //********************************************************************* ADAPTÉ ci-dessous
-        public void filtre(object sender, EventArgs e) // les deux textBox sont directement orientés vers cette fonction
+        public void filtre(object sender, EventArgs e) // 99% READY -  FILTRE TUTEUR / ENFANT POUR DATAGRIDVIEW-MEMBRE 
         {
             // création de l'objet pour filtrer dataGridView
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
             // appelle la méthode liée à la procédure stockée
             controle.filtreParNomParTel(ref dGdVw_DetailFamille, txtBx_RechNom.Text, txtBx_RechNumTel.Text);
         }
-        //*****************************************************************************************************************************************
+ 
 
-
-        //*****************************************************************************************************************************************
-        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 90% READY - Remplir DGV-Membre - Gestion date dernière clôture
         {
-
+            // débloquer zone selection periode
             groupBox1_selectperiode.Enabled = true;
 
+            // capturer l'index de la ligne sélectionnée
             int indexLigne = dGdVw_DetailFamille.CurrentRow.Index;
             
             // création objet pour remplir datagridview
@@ -122,54 +122,26 @@ namespace ProjetCantine.Vues
             // appelle méthode qui affiche les tuteurs
             controle.afficheListeEnfantSelonSelection(ref dataGridView_Membres, ref dGdVw_DetailFamille, indexLigne);
 
-//********************************************************************* FIN ADAPTATION POUR LE MOMENT
+            // appelle methode qui recherche la date dernière clôture
+            label_dateCloture.Text = controle.get_DateCloture(ref dGdVw_DetailFamille, indexLigne);
 
-
-            /* cette ligne sera supprimé lorsque la prochaine requête sera également déplacé dans DbConnection.cs */
-            DataGridViewRow r = dGdVw_DetailFamille.Rows[indexLigne];
-
-//### BUG ### ci-dessous il y a un bug qui se forme lorsqu'après avoir fait des sélections ou filtrage de la dgv principale et après on y sélectionne une ligne
-            String req = "SELECT MAX(tbl_facture.fin_periode) AS 'fin_periode' FROM tbl_relation_facture INNER JOIN tbl_facture ON tbl_relation_facture.facture_id = tbl_facture.id ";
-            req += "WHERE(tbl_relation_facture.tuteur_id = '" + r.Cells[0].Value.ToString() + "')";
-            //### Bug résolu: la procédure stocké ne renvoie pas l'id, donc le datagridview devient erroné après le filtre !!
-            //### Il faut donc uniquement rectifier la procédure stockée
-
-
-            con.Open();
-            SqlCommand cmd1 = new SqlCommand(req, con);
-
-            SqlDataReader dr1 = cmd1.ExecuteReader();
-            while (dr1.Read())
-            {
-                try
-                {
-                    label_dateCloture.Text = dr1["fin_periode"].ToString().Substring(0,10);
-                }
-                catch(Exception)
-                {
-                    MessageBox.Show("Aucune facture encodée pour cette personne");
-                    label_dateCloture.Text = " ";
-                }
-                    
-            }
-            dr1.Close();
-            con.Close();
-
-            // Si la label pour afficher la date de clôture est vide ça veut dire que cette personne n'a pas encore de facture dans la db
-            if (label_dateCloture.Text != " ")
-            {
-                dateTimePicker_debut.MinDate = Convert.ToDateTime(label_dateCloture.Text); // on initialise la date min de datetimepicker à la date de la derniere facture(impossible de selectionner les date d'avant)
-                dateTimePicker_debut.MinDate = dateTimePicker_debut.MinDate.AddDays(1); // on ajoute un jour à la datetimepicker pour commencer une nouvelle facture
-                dateTimePicker_debut.Value = dateTimePicker_debut.MinDate;      
+            // mettre à jour les dateTimePicker du formulaire
+            DateTime laDate; // pour y placer la date converti de puis la textbox
+            if (DateTime.TryParse(label_dateCloture.Text, out laDate)) // renvoie "true" si la conversion en date est possible et affecte le résultat de la conversion à la variable "laDate"
+            { 
+                dateTimePicker_debut.Value = laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
+                dateTimePicker_fin.Value = DateTime.Now; // initialisation au jour actuel - ajourd'hui
             }
             else
             {
-                dateTimePicker_debut.MinDate = Convert.ToDateTime("01-01-1970");
+            /* A MODIFIER SELON COMMENTAIRE */ dateTimePicker_debut.Value = DateTime.Now; // <- C'est faux, doit être initialisé au dernier repas déjà consommé s'il existe !!
             }
             
             
          }
-        //*****************************************************************************************************************************************
+
+
+
 
         //*****************************************************************************************************************************************
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e)

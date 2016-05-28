@@ -10,15 +10,15 @@ namespace ProjetCantine.Controller
 {
     class Ctrl_EncodageFactures
     {
-        DbConnection dbTalk = new DbConnection(); // variable globale
-
         public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
         {
+            DbConnection dbTalk = new DbConnection();
             dbTalk.filtreParNomParTel(ref tableauCible, nom, telephone);
         }
 
         public void afficheListeEnfantSelonSelection(ref DataGridView tableauCible, ref DataGridView tableauSource, int index)
         {
+            DbConnection dbTalk = new DbConnection();
             // ligne du datagridview courant
             DataGridViewRow ligne = tableauSource.Rows[index];
 
@@ -34,6 +34,34 @@ namespace ProjetCantine.Controller
             // injection des données dans la datagridview
             dbTalk.injectDataToDataGridView(query, ref tableauCible);
         }
+
+        public String get_DateCloture(ref DataGridView tableauSource, int index)
+        {
+            DbConnection dbTalk = new DbConnection();
+            // ligne du datagridview courant
+            DataGridViewRow ligne = tableauSource.Rows[index];
+
+            // requête pour la dernière date de clôture
+            String query = dbTalk.getQuery("dateCloture");
+            // spécification des critères
+            query += "WHERE(tbl_relation_facture.tuteur_id = " + ligne.Cells[0].Value.ToString() + ")";
+
+            // récupérer et afficher la dernière date de clôture
+            try
+            {
+                return dbTalk.get_date(query).ToString().Substring(0, 10);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(" La dernière facture pour ce tuteur \r\n n'a pas encore été générée");
+                return "> Aucune facture existante.";
+            }
+        }
+
+
+
+
+
 
     }
 }
