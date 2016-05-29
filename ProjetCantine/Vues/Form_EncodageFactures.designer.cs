@@ -95,9 +95,9 @@
             this.label_RechNom.AutoSize = true;
             this.label_RechNom.Location = new System.Drawing.Point(16, 24);
             this.label_RechNom.Name = "label_RechNom";
-            this.label_RechNom.Size = new System.Drawing.Size(101, 13);
+            this.label_RechNom.Size = new System.Drawing.Size(107, 13);
             this.label_RechNom.TabIndex = 1;
-            this.label_RechNom.Text = "Recherche par nom";
+            this.label_RechNom.Text = "Recherche par nom :";
             // 
             // txtBx_RechNumTel
             // 
@@ -124,7 +124,7 @@
             this.label_RechNumTel.Name = "label_RechNumTel";
             this.label_RechNumTel.Size = new System.Drawing.Size(172, 13);
             this.label_RechNumTel.TabIndex = 4;
-            this.label_RechNumTel.Text = "Recherche par Numéro Téléphone";
+            this.label_RechNumTel.Text = "Recherche par numéro téléphone :";
             // 
             // dGdVw_DetailFamille
             // 
@@ -430,9 +430,9 @@
             this.lb_repasFroid.AutoSize = true;
             this.lb_repasFroid.Location = new System.Drawing.Point(18, 100);
             this.lb_repasFroid.Name = "lb_repasFroid";
-            this.lb_repasFroid.Size = new System.Drawing.Size(64, 13);
+            this.lb_repasFroid.Size = new System.Drawing.Size(61, 13);
             this.lb_repasFroid.TabIndex = 30;
-            this.lb_repasFroid.Text = "Repas Froid";
+            this.lb_repasFroid.Text = "Repas froid";
             // 
             // label_froid
             // 
@@ -447,9 +447,9 @@
             this.lb_repasChaud2.AutoSize = true;
             this.lb_repasChaud2.Location = new System.Drawing.Point(18, 63);
             this.lb_repasChaud2.Name = "lb_repasChaud2";
-            this.lb_repasChaud2.Size = new System.Drawing.Size(81, 13);
+            this.lb_repasChaud2.Size = new System.Drawing.Size(80, 13);
             this.lb_repasChaud2.TabIndex = 32;
-            this.lb_repasChaud2.Text = "Repas Chaud 2";
+            this.lb_repasChaud2.Text = "Repas chaud 2";
             // 
             // label_chaud2
             // 
@@ -464,9 +464,9 @@
             this.lb_repasChaud1.AutoSize = true;
             this.lb_repasChaud1.Location = new System.Drawing.Point(18, 33);
             this.lb_repasChaud1.Name = "lb_repasChaud1";
-            this.lb_repasChaud1.Size = new System.Drawing.Size(81, 13);
+            this.lb_repasChaud1.Size = new System.Drawing.Size(80, 13);
             this.lb_repasChaud1.TabIndex = 34;
-            this.lb_repasChaud1.Text = "Repas Chaud 1";
+            this.lb_repasChaud1.Text = "Repas chaud 1";
             // 
             // label_chaud1
             // 

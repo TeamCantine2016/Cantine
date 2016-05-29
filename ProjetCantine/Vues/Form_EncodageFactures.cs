@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using ProjetCantine.Controller;
 using ProjetCantine.Models;
+using System.Collections;
 
 namespace ProjetCantine.Vues
 {
@@ -25,7 +26,13 @@ namespace ProjetCantine.Vues
         float prix = 0;
         string path_facture = "";
 
-
+        struct Repas // variable structurée pour le compte et calcul individuel de type de repas par tuteur
+        {
+            public String type;
+            public String quantite;
+            public float prixtotal;
+        };
+        
         public Form_EncodageFactures()
         {
             InitializeComponent();
@@ -141,8 +148,6 @@ namespace ProjetCantine.Vues
             {
             /* A MODIFIER SELON COMMENTAIRE */ dateTimePicker_debut.Value = DateTime.Now; // <- C'est faux, doit être initialisé au dernier repas déjà consommé s'il existe !!
             }
-            
-            
          }
 
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
@@ -151,10 +156,6 @@ namespace ProjetCantine.Vues
             dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
 
-
-
-
-        //*****************************************************************************************************************************************
         private void button_visualiser_Click(object sender, EventArgs e)
         {
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
@@ -169,8 +170,22 @@ namespace ProjetCantine.Vues
             groupBox_recap.Text = "Récap pour le tuteur : " + ligneTuteur.Cells[1].Value.ToString() + " " + ligneTuteur.Cells[2].Value.ToString() ;
             // reset des pages du tabcontrol
             tabDetail.TabPages.Clear();
+            
+            ArrayList listSommesPrix = new ArrayList(); // somme par enfant listé
+            ArrayList listCompteRepas = new ArrayList(); // liste le détail par type de repas compte et prix total
+            List<String> listeTypeRepas = new List<String>(); // créer et initialiser liste de type de repas (fait en dur, meilleur si repris dans la db)
+            listeTypeRepas.Add("chaud1");
+            listeTypeRepas.Add("chaud2");
+            listeTypeRepas.Add("froid");
+            listeTypeRepas.Add("aucun");
+            // initialisation et création d'une variable de type structuré définie "Repas"
+            Repas compteRepas;
+            compteRepas.type = "";
+            compteRepas.quantite = "";
+            compteRepas.prixtotal = 0;
+            
 
-            for (int i = 0; i < dgv_enfant_facturation.Rows.Count; i++)
+            for (int i = 0; i < dgv_enfant_facturation.Rows.Count; i++) // TRAITEMENT INDIVIDUEL PAR ENFANT
             {
                 //====Création de datagridView======================================================
                 DataGridView dataGridView_historique = new DataGridView();      // Nouveau DataGridView pour afficher l'historique de chaque élève
@@ -179,92 +194,108 @@ namespace ProjetCantine.Vues
                 dataGridView_historique.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;  // pour afficher tout la ligne dans le datagridview
                 //==================================================================================
 
+                // capturer l'identifiant de l'enfant
+                int id_enfant = 0;
+                Int32.TryParse(dgv_enfant_facturation.Rows[i].Cells[0].Value.ToString(), out id_enfant);
+
                 // le nom de l'onglet du tab
                 string nomPrenomEnfant = dgv_enfant_facturation.Rows[i].Cells[1].Value.ToString() + " " + dgv_enfant_facturation.Rows[i].Cells[2].Value.ToString();
                 // créer le tab par enfant
                 TabPage myTabPage = new TabPage(nomPrenomEnfant); // Nouvel onglet et le title pour afficher le nom et le prenom sur l'onglet 
                 tabDetail.TabPages.Add(myTabPage); // J'ajoute l'onglet au tabcontrol
 
-                // une requete qui affiche tout les repas avec leur date et prix pris par un élève
-                controle.show_detailsRepasUnEnfant(ref dataGridView_historique, date_debut, date_fin, dgv_enfant_facturation.Rows[i].Cells[0].Value.ToString());
+                // une requete qui affiche tout les repas avec leur date et prix pris pour 1 élève
+                controle.show_detailsRepasUnEnfant(ref dataGridView_historique, date_debut, date_fin, id_enfant.ToString());
                 // ajouter le dgv généré dans le tab
                 myTabPage.Controls.Add(dataGridView_historique); // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
-
-
-
-
-
-
-                // calcul de du prix total pour 1 enfant
-                float test = controle.get_sommePrixRepasEnfant(5, date_debut, date_fin); // dans la periode du 01-11-2015 au 30-11-2015 donne pour ID 5 48 euros
-
-  
-
-                // une requete pour afficher le prix total de tous les repas par tuteur
-                string requete = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-                requete += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-                requete += " AND  tbl_personne.nom = '" + ligneTuteur.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + date_debut + "' AND '" + date_fin + "' ";
-
-                con.Open();
-                SqlCommand cmd1 = new SqlCommand(requete, con);
-
-                SqlDataReader dr1 = cmd1.ExecuteReader();
-                while (dr1.Read())
-                {
-                    label_prix.Text = dr1["Prix"].ToString() + " €";
-                    //==============================> devra être converti en décimal
-                    prix = (float)Convert.ToDouble(dr1["Prix"].ToString()+",00");
-                }
-                dr1.Close();
-                con.Close();
-
-
                 
-
+                // calcul de du prix total pour 1 enfant et l'insère dans la liste
+                listSommesPrix.Add(controle.get_sommePrixRepasEnfant(id_enfant, date_debut, date_fin));
 
                 //===============================Pour compter les repas prisent par tuteur par type de repas=============================================
-
-                label_chaud1.Text = compteurTypeRepas("chaud1", ref ligneTuteur, date_debut, date_fin);
-                label_chaud2.Text = compteurTypeRepas("chaud2", ref ligneTuteur, date_debut, date_fin);
-                label_froid.Text = compteurTypeRepas("froid", ref ligneTuteur, date_debut, date_fin);
-                label_aucun.Text = compteurTypeRepas("aucun", ref ligneTuteur, date_debut, date_fin);
-
-                //================================ Total prix par catégorie de repas ================================================================      
-                label_Total_Chaud1.Text = calculTotalRepasType(1, ref ligneTuteur,date_debut,date_fin);
-                label_Total_Chaud2.Text = calculTotalRepasType(2, ref ligneTuteur,date_debut,date_fin);
-                label_Total_Froid.Text = calculTotalRepasType(3, ref ligneTuteur,date_debut,date_fin);
-                label_Total_Aucun.Text = calculTotalRepasType(4, ref ligneTuteur,date_debut,date_fin);
+                foreach (String element in listeTypeRepas)
+                {
+                    compteRepas.type = element.ToString();
+                    compteRepas.quantite = controle.compteurTypeRepas(element.ToString(), id_enfant.ToString(), date_debut.ToString(), date_fin.ToString());
+                    compteRepas.prixtotal = controle.get_sommePrixRepasParType(id_enfant, element.ToString(), date_debut.ToString(), date_fin.ToString());
+                    listCompteRepas.Add(compteRepas);
+                }
 
             }
+
+            // initialiser recap tuteur
+            initialiserRecapTuteur();
+
+            // Affichage du recap tuteur
+            float somme = 0;
+            int quantity = 0;
+
+            foreach (Repas element in listCompteRepas)
+            {
+                switch (element.type.ToString())
+                {
+                    case "chaud1":
+                        quantity = int.Parse(label_chaud1.Text);
+                        somme = float.Parse(label_Total_Chaud1.Text);
+                        label_chaud1.Text = (quantity + int.Parse(element.quantite)).ToString();
+                        label_Total_Chaud1.Text = (somme + element.prixtotal).ToString();
+                        break;
+                    case "chaud2":
+                        quantity = int.Parse(label_chaud2.Text);
+                        somme = float.Parse(label_Total_Chaud2.Text);
+                        label_chaud2.Text = (quantity + int.Parse(element.quantite)).ToString();
+                        label_Total_Chaud2.Text = (somme + element.prixtotal).ToString();
+                        break;
+                    case "froid":
+                        quantity = int.Parse(label_froid.Text);
+                        somme = float.Parse(label_Total_Froid.Text);
+                        label_froid.Text = (quantity + int.Parse(element.quantite)).ToString();
+                        label_Total_Froid.Text = (somme + element.prixtotal).ToString();
+                        break;
+                    case "aucun":
+                        quantity = int.Parse(label_aucun.Text);
+                        somme = float.Parse(label_Total_Aucun.Text);
+                        label_aucun.Text = (quantity + int.Parse(element.quantite)).ToString();
+                        label_Total_Aucun.Text = (somme + element.prixtotal).ToString();
+                        break;
+                    default:
+                        label_chaud1.Text = "Erreur";
+                        label_Total_Chaud1.Text = "Erreur";
+                        break;
+                }
+            }
+
+            // Calculer le total pour le tuteur actuel et l'afficher
+            float total = 0;
+            foreach (float value in listSommesPrix)
+            {
+                total += value;
+            }
+            label_prix.Text = total.ToString() + " €";
+
+
+            // gestion bouton "aperçu"
             if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
             {
                 btApercu.Enabled = true;
             }
         }
-        //*****************************************************************************************************************************************
 
-        //*****************************************************************************************************************************************
-        private string compteurTypeRepas(string typer, ref DataGridViewRow r, string debut, string fin)
+        private void initialiserRecapTuteur()
         {
+            label_chaud1.Text = "0";
+            label_Total_Chaud1.Text = "0";
 
-            string retour = "";
-            string query = " SELECT count(type_repas)AS 'Type_Repas' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-            query += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-            query += " AND type_repas = '" + typer + "' AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' ";
+            label_chaud2.Text = "0";
+            label_Total_Chaud2.Text = "0";
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand(query, con);
+            label_froid.Text = "0";
+            label_Total_Froid.Text = "0";
 
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                retour = dr["Type_Repas"].ToString();
-            }
-            dr.Close();
-            con.Close();
-            return retour;
+            label_aucun.Text = "0";
+            label_Total_Aucun.Text = "0";
         }
-        //*****************************************************************************************************************************************
+
 
         //*****************************************************************************************************************************************
         private string calculTotalRepasType(int typeRepas, ref DataGridViewRow r, string debut, string fin)

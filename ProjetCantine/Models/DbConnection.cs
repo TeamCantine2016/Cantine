@@ -85,6 +85,12 @@ namespace ProjetCantine.Models
                     laRequete += "INNER JOIN tbl_repas ON tbl_relation_repas.repas_id = tbl_repas.id ";
                     laRequete += "INNER JOIN tbl_prix_repas ON tbl_relation_repas.repas_id = tbl_prix_repas.id ";
                     break;
+                case "compteTypeRepas":
+                    laRequete = " SELECT count(type_repas)AS 'Type_Repas' ";
+                    laRequete += "FROM[db_cantine].[dbo].[tbl_relation_repas] ";
+                    laRequete += "INNER JOIN tbl_repas ON tbl_relation_repas.repas_id = tbl_repas.id ";
+                    laRequete += "INNER JOIN tbl_prix_repas ON tbl_relation_repas.repas_id = tbl_prix_repas.id ";
+                    break;
                 default:
                     return null;
             }
@@ -210,7 +216,7 @@ namespace ProjetCantine.Models
             /*
              *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
              *  exemple:  
-             *              'Marco','Lechef','19590612','lechef@gmail.com',86473563,3,1 
+             *              'Marco','Lechef','19590612','lechef@gmail.com','086473563',3,1 
              *              
              *  Faites attention aux colonnes qui sont "not null" et celles qui contiennent la relation vers une autre table 
             */
