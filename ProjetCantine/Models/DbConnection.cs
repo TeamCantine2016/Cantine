@@ -94,6 +94,12 @@ namespace ProjetCantine.Models
                 case "dernierNumeroFacture":
                     laRequete = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
                     break;
+                case "recupIdEtablissement":
+                    laRequete = "SELECT id FROM tbl_etablissement";
+                    break;
+                case "recupAdresseId":
+                    laRequete = "SELECT adresse_id FROM tbl_etablissement";
+                    break;
                 default:
                     return null;
             }
@@ -271,9 +277,16 @@ namespace ProjetCantine.Models
         }
 
 //****** UPDATE
-        public void update()
+        public void update(String tableCible, int id, String donnees)
         {
-            // je ferai cette méthode plus tard, je dois vérifier quelques détails au niveau du code
+            // créer la requête "insert"
+            String query = "UPDATE dbo." + tableCible;
+            query += " SET " + donnees + " WHERE id = " + id;
+
+            // exécuter la requête
+            commande = new SqlCommand(query, connexion);
+            commande.ExecuteNonQuery();
+            connexion.Close();
         }
 
 //****** AVEC PROCEDURE STOCKEE
@@ -362,7 +375,7 @@ namespace ProjetCantine.Models
         }
 
 //recupere l'id d'une adresse
-        public int idAdresse(string query)
+        public int recupId(string query)
         {
             // convertir l'id recu en string en int et retourner la valeur
             return Convert.ToInt16(recupDataScalar(query));

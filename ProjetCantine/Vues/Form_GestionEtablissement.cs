@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -20,7 +19,7 @@ namespace ProjetCantine.Vues
             InitializeComponent();
         }
 
-        SqlConnection maCon = new SqlConnection(DbConnection.connectionString);
+        
         String img_path = "";
 
         private void Form_GestionEtablissement_Load(object sender, EventArgs e)
@@ -149,58 +148,56 @@ namespace ProjetCantine.Vues
                     label_erreur.Visible = false;
                     break;
 
-                /*case "Valider":
+            case "Valider":
 
-                    // Partie pour faire le UPDATE de l'adresse et de l'établissement --> recherche de id de l'établissement et de l'adresse_id pour pouvoir faire les requetes suivante
-                    maCon.Open();
-                    cmd = new SqlCommand("SELECT id as id , adresse_id as adresse FROM tbl_etablissement", maCon);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    dr.Read();
-                    String id = dr["id"].ToString();
-                    String ad_id = dr["adresse"].ToString();
-                    maCon.Close();
+                String donnée = "";
+                int id = 0;
 
-                    maCon.Open();
-                    String updateEtab = "UPDATE tbl_etablissement SET nom_etablissement = '" + textBox_Dénomination.Text + "',";
-                    updateEtab += "telephone = '" + textBox_NumTelephone.Text + "',fax = '" + textBox_NumFax.Text + "',courriel = '" + textBox_Email.Text + "',";
-                    updateEtab += "tva = '" + textBox_tva.Text + "',banque_BE = '" + textBox_banqueBe.Text + "',bic_BE = '" + textBox_bicBE.Text + "',";
-                    updateEtab += "banque_LU = '" + textBox_banqueLu.Text + "',bic_LU = '" + textBox_bicLU.Text + "',logo_path = '" + img_path + "' where id = " + id;
-                    cmd = new SqlCommand(updateEtab, maCon);
-                    resultEtab = cmd.ExecuteNonQuery();
-                    maCon.Close();
+                //Construction de la requete pour l'update de l'établissement
+                Ctrl_GestionEtablissement controleDonnée = new Ctrl_GestionEtablissement();
+                donnée = controleDonnée.constrRequeteEtablissement(textBox_Dénomination.Text, textBox_Email.Text, textBox_NumTelephone.Text, textBox_NumFax.Text, textBox_banqueBe.Text, textBox_bicBE.Text, textBox_banqueLu.Text, textBox_bicLU.Text, textBox_tva.Text, img_path);
+                //recuperer l'id de l'établissement
+                Ctrl_GestionEtablissement controleRequete = new Ctrl_GestionEtablissement();
+                id = controleRequete.recupIdEtablissement();
+                //update de l'etablissement
+                Ctrl_GestionEtablissement controleUpdate = new Ctrl_GestionEtablissement();
+                controleUpdate.update(donnée, "tbl_etablissement", id);
 
-                    maCon.Open();
-                    String updateAdr = "UPDATE tbl_adresse SET pays = '" + textBox_Pays.Text + "',ville = '" + textBox_Ville.Text + "',code_postal = '" + textBox_CodePostal.Text + "',";
-                    updateAdr += "rue = '" + textBox_Rue.Text + "',numero = '" + textBox_Num.Text + "'WHERE id =" + ad_id;
-                    cmd = new SqlCommand(updateAdr, maCon);
-                    resultEtab = cmd.ExecuteNonQuery();
-                    maCon.Close();
 
-                    // gestion affichage
-                    textBox_Dénomination.Enabled = false;
-                    textBox_Num.Enabled = false;
-                    textBox_Rue.Enabled = false;
-                    textBox_Ville.Enabled = false;
-                    textBox_Pays.Enabled = false;
-                    textBox_CodePostal.Enabled = false;
-                    textBox_Email.Enabled = false;
-                    textBox_NumTelephone.Enabled = false;
-                    textBox_NumFax.Enabled = false;
-                    textBox_banqueBe.Enabled = false;
-                    textBox_bicBE.Enabled = false;
-                    textBox_banqueLu.Enabled = false;
-                    textBox_bicLU.Enabled = false;
-                    textBox_tva.Enabled = false;
-                    button_Parcourir.Visible = false;
-                    button_Ajouter.Text = "Modifier";
-                    button_Annuler.Enabled = false;
+                //Construction de la requete pour l'update de l'établissement
+                Ctrl_GestionEtablissement controleDonnéeAdresse = new Ctrl_GestionEtablissement();
+                donnée = controleDonnée.constrRequeteAdresse(textBox_Num.Text, textBox_Rue.Text, textBox_Ville.Text, textBox_Pays.Text, textBox_CodePostal.Text);
+                //recuperer l'id de l'établissement
+                Ctrl_GestionEtablissement controleID = new Ctrl_GestionEtablissement();
+                id = controleID.recupAdresseId();
+                //update de l'etablissement
+                Ctrl_GestionEtablissement controleUpdateAdresse = new Ctrl_GestionEtablissement();
+                controleUpdateAdresse.update(donnée, "tbl_adresse", id);
 
-                    break;*/
+                // gestion affichage
+                textBox_Dénomination.Enabled = false;
+                textBox_Num.Enabled = false;
+                textBox_Rue.Enabled = false;
+                textBox_Ville.Enabled = false;
+                textBox_Pays.Enabled = false;
+                textBox_CodePostal.Enabled = false;
+                textBox_Email.Enabled = false;
+                textBox_NumTelephone.Enabled = false;
+                textBox_NumFax.Enabled = false;
+                textBox_banqueBe.Enabled = false;
+                textBox_bicBE.Enabled = false;
+                textBox_banqueLu.Enabled = false;
+                textBox_bicLU.Enabled = false;
+                textBox_tva.Enabled = false;
+                button_Parcourir.Visible = false;
+                button_Ajouter.Text = "Modifier";
+                button_Annuler.Enabled = false;
+
+                break;
 
 
             }
-
-            //maCon.Close();
+                    
         }
 
         private void button_Parcourir_Click(object sender, EventArgs e)
