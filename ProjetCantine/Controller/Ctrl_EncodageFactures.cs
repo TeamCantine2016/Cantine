@@ -105,7 +105,24 @@ namespace ProjetCantine.Controller
             return dbTalk.recupDataScalar(query).ToString();
         }
 
+        public int get_dernierNumeroFactureDisponible()
+        {
+            DbConnection dbTalk = new DbConnection();
 
+            String query = dbTalk.getQuery("dernierNumeroFacture");
+            
+            return int.Parse(dbTalk.recupDataScalar(query)) + 1;
+        }
+
+        public void saveFacture(String path, String solde, String date_debut, String date_fin, int id, String tuteur_id)
+        {
+            DbConnection dbTalk = new DbConnection();
+
+            dbTalk.insert("tbl_facture", solde + "','" + date_debut + "','" + date_fin);
+            dbTalk.insert("tbl_historique_facture", id.ToString() + "','" + tuteur_id + "','0','0','0',null,'" + path);
+            dbTalk.insert("tbl_relation_facture", id + "','" + tuteur_id);
+        }
+        
 
     }
 }

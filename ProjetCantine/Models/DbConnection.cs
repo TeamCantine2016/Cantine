@@ -91,6 +91,9 @@ namespace ProjetCantine.Models
                     laRequete += "INNER JOIN tbl_repas ON tbl_relation_repas.repas_id = tbl_repas.id ";
                     laRequete += "INNER JOIN tbl_prix_repas ON tbl_relation_repas.repas_id = tbl_prix_repas.id ";
                     break;
+                case "dernierNumeroFacture":
+                    laRequete = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+                    break;
                 default:
                     return null;
             }
@@ -198,7 +201,7 @@ namespace ProjetCantine.Models
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("1. Erreur récuperation donné ou \r\n2. Erreur fermeture connexion DB.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur récuperation donnée scalaire.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -212,29 +215,42 @@ namespace ProjetCantine.Models
 
         public int insert(String tableCible, String donnees) 
         {
-            int nbInsertions;
-            /*
-             *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
-             *  exemple:  
-             *              'Marco','Lechef','19590612','lechef@gmail.com','086473563',3,1 
-             *              
-             *  Faites attention aux colonnes qui sont "not null" et celles qui contiennent la relation vers une autre table 
-            */
+            try
+            {
+                int nbInsertions;
+                /*
+                 *  ARGUMENT "donnees" sans paranthèses mais séparées par une virgule comme l'exemple ci-dessous ET sans la colonne ID : 
+                 *  exemple:  
+                 *              nom + "','" + prenom + "','" + date.ToString() + "','" + mail + "','" + tel  
+                 *              
+                 *  Faites attention aux colonnes qui sont "not null" et celles qui contiennent la relation vers une autre table 
+                */
+                if (connexion.State == ConnectionState.Closed)
+                { // nécessaire pour des inserts qui se suivent
+                    connexion.Open();
+                }
 
-            // réunir les noms des colonnes cibles de la table concernée pour la requête finale
-            String lesColonnesCibles = nomColonnes(tableCible);
+                // réunir les noms des colonnes cibles de la table concernée pour la requête finale
+                String lesColonnesCibles = nomColonnes(tableCible);
 
-            // créer la requête "insert"
-            String query = "INSERT INTO dbo." + tableCible;
-            query += lesColonnesCibles + " ";
-            query += "VALUES ('" + donnees + "');";
+                // créer la requête "insert"
+                String query = "INSERT INTO dbo." + tableCible;
+                query += lesColonnesCibles + " ";
+                query += "VALUES ('" + donnees + "');";
 
-            // exécuter la requête
-            commande = new SqlCommand(query, connexion);
-            nbInsertions = commande.ExecuteNonQuery();
-            connexion.Close();
+                // exécuter la requête
+                commande = new SqlCommand(query, connexion);
+                nbInsertions = commande.ExecuteNonQuery();
+                connexion.Close();
 
-            return nbInsertions;
+                return nbInsertions;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur \"INSERT\"-DB \r\n\r\n" + ex.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+
         }
 
 //****** DELETE

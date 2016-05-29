@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Globalization;
 using ProjetCantine.Controller;
 using ProjetCantine.Models;
@@ -17,10 +15,6 @@ namespace ProjetCantine.Vues
 {
     public partial class Form_EncodageFactures : Form
     {
-        SqlCommand cmd = new SqlCommand();
-        SqlDataAdapter da = new SqlDataAdapter();
-        db_cantineDataSet ds = new db_cantineDataSet();
-        SqlConnection con = new SqlConnection(DbConnection.connectionString);
         string date_debut = "";
         string date_fin = "";
         float prix = 0;
@@ -50,14 +44,19 @@ namespace ProjetCantine.Vues
             dGdVw_DetailFamille.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dGdVw_DetailFamille.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgv_enfant_facturation.AutoResizeColumns();
+            // initialiser recap tuteur
+            initialiserRecapTuteur();
+            // charge directement la liste des enfants
+            dGdVw_DetailFamille_CellClick(null, null);
+
         }
 
 
         //*****************************************************************************************************************************************
         private void btApercu_Click(object sender, EventArgs e) // CREATION FACTURE 
         {
-            // création variables
-            int facture_id = 0;
+            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
+
             // capturer la periode de la facture définie
             DateTime debut = dateTimePicker_debut.Value;
             DateTime fin = dateTimePicker_fin.Value;
@@ -72,26 +71,14 @@ namespace ProjetCantine.Vues
             string adresseClient = lineSelected.Cells[4].Value.ToString();
             string villeClient = lineSelected.Cells[5].Value.ToString();
             string paysClient = lineSelected.Cells[6].Value.ToString();
-            
-            //....................................................................??? toujours aller chercher la facture "max" ???
-            string query = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
-            
-            con.Open();
-            cmd = new SqlCommand(query, con);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                facture_id = (int)dr["facture_id"];
-            }
-            dr.Close();
-            con.Close();
+            // initialiser le nouveau numéro de Facture
+            int numeroFacture = controle.get_dernierNumeroFactureDisponible();
 
             // créer objet Facture
             ApercuFacture facture = new ApercuFacture();
             // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
-            String pathNouvelleFacture = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, facture_id
-                                                ,debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
+            String pathNouvelleFacture = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, numeroFacture
+                                                , debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
 
             // teste si le fichier a bien été creer           
             if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
@@ -99,9 +86,13 @@ namespace ProjetCantine.Vues
                 MessageBox.Show(pathNouvelleFacture);
             }
             else
-            { // si je reçois un path, c'est ok
+            {   // si je reçois un path, c'est ok
                 MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
+                // sauvegarder facture
+                controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] {'€'}), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                // afficher facture avec programme externe
                 facture.affichageFacture(pathNouvelleFacture);
+                // ????
                 path_facture = pathNouvelleFacture;
                 btEnvoi.Enabled = true;
             }
@@ -119,6 +110,10 @@ namespace ProjetCantine.Vues
 
         private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 90% READY - Remplir DGV-Membre - Gestion date dernière clôture
         {
+            // vider le tabcontrol et le recap tuteur
+            tabDetail.TabPages.Clear();
+            initialiserRecapTuteur();
+
             // débloquer zone selection periode
             groupBox1_selectperiode.Enabled = true;
 
@@ -156,7 +151,7 @@ namespace ProjetCantine.Vues
             dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
 
-        private void button_visualiser_Click(object sender, EventArgs e)
+        private void button_visualiser_Click(object sender, EventArgs e) // 99% READY - Gestion visualisation des détails enfants pour le tuteur
         {
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
 
@@ -227,36 +222,21 @@ namespace ProjetCantine.Vues
             initialiserRecapTuteur();
 
             // Affichage du recap tuteur
-            float somme = 0;
-            int quantity = 0;
-
             foreach (Repas element in listCompteRepas)
             {
                 switch (element.type.ToString())
                 {
                     case "chaud1":
-                        quantity = int.Parse(label_chaud1.Text);
-                        somme = float.Parse(label_Total_Chaud1.Text);
-                        label_chaud1.Text = (quantity + int.Parse(element.quantite)).ToString();
-                        label_Total_Chaud1.Text = (somme + element.prixtotal).ToString();
+                        afficherResultatsRecapTuteur(ref label_chaud1, ref label_Total_Chaud1, element);
                         break;
                     case "chaud2":
-                        quantity = int.Parse(label_chaud2.Text);
-                        somme = float.Parse(label_Total_Chaud2.Text);
-                        label_chaud2.Text = (quantity + int.Parse(element.quantite)).ToString();
-                        label_Total_Chaud2.Text = (somme + element.prixtotal).ToString();
+                        afficherResultatsRecapTuteur(ref label_chaud2, ref label_Total_Chaud2, element);
                         break;
                     case "froid":
-                        quantity = int.Parse(label_froid.Text);
-                        somme = float.Parse(label_Total_Froid.Text);
-                        label_froid.Text = (quantity + int.Parse(element.quantite)).ToString();
-                        label_Total_Froid.Text = (somme + element.prixtotal).ToString();
+                        afficherResultatsRecapTuteur(ref label_froid, ref label_Total_Froid, element);
                         break;
                     case "aucun":
-                        quantity = int.Parse(label_aucun.Text);
-                        somme = float.Parse(label_Total_Aucun.Text);
-                        label_aucun.Text = (quantity + int.Parse(element.quantite)).ToString();
-                        label_Total_Aucun.Text = (somme + element.prixtotal).ToString();
+                        afficherResultatsRecapTuteur(ref label_aucun, ref label_Total_Aucun, element);
                         break;
                     default:
                         label_chaud1.Text = "Erreur";
@@ -281,97 +261,95 @@ namespace ProjetCantine.Vues
             }
         }
 
-        private void initialiserRecapTuteur()
+        private void afficherResultatsRecapTuteur(ref Label quantity, ref Label solde, Repas add) // 99% - READY une sous-fonction de button_visualiser_Click()
+        {
+            float tmp_solde;
+            int tmp_quantity;
+
+            tmp_quantity = int.Parse(quantity.Text.ToString());
+            tmp_solde = float.Parse(solde.Text.ToString().Trim(new Char[] {'€'}));
+            quantity.Text = (tmp_quantity + int.Parse(add.quantite)).ToString();
+            solde.Text = (tmp_solde + add.prixtotal).ToString() + " €";
+        }
+
+        private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
         {
             label_chaud1.Text = "0";
-            label_Total_Chaud1.Text = "0";
+            label_Total_Chaud1.Text = "0 €";
 
             label_chaud2.Text = "0";
-            label_Total_Chaud2.Text = "0";
+            label_Total_Chaud2.Text = "0 €";
 
             label_froid.Text = "0";
-            label_Total_Froid.Text = "0";
+            label_Total_Froid.Text = "0 €";
 
             label_aucun.Text = "0";
-            label_Total_Aucun.Text = "0";
+            label_Total_Aucun.Text = "0 €";
+
+            label_prix.Text = "0 €";
         }
 
 
-        //*****************************************************************************************************************************************
-        private string calculTotalRepasType(int typeRepas, ref DataGridViewRow r, string debut, string fin)
-        {
-            string retour = "";
-            string req = " SELECT SUM(prix)AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
-            req += " WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id = tbl_prix_repas.id ";
-            req += " AND  tbl_personne.nom = '" + r.Cells[1].Value.ToString() + "' AND date_repas BETWEEN  '" + debut + "' AND '" + fin + "' AND tbl_repas.id =" + typeRepas;       
-            con.Open();
 
-            SqlCommand cmd = new SqlCommand(req, con);        
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                retour = dr["Prix"].ToString() + " €";
-            }
-            dr.Close();
-            con.Close();
-            return retour;
-        }
-        //*****************************************************************************************************************************************
+
+
+
+
 
         //*****************************************************************************************************************************************
-        private void btEnvoi_Click(object sender, EventArgs e)
-        {
-            int k = dGdVw_DetailFamille.CurrentRow.Index;
-            DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
-            int resultat = 0;
-            int resultat1 = 0;
-            int resultat2 = 0;
-            //==================================On insere les données dans la table tbl_facture=========================
-            string query = "INSERT Into tbl_facture (total_a_payer,debut_periode,fin_periode) ";
-            query += "VALUES ('"+ prix +"','" + date_debut + "','" + date_fin + "')";
-            con.Open();
-            SqlCommand cmd = new SqlCommand(query, con);
-            resultat = cmd.ExecuteNonQuery();
-            con.Close();
-            //==================================On récupère l'identifiant de la facture=================================
-            int facture_id = 0;
-            string query1 = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+        //private void btEnvoi_Click(object sender, EventArgs e)
+        //{
+        //    int k = dGdVw_DetailFamille.CurrentRow.Index;
+        //    DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
+        //    int resultat = 0;
+        //    int resultat1 = 0;
+        //    int resultat2 = 0;
+        //    //==================================On insere les données dans la table tbl_facture=========================
+        //    string query = "INSERT Into tbl_facture (total_a_payer,debut_periode,fin_periode) ";
+        //    query += "VALUES ('" + prix + "','" + date_debut + "','" + date_fin + "')";
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand(query, con);
+        //    resultat = cmd.ExecuteNonQuery();
+        //    con.Close();
+        //    //==================================On récupère l'identifiant de la facture=================================
+        //    int facture_id = 0;
+        //    string query1 = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
 
-            con.Open();
-            cmd = new SqlCommand(query1, con);
+        //    con.Open();
+        //    cmd = new SqlCommand(query1, con);
 
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                facture_id = (int)dr["facture_id"];
-            }
-            dr.Close();
-            con.Close();
-            //=================================On insère les données dans la table tbl_relation_facture======================
-            int tuteur_id = Convert.ToInt32(r.Cells[0].Value.ToString());
-            string query2 = "INSERT Into tbl_relation_facture (facture_id,tuteur_id) ";
-            query2 += "VALUES (" + facture_id + "," + tuteur_id + ")";
-            con.Open();
-            cmd = new SqlCommand(query2, con);
-            resultat1 = cmd.ExecuteNonQuery();
-            con.Close();
-            //================================On insère les données dans la table d'historique=======================
-            string query3 = "INSERT Into tbl_historique_facture (facture_id,tuteur_id,statut_payement,statut_envoye,detaille,format_envoye,archive)";
-            query3 += "VALUES ('" + facture_id + "','" + tuteur_id + "','0','0','0','mail','"+ path_facture + "')";
-            con.Open();
-            cmd = new SqlCommand(query3, con);
-            resultat2 = cmd.ExecuteNonQuery();
-            con.Close();
+        //    SqlDataReader dr = cmd.ExecuteReader();
+        //    while (dr.Read())
+        //    {
+        //        facture_id = (int)dr["facture_id"];
+        //    }
+        //    dr.Close();
+        //    con.Close();
+        //    //=================================On insère les données dans la table tbl_relation_facture======================
+        //    int tuteur_id = Convert.ToInt32(r.Cells[0].Value.ToString());
+        //    string query2 = "INSERT Into tbl_relation_facture (facture_id,tuteur_id) ";
+        //    query2 += "VALUES (" + facture_id + "," + tuteur_id + ")";
+        //    con.Open();
+        //    cmd = new SqlCommand(query2, con);
+        //    resultat1 = cmd.ExecuteNonQuery();
+        //    con.Close();
+        //    //================================On insère les données dans la table d'historique=======================
+        //    string query3 = "INSERT Into tbl_historique_facture (facture_id,tuteur_id,statut_payement,statut_envoye,detaille,format_envoye,archive)";
+        //    query3 += "VALUES ('" + facture_id + "','" + tuteur_id + "','0','0','0','mail','" + path_facture + "')";
+        //    con.Open();
+        //    cmd = new SqlCommand(query3, con);
+        //    resultat2 = cmd.ExecuteNonQuery();
+        //    con.Close();
 
-            if ((resultat + resultat1 + resultat2) == 3)
-            {
-                MessageBox.Show("La facture a été enregistrée avec succès.");
-            }
-            else
-            {
-                MessageBox.Show("Une erreur est intervenue lors de l'enregistrement de la facture.");
-            }
-        }
+        //    if ((resultat + resultat1 + resultat2) == 3)
+        //    {
+        //        MessageBox.Show("La facture a été enregistrée avec succès.");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Une erreur est intervenue lors de l'enregistrement de la facture.");
+        //    }
+        //}
         //*****************************************************************************************************************************************
     }
 }
