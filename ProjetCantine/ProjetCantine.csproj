@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Controller\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
+    <Compile Include="Controller\Ctrl_EncodagePrix.cs" />
     <Compile Include="Controller\Ctrl_EncodageRepas.cs" />
     <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
     <Compile Include="Controller\Ctrl_GestionEtablissement.cs" />
@@ -137,11 +138,11 @@
     <Compile Include="Vues\Form_HistoriqueFacture.Designer.cs">
       <DependentUpon>Form_HistoriqueFacture.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vues\Form_ParamRepasPris.cs">
+    <Compile Include="Vues\Form_EncodagePrix.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vues\Form_ParamRepasPris.designer.cs">
-      <DependentUpon>Form_ParamRepasPris.cs</DependentUpon>
+    <Compile Include="Vues\Form_EncodagePrix.designer.cs">
+      <DependentUpon>Form_EncodagePrix.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_RecapRepasFamilleMois.cs">
       <SubType>Form</SubType>
@@ -199,8 +200,8 @@
     <EmbeddedResource Include="Vues\Form_HistoriqueFacture.resx">
       <DependentUpon>Form_HistoriqueFacture.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vues\Form_ParamRepasPris.resx">
-      <DependentUpon>Form_ParamRepasPris.cs</DependentUpon>
+    <EmbeddedResource Include="Vues\Form_EncodagePrix.resx">
+      <DependentUpon>Form_EncodagePrix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_RecapRepasFamilleMois.resx">
       <DependentUpon>Form_RecapRepasFamilleMois.cs</DependentUpon>
