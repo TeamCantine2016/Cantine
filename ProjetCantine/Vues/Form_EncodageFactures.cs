@@ -17,7 +17,7 @@ namespace ProjetCantine.Vues
     {
         string date_debut = "";
         string date_fin = "";
-        float prix = 0;
+        //float prix = 0;
         string path_facture = "";
 
         struct Repas // variable structurée pour le compte et calcul individuel de type de repas par tuteur
@@ -53,7 +53,7 @@ namespace ProjetCantine.Vues
 
 
         //*****************************************************************************************************************************************
-        private void btApercu_Click(object sender, EventArgs e) // CREATION FACTURE 
+        private void btApercu_Click(object sender, EventArgs e) // 90% Ready - CREATION FACTURE 
         {
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
 
