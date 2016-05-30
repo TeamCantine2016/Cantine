@@ -16,5 +16,14 @@ namespace ProjetCantine
         {
             InitializeComponent();
         }
+
+        private void Form_ParamRepasPrix_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'db_cantineDataSet.DataTable1' table. You can move, or remove it, as needed.
+            this.dataTable1TableAdapter.Fill(this.db_cantineDataSet.DataTable1);
+
+          
+
+        }
     }
 }
