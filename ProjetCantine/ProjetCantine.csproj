@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Controller\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
+    <Compile Include="Controller\Ctrl_EncodageRepas.cs" />
     <Compile Include="Controller\Ctrl_VisualisationFamille.cs" />
     <Compile Include="Controller\Ctrl_GestionEtablissement.cs" />
     <Compile Include="Models\db_cantineDataSet.cs">

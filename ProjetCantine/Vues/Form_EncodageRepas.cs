@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetCantine.Models;
 using System.Data.SqlClient;
+using ProjetCantine.Controller;
 
 
 namespace ProjetCantine.Vues
@@ -21,37 +22,48 @@ namespace ProjetCantine.Vues
         SqlDataAdapter da = new SqlDataAdapter();
         db_cantineDataSet ds = new db_cantineDataSet();
         SqlConnection con = new SqlConnection(DbConnection.connectionString);
+        DateTime startDate;
+
 
         public Form_EncodageRepas()
         {
             InitializeComponent();
         }
-        public void filtre()
-        {
-            con.Open();
 
-            SqlCommand cmd = new SqlCommand("PS_Filtre_Eleve", con);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
-
-            cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
-
-            cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
-
-            DataTable t = new DataTable();
-            SqlDataReader dr = cmd.ExecuteReader();
-            t.Load(dr);
-            con.Close();
-
-            dGdVw_DetailEleve.DataSource = t;
-
-        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            filtre();
+            Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
+            // appelle la méthode liée à la procédure stockée
+            controle.filtreEleve(ref dGdVw_DetailEleve, txtBx_RechNom.Text);
         }
+
+
+ 
+
+
+        //public void filtre()
+        //{
+        //    con.Open();
+
+        //    SqlCommand cmd = new SqlCommand("PS_Filtre_Eleve", con);
+
+        //    cmd.CommandType = CommandType.StoredProcedure;
+
+        //    cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
+
+        //    cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
+
+        //    cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
+
+        //    DataTable t = new DataTable();
+        //    SqlDataReader dr = cmd.ExecuteReader();
+        //    t.Load(dr);
+        //    con.Close();
+
+        //    dGdVw_DetailEleve.DataSource = t;
+
+        //}
+
 
 
 
@@ -112,7 +124,7 @@ namespace ProjetCantine.Vues
 
         private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            DateTime startDate = e.Start;
+            startDate = e.Start;
             startDate = startDate.AddDays(1 - (double)startDate.DayOfWeek);
             monthCalendar.SelectionStart = startDate;
             labelDebut.Text = startDate.ToString("d");
@@ -274,21 +286,22 @@ namespace ProjetCantine.Vues
                 // On vérifie si la période a déjà été introduite dans la DB, si oui, on fait un update, sinon un insert
                 if (labelEtat.Visible)
                 {
-                    string query = "INSERT Into tbl_relation_repas (date_repas,personne_id,repas_id)";
-                    query += "VALUES ('" + startDate.AddDays(i).ToString("yyyy-MM-dd")+ "','"+id_eleve + "','" +  tab_id_repas[i]+"')";
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    resultat = cmd.ExecuteNonQuery();
-                    con.Close();
+                    Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
+                    String valInsert = controle.ReqInsertRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());               
+                    resultat = controle.insertData("tbl_relation_repas", valInsert);
+                    
+
                 }else
                 {
-               
-                    string query = "UPDATE tbl_relation_repas SET tbl_relation_repas.repas_id =" + tab_id_repas[i] + " " ;
-                    query += "WHERE(date_repas = '" + startDate.AddDays(i).ToString("yyyy-MM-dd") + "' AND personne_id = '" + id_eleve + "')";
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    modif = cmd.ExecuteNonQuery();
-                    con.Close();
+                    String donnees;
+                    int id = 0;
+                    //recuperer l'id repas
+                    Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
+                    id = controle.recupIdERepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString());
+                    donnees = controle.ReqUpdateRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());
+                    Ctrl_EncodageRepas controle1 = new Ctrl_EncodageRepas();
+                    modif = controle1.update(donnees, "tbl_relation_repas", id);
+
                 }
             }
             if (resultat > 0)
@@ -299,6 +312,7 @@ namespace ProjetCantine.Vues
             {
                 MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été modifié pour la semaine du " + labelDebut.Text + " au " +labelFin.Text );
             }
+            chargement_Repas(startDate);
         }
 
         private void radioButtonRepasChaud1Lundi_CheckedChanged(object sender, EventArgs e)
@@ -410,5 +424,7 @@ namespace ProjetCantine.Vues
         {
             this.Close();
         }
+
+       
     }
 }
