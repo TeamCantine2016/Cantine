@@ -62,7 +62,7 @@ namespace ProjetCantine.Models {
         
         private TA_Prix_RepasDataTable tableTA_Prix_Repas;
         
-        private DataTable1DataTable tableDataTable1;
+        private TA_PrixRepasEncDataTable tableTA_PrixRepasEnc;
         
         private global::System.Data.DataRelation relationFK_etablissement_adresse;
         
@@ -185,8 +185,8 @@ namespace ProjetCantine.Models {
                 if ((ds.Tables["TA_Prix_Repas"] != null)) {
                     base.Tables.Add(new TA_Prix_RepasDataTable(ds.Tables["TA_Prix_Repas"]));
                 }
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["TA_PrixRepasEnc"] != null)) {
+                    base.Tables.Add(new TA_PrixRepasEncDataTable(ds.Tables["TA_PrixRepasEnc"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -400,9 +400,9 @@ namespace ProjetCantine.Models {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTable1DataTable DataTable1 {
+        public TA_PrixRepasEncDataTable TA_PrixRepasEnc {
             get {
-                return this.tableDataTable1;
+                return this.tableTA_PrixRepasEnc;
             }
         }
         
@@ -530,8 +530,8 @@ namespace ProjetCantine.Models {
                 if ((ds.Tables["TA_Prix_Repas"] != null)) {
                     base.Tables.Add(new TA_Prix_RepasDataTable(ds.Tables["TA_Prix_Repas"]));
                 }
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["TA_PrixRepasEnc"] != null)) {
+                    base.Tables.Add(new TA_PrixRepasEncDataTable(ds.Tables["TA_PrixRepasEnc"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -680,10 +680,10 @@ namespace ProjetCantine.Models {
                     this.tableTA_Prix_Repas.InitVars();
                 }
             }
-            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
+            this.tableTA_PrixRepasEnc = ((TA_PrixRepasEncDataTable)(base.Tables["TA_PrixRepasEnc"]));
             if ((initTable == true)) {
-                if ((this.tableDataTable1 != null)) {
-                    this.tableDataTable1.InitVars();
+                if ((this.tableTA_PrixRepasEnc != null)) {
+                    this.tableTA_PrixRepasEnc.InitVars();
                 }
             }
             this.relationFK_etablissement_adresse = this.Relations["FK_etablissement_adresse"];
@@ -752,8 +752,8 @@ namespace ProjetCantine.Models {
             base.Tables.Add(this.tableTA_Remplir_CB_FormatEnvoie);
             this.tableTA_Prix_Repas = new TA_Prix_RepasDataTable();
             base.Tables.Add(this.tableTA_Prix_Repas);
-            this.tableDataTable1 = new DataTable1DataTable();
-            base.Tables.Add(this.tableDataTable1);
+            this.tableTA_PrixRepasEnc = new TA_PrixRepasEncDataTable();
+            base.Tables.Add(this.tableTA_PrixRepasEnc);
             this.relationFK_etablissement_adresse = new global::System.Data.DataRelation("FK_etablissement_adresse", new global::System.Data.DataColumn[] {
                         this.tabletbl_adresse.idColumn}, new global::System.Data.DataColumn[] {
                         this.tabletbl_etablissement.adresse_idColumn}, false);
@@ -944,7 +944,7 @@ namespace ProjetCantine.Models {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDataTable1() {
+        private bool ShouldSerializeTA_PrixRepasEnc() {
             return false;
         }
         
@@ -1061,7 +1061,7 @@ namespace ProjetCantine.Models {
         public delegate void TA_Prix_RepasRowChangeEventHandler(object sender, TA_Prix_RepasRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
+        public delegate void TA_PrixRepasEncRowChangeEventHandler(object sender, TA_PrixRepasEncRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -7287,20 +7287,20 @@ namespace ProjetCantine.Models {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
+        public partial class TA_PrixRepasEncDataTable : global::System.Data.TypedTableBase<TA_PrixRepasEncRow> {
             
-            private global::System.Data.DataColumn columntype_repas;
+            private global::System.Data.DataColumn columnNom_du_repas;
             
-            private global::System.Data.DataColumn columnprix;
+            private global::System.Data.DataColumn columnPrix_du_repas;
             
-            private global::System.Data.DataColumn columndate_debut;
+            private global::System.Data.DataColumn columnDate_debut;
             
-            private global::System.Data.DataColumn columndate_fin;
+            private global::System.Data.DataColumn columnDate_fin;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1DataTable() {
-                this.TableName = "DataTable1";
+            public TA_PrixRepasEncDataTable() {
+                this.TableName = "TA_PrixRepasEnc";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -7308,7 +7308,7 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTable1DataTable(global::System.Data.DataTable table) {
+            internal TA_PrixRepasEncDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -7325,40 +7325,40 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected TA_PrixRepasEncDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn type_repasColumn {
+            public global::System.Data.DataColumn Nom_du_repasColumn {
                 get {
-                    return this.columntype_repas;
+                    return this.columnNom_du_repas;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn prixColumn {
+            public global::System.Data.DataColumn Prix_du_repasColumn {
                 get {
-                    return this.columnprix;
+                    return this.columnPrix_du_repas;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn date_debutColumn {
+            public global::System.Data.DataColumn Date_debutColumn {
                 get {
-                    return this.columndate_debut;
+                    return this.columnDate_debut;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn date_finColumn {
+            public global::System.Data.DataColumn Date_finColumn {
                 get {
-                    return this.columndate_fin;
+                    return this.columnDate_fin;
                 }
             }
             
@@ -7373,48 +7373,48 @@ namespace ProjetCantine.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row this[int index] {
+            public TA_PrixRepasEncRow this[int index] {
                 get {
-                    return ((DataTable1Row)(this.Rows[index]));
+                    return ((TA_PrixRepasEncRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
+            public event TA_PrixRepasEncRowChangeEventHandler TA_PrixRepasEncRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
+            public event TA_PrixRepasEncRowChangeEventHandler TA_PrixRepasEncRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
+            public event TA_PrixRepasEncRowChangeEventHandler TA_PrixRepasEncRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
+            public event TA_PrixRepasEncRowChangeEventHandler TA_PrixRepasEncRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDataTable1Row(DataTable1Row row) {
+            public void AddTA_PrixRepasEncRow(TA_PrixRepasEncRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string type_repas, double prix, System.DateTime date_debut, System.DateTime date_fin) {
-                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
+            public TA_PrixRepasEncRow AddTA_PrixRepasEncRow(string Nom_du_repas, double Prix_du_repas, System.DateTime Date_debut, System.DateTime Date_fin) {
+                TA_PrixRepasEncRow rowTA_PrixRepasEncRow = ((TA_PrixRepasEncRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        type_repas,
-                        prix,
-                        date_debut,
-                        date_fin};
-                rowDataTable1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTable1Row);
-                return rowDataTable1Row;
+                        Nom_du_repas,
+                        Prix_du_repas,
+                        Date_debut,
+                        Date_fin};
+                rowTA_PrixRepasEncRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTA_PrixRepasEncRow);
+                return rowTA_PrixRepasEncRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
+                TA_PrixRepasEncDataTable cln = ((TA_PrixRepasEncDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -7422,59 +7422,59 @@ namespace ProjetCantine.Models {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTable1DataTable();
+                return new TA_PrixRepasEncDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columntype_repas = base.Columns["type_repas"];
-                this.columnprix = base.Columns["prix"];
-                this.columndate_debut = base.Columns["date_debut"];
-                this.columndate_fin = base.Columns["date_fin"];
+                this.columnNom_du_repas = base.Columns["Nom du repas"];
+                this.columnPrix_du_repas = base.Columns["Prix du repas"];
+                this.columnDate_debut = base.Columns["Date debut"];
+                this.columnDate_fin = base.Columns["Date fin"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columntype_repas = new global::System.Data.DataColumn("type_repas", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntype_repas);
-                this.columnprix = new global::System.Data.DataColumn("prix", typeof(double), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnprix);
-                this.columndate_debut = new global::System.Data.DataColumn("date_debut", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndate_debut);
-                this.columndate_fin = new global::System.Data.DataColumn("date_fin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndate_fin);
-                this.columntype_repas.AllowDBNull = false;
-                this.columntype_repas.MaxLength = 50;
-                this.columnprix.AllowDBNull = false;
-                this.columndate_debut.AllowDBNull = false;
+                this.columnNom_du_repas = new global::System.Data.DataColumn("Nom du repas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNom_du_repas);
+                this.columnPrix_du_repas = new global::System.Data.DataColumn("Prix du repas", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrix_du_repas);
+                this.columnDate_debut = new global::System.Data.DataColumn("Date debut", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate_debut);
+                this.columnDate_fin = new global::System.Data.DataColumn("Date fin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate_fin);
+                this.columnNom_du_repas.AllowDBNull = false;
+                this.columnNom_du_repas.MaxLength = 50;
+                this.columnPrix_du_repas.AllowDBNull = false;
+                this.columnDate_debut.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row NewDataTable1Row() {
-                return ((DataTable1Row)(this.NewRow()));
+            public TA_PrixRepasEncRow NewTA_PrixRepasEncRow() {
+                return ((TA_PrixRepasEncRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTable1Row(builder);
+                return new TA_PrixRepasEncRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTable1Row);
+                return typeof(TA_PrixRepasEncRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTable1RowChanged != null)) {
-                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.TA_PrixRepasEncRowChanged != null)) {
+                    this.TA_PrixRepasEncRowChanged(this, new TA_PrixRepasEncRowChangeEvent(((TA_PrixRepasEncRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7482,8 +7482,8 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTable1RowChanging != null)) {
-                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.TA_PrixRepasEncRowChanging != null)) {
+                    this.TA_PrixRepasEncRowChanging(this, new TA_PrixRepasEncRowChangeEvent(((TA_PrixRepasEncRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7491,8 +7491,8 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTable1RowDeleted != null)) {
-                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.TA_PrixRepasEncRowDeleted != null)) {
+                    this.TA_PrixRepasEncRowDeleted(this, new TA_PrixRepasEncRowChangeEvent(((TA_PrixRepasEncRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7500,14 +7500,14 @@ namespace ProjetCantine.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTable1RowDeleting != null)) {
-                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.TA_PrixRepasEncRowDeleting != null)) {
+                    this.TA_PrixRepasEncRowDeleting(this, new TA_PrixRepasEncRowChangeEvent(((TA_PrixRepasEncRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDataTable1Row(DataTable1Row row) {
+            public void RemoveTA_PrixRepasEncRow(TA_PrixRepasEncRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -7534,7 +7534,7 @@ namespace ProjetCantine.Models {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTable1DataTable";
+                attribute2.FixedValue = "TA_PrixRepasEncDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -9753,76 +9753,76 @@ namespace ProjetCantine.Models {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTable1Row : global::System.Data.DataRow {
+        public partial class TA_PrixRepasEncRow : global::System.Data.DataRow {
             
-            private DataTable1DataTable tableDataTable1;
+            private TA_PrixRepasEncDataTable tableTA_PrixRepasEnc;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
+            internal TA_PrixRepasEncRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
+                this.tableTA_PrixRepasEnc = ((TA_PrixRepasEncDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string type_repas {
+            public string Nom_du_repas {
                 get {
-                    return ((string)(this[this.tableDataTable1.type_repasColumn]));
+                    return ((string)(this[this.tableTA_PrixRepasEnc.Nom_du_repasColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.type_repasColumn] = value;
+                    this[this.tableTA_PrixRepasEnc.Nom_du_repasColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public double prix {
+            public double Prix_du_repas {
                 get {
-                    return ((double)(this[this.tableDataTable1.prixColumn]));
+                    return ((double)(this[this.tableTA_PrixRepasEnc.Prix_du_repasColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.prixColumn] = value;
+                    this[this.tableTA_PrixRepasEnc.Prix_du_repasColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime date_debut {
+            public System.DateTime Date_debut {
                 get {
-                    return ((global::System.DateTime)(this[this.tableDataTable1.date_debutColumn]));
+                    return ((global::System.DateTime)(this[this.tableTA_PrixRepasEnc.Date_debutColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.date_debutColumn] = value;
+                    this[this.tableTA_PrixRepasEnc.Date_debutColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime date_fin {
+            public System.DateTime Date_fin {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableDataTable1.date_finColumn]));
+                        return ((global::System.DateTime)(this[this.tableTA_PrixRepasEnc.Date_finColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'date_fin\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Date fin\' in table \'TA_PrixRepasEnc\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.date_finColumn] = value;
+                    this[this.tableTA_PrixRepasEnc.Date_finColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isdate_finNull() {
-                return this.IsNull(this.tableDataTable1.date_finColumn);
+            public bool IsDate_finNull() {
+                return this.IsNull(this.tableTA_PrixRepasEnc.Date_finColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setdate_finNull() {
-                this[this.tableDataTable1.date_finColumn] = global::System.Convert.DBNull;
+            public void SetDate_finNull() {
+                this[this.tableTA_PrixRepasEnc.Date_finColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10476,22 +10476,22 @@ namespace ProjetCantine.Models {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DataTable1RowChangeEvent : global::System.EventArgs {
+        public class TA_PrixRepasEncRowChangeEvent : global::System.EventArgs {
             
-            private DataTable1Row eventRow;
+            private TA_PrixRepasEncRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
+            public TA_PrixRepasEncRowChangeEvent(TA_PrixRepasEncRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row Row {
+            public TA_PrixRepasEncRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16696,7 +16696,7 @@ FROM            tbl_prix_repas INNER JOIN
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DataTable1TableAdapter : global::System.ComponentModel.Component {
+    public partial class TA_PrixRepasEncTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -16710,7 +16710,7 @@ FROM            tbl_prix_repas INNER JOIN
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataTable1TableAdapter() {
+        public TA_PrixRepasEncTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -16807,11 +16807,11 @@ FROM            tbl_prix_repas INNER JOIN
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DataTable1";
-            tableMapping.ColumnMappings.Add("type_repas", "type_repas");
-            tableMapping.ColumnMappings.Add("prix", "prix");
-            tableMapping.ColumnMappings.Add("date_debut", "date_debut");
-            tableMapping.ColumnMappings.Add("date_fin", "date_fin");
+            tableMapping.DataSetTable = "TA_PrixRepasEnc";
+            tableMapping.ColumnMappings.Add("Nom du repas", "Nom du repas");
+            tableMapping.ColumnMappings.Add("Prix du repas", "Prix du repas");
+            tableMapping.ColumnMappings.Add("Date debut", "Date debut");
+            tableMapping.ColumnMappings.Add("Date fin", "Date fin");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -16828,9 +16828,9 @@ FROM            tbl_prix_repas INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        tbl_repas.type_repas, tbl_prix_repas.prix, tbl_prix_repas.date_debu" +
-                "t, tbl_prix_repas.date_fin\r\nFROM            tbl_prix_repas INNER JOIN\r\n         " +
-                "                tbl_repas ON tbl_prix_repas.repas_id = tbl_repas.id";
+            this._commandCollection[0].CommandText = @"SELECT        tbl_repas.type_repas AS 'Nom du repas' , tbl_prix_repas.prix AS 'Prix du repas' , tbl_prix_repas.date_debut AS 'Date debut' , tbl_prix_repas.date_fin AS 'Date fin'
+FROM            tbl_prix_repas INNER JOIN
+                         tbl_repas ON tbl_prix_repas.repas_id = tbl_repas.id";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -16838,7 +16838,7 @@ FROM            tbl_prix_repas INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(db_cantineDataSet.DataTable1DataTable dataTable) {
+        public virtual int Fill_PrixRepasEnc(db_cantineDataSet.TA_PrixRepasEncDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16851,9 +16851,9 @@ FROM            tbl_prix_repas INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual db_cantineDataSet.DataTable1DataTable GetData() {
+        public virtual db_cantineDataSet.TA_PrixRepasEncDataTable GetData_PrixRepasEnc() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            db_cantineDataSet.DataTable1DataTable dataTable = new db_cantineDataSet.DataTable1DataTable();
+            db_cantineDataSet.TA_PrixRepasEncDataTable dataTable = new db_cantineDataSet.TA_PrixRepasEncDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
