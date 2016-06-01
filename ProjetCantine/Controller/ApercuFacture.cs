@@ -10,6 +10,7 @@ using ProjetCantine.Models;
 
 
 using ProjetCantine.Vues;
+using System.Windows.Forms;
 
 namespace ProjetCantine
 {
@@ -156,8 +157,15 @@ namespace ProjetCantine
 
         public void affichageFacture(String add)
         {
-            System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
-            System.Diagnostics.Process.Start(psi);
+            try
+            {
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (SystemException exception)
+            {
+                MessageBox.Show("Facture introuvable ou innexistante : " + exception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

@@ -104,6 +104,12 @@ namespace ProjetCantine.Models
                 case "recupAdresseId":
                     laRequete = "SELECT adresse_id FROM tbl_etablissement";
                     break;
+                case "listeFacture":
+                    laRequete = "select tbl_historique_facture.id as IdFacture, nom + ' ' + prenom as Personne,statut_envoye as Envoyer, statut_payement as Payer,";
+                    laRequete += " total_a_payer as Montant,debut_periode as Date_Début,fin_periode as Date_Fin, archive as Répertoire from tbl_historique_facture";
+                    laRequete += " inner join tbl_personne on tbl_personne.id = tbl_historique_facture.tuteur_id";
+                    laRequete += " inner join tbl_facture on tbl_facture.id = tbl_historique_facture.facture_id";
+                    break;
                 default:
                     return null;
             }
