@@ -350,7 +350,24 @@ namespace ProjetCantine.Models
 
         }
 
-// FONCTIONS PRIVEES INTERMEDIAIRES
+        public void filtreEleve(ref DataGridView tableauCible, String nom)
+        {
+
+            commande = new SqlCommand("PS_Filtre_Eleve", connexion);
+
+            commande.CommandType = CommandType.StoredProcedure;
+
+            commande.Parameters.Add("@nom", SqlDbType.NVarChar);
+
+            commande.Parameters["@nom"].Direction = ParameterDirection.Input;
+
+            commande.Parameters["@nom"].Value = nom;
+
+            injectionDesDonnees(ref tableauCible);
+
+        }
+
+        // FONCTIONS PRIVEES INTERMEDIAIRES
         private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
         {
             // créer un reader de la table ciblée
