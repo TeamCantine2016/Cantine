@@ -117,7 +117,7 @@ namespace ProjetCantine.Vues
             {
                 monthCalendar.Enabled = false;
             }
-
+            btConfirmation.Enabled = false;
             //txtBx_Email.Text = ligne.Cells[0].Value.ToString();
         }
 
@@ -131,6 +131,7 @@ namespace ProjetCantine.Vues
             monthCalendar.SelectionEnd = startDate.AddDays(4);
             labelFin.Text = startDate.AddDays(4).ToString("d");
             chargement_Repas(startDate);
+            btConfirmation.Enabled = true;
 
         }
 

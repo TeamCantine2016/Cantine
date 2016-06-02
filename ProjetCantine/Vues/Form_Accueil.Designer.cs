@@ -42,8 +42,6 @@
             this.facturationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.générationDesFacturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historiqueDesFacturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.récapitulatifToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.repasParFamilleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Acceuil.SuspendLayout();
@@ -56,7 +54,6 @@
             this.administrationToolStripMenuItem,
             this.encodageRepasToolStripMenuItem,
             this.facturationToolStripMenuItem,
-            this.récapitulatifToolStripMenuItem,
             this.aideToolStripMenuItem});
             this.menuStrip_Acceuil.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Acceuil.Name = "menuStrip_Acceuil";
@@ -166,21 +163,6 @@
             this.historiqueDesFacturesToolStripMenuItem.Text = "Historique des factures";
             this.historiqueDesFacturesToolStripMenuItem.Click += new System.EventHandler(this.historiqueDesFacturesToolStripMenuItem_Click);
             // 
-            // récapitulatifToolStripMenuItem
-            // 
-            this.récapitulatifToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.repasParFamilleToolStripMenuItem});
-            this.récapitulatifToolStripMenuItem.Name = "récapitulatifToolStripMenuItem";
-            this.récapitulatifToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.récapitulatifToolStripMenuItem.Text = "Récapitulatif";
-            // 
-            // repasParFamilleToolStripMenuItem
-            // 
-            this.repasParFamilleToolStripMenuItem.Name = "repasParFamilleToolStripMenuItem";
-            this.repasParFamilleToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.repasParFamilleToolStripMenuItem.Text = "Repas par famille ";
-            this.repasParFamilleToolStripMenuItem.Click += new System.EventHandler(this.repasParFamilleToolStripMenuItem_Click);
-            // 
             // aideToolStripMenuItem
             // 
             this.aideToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -192,7 +174,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(79, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "?";
             // 
             // Form_Acceuil
@@ -207,7 +189,6 @@
             this.MaximizeBox = false;
             this.Name = "Form_Acceuil";
             this.Text = "Menu Accueil";
-            //this.Load += new System.EventHandler(this.Form_Acceuil_Load);
             this.menuStrip_Acceuil.ResumeLayout(false);
             this.menuStrip_Acceuil.PerformLayout();
             this.ResumeLayout(false);
@@ -230,8 +211,6 @@
         private System.Windows.Forms.ToolStripMenuItem facturationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem générationDesFacturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem historiqueDesFacturesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem récapitulatifToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem repasParFamilleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem gestionÉtablissementToolStripMenuItem;
