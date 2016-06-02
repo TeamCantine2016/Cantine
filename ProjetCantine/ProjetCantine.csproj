@@ -170,7 +170,9 @@
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Properties.Resources.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_EncodageFactures.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_EncodageRepas.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_GestionEtablissement.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_HistoriqueFacture.resources" />
+    <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_RecapRepasFamilleMois.resources" />
     <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
       <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
     </EmbeddedResource>
