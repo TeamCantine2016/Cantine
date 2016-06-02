@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace ProjetCantine.Models
 {
@@ -79,6 +76,10 @@ namespace ProjetCantine.Models
                     laRequete = "SELECT type_repas AS 'Type de Repas', date_repas AS 'Date de repas', CONCAT(tbl_prix_repas.prix,' €') AS 'Prix' FROM tbl_personne, tbl_prix_repas, tbl_relation_repas, tbl_repas ";
                     laRequete += "WHERE tbl_personne.id = tbl_relation_repas.personne_id  AND tbl_relation_repas.repas_id = tbl_repas.id AND tbl_repas.id=tbl_prix_repas.id ";
                     break;
+                case "detailsConsomationEnfant":
+                    laRequete = "SELECT repas_id, date_repas ";
+                    laRequete += "FROM tbl_relation_repas";
+                    break;
                 case "sommeRepasUnEnfant":
                     laRequete = "SELECT SUM(prix) as 'Prix total' ";
                     laRequete += "FROM[db_cantine].[dbo].[tbl_relation_repas] ";
@@ -100,6 +101,9 @@ namespace ProjetCantine.Models
                 case "recupAdresseId":
                     laRequete = "SELECT adresse_id FROM tbl_etablissement";
                     break;
+                case "tva":
+                    laRequete = "SELECT tva FROM tbl_etablissement";
+                    break;
                 default:
                     return null;
             }
@@ -120,6 +124,36 @@ namespace ProjetCantine.Models
             }
             return selectionResult;
         }
+
+
+        //##############
+        public void get_listeRepasUnEnfant(ref List<String[]> liste, int id, String d_start, String d_stop)
+        {
+            String[] tab;
+            String query = getQuery("detailsConsomationEnfant");
+            query += " WHERE personne_id = " + id + " and date_repas BETWEEN '" + d_start + "' AND '" + d_stop + "';";
+            commande = new SqlCommand(query, connexion);
+            lecteurDeDonnees = commande.ExecuteReader();
+
+            while (lecteurDeDonnees.Read())
+            {
+                tab = new String[] { lecteurDeDonnees[0].ToString(), lecteurDeDonnees[1].ToString().Substring(0,10), "empty" };
+                liste.Add(tab);
+            }
+            lecteurDeDonnees.Close();
+        }
+
+        public void add_unitPriceToEachLunch(ref List<String[]> liste)
+        {
+            foreach (String[] element in liste)
+            {
+                String query = "SELECT prix FROM tbl_prix_repas WHERE ('" + DateTime.Parse(element[1]).ToString("yyyyMMdd") + "' BETWEEN date_debut AND date_fin) AND repas_id = " + element[0];
+                element[2] = recupDataScalar(query).ToString() ;
+                if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
+            }
+        }
+
+     
 
 // INJECTION DES DONNEES
 
@@ -202,12 +236,20 @@ namespace ProjetCantine.Models
             String temp = "";
             try
             {
+                if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
                 commande = new SqlCommand(requete, connexion);
                 temp = commande.ExecuteScalar().ToString();
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("Erreur récuperation donnée scalaire.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (exception.Message != "Object reference not set to an instance of an object.")
+                {
+                    MessageBox.Show("Erreur récuperation donnée scalaire.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    return temp;
+                }
             }
             finally
             {
