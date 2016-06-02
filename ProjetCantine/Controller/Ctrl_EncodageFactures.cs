@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjetCantine.Models;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ProjetCantine.Controller
 {
@@ -58,17 +57,27 @@ namespace ProjetCantine.Controller
             }
         }
 
-        public float get_sommePrixRepasEnfant(int id_enfant, String date_debut, String date_fin) // CALCULER le prix total pour 1 enfant durant une periode donnée
+        public DataTable convertList(List<String[]> liste)
         {
-            float total = 0.0f;
-            DbConnection dbTalk = new DbConnection();
-            // requête pour l'obtention de la somme de prix à payer pour 1 enfant
-            String query = dbTalk.getQuery("sommeRepasUnEnfant");
-            // spécification des critères
-            query += "WHERE personne_id = " + id_enfant + " AND date_repas BETWEEN '" + date_debut + "' AND '" + date_fin + "';";
-            // récupérer le total
-            float.TryParse(dbTalk.recupDataScalar(query).ToString(), out total);
-            return total;
+            DataTable table = new DataTable();
+
+            int columns = 0;
+            foreach (String[] element in liste)
+            { // le nombre de colonnes
+                if (element.Length > columns) { columns = element.Length; }
+            }
+
+            for (int i = 0; i < columns; i++)
+            { // ajouter les colonnes
+                table.Columns.Add();
+            }
+
+            foreach (String[] element in liste)
+            {
+                table.Rows.Add(element);
+            }
+
+            return table;
         }
 
         public float get_sommePrixRepasParType(int id_enfant, String type, String date_debut, String date_fin) // CALCULER le prix total pour 1 enfant durant une periode donnée par type de repas
@@ -82,17 +91,6 @@ namespace ProjetCantine.Controller
             // récupérer le total
             float.TryParse(dbTalk.recupDataScalar(query).ToString(), out total);
             return total;
-        }
-
-        public void show_detailsRepasUnEnfant(ref DataGridView tablecible, String date_debut, String date_fin, String id_enfant)
-        {
-            DbConnection dbTalk = new DbConnection();
-            // requête pour le récapitulatif d'un seul enfant
-            String query = dbTalk.getQuery("detailsRepasConsomesUnEnfant");
-            query += " AND personne_id = '" + id_enfant + "' AND date_repas BETWEEN '" + date_debut + "' AND '" + date_fin + "' ORDER BY prenom ";
-            // injecter dans la datagridview du récapitulatif de l'enfant
-            dbTalk.injectDataToDataGridView(query, ref tablecible);
-
         }
 
         public String compteurTypeRepas(String type, String id_enfant, String date_debut, String date_fin)

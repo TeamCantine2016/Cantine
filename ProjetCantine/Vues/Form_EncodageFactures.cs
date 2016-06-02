@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 using ProjetCantine.Controller;
-using ProjetCantine.Models;
 using System.Collections;
+using ProjetCantine.Outils;
+using System.Data;
 
 namespace ProjetCantine.Vues
 {
@@ -19,14 +14,8 @@ namespace ProjetCantine.Vues
         string date_fin = "";
         //float prix = 0;
         string path_facture = "";
+        ArrayList lesEnfants = new ArrayList();
 
-        struct Repas // variable structurée pour le compte et calcul individuel de type de repas par tuteur
-        {
-            public String type;
-            public String quantite;
-            public float prixtotal;
-        };
-        
         public Form_EncodageFactures()
         {
             InitializeComponent();
@@ -51,54 +40,6 @@ namespace ProjetCantine.Vues
 
         }
 
-
-        //*****************************************************************************************************************************************
-        private void btApercu_Click(object sender, EventArgs e) // 90% Ready - CREATION FACTURE 
-        {
-            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
-
-            // capturer la periode de la facture définie
-            DateTime debut = dateTimePicker_debut.Value;
-            DateTime fin = dateTimePicker_fin.Value;
-            // capturer l'index de la ligne cliqué
-            int i = dGdVw_DetailFamille.CurrentRow.Index;
-            // capturer la ligne cliqué
-            DataGridViewRow lineSelected = dGdVw_DetailFamille.Rows[i];
-            // initialisation des variables dont source est la ligne cliquée
-            string codeClient = lineSelected.Cells[0].Value.ToString();
-            string nomClient = lineSelected.Cells[1].Value.ToString();
-            string prenomClient = lineSelected.Cells[2].Value.ToString();
-            string adresseClient = lineSelected.Cells[4].Value.ToString();
-            string villeClient = lineSelected.Cells[5].Value.ToString();
-            string paysClient = lineSelected.Cells[6].Value.ToString();
-            // initialiser le nouveau numéro de Facture
-            int numeroFacture = controle.get_dernierNumeroFactureDisponible();
-
-            // créer objet Facture
-            ApercuFacture facture = new ApercuFacture();
-            // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
-            String pathNouvelleFacture = facture.facture(lb_repasChaud1.Text, lb_repasChaud2.Text, lb_repasFroid.Text, lb_repasAucun.Text, label_chaud1.Text, label_chaud2.Text, label_froid.Text, label_aucun.Text, numeroFacture
-                                                , debut ,fin, codeClient, nomClient, prenomClient, adresseClient,villeClient, paysClient);
-
-            // teste si le fichier a bien été creer           
-            if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
-            { // si je ne reçois pas un path, alors message d'erreur
-                MessageBox.Show(pathNouvelleFacture);
-            }
-            else
-            {   // si je reçois un path, c'est ok
-                MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
-                // sauvegarder facture
-                controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] {'€'}), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
-                // afficher facture avec programme externe
-                facture.affichageFacture(pathNouvelleFacture);
-                // ????
-                path_facture = pathNouvelleFacture;
-                btEnvoi.Enabled = true;
-            }
-        }
-        //*****************************************************************************************************************************************
-
         public void filtre(object sender, EventArgs e) // 99% READY -  FILTRE TUTEUR / ENFANT POUR DATAGRIDVIEW-MEMBRE 
         {
             // création de l'objet pour filtrer dataGridView
@@ -106,9 +47,8 @@ namespace ProjetCantine.Vues
             // appelle la méthode liée à la procédure stockée
             controle.filtreParNomParTel(ref dGdVw_DetailFamille, txtBx_RechNom.Text, txtBx_RechNumTel.Text);
         }
- 
 
-        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 90% READY - Remplir DGV-Membre - Gestion date dernière clôture
+        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 97% READY - Remplir DGV-Membre - Gestion date dernière clôture
         {
             // vider le tabcontrol et le recap tuteur
             tabDetail.TabPages.Clear();
@@ -145,15 +85,10 @@ namespace ProjetCantine.Vues
             }
          }
 
-        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
-        {
-            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
-            dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
-        }
-
         private void button_visualiser_Click(object sender, EventArgs e) // 99% READY - Gestion visualisation des détails enfants pour le tuteur
         {
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
+            lesEnfants.Clear();
 
             // la ligne du tuteur sélectionné
             DataGridViewRow ligneTuteur = dGdVw_DetailFamille.Rows[dGdVw_DetailFamille.CurrentRow.Index];
@@ -165,20 +100,8 @@ namespace ProjetCantine.Vues
             groupBox_recap.Text = "Récap pour le tuteur : " + ligneTuteur.Cells[1].Value.ToString() + " " + ligneTuteur.Cells[2].Value.ToString() ;
             // reset des pages du tabcontrol
             tabDetail.TabPages.Clear();
-            
-            ArrayList listSommesPrix = new ArrayList(); // somme par enfant listé
-            ArrayList listCompteRepas = new ArrayList(); // liste le détail par type de repas compte et prix total
-            List<String> listeTypeRepas = new List<String>(); // créer et initialiser liste de type de repas (fait en dur, meilleur si repris dans la db)
-            listeTypeRepas.Add("chaud1");
-            listeTypeRepas.Add("chaud2");
-            listeTypeRepas.Add("froid");
-            listeTypeRepas.Add("aucun");
-            // initialisation et création d'une variable de type structuré définie "Repas"
-            Repas compteRepas;
-            compteRepas.type = "";
-            compteRepas.quantite = "";
-            compteRepas.prixtotal = 0;
-            
+            // initialiser recap tuteur
+            initialiserRecapTuteur();
 
             for (int i = 0; i < dgv_enfant_facturation.Rows.Count; i++) // TRAITEMENT INDIVIDUEL PAR ENFANT
             {
@@ -199,60 +122,38 @@ namespace ProjetCantine.Vues
                 TabPage myTabPage = new TabPage(nomPrenomEnfant); // Nouvel onglet et le title pour afficher le nom et le prenom sur l'onglet 
                 tabDetail.TabPages.Add(myTabPage); // J'ajoute l'onglet au tabcontrol
 
-                // une requete qui affiche tout les repas avec leur date et prix pris pour 1 élève
-                controle.show_detailsRepasUnEnfant(ref dataGridView_historique, date_debut, date_fin, id_enfant.ToString());
-                // ajouter le dgv généré dans le tab
-                myTabPage.Controls.Add(dataGridView_historique); // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
-                
-                // calcul de du prix total pour 1 enfant et l'insère dans la liste
-                listSommesPrix.Add(controle.get_sommePrixRepasEnfant(id_enfant, date_debut, date_fin));
-
-                //===============================Pour compter les repas prisent par tuteur par type de repas=============================================
-                foreach (String element in listeTypeRepas)
+                DetailsEnfant unEnfant = new DetailsEnfant(id_enfant, date_debut, date_fin);
+                DataTable details = controle.convertList(unEnfant.get_details());
+                if (details.Rows.Count > 0)
                 {
-                    compteRepas.type = element.ToString();
-                    compteRepas.quantite = controle.compteurTypeRepas(element.ToString(), id_enfant.ToString(), date_debut.ToString(), date_fin.ToString());
-                    compteRepas.prixtotal = controle.get_sommePrixRepasParType(id_enfant, element.ToString(), date_debut.ToString(), date_fin.ToString());
-                    listCompteRepas.Add(compteRepas);
-                }
+                    details.Columns[0].ColumnName = "Type de repas";
+                    details.Columns[1].ColumnName = "Consomé le";
+                    details.Columns[2].ColumnName = "Prix";
 
-            }
+                    // Binding datagirdview with datatable
+                    dataGridView_historique.DataSource = details;
 
-            // initialiser recap tuteur
-            initialiserRecapTuteur();
+                    // ajouter le dgv généré dans le tab
+                    myTabPage.Controls.Add(dataGridView_historique); // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
 
-            // Affichage du recap tuteur
-            foreach (Repas element in listCompteRepas)
-            {
-                switch (element.type.ToString())
-                {
-                    case "chaud1":
-                        afficherResultatsRecapTuteur(ref label_chaud1, ref label_Total_Chaud1, element);
-                        break;
-                    case "chaud2":
-                        afficherResultatsRecapTuteur(ref label_chaud2, ref label_Total_Chaud2, element);
-                        break;
-                    case "froid":
-                        afficherResultatsRecapTuteur(ref label_froid, ref label_Total_Froid, element);
-                        break;
-                    case "aucun":
-                        afficherResultatsRecapTuteur(ref label_aucun, ref label_Total_Aucun, element);
-                        break;
-                    default:
-                        label_chaud1.Text = "Erreur";
-                        label_Total_Chaud1.Text = "Erreur";
-                        break;
+                    // Affichage du recap tuteur
+                    // nombre de repas
+                    label_chaud1.Text = (int.Parse(label_chaud1.Text) + unEnfant.get_nbRepas(1)).ToString();
+                    label_chaud2.Text = (int.Parse(label_chaud2.Text) + unEnfant.get_nbRepas(2)).ToString();
+                    label_froid.Text = (int.Parse(label_froid.Text) + unEnfant.get_nbRepas(3)).ToString();
+                    label_aucun.Text = (int.Parse(label_aucun.Text) + unEnfant.get_nbRepas(4)).ToString();
+                    // total par type de repas
+                    label_Total_Chaud1.Text = (float.Parse(label_Total_Chaud1.Text.ToString().Trim(new char[] { '€' })) + unEnfant.get_totalPriceLunchType(1)).ToString() + " €";
+                    label_Total_Chaud2.Text = (float.Parse(label_Total_Chaud2.Text.ToString().Trim(new char[] { '€' })) + unEnfant.get_totalPriceLunchType(2)).ToString() + " €";
+                    label_Total_Froid.Text = (float.Parse(label_Total_Froid.Text.ToString().Trim(new char[] { '€' })) + unEnfant.get_totalPriceLunchType(3)).ToString() + " €";
+                    label_Total_Aucun.Text = (float.Parse(label_Total_Aucun.Text.ToString().Trim(new char[] { '€' })) + unEnfant.get_totalPriceLunchType(4)).ToString() + " €";
+                    // total global
+                    label_prix.Text = (float.Parse(label_prix.Text.ToString().Trim(new char[] { '€' })) + unEnfant.get_totalPriceLunch()).ToString() + " €";
+
+                    // Je conserve l'enfant en mémoire pour la création de facture
+                    lesEnfants.Add(unEnfant);
                 }
             }
-
-            // Calculer le total pour le tuteur actuel et l'afficher
-            float total = 0;
-            foreach (float value in listSommesPrix)
-            {
-                total += value;
-            }
-            label_prix.Text = total.ToString() + " €";
-
 
             // gestion bouton "aperçu"
             if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
@@ -261,15 +162,62 @@ namespace ProjetCantine.Vues
             }
         }
 
-        private void afficherResultatsRecapTuteur(ref Label quantity, ref Label solde, Repas add) // 99% - READY une sous-fonction de button_visualiser_Click()
-        {
-            float tmp_solde;
-            int tmp_quantity;
 
-            tmp_quantity = int.Parse(quantity.Text.ToString());
-            tmp_solde = float.Parse(solde.Text.ToString().Trim(new Char[] {'€'}));
-            quantity.Text = (tmp_quantity + int.Parse(add.quantite)).ToString();
-            solde.Text = (tmp_solde + add.prixtotal).ToString() + " €";
+        //*****************************************************************************************************************************************
+        private void btApercu_Click(object sender, EventArgs e) // 99% Ready - CREATION FACTURE 
+        {
+            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
+
+            // capturer la periode de la facture définie
+            DateTime debut = dateTimePicker_debut.Value;
+            DateTime fin = dateTimePicker_fin.Value;
+
+            // capturer l'index de la ligne cliqué
+            int i = dGdVw_DetailFamille.CurrentRow.Index;
+
+            // capturer la ligne cliqué
+            DataGridViewRow lineSelected = dGdVw_DetailFamille.Rows[i];
+
+            // initialisation des variables dont source est la ligne cliquée
+            string codeClient = lineSelected.Cells[0].Value.ToString();
+            string nomClient = lineSelected.Cells[1].Value.ToString();
+            string prenomClient = lineSelected.Cells[2].Value.ToString();
+            string adresseClient = lineSelected.Cells[4].Value.ToString();
+            string villeClient = lineSelected.Cells[5].Value.ToString();
+            string paysClient = lineSelected.Cells[6].Value.ToString();
+
+            // initialiser le nouveau numéro de Facture
+            int numeroFacture = controle.get_dernierNumeroFactureDisponible() + 1;
+
+            // créer objet Facture
+            ApercuFacture facture = new ApercuFacture();
+
+            // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
+            String pathNouvelleFacture = facture.facture( lesEnfants, numeroFacture, debut, fin, codeClient, nomClient, prenomClient, adresseClient, villeClient, paysClient);
+
+            // teste si le fichier a bien été creer           
+            if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
+            { // si je ne reçois pas un path, alors message d'erreur
+                MessageBox.Show(pathNouvelleFacture);
+            }
+            else
+            {   // si je reçois un path, c'est ok
+                MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
+                // sauvegarder facture
+                controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] {'€'}), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                // afficher facture avec programme externe
+                facture.affichageFacture(pathNouvelleFacture);
+                // ????
+                path_facture = pathNouvelleFacture;
+                btEnvoi.Enabled = true;
+            }
+        }
+        //*****************************************************************************************************************************************
+
+        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
+        {
+            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
 
         private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
@@ -288,13 +236,6 @@ namespace ProjetCantine.Vues
 
             label_prix.Text = "0 €";
         }
-
-
-
-
-
-
-
 
         //*****************************************************************************************************************************************
         //private void btEnvoi_Click(object sender, EventArgs e)

@@ -255,7 +255,6 @@
             this.btEnvoi.TabIndex = 23;
             this.btEnvoi.Text = "Envoi";
             this.btEnvoi.UseVisualStyleBackColor = true;
-            //this.btEnvoi.Click += new System.EventHandler(this.btEnvoi_Click);
             // 
             // btAnnuler
             // 
@@ -394,16 +393,16 @@
             // 
             this.lb_prixTotal.AutoSize = true;
             this.lb_prixTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_prixTotal.Location = new System.Drawing.Point(146, 177);
+            this.lb_prixTotal.Location = new System.Drawing.Point(140, 177);
             this.lb_prixTotal.Name = "lb_prixTotal";
-            this.lb_prixTotal.Size = new System.Drawing.Size(121, 20);
+            this.lb_prixTotal.Size = new System.Drawing.Size(149, 20);
             this.lb_prixTotal.TabIndex = 28;
-            this.lb_prixTotal.Text = "PRIX TOTAL :";
+            this.lb_prixTotal.Text = "PRIX TOTAL HT :";
             // 
             // label_prix
             // 
             this.label_prix.AutoSize = true;
-            this.label_prix.Location = new System.Drawing.Point(283, 182);
+            this.label_prix.Location = new System.Drawing.Point(295, 182);
             this.label_prix.Name = "label_prix";
             this.label_prix.Size = new System.Drawing.Size(0, 13);
             this.label_prix.TabIndex = 29;

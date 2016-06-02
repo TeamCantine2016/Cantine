@@ -3,3 +3,6 @@
 ################################################################################
 
 /ProjetCantine/obj/Debug
+/ProjetCantine/bin
+/.vs
+/Facture
