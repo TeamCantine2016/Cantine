@@ -84,16 +84,16 @@ namespace ProjetCantine.Vues
 
 
                     Ctrl_GestionEtablissement controle = new Ctrl_GestionEtablissement();
-                    int resultAd = controle.insertData("tbl_adresse", textBox_Pays.Text + "','" + textBox_Ville.Text + "','" + textBox_CodePostal.Text + "','" + textBox_Rue.Text + "','" + textBox_Num.Text);
+                    int resultAd = controle.insertData("tbl_adresse","'"+ textBox_Pays.Text + "','" + textBox_Ville.Text + "','" + textBox_CodePostal.Text + "','" + textBox_Rue.Text + "','" + textBox_Num.Text+"'");
 
                     if (resultAd != 0)
                     {
 
                         Ctrl_GestionEtablissement controle1 = new Ctrl_GestionEtablissement();
 
-                        String valInsert = textBox_Dénomination.Text + "','" + Convert.ToInt32(textBox_NumTelephone.Text) + "','" + Convert.ToInt32(textBox_NumFax.Text) + "','" + textBox_Email.Text;
+                        String valInsert = "'" +textBox_Dénomination.Text + "','" + Convert.ToInt32(textBox_NumTelephone.Text) + "','" + Convert.ToInt32(textBox_NumFax.Text) + "','" + textBox_Email.Text;
                         valInsert += "','" + textBox_tva.Text + "','" + textBox_banqueBe.Text + "','" + textBox_bicBE.Text + "','" + textBox_banqueLu.Text;
-                        valInsert += "','" + textBox_bicLU.Text + "','" + img_path + "','" + controle1.recupId(textBox_Rue.Text, textBox_Num.Text);
+                        valInsert += "','" + textBox_bicLU.Text + "','" + img_path + "','" + controle1.recupId(textBox_Rue.Text, textBox_Num.Text+ "'");
 
                         Ctrl_GestionEtablissement controle2 = new Ctrl_GestionEtablissement();
                         int resultEtab = controle.insertData("tbl_etablissement", valInsert);
