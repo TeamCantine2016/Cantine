@@ -26,6 +26,13 @@ namespace ProjetCantine.Controller
             return donnée;
         }
 
+        public string pathfacture(int id)
+        {
+            String query = dbTalk.getQuery("pathFacture");
+            query += " WHERE id = " + id;
+            return dbTalk.recupDataScalar(query);
+        }
+
         public void update(string donnée, string table, int id)
         {
             dbTalk.update(table, id, donnée);
