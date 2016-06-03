@@ -6,6 +6,8 @@ using System.Collections;
 using ProjetCantine.Outils;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ProjetCantine.Vues;
+using ProjetCantine.Controller;
 
 namespace ProjetCantine
 {
@@ -22,6 +24,8 @@ namespace ProjetCantine
             {
                 // Création de l'objet de communication avec la db
                 DbConnection dbTalk = new DbConnection();
+                //// Création de l'objet de communication avec un autre controleur
+                //Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
 
                 // Création de l'objet etablissement avec ses détails
                 DetailsEtablissement etablissement = new DetailsEtablissement();
@@ -110,7 +114,7 @@ namespace ProjetCantine
                 ws.Cells[17, 3] = "virement bancaire";
                 ws.Cells[18, 3] = (DateTime.Now.AddDays(30)).ToString("dd/MM/yyyy");
 
-                // sauvegarde et fermeture du programme
+                // répertoire sauvegarde et fermeture du programme
                 if (File.Exists(pathSortie) == false)
                 {
                     DirectoryInfo di = Directory.CreateDirectory(pathSortie);
@@ -195,19 +199,35 @@ namespace ProjetCantine
             }
         }
 
-        public void affichageFacture(String add) // affichage facture dans un programme tiers, par défaut du système client
+        public bool affichageFacture(String add, bool bt_show) // affichage facture dans un programme tiers, par défaut du système client
         {
             try
             {
                 // Amélioration à faire, une vue Form qui affiche le pdf de la facture
                 // L'idée était présente, même avant d'enregistrer et envoyer avoir un aperçu
-                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
-                System.Diagnostics.Process.Start(psi);
+                //System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
+                //System.Diagnostics.Process.Start(psi);
+                Form_View_Facture viewPDF = new Form_View_Facture();
+                if (bt_show)
+                {
+                    viewPDF.Tag = add + "#toolbar=0";
+                }
+                else
+                {
+                    viewPDF.Tag = add;
+                }
+                
+                if (viewPDF.ShowDialog() == DialogResult.OK)
+                {
+                    return true;
+                }
+
             }
             catch (SystemException exception)
             {
                 MessageBox.Show("Facture introuvable ou innexistante : " + exception.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return false;
         }
     }
 }

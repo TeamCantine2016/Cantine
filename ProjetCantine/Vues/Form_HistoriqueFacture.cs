@@ -38,7 +38,7 @@ namespace ProjetCantine.Vues
             String path = controle.pathfacture(id);
             //demander d'afficher le fichier en fct du chemin renseigner
             ApercuFacture facture = new ApercuFacture();
-            facture.affichageFacture(path);
+            facture.affichageFacture(path, false);
 
         }
 

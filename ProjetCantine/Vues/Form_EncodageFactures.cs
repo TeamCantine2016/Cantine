@@ -214,14 +214,16 @@ namespace ProjetCantine.Vues
             }
             else
             {   // si je reçois un path, c'est ok
-                MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
-                // sauvegarder facture
-                controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] {'€'}), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                // MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
                 // afficher facture avec programme externe
-                facture.affichageFacture(pathNouvelleFacture);
-                // ????
-                path_facture = pathNouvelleFacture;
-                btEnvoi.Enabled = true;
+                if (facture.affichageFacture(pathNouvelleFacture, true))
+                {
+                    // sauvegarder facture
+                    controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] { '€' }), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                    // ????
+                    path_facture = pathNouvelleFacture;
+                    btEnvoi.Enabled = true;
+                }
             }
         }
         //*****************************************************************************************************************************************
