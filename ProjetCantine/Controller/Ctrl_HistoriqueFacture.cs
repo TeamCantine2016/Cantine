@@ -12,9 +12,14 @@ namespace ProjetCantine.Controller
     {
         DbConnection dbTalk = new DbConnection();
 
-        public void afficheHistorique(ref DataGridView dtg)
+        public void afficheHistorique(ref DataGridView dtg, bool payer, bool envoyer, string date_Début, string date_Fin, bool touteLesFactures)
         {
             String query = dbTalk.getQuery("listeFacture");
+            if (touteLesFactures == false)
+            {
+                query += " WHERE fin_periode <= '" + date_Fin + "' and fin_periode >= '" + date_Début + "' and statut_payement = '" + payer + "' and statut_envoye = '" + envoyer + "'";
+            }
+
             dbTalk.injectDataToDataGridView(query, ref dtg);
         }
 

@@ -21,7 +21,7 @@ namespace ProjetCantine.Vues
         private void Form_HistoriqueFacture_Load(object sender, EventArgs e)
         {
             Ctrl_HistoriqueFacture controle = new Ctrl_HistoriqueFacture();
-            controle.afficheHistorique(ref dataGridView_Historique);
+            controle.afficheHistorique(ref dataGridView_Historique, checkBox_payer.Checked, checkBox_envoyer.Checked, dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), checkBox_tout.Checked);
             if (dataGridView_Historique.Rows.Count == 0)
             {
                 button_visualisation.Enabled = false;
@@ -60,10 +60,25 @@ namespace ProjetCantine.Vues
                 Ctrl_HistoriqueFacture controle1 = new Ctrl_HistoriqueFacture();
                 controle1.update(donnée, "tbl_historique_facture", id);
 
-                Ctrl_HistoriqueFacture controleAffiche = new Ctrl_HistoriqueFacture();
-                controleAffiche.afficheHistorique(ref dataGridView_Historique);
+                Ctrl_HistoriqueFacture controleAffichage = new Ctrl_HistoriqueFacture();
+                controleAffichage.afficheHistorique(ref dataGridView_Historique, checkBox_payer.Checked, checkBox_envoyer.Checked, dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), checkBox_tout.Checked);
 
             }
+        }
+
+        private void checkBox_envoyer_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox_tout.Checked = false;
+            Ctrl_HistoriqueFacture controle = new Ctrl_HistoriqueFacture();
+            controle.afficheHistorique(ref dataGridView_Historique, checkBox_payer.Checked, checkBox_envoyer.Checked, dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), checkBox_tout.Checked);
+
+        }
+
+        private void checkBox_tout_CheckedChanged(object sender, EventArgs e)
+        {
+            Ctrl_HistoriqueFacture controle = new Ctrl_HistoriqueFacture();
+            controle.afficheHistorique(ref dataGridView_Historique, checkBox_payer.Checked, checkBox_envoyer.Checked, dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), checkBox_tout.Checked);
+
         }
     }
 }
