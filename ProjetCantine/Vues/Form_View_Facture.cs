@@ -21,15 +21,17 @@ namespace ProjetCantine.Vues
         {
             // initialisation
             bt_annuler.Visible = true;
-            bt_enregistrer.Visible = true;
+            bt_enregistrer.Visible = false;
+            lb_Message.Visible = true;
             String pdfpath = this.Tag.ToString();
             // vérification
-            if (!pdfpath.Contains("#toolbar=0"))
+            if (pdfpath.Contains("#toolbar=0"))
             {
-                bt_annuler.Visible = false;
-                bt_enregistrer.Visible = false;
+                bt_annuler.Visible = true;
+                bt_enregistrer.Visible = true;
+                lb_Message.Visible = false;
             }
-            // affichage
+
             wb_view_pdf.Navigate(pdfpath);
         }
 

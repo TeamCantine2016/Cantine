@@ -74,13 +74,13 @@ namespace ProjetCantine.Vues
             // mettre à jour les dateTimePicker du formulaire
             DateTime laDate; // pour y placer la date converti de puis la textbox
             if (DateTime.TryParse(label_dateCloture.Text, out laDate)) // renvoie "true" si la conversion en date est possible et affecte le résultat de la conversion à la variable "laDate"
-            { 
-                dateTimePicker_debut.Value = laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
+            {
+                dateTimePicker_debut.Value = DateTime.Now.AddDays(-5); // laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
                 dateTimePicker_fin.Value = DateTime.Now; // initialisation au jour actuel - ajourd'hui
             }
             else
             {
-            /* A MODIFIER SELON COMMENTAIRE */ dateTimePicker_debut.Value = DateTime.Now; // <- C'est faux, doit être initialisé au dernier repas déjà consommé s'il existe !!
+            /* A MODIFIER SELON COMMENTAIRE */ dateTimePicker_debut.Value = DateTime.Now.AddDays(-5); // <- C'est faux, doit être initialisé au dernier repas déjà consommé s'il existe !!
             }
          }
 
@@ -220,7 +220,6 @@ namespace ProjetCantine.Vues
                 {
                     // sauvegarder facture
                     controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] { '€' }), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
-                    // ????
                     path_facture = pathNouvelleFacture;
                     btEnvoi.Enabled = true;
                 }
@@ -230,8 +229,9 @@ namespace ProjetCantine.Vues
 
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
         {
-            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(30); //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
-            dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
+            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(-2); ; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            dateTimePicker_fin.MaxDate = DateTime.Now;
+            dateTimePicker_fin.Value = DateTime.Now;
         }
 
         private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
@@ -257,60 +257,10 @@ namespace ProjetCantine.Vues
             tabDetail.TabPages.Clear();
         }
 
-        //*****************************************************************************************************************************************
-        //private void btEnvoi_Click(object sender, EventArgs e)
-        //{
-        //    int k = dGdVw_DetailFamille.CurrentRow.Index;
-        //    DataGridViewRow r = dGdVw_DetailFamille.Rows[k];
-        //    int resultat = 0;
-        //    int resultat1 = 0;
-        //    int resultat2 = 0;
-        //    //==================================On insere les données dans la table tbl_facture=========================
-        //    string query = "INSERT Into tbl_facture (total_a_payer,debut_periode,fin_periode) ";
-        //    query += "VALUES ('" + prix + "','" + date_debut + "','" + date_fin + "')";
-        //    con.Open();
-        //    SqlCommand cmd = new SqlCommand(query, con);
-        //    resultat = cmd.ExecuteNonQuery();
-        //    con.Close();
-        //    //==================================On récupère l'identifiant de la facture=================================
-        //    int facture_id = 0;
-        //    string query1 = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
-
-        //    con.Open();
-        //    cmd = new SqlCommand(query1, con);
-
-        //    SqlDataReader dr = cmd.ExecuteReader();
-        //    while (dr.Read())
-        //    {
-        //        facture_id = (int)dr["facture_id"];
-        //    }
-        //    dr.Close();
-        //    con.Close();
-        //    //=================================On insère les données dans la table tbl_relation_facture======================
-        //    int tuteur_id = Convert.ToInt32(r.Cells[0].Value.ToString());
-        //    string query2 = "INSERT Into tbl_relation_facture (facture_id,tuteur_id) ";
-        //    query2 += "VALUES (" + facture_id + "," + tuteur_id + ")";
-        //    con.Open();
-        //    cmd = new SqlCommand(query2, con);
-        //    resultat1 = cmd.ExecuteNonQuery();
-        //    con.Close();
-        //    //================================On insère les données dans la table d'historique=======================
-        //    string query3 = "INSERT Into tbl_historique_facture (facture_id,tuteur_id,statut_payement,statut_envoye,detaille,format_envoye,archive)";
-        //    query3 += "VALUES ('" + facture_id + "','" + tuteur_id + "','0','0','0','mail','" + path_facture + "')";
-        //    con.Open();
-        //    cmd = new SqlCommand(query3, con);
-        //    resultat2 = cmd.ExecuteNonQuery();
-        //    con.Close();
-
-        //    if ((resultat + resultat1 + resultat2) == 3)
-        //    {
-        //        MessageBox.Show("La facture a été enregistrée avec succès.");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Une erreur est intervenue lors de l'enregistrement de la facture.");
-        //    }
-        //}
-        //*****************************************************************************************************************************************
+        private void btEnvoi_Click(object sender, EventArgs e)
+        {
+            ApercuFacture facture = new ApercuFacture();
+            facture.affichageFacture(path_facture, false);
+        }
     }
 }

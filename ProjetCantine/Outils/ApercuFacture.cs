@@ -199,16 +199,13 @@ namespace ProjetCantine
             }
         }
 
-        public bool affichageFacture(String add, bool bt_show) // affichage facture dans un programme tiers, par défaut du système client
+        public bool affichageFacture(String add, bool hideButtons) // affichage facture dans un programme tiers, par défaut du système client
         {
             try
             {
-                // Amélioration à faire, une vue Form qui affiche le pdf de la facture
-                // L'idée était présente, même avant d'enregistrer et envoyer avoir un aperçu
-                //System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
-                //System.Diagnostics.Process.Start(psi);
                 Form_View_Facture viewPDF = new Form_View_Facture();
-                if (bt_show)
+
+                if (hideButtons)
                 {
                     viewPDF.Tag = add + "#toolbar=0";
                 }

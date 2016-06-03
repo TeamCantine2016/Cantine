@@ -255,6 +255,7 @@
             this.btEnvoi.TabIndex = 23;
             this.btEnvoi.Text = "Envoi";
             this.btEnvoi.UseVisualStyleBackColor = true;
+            this.btEnvoi.Click += new System.EventHandler(this.btEnvoi_Click);
             // 
             // btAnnuler
             // 
