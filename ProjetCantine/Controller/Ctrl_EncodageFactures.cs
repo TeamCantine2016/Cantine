@@ -161,9 +161,9 @@ namespace ProjetCantine.Controller
             DbConnection dbTalk = new DbConnection();
             try
             {
-                dbTalk.insert("tbl_facture", solde + "','" + date_debut + "','" + date_fin);
-                dbTalk.insert("tbl_historique_facture", id.ToString() + "','" + tuteur_id + "','0','0','0',null,'" + path);
-                dbTalk.insert("tbl_relation_facture", id + "','" + tuteur_id);
+                dbTalk.insert("tbl_facture", solde.Replace(",",".") + ",'" + date_debut + "','" + date_fin + "'");
+                dbTalk.insert("tbl_historique_facture", id + "," + int.Parse(tuteur_id) + ",0,0,0,null,'" + path + "'");
+                dbTalk.insert("tbl_relation_facture", id + "," + int.Parse(tuteur_id));
             }
             catch (Exception ex)
             {

@@ -199,7 +199,7 @@ namespace ProjetCantine.Vues
             string paysClient = lineSelected.Cells[6].Value.ToString();
 
             // initialiser le nouveau numéro de Facture
-            int numeroFacture = controle.get_dernierNumeroFactureDisponible() + 1;
+            int numeroFacture = controle.get_dernierNumeroFactureDisponible();
 
             // créer objet Facture
             ApercuFacture facture = new ApercuFacture();
@@ -228,7 +228,7 @@ namespace ProjetCantine.Vues
 
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
         {
-            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(30); //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
             dateTimePicker_fin.Value = dateTimePicker_fin.MinDate;
         }
 

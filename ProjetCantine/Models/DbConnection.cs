@@ -328,8 +328,8 @@ namespace ProjetCantine.Models
 
                 // créer la requête "insert"
                 String query = "INSERT INTO dbo." + tableCible;
-                query += lesColonnesCibles + " ";
-                query += "VALUES ('" + donnees + "');";
+                query += " " + lesColonnesCibles + " ";
+                query += "VALUES (" + donnees + ");";
 
                 // exécuter la requête
                 commande = new SqlCommand(query, connexion);
