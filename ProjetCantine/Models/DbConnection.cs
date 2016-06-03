@@ -111,91 +111,19 @@ namespace ProjetCantine.Models
             return laRequete;
         }
 
-// LES METHODES PUBLIQUES
-
-// Récupérer la requête choisie
-        public String getQuery(String selection)
-        {
-            String selectionResult = requete(selection);
-            if (selectionResult == null)
-            {
-                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-            return selectionResult;
-        }
-
-
-        //##############
-        public void get_listeRepasUnEnfant(ref List<String[]> liste, int id, String d_start, String d_stop)
-        {
-            String[] tab;
-            String query = getQuery("detailsConsomationEnfant");
-            query += " WHERE personne_id = " + id + " and date_repas BETWEEN '" + d_start + "' AND '" + d_stop + "';";
-            commande = new SqlCommand(query, connexion);
-            lecteurDeDonnees = commande.ExecuteReader();
-
-            while (lecteurDeDonnees.Read())
-            {
-                tab = new String[] { lecteurDeDonnees[0].ToString(), lecteurDeDonnees[1].ToString().Substring(0,10), "empty" };
-                liste.Add(tab);
-            }
-            lecteurDeDonnees.Close();
-        }
-
-        public void add_unitPriceToEachLunch(ref List<String[]> liste)
-        {
-            foreach (String[] element in liste)
-            {
-                String query = "SELECT prix FROM tbl_prix_repas WHERE ('" + DateTime.Parse(element[1]).ToString("yyyyMMdd") + "' BETWEEN date_debut AND date_fin) AND repas_id = " + element[0];
-                element[2] = recupDataScalar(query).ToString() ;
-                if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
-            }
-        }
-
-     
-
-// INJECTION DES DONNEES
-
-        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
-        {
-            // affectation de la variable globale avec la requête reçue
-            commande = new SqlCommand(requete, connexion);
-            // execution de la requête
-            injectionDesDonnees(ref dataGridCible);
-        }
-
-        public DateTime get_date(String requete)
-        {
-            DateTime dateCloture;
-            DateTime.TryParse("01/01/1970", out dateCloture);
-            // affectation de la variable globale avec la requête reçue
-            commande = new SqlCommand(requete, connexion);
-            // execution de la requete
-            
-            lecteurDeDonnees = commande.ExecuteReader();
-            while (lecteurDeDonnees.Read())
-            {
-                DateTime.TryParse(lecteurDeDonnees["fin_periode"].ToString().Substring(0,10), out dateCloture);
-            }
-            lecteurDeDonnees.Close();
-            
-            return dateCloture;
-        }
-
         private void injectionDesDonnees(ref DataGridView tableauCible)
-        {
+        { // fonction "privé" d'injection des données dans le dgv référencé
             try
             {
                 lecteurDeDonnees = commande.ExecuteReader();
                 tableDeDonnees.Load(lecteurDeDonnees);
                 tableauCible.DataSource = tableDeDonnees;
-                
+
                 // pour récupérer l'id de l'enfant lors de l'encodage facture uniquement
             }
             catch (SystemException exception)
             {
-                MessageBox.Show("Erreur injection DB>DataGridView.\r\n\r\n" + exception.Message, "Load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur injection DB vers " + tableauCible.ToString() + ".\r\n\r\n" + exception.Message, "Load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -209,10 +137,131 @@ namespace ProjetCantine.Models
                 }
             }
         }
+        private string nomColonnes(String table)
+        { // réuni les noms des colonnes d'une table dans un "string"
 
-// recuperer des donnéee d'une requete dans une data reader
+            // créer un reader de la table ciblée
+            String query = "SELECT * FROM " + table + ";";
+            commande = new SqlCommand(query, connexion);
+            lecteurDeDonnees = commande.ExecuteReader();
+
+            // combien de colonnes sont concernées
+            int nombre_colonnes = lecteurDeDonnees.FieldCount;
+
+            // parcourir toutes les colonnes et créer le "string" avec le nom des colonnes
+            string stringNomsColonnes = "( ";
+            for (int i = 1; i < nombre_colonnes; i++)
+            {
+                stringNomsColonnes += lecteurDeDonnees.GetName(i);
+                if (i != nombre_colonnes - 1)
+                {
+                    stringNomsColonnes += ", ";
+                }
+            }
+            stringNomsColonnes += " )";
+
+            lecteurDeDonnees.Close();
+            // renvoyer le "string"
+            return stringNomsColonnes;
+        }
+
+        // LES METHODES PUBLIQUES
+
+        // Récupérer la requête choisie
+        public String getQuery(String selection)
+        { // renvoie la requete selon la selection
+            String selectionResult = requete(selection);
+            if (selectionResult == null)
+            {
+                MessageBox.Show("Get no Query in DB class !!", "Query-error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            return selectionResult;
+        }
+
+        public void get_listeRepasUnEnfant(ref List<String[]> liste, int id, String d_start, String d_stop)
+        { // insère les données dans la liste en référence des données de repas pour 1 enfant
+            try
+            {
+                String[] tab;
+                String query = getQuery("detailsConsomationEnfant");
+                query += " WHERE personne_id = " + id + " and date_repas BETWEEN '" + d_start + "' AND '" + d_stop + "';";
+                commande = new SqlCommand(query, connexion);
+                lecteurDeDonnees = commande.ExecuteReader();
+
+                while (lecteurDeDonnees.Read())
+                {
+                    tab = new String[] { lecteurDeDonnees[0].ToString(), lecteurDeDonnees[1].ToString().Substring(0, 10), "empty" };
+                    liste.Add(tab);
+                }
+                lecteurDeDonnees.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Erreur récupération des données repas pour 1 enfant ! \r\n\r\n" + ex.Message);
+            }
+        }
+
+        public void add_unitPriceToEachLunch(ref List<String[]> liste)
+        { // insère dans la liste donnée en référence le prix unitaire pour un repas selon date de consomation
+            try
+            {
+                foreach (String[] element in liste)
+                {
+                    String query = "SELECT prix FROM tbl_prix_repas WHERE ('" + DateTime.Parse(element[1]).ToString("yyyyMMdd") + "' BETWEEN date_debut AND date_fin) AND repas_id = " + element[0];
+                    element[2] = recupDataScalar(query).ToString();
+                    if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Erreur insertion prix unitaire dans liste ! \r\n\r\n" + ex.Message);
+            }
+        }
+
+        public void injectDataToDataGridView(String requete, ref DataGridView dataGridCible)
+        { // injection des données dans un dgv donné, appel public
+            try
+            {
+                // affectation de la variable globale avec la requête reçue
+                commande = new SqlCommand(requete, connexion);
+                // execution de la requête
+                injectionDesDonnees(ref dataGridCible);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Erreur injection dans datagridview " + dataGridCible.ToString() + " ! \r\n\r\n" + ex.Message);
+            }
+        }
+
+        public DateTime get_date(String requete)
+        { // récupération de la date de clôture
+            DateTime dateCloture;
+            DateTime.TryParse("01/01/1970", out dateCloture);
+
+            try
+            {
+                // affectation de la variable globale avec la requête reçue
+                commande = new SqlCommand(requete, connexion);
+                // execution de la requete
+
+                lecteurDeDonnees = commande.ExecuteReader();
+                while (lecteurDeDonnees.Read())
+                {
+                    DateTime.TryParse(lecteurDeDonnees["fin_periode"].ToString().Substring(0, 10), out dateCloture);
+                }
+                lecteurDeDonnees.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Erreur récupération date de clôture ! \r\n\r\n" + ex.Message);
+            }
+
+            return dateCloture;
+        }
+
         public SqlDataReader injectDataToDataReader(String requete)
-        {
+        { // recuperer des donnéee d'une requete dans une data reader
             try
             {
                 // affectation de la variable globale avec la requête reçue
@@ -229,10 +278,8 @@ namespace ProjetCantine.Models
             return lecteurDeDonnees;
         }
 
-
-// recuperer une seule donnée d'une requete
         public string recupDataScalar(string requete)
-        {
+        { // recuperer une seule donnée d'une requete
             String temp = "";
             try
             {
@@ -259,10 +306,8 @@ namespace ProjetCantine.Models
 
         }
 
-        //****** INSERT
-
         public int insert(String tableCible, String donnees) 
-        {
+        { // insertion dans la db
             try
             {
                 int nbInsertions;
@@ -301,9 +346,8 @@ namespace ProjetCantine.Models
 
         }
 
-//****** DELETE
         public void delete(String tableCible, int id)
-        {
+        { 
             /*
              * pour être sûre de supprimer la bonne ligne et uniquement celle concernée, j'utilise l'id comme info!
              * Il faut donc impérativement donner l'id en argument.
@@ -318,9 +362,8 @@ namespace ProjetCantine.Models
             connexion.Close();
         }
 
-//****** UPDATE
         public void update(String tableCible, int id, String donnees)
-        {
+        { // update dans la db
             // créer la requête "insert"
             String query = "UPDATE dbo." + tableCible;
             query += " SET " + donnees + " WHERE id = " + id;
@@ -331,9 +374,8 @@ namespace ProjetCantine.Models
             connexion.Close();
         }
 
-//****** AVEC PROCEDURE STOCKEE
         public void filtreParNomParTel(ref DataGridView tableauCible, String nom, String telephone)
-        {
+        { // filtre avec procédure stockée
             commande = new SqlCommand("PS_Filtre_Nom_Tel", connexion);
             commande.CommandType = CommandType.StoredProcedure;
 
@@ -347,11 +389,10 @@ namespace ProjetCantine.Models
             commande.Parameters["@tel"].Value = telephone;
 
             injectionDesDonnees(ref tableauCible);
-
         }
 
         public void filtreEleve(ref DataGridView tableauCible, String nom)
-        {
+        { // filtre avec procédure stockée
 
             commande = new SqlCommand("PS_Filtre_Eleve", connexion);
 
@@ -364,41 +405,11 @@ namespace ProjetCantine.Models
             commande.Parameters["@nom"].Value = nom;
 
             injectionDesDonnees(ref tableauCible);
-
-        }
-
-        // FONCTIONS PRIVEES INTERMEDIAIRES
-        private string nomColonnes(String table) // réuni les noms des colonnes d'une table dans un "string"
-        {
-            // créer un reader de la table ciblée
-            String query = "SELECT * FROM " + table + ";";
-            commande = new SqlCommand(query, connexion);
-            lecteurDeDonnees = commande.ExecuteReader();
-
-            // combien de colonnes sont concernées
-            int nombre_colonnes = lecteurDeDonnees.FieldCount;
-
-            // parcourir toutes les colonnes et créer le "string" avec le nom des colonnes
-            string stringNomsColonnes = "( ";
-            for (int i = 1; i < nombre_colonnes; i++)
-            {
-                stringNomsColonnes += lecteurDeDonnees.GetName(i);
-                if (i != nombre_colonnes - 1)
-                {
-                    stringNomsColonnes += ", ";
-                }
-            }
-            stringNomsColonnes += " )";
-
-            lecteurDeDonnees.Close();
-            // renvoyer le "string"
-            return stringNomsColonnes;
-        }
-
-//******** Assigner a chaque texteBox la valeur de la Db -> pas de dgv utilisée 
+        }     
 
         public void afficheEtablissement(string query, ref TextBox Dénomination, ref TextBox Num, ref TextBox Rue, ref TextBox Ville, ref TextBox Pays, ref TextBox Cp, ref TextBox Email, ref TextBox NumTel, ref TextBox NumFax, ref TextBox BanqueBe, ref TextBox BicBe, ref TextBox BanqueLu, ref TextBox BicLu, ref TextBox Tva, ref string path_img)
-        {
+        { // affichage des données de l'établissement dans le Form
+        // Ce code a été fait avant que l'objet établissement soit fait, le code est volontairement pas supprimé et le code n'est pas ré-orienté vers l'objet
 
             // commande = new SqlCommand(query, connexion);
             lecteurDeDonnees = injectDataToDataReader(query);
@@ -423,9 +434,8 @@ namespace ProjetCantine.Models
             connexion.Close();
         }
 
-// verifié si l'établisssment existe dans la db
         public bool existEtablissement(string query)
-        {
+        { // verifié si l'établisssment existe dans la db
             bool ligneExist = false;
             lecteurDeDonnees = injectDataToDataReader(query);
             ligneExist = lecteurDeDonnees.HasRows;
@@ -433,9 +443,8 @@ namespace ProjetCantine.Models
             return ligneExist;
         }
 
-//recupere l'id d'une adresse
         public int recupId(string query)
-        {
+        { //recupere l'id d'une adresse
             // convertir l'id recu en string en int et retourner la valeur
             return Convert.ToInt16(recupDataScalar(query));
         }

@@ -9,6 +9,7 @@ namespace ProjetCantine.Outils
 {
     class DetailsEtablissement
     {
+        //attributs de l'établissement
         String nom;
         String numEtRue;
         String cpEtVille;
@@ -23,6 +24,7 @@ namespace ProjetCantine.Outils
 
         public DetailsEtablissement()
         {
+            // récupérations des données de l'établissement dans la db dé la création de l'objet
             DbConnection dbTalk = new DbConnection();
             String id_adresse = "";
 
@@ -41,6 +43,7 @@ namespace ProjetCantine.Outils
 
         }
 
+        // les "getters" de l'établissement
         public String get_nom() { return nom; }
         public String get_numEtRue() { return numEtRue; }
         public String get_cpEtVille() { return cpEtVille; }

@@ -10,10 +10,11 @@ namespace ProjetCantine.Controller
 {
     class Ctrl_EncodageRepas
     {
-
+        // création de l'objet de communication avec la db
         DbConnection dbTalk = new DbConnection();
+
         public void filtreEleve(ref DataGridView tableauCible, String nom)
-        {
+        { // filtre entre la dgv tuteur et enfant
             DbConnection dbTalk = new DbConnection();
             dbTalk.filtreEleve(ref tableauCible, nom);
         }

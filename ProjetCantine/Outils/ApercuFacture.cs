@@ -20,33 +20,38 @@ namespace ProjetCantine
 
             try
             {
+                // Création de l'objet de communication avec la db
                 DbConnection dbTalk = new DbConnection();
 
-                // Détails établissement
+                // Création de l'objet etablissement avec ses détails
                 DetailsEtablissement etablissement = new DetailsEtablissement();
 
-                // TVA
+                // Récupération de la valeur de la TVA dans une variable
                 String query = dbTalk.getQuery("tva");
                 float tva = float.Parse(dbTalk.recupDataScalar(query));
 
-                // ouverture d'excel en mode caché et y intégrer le brouillon facture
+                // Ouverture d'excel en mode caché et y intégrer le brouillon facture
                 Excel.Application xlApp = new Excel.Application();
                 xlApp.Visible = false;
-                
                 object misValue = System.Reflection.Missing.Value;
-                // Cette ligne ci-dessous permet d'initializer path sur le repertoire racine d'ou est exécuté l'application
+
+                // Initialisation du path vers le répertoire courant de l'exécutable
                 string path = System.IO.Directory.GetCurrentDirectory();
-                // Avec path initialisé, j'ajoute dans mon fichier de solution dans ..\bin\Debug\ le dossier \Resources\ avec le fichier excel dedans, donc on a ..\bin\Debug\Resources\Factures.xlsx
+
+                // Brouillon Facture.xlsx dans les Ressources du projet
                 string pathFacture = path + @"\Resources\Facture.xlsx";
+
+                // Chemin d'accès pour l'enregistrement des factures
                 string pathSortie = @"C:\Factures";
-                // Création
+
+                // Création de la facture
+                // Ouvrir un workbook avec le brouillon
                 Excel.Workbook wbk = xlApp.Workbooks.Open(pathFacture);
                 Excel.Worksheet ws = new Excel.Worksheet();
                 ws = (Excel.Worksheet)wbk.Worksheets[1];
 
                 //Encodage établissement
-                // Test pour voir si il y a déjà des infos dans la db
-                if (etablissement.get_nom().Length > 0)
+                if (etablissement.get_nom().Length > 0) // Si l'objet contient au moins le nom, des données ont été insérées dans la db
                 {
                     ws.Cells[7, "A"] = etablissement.get_nom();
                     ws.Cells[8, "A"] = etablissement.get_numEtRue();
@@ -59,11 +64,12 @@ namespace ProjetCantine
                     ws.Cells[48, "E"] = stringSplit(etablissement.get_banque_LU());
                     ws.Cells[49, "E"] = stringSplit(etablissement.get_bic_LU());
                 }
-                else
+                else // si non pas d'infos d'établissement (on peu refaire une nouvelle facture, mais celle-ci restera répertioré dans la db)
                 {
                     ws.Cells[7, "A"] = "Aucun établissement est enregistré!";
                 }
 
+                // Insertion informations générales dans la facture
                 ws.Cells[7, "D"] = facture_id; //N° facture
                 ws.Cells[7, "E"] = DateTime.Today; // Date Facture
                 ws.Cells[7, "F"] = codeClient; //Code Client
@@ -71,11 +77,11 @@ namespace ProjetCantine
                 ws.Cells[11, "D"] = adresseClient;
                 ws.Cells[13, "D"] = villeClient + " " + paysClient;
 
-                //Encodage période
+                // Insertion période
                 ws.Cells[20, "C"] = debut;
                 ws.Cells[20, "E"] = fin;
 
-                //Encodage repas
+                // Insertion du détail des repas par l'intermédiaire de l'objet "enfant"
                 int reference = 0;
                 int position = 22;
 
@@ -88,13 +94,7 @@ namespace ProjetCantine
                         if (details[1] != "0")
                         {
                             ws.Cells[position, "A"] = ++reference;
-                            switch (details[0])
-                            {
-                                case "1": ws.Cells[position, "B"] = "repas chaud 1"; break;
-                                case "2": ws.Cells[position, "B"] = "repas chaud 2"; break;
-                                case "3": ws.Cells[position, "B"] = "repas froid"; break;
-                                default: ws.Cells[position, "B"] = "aucun repas"; break;
-                            }
+                            ws.Cells[position, "B"] = typeRepas(int.Parse(details[0]));
                             ws.Cells[position, "D"] = details[1];
                             ws.Cells[position, "E"] = float.Parse(details[2]);
                             position++;
@@ -120,7 +120,6 @@ namespace ProjetCantine
                 pathSortie = pathSortie + "\\F_" + facture_id.ToString() + ".pdf";
 
                 ws.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, pathSortie);
-                //wbk.SaveAs(@"C:\Users\Florian\Desktop\test.xls"); //sauver dans un autre document Excel
 
                 wbk.Close(false, misValue, misValue);
                 xlApp.Quit();
@@ -129,8 +128,8 @@ namespace ProjetCantine
                 releaseObject(wbk);
                 releaseObject(xlApp);
 
-
                 return pathSortie;
+                // Excel persiste, on le voit avec CTRL+ALT+DEL
 
             }
             catch (Exception msg)
@@ -141,7 +140,7 @@ namespace ProjetCantine
         }
 
 
-        private String typeRepas(int i)
+        private String typeRepas(int i) // pour afficher la dénomination au lieu de l'id des repas
         {
             String type = "";
             switch (i)
@@ -155,17 +154,14 @@ namespace ProjetCantine
                 case 3:
                     type = "repas froid";
                     break;
-                case 4:
-                    type = "aucun repas";
-                    break;
                 default:
-                    type = "default";
+                    type = "aucun repas";
                     break;
             }
             return type;
         }
 
-        private String stringSplit(String thisString)
+        private String stringSplit(String thisString) // pour séparer par regrouppement de 4 caractères le compte bancaire et bic
         {
             String split = "";
 
@@ -181,7 +177,7 @@ namespace ProjetCantine
             return split;
         }
 
-        private void releaseObject(object obj)
+        private void releaseObject(object obj) // pour fermer les objets d'excel
         {
             try
             {
@@ -199,10 +195,12 @@ namespace ProjetCantine
             }
         }
 
-        public void affichageFacture(String add)
+        public void affichageFacture(String add) // affichage facture dans un programme tiers, par défaut du système client
         {
             try
             {
+                // Amélioration à faire, une vue Form qui affiche le pdf de la facture
+                // L'idée était présente, même avant d'enregistrer et envoyer avoir un aperçu
                 System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(add, "");
                 System.Diagnostics.Process.Start(psi);
             }
