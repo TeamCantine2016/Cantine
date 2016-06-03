@@ -224,7 +224,6 @@
     <None Include="bin\Debug\ProjetCantine.vshost.exe.config" />
     <None Include="bin\Debug\ProjetCantine.vshost.exe.manifest" />
     <None Include="bin\Debug\Resources\Facture.xlsx" />
-    <None Include="Resources\Facture.xlsx" />
     <None Include="Models\db_cantineDataSet.xsc">
       <DependentUpon>db_cantineDataSet.xsd</DependentUpon>
     </None>

@@ -242,7 +242,7 @@
             this.btApercu.Name = "btApercu";
             this.btApercu.Size = new System.Drawing.Size(200, 35);
             this.btApercu.TabIndex = 23;
-            this.btApercu.Text = "Aperçu";
+            this.btApercu.Text = "Générer facture";
             this.btApercu.UseVisualStyleBackColor = true;
             this.btApercu.Click += new System.EventHandler(this.btApercu_Click);
             // 
@@ -264,6 +264,7 @@
             this.btAnnuler.TabIndex = 23;
             this.btAnnuler.Text = "Annuler";
             this.btAnnuler.UseVisualStyleBackColor = true;
+            this.btAnnuler.Click += new System.EventHandler(this.btAnnuler_Click);
             // 
             // tA_Listes_Personnes_query
             // 

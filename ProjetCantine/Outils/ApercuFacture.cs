@@ -85,7 +85,7 @@ namespace ProjetCantine
 
                     foreach (String[] details in listePrix)
                     {
-                        if (details[2] != "0")
+                        if (details[1] != "0")
                         {
                             ws.Cells[position, "A"] = ++reference;
                             switch (details[0])

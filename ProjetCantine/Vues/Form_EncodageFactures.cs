@@ -130,8 +130,21 @@ namespace ProjetCantine.Vues
                     details.Columns[1].ColumnName = "Consomé le";
                     details.Columns[2].ColumnName = "Prix";
 
+                    foreach (DataRow row in details.Rows)
+                    {
+                        switch (row["Type de repas"].ToString())
+                        {
+                            case "1": row["Type de repas"] = "repas chaud 1"; break;
+                            case "2": row["Type de repas"] = "repas chaud 2"; break;
+                            case "3": row["Type de repas"] = "repas froid"; break;
+                            default: row["Type de repas"] = "aucun repas"; break;
+                        }
+                    }
+
                     // Binding datagirdview with datatable
                     dataGridView_historique.DataSource = details;
+
+                    
 
                     // ajouter le dgv généré dans le tab
                     myTabPage.Controls.Add(dataGridView_historique); // J'ajoute le DataGridView à mon onglet fraichement crée avec les données chargés 
@@ -156,7 +169,7 @@ namespace ProjetCantine.Vues
             }
 
             // gestion bouton "aperçu"
-            if (label_chaud1.Text.Length != 0 & label_chaud2.Text.Length != 0 & label_froid.Text.Length != 0 & label_aucun.Text.Length != 0)
+            if (label_prix.Text != "0 €")
             {
                 btApercu.Enabled = true;
             }
@@ -235,6 +248,12 @@ namespace ProjetCantine.Vues
             label_Total_Aucun.Text = "0 €";
 
             label_prix.Text = "0 €";
+        }
+
+        private void btAnnuler_Click(object sender, EventArgs e)
+        {
+            initialiserRecapTuteur();
+            tabDetail.TabPages.Clear();
         }
 
         //*****************************************************************************************************************************************
