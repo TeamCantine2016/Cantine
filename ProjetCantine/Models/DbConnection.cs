@@ -111,6 +111,10 @@ namespace ProjetCantine.Models
                     laRequete += " inner join tbl_facture on tbl_facture.id = tbl_historique_facture.facture_id";
                     break;
                 default:
+                case "pathFacture":
+                    laRequete = "SELECT archive FROM tbl_historique_facture";
+                    break;
+
                     return null;
             }
 

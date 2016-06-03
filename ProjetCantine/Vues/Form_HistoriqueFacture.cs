@@ -22,14 +22,21 @@ namespace ProjetCantine.Vues
         {
             Ctrl_HistoriqueFacture controle = new Ctrl_HistoriqueFacture();
             controle.afficheHistorique(ref dataGridView_Historique);
+            if (dataGridView_Historique.Rows.Count == 0)
+            {
+                button_visualisation.Enabled = false;
+                button_modifier.Enabled = false;
+            }
         }
 
         private void button_visualisation_Click(object sender, EventArgs e)
         {
-
-            int id = dataGridView_Historique.CurrentRow.Index;
-            string path = dataGridView_Historique.CurrentRow.Cells["Répertoire"].Value.ToString();                
-
+            //récuperer l'id de la facture dans la dtgv
+            int id = Convert.ToInt16(dataGridView_Historique.CurrentRow.Cells["IdFacture"].Value.ToString());
+            //rechercher le chemin de la facture dans la db en fct de l'id        
+            Ctrl_HistoriqueFacture controle = new Ctrl_HistoriqueFacture();
+            String path = controle.pathfacture(id);
+            //demander d'afficher le fichier en fct du chemin renseigner
             ApercuFacture facture = new ApercuFacture();
             facture.affichageFacture(path);
 
