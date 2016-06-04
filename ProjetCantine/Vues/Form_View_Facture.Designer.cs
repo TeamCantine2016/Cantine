@@ -37,14 +37,15 @@
             // wb_view_pdf
             // 
             this.wb_view_pdf.Location = new System.Drawing.Point(12, 12);
-            this.wb_view_pdf.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wb_view_pdf.MaximumSize = new System.Drawing.Size(760, 511);
+            this.wb_view_pdf.MinimumSize = new System.Drawing.Size(760, 511);
             this.wb_view_pdf.Name = "wb_view_pdf";
-            this.wb_view_pdf.Size = new System.Drawing.Size(1041, 787);
+            this.wb_view_pdf.Size = new System.Drawing.Size(760, 511);
             this.wb_view_pdf.TabIndex = 0;
             // 
             // bt_enregistrer
             // 
-            this.bt_enregistrer.Location = new System.Drawing.Point(886, 813);
+            this.bt_enregistrer.Location = new System.Drawing.Point(616, 529);
             this.bt_enregistrer.Name = "bt_enregistrer";
             this.bt_enregistrer.Size = new System.Drawing.Size(75, 23);
             this.bt_enregistrer.TabIndex = 1;
@@ -54,7 +55,7 @@
             // 
             // bt_annuler
             // 
-            this.bt_annuler.Location = new System.Drawing.Point(978, 813);
+            this.bt_annuler.Location = new System.Drawing.Point(697, 529);
             this.bt_annuler.Name = "bt_annuler";
             this.bt_annuler.Size = new System.Drawing.Size(75, 23);
             this.bt_annuler.TabIndex = 2;
@@ -65,24 +66,24 @@
             // lb_Message
             // 
             this.lb_Message.AutoSize = true;
-            this.lb_Message.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Message.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Message.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lb_Message.Location = new System.Drawing.Point(9, 816);
+            this.lb_Message.Location = new System.Drawing.Point(9, 532);
             this.lb_Message.Name = "lb_Message";
-            this.lb_Message.Size = new System.Drawing.Size(708, 34);
+            this.lb_Message.Size = new System.Drawing.Size(608, 30);
             this.lb_Message.TabIndex = 3;
             this.lb_Message.Text = "Pour l\'impression ou la sauvegarde, veuillez passer le curseur au-dessus de la pa" +
     "rtie inférieure de l\'affichage...\r\n.";
             // 
             // Form_View_Facture
             // 
-            this.ClientSize = new System.Drawing.Size(1065, 851);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.lb_Message);
             this.Controls.Add(this.bt_annuler);
             this.Controls.Add(this.bt_enregistrer);
             this.Controls.Add(this.wb_view_pdf);
-            this.MaximumSize = new System.Drawing.Size(1081, 890);
-            this.MinimumSize = new System.Drawing.Size(1081, 890);
+            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form_View_Facture";
             this.Load += new System.EventHandler(this.Form_View_Facture_Load);
             this.ResumeLayout(false);

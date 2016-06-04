@@ -207,7 +207,7 @@ namespace ProjetCantine
 
                 if (hideButtons)
                 {
-                    viewPDF.Tag = add + "#toolbar=0";
+                    viewPDF.Tag = add + "#toolbar=0&navpanes=0";
                 }
                 else
                 {
