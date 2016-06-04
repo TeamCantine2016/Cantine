@@ -12,15 +12,62 @@ namespace ProjetCantine.Controller
     {
         DbConnection dbTalk = new DbConnection();
 
-        public void afficheHistorique(ref DataGridView dtg, bool payer, bool envoyer, string date_Début, string date_Fin, bool touteLesFactures)
+        public void afficheHistorique(ref DataGridView dtg, string typeDEnvoie, string typePayement, string date_Début, string date_Fin, bool avecDate, string nom)
         {
+
             String query = dbTalk.getQuery("listeFacture");
-            if (touteLesFactures == false)
+
+            query += " Where nom like '" + nom + "%'";
+
+            if (typeDEnvoie != "Tous")
             {
-                query += " WHERE fin_periode <= '" + date_Fin + "' and fin_periode >= '" + date_Début + "' and statut_payement = '" + payer + "' and statut_envoye = '" + envoyer + "'";
+
+                switch (typeDEnvoie)
+                {
+                    case "Envoyer":
+                        query += " and statut_envoye = '1'";
+                        break;
+                    case "PasEnvoyer":
+                        query += " and statut_envoye = '0'";
+                        break;
+                    case "Tous":
+                        // je le met comme sa, si il y a un autre condition derrière sa ne pose pas de problème avec le "and"
+                        //query += " where statut_envoye = '0' or statut_envoye = '1'";
+                        break;
+                }
             }
 
+            if (typePayement != "Tous")
+            {
+                switch (typePayement)
+                {
+                    case "Payer":
+                        query += " and statut_payement = '1'";
+                        break;
+                    case "PasPayer":
+                        query += " and statut_payement = '0'";
+                        break;
+                    case "Tous":
+                        // je le met comme sa, si il y a un autre condition derrière sa ne pose pas de problème avec le "and"
+                        // query += " and statut_payement = '0' or statut_payement = '1'";
+                        break;
+                }
+            }
+
+            if (avecDate == true)
+            {
+                query += "and fin_periode >= '" + date_Début + "' and fin_periode <= '" + date_Fin + "'";
+
+            }
+
+
+
+
+
+
+
             dbTalk.injectDataToDataGridView(query, ref dtg);
+
         }
 
         public string constrRequete(String path)

@@ -60,7 +60,7 @@
             // 
             // textBox_NomRech
             // 
-            this.textBox_NomRech.Location = new System.Drawing.Point(189, 37);
+            this.textBox_NomRech.Location = new System.Drawing.Point(249, 37);
             this.textBox_NomRech.Name = "textBox_NomRech";
             this.textBox_NomRech.Size = new System.Drawing.Size(282, 20);
             this.textBox_NomRech.TabIndex = 0;
@@ -68,7 +68,7 @@
             // 
             // textBox_TéléphoneRech
             // 
-            this.textBox_TéléphoneRech.Location = new System.Drawing.Point(189, 63);
+            this.textBox_TéléphoneRech.Location = new System.Drawing.Point(249, 63);
             this.textBox_TéléphoneRech.Name = "textBox_TéléphoneRech";
             this.textBox_TéléphoneRech.Size = new System.Drawing.Size(282, 20);
             this.textBox_TéléphoneRech.TabIndex = 5;
@@ -79,18 +79,18 @@
             this.label_NomRech.AutoSize = true;
             this.label_NomRech.Location = new System.Drawing.Point(69, 40);
             this.label_NomRech.Name = "label_NomRech";
-            this.label_NomRech.Size = new System.Drawing.Size(85, 13);
+            this.label_NomRech.Size = new System.Drawing.Size(101, 13);
             this.label_NomRech.TabIndex = 2;
-            this.label_NomRech.Text = "Nom Recherche";
+            this.label_NomRech.Text = "Recherche par nom";
             // 
             // label_TéléphoneRech
             // 
             this.label_TéléphoneRech.AutoSize = true;
             this.label_TéléphoneRech.Location = new System.Drawing.Point(69, 66);
             this.label_TéléphoneRech.Name = "label_TéléphoneRech";
-            this.label_TéléphoneRech.Size = new System.Drawing.Size(114, 13);
+            this.label_TéléphoneRech.Size = new System.Drawing.Size(128, 13);
             this.label_TéléphoneRech.TabIndex = 3;
-            this.label_TéléphoneRech.Text = "Téléphone Recherche";
+            this.label_TéléphoneRech.Text = "Recherche par téléphone";
             // 
             // dataGridView_Famille
             // 
@@ -135,7 +135,7 @@
             this.groupBox_Récap.Size = new System.Drawing.Size(950, 304);
             this.groupBox_Récap.TabIndex = 8;
             this.groupBox_Récap.TabStop = false;
-            this.groupBox_Récap.Text = "Information Famille";
+            this.groupBox_Récap.Text = "Informations Famille";
             // 
             // textBox_nbEnfant
             // 
@@ -242,7 +242,7 @@
             // 
             // button_NomReset
             // 
-            this.button_NomReset.Location = new System.Drawing.Point(477, 35);
+            this.button_NomReset.Location = new System.Drawing.Point(537, 35);
             this.button_NomReset.Name = "button_NomReset";
             this.button_NomReset.Size = new System.Drawing.Size(50, 23);
             this.button_NomReset.TabIndex = 9;
@@ -253,7 +253,7 @@
             // 
             // button_TelReset
             // 
-            this.button_TelReset.Location = new System.Drawing.Point(477, 61);
+            this.button_TelReset.Location = new System.Drawing.Point(537, 61);
             this.button_TelReset.Name = "button_TelReset";
             this.button_TelReset.Size = new System.Drawing.Size(50, 23);
             this.button_TelReset.TabIndex = 10;

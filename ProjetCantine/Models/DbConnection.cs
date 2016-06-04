@@ -105,7 +105,7 @@ namespace ProjetCantine.Models
                     laRequete = "SELECT tva FROM tbl_etablissement";
                     break;
                 case "listeFacture":
-                    laRequete = "select tbl_historique_facture.id as IdFacture, nom + ' ' + prenom as Personne,statut_envoye as Envoyer, statut_payement as Payer,";
+                    laRequete = "select tbl_historique_facture.id as IdFacture, nom as Nom ,prenom as Prénom,statut_envoye as Envoyer, statut_payement as Payer,";
                     laRequete += " total_a_payer as Montant,debut_periode as Date_Début,fin_periode as Date_Fin, archive as Répertoire from tbl_historique_facture";
                     laRequete += " inner join tbl_personne on tbl_personne.id = tbl_historique_facture.tuteur_id";
                     laRequete += " inner join tbl_facture on tbl_facture.id = tbl_historique_facture.facture_id";
@@ -312,6 +312,32 @@ namespace ProjetCantine.Models
             {
                 connexion.Close();
             }
+            return temp;
+
+        }
+
+        public string recupDataScalarSiVide(string requete)
+        { // recuperer une seule donnée d'une requete
+            String temp = "";
+
+            if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
+            commande = new SqlCommand(requete, connexion);
+            try
+            {
+            temp = commande.ExecuteScalar().ToString();
+
+            }catch (SystemException exception)
+            {
+                temp = "";
+                return temp;
+            }
+            finally
+            {
+            connexion.Close();
+
+            }
+
+
             return temp;
 
         }
