@@ -307,7 +307,6 @@
             this.dateTimePicker_debut.Name = "dateTimePicker_debut";
             this.dateTimePicker_debut.Size = new System.Drawing.Size(150, 20);
             this.dateTimePicker_debut.TabIndex = 24;
-            this.dateTimePicker_debut.ValueChanged += new System.EventHandler(this.dateTimePicker_debut_ValueChanged);
             // 
             // dateTimePicker_fin
             // 
