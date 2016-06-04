@@ -316,6 +316,32 @@ namespace ProjetCantine.Models
 
         }
 
+        public string recupDataScalarSiVide(string requete)
+        { // recuperer une seule donnée d'une requete
+            String temp = "";
+
+            if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
+            commande = new SqlCommand(requete, connexion);
+            try
+            {
+            temp = commande.ExecuteScalar().ToString();
+
+            }catch (SystemException exception)
+            {
+                temp = "";
+                return temp;
+            }
+            finally
+            {
+            connexion.Close();
+
+            }
+
+
+            return temp;
+
+        }
+
         public int insert(String tableCible, String donnees) 
         { // insertion dans la db
             try

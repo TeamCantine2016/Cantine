@@ -30,41 +30,13 @@ namespace ProjetCantine.Vues
             InitializeComponent();
         }
 
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
             // appelle la méthode liée à la procédure stockée
             controle.filtreEleve(ref dGdVw_DetailEleve, txtBx_RechNom.Text);
         }
-
-
- 
-
-
-        //public void filtre()
-        //{
-        //    con.Open();
-
-        //    SqlCommand cmd = new SqlCommand("PS_Filtre_Eleve", con);
-
-        //    cmd.CommandType = CommandType.StoredProcedure;
-
-        //    cmd.Parameters.Add("@nom", SqlDbType.NVarChar);
-
-        //    cmd.Parameters["@nom"].Direction = ParameterDirection.Input;
-
-        //    cmd.Parameters["@nom"].Value = txtBx_RechNom.Text;
-
-        //    DataTable t = new DataTable();
-        //    SqlDataReader dr = cmd.ExecuteReader();
-        //    t.Load(dr);
-        //    con.Close();
-
-        //    dGdVw_DetailEleve.DataSource = t;
-
-        //}
-
-
 
 
         private void Form_EncodageRepas_Load(object sender, EventArgs e)
@@ -75,10 +47,7 @@ namespace ProjetCantine.Vues
             dGdVw_DetailEleve.AutoResizeColumns();
             // pour élargir la dernière colonne horizontalement pour ne pas avoir une zone grise
             dGdVw_DetailEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        
-
         }
-
 
 
         private void dGdVw_DetailEleve_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -140,17 +109,76 @@ namespace ProjetCantine.Vues
 
         private void verification_Periode()
         {
-            DateTime dtdebut = new DateTime();
-            DateTime dtfin = new DateTime();
+            DateTime dtDebutFacture = new DateTime();
+            DateTime dtFinFacture = new DateTime();
+            DateTime dtFinSemaine = new DateTime();
+            dtFinSemaine = startDate.AddDays(4);
             Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
             Ctrl_EncodageRepas controle2 = new Ctrl_EncodageRepas();
-            dtdebut = Convert.ToDateTime(controle.PeriodeDebut(id_eleve));
-            dtfin = Convert.ToDateTime(controle.PeriodeFin(id_eleve));
-            int debut = DateTime.Compare(startDate, dtdebut);
+            //Récupération de la date de facture de début et de fin en fonction de la semaine
+            //Si aucune période n'est comprise dans cette date, alors on prend la date max selon l'id tuteur
+            dtDebutFacture = Convert.ToDateTime(controle.PeriodeDebut(id_eleve, startDate.ToString("yyyy-MM-dd")));
+            dtFinFacture = Convert.ToDateTime(controle.PeriodeFin(id_eleve, startDate.ToString("yyyy-MM-dd")));
 
-            int fin = DateTime.Compare(startDate.AddDays(5), dtfin);
+            //On regarde si la date de début de repas est comprise dans une période de facturation
+            int debut = DateTime.Compare(startDate, dtDebutFacture); //si le resultat vaut 0 ou 1, la date est = ou supérieure à la periode de début de facture
+            int fin = DateTime.Compare(startDate, dtFinFacture); //si le résultat vaut 1, on est au delà de la dernière facture, sinon on est dans la période
+            if (fin == 1)
+            {
+                groupBoxLundi.Enabled = true;
+                groupBoxMardi.Enabled = true;
+                groupBoxMercredi.Enabled = true;
+                groupBoxJeudi.Enabled = true;
+                groupBoxVendredi.Enabled = true;
+            }
+            else if (fin <= 0)
+            {
+                //Procédure pour récupérer la différence de jour entre la fin de période facturée et la fin de semaine
 
+                TimeSpan ts = dtFinSemaine - dtFinFacture;
+                int differenceInDays = ts.Days;
+
+                switch (differenceInDays)
+                {
+                    case 1:
+                        groupBoxLundi.Enabled = true;
+                        groupBoxMardi.Enabled = true;
+                        groupBoxMercredi.Enabled = true;
+                        groupBoxJeudi.Enabled = true;
+                        groupBoxVendredi.Enabled = false;
+                        break;
+                    case 2:
+                        groupBoxLundi.Enabled = true;
+                        groupBoxMardi.Enabled = true;
+                        groupBoxMercredi.Enabled = true;
+                        groupBoxJeudi.Enabled = false;
+                        groupBoxVendredi.Enabled = false;
+                        break;
+                    case 3:
+                        groupBoxLundi.Enabled = true;
+                        groupBoxMardi.Enabled = true;
+                        groupBoxMercredi.Enabled = false;
+                        groupBoxJeudi.Enabled = false;
+                        groupBoxVendredi.Enabled = false;
+                        break;
+                    case 4:
+                        groupBoxLundi.Enabled = true;
+                        groupBoxMardi.Enabled = false;
+                        groupBoxMercredi.Enabled = false;
+                        groupBoxJeudi.Enabled = false;
+                        groupBoxVendredi.Enabled = false;
+                        break;
+                    default:
+                        groupBoxLundi.Enabled = false;
+                        groupBoxMardi.Enabled = false;
+                        groupBoxMercredi.Enabled = false;
+                        groupBoxJeudi.Enabled = false;
+                        groupBoxVendredi.Enabled = false;
+                        break;
+                }
+            }
         }
+
 
         private void chargement_Repas(DateTime startDate)
         {
@@ -266,21 +294,19 @@ namespace ProjetCantine.Vues
 
                         }
                     }
-
-
                 }
                 else
                 {
                     // Si le DR est vide, aucun encodage n'a été effectué
                     labelEtat.Visible = true;
-                    btConfirmation.Text = "Confirmation"; 
+                    btConfirmation.Text = "Confirmation";
                     radioButtonAucunLundi.Checked = true;
                     radioButtonAucunMardi.Checked = true;
                     radioButtonAucunMercredi.Checked = true;
                     radioButtonAucunJeudi.Checked = true;
                     radioButtonAucunVendredi.Checked = true;
                     //mise à zéro du tableau d'ID des repas
-                    for(int j=0; j < 5; j++)
+                    for (int j = 0; j < 5; j++)
                     {
                         tab_id_repas[j] = 4;
                         // 4 est le ID de aucun repas
@@ -289,14 +315,13 @@ namespace ProjetCantine.Vues
                 dr.Close();
                 dr.Dispose();
                 con.Close();
-
             }
-
         }
+
 
         private void btConfirmation_Click(object sender, EventArgs e)
         {
-            int resultat = 0; 
+            int resultat = 0;
             int modif = 0;
             DateTime startDate = Convert.ToDateTime(labelDebut.Text);
             for (int i = 0; i < 5; i++)
@@ -305,11 +330,11 @@ namespace ProjetCantine.Vues
                 if (labelEtat.Visible)
                 {
                     Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
-                    String valInsert = controle.ReqInsertRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());               
+                    String valInsert = controle.ReqInsertRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());
                     resultat = controle.insertData("tbl_relation_repas", valInsert);
-                    
 
-                }else
+                }
+                else
                 {
                     String donnees;
                     int id = 0;
@@ -328,7 +353,7 @@ namespace ProjetCantine.Vues
             }
             if (modif > 0)
             {
-                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été modifié pour la semaine du " + labelDebut.Text + " au " +labelFin.Text );
+                MessageBox.Show("Les repas de l'élève " + txtBx_Nom.Text + " " + txtBx_Prenom.Text + " ont bien été modifié pour la semaine du " + labelDebut.Text + " au " + labelFin.Text);
             }
             chargement_Repas(startDate);
         }
@@ -443,6 +468,6 @@ namespace ProjetCantine.Vues
             this.Close();
         }
 
-       
+
     }
 }
