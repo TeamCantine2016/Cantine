@@ -22,7 +22,7 @@ namespace ProjetCantine
             switch (droits) // affichage amélioré du rang de l'utilisateur connecté
             {
                 case "admin":
-                    label_Rang.Text = "Adminisatrateur";
+                    label_Rang.Text = "Administrateur";
                     break;
 
                 case "superuser":
@@ -34,10 +34,10 @@ namespace ProjetCantine
                     label_Rang.Text = "Simple utilisateur";
                     break;
             }
-            if (label_Rang.Text != "admin") // affichage ou non des menu en fonciton du rang
+            if (label_Rang.Text != "Administrateur") // affichage ou non des menu en fonciton du rang
             {
                 gestionDesUtilisateursToolStripMenuItem.Visible = false; // le seul menu non accesible aux super_user
-                if (label_Rang.Text == "user")
+                if (label_Rang.Text == "Simple utilisateur")
                 {
                     administrationToolStripMenuItem.Visible = false;
 
