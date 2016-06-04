@@ -34,8 +34,6 @@
             this.textBox_MotDePasse = new System.Windows.Forms.TextBox();
             this.button_Connexion = new System.Windows.Forms.Button();
             this.label_Erreur = new System.Windows.Forms.Label();
-            this.db_cantineDataSet1 = new ProjetCantine.Models.db_cantineDataSet();
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Identifiant
@@ -94,16 +92,11 @@
             this.label_Erreur.Text = "label_Erreur";
             this.label_Erreur.Visible = false;
             // 
-            // db_cantineDataSet1
-            // 
-            this.db_cantineDataSet1.DataSetName = "db_cantineDataSet";
-            this.db_cantineDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // Form_Connexion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 103);
+            this.ClientSize = new System.Drawing.Size(444, 104);
             this.Controls.Add(this.label_Erreur);
             this.Controls.Add(this.button_Connexion);
             this.Controls.Add(this.textBox_MotDePasse);
@@ -116,7 +109,6 @@
             this.Name = "Form_Connexion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connexion utilisateur";
-            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,6 +122,5 @@
         private System.Windows.Forms.TextBox textBox_MotDePasse;
         private System.Windows.Forms.Button button_Connexion;
         private System.Windows.Forms.Label label_Erreur;
-        private Models.db_cantineDataSet db_cantineDataSet1;
     }
 }

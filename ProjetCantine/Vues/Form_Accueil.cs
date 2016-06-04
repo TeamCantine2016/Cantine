@@ -17,10 +17,24 @@ namespace ProjetCantine
         {
             InitializeComponent();
             label_Nom.Text = nom + " " + prenom;
-            label_Rang.Text = droits;
             this.form_connexion = form;
 
-            if (label_Rang.Text != "admin")
+            switch (droits) // affichage amélioré du rang de l'utilisateur connecté
+            {
+                case "admin":
+                    label_Rang.Text = "Adminisatrateur";
+                    break;
+
+                case "superuser":
+
+                    label_Rang.Text = "Super user";
+                    break;
+                case "user":
+
+                    label_Rang.Text = "Simple utilisateur";
+                    break;
+            }
+            if (label_Rang.Text != "admin") // affichage ou non des menu en fonciton du rang
             {
                 gestionDesUtilisateursToolStripMenuItem.Visible = false; // le seul menu non accesible aux super_user
                 if (label_Rang.Text == "user")
