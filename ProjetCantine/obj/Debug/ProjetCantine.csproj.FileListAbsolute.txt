@@ -232,3 +232,5 @@ C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.cspr
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_View_Facture.resources
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\Interop.Acrobat.dll
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.ResolveComReference.cache
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_View_Facture.resources

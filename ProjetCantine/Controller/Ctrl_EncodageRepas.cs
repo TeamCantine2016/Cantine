@@ -29,6 +29,30 @@ namespace ProjetCantine.Controller
             return 1;
         }
 
+        public string PeriodeDebut(int eleveId)
+        {
+            //On récupère l'id du dernier prix de ce repas type
+            DbConnection DbTalk = new DbConnection();
+            string periodeDebut = DbTalk.recupDataScalar(
+            "SELECT tbl_facture.debut_periode"
+            + " FROM tbl_facture INNER JOIN"
+            + " tbl_relation_facture ON tbl_facture.id = tbl_relation_facture.facture_id"
+            + " WHERE(tbl_relation_facture.tuteur_id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id =" + eleveId + ")))");
+            return periodeDebut;
+        }
+
+        public string PeriodeFin(int eleveId)
+        {
+            //On récupère l'id du dernier prix de ce repas type
+            DbConnection DbTalk = new DbConnection();
+            string periodeFin = DbTalk.recupDataScalar(
+            "SELECT tbl_facture.fin_periode"
+            + " FROM tbl_facture INNER JOIN"
+            + " tbl_relation_facture ON tbl_facture.id = tbl_relation_facture.facture_id"
+            + " WHERE(tbl_relation_facture.tuteur_id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id =" + eleveId + ")))");
+            return periodeFin;
+        }
+
         public string ReqInsertRepas(String dateRepas, String eleveId, String repasId)
         {
             String donnees = dateRepas + "','" + eleveId + "','" + repasId;

@@ -132,6 +132,23 @@ namespace ProjetCantine.Vues
             labelFin.Text = startDate.AddDays(4).ToString("d");
             chargement_Repas(startDate);
             btConfirmation.Enabled = true;
+            //Appeler un filtre de blocage si repas compris dans une période facturée cloturée
+            verification_Periode();
+
+        }
+
+
+        private void verification_Periode()
+        {
+            DateTime dtdebut = new DateTime();
+            DateTime dtfin = new DateTime();
+            Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
+            Ctrl_EncodageRepas controle2 = new Ctrl_EncodageRepas();
+            dtdebut = Convert.ToDateTime(controle.PeriodeDebut(id_eleve));
+            dtfin = Convert.ToDateTime(controle.PeriodeFin(id_eleve));
+            int debut = DateTime.Compare(startDate, dtdebut);
+
+            int fin = DateTime.Compare(startDate.AddDays(5), dtfin);
 
         }
 
