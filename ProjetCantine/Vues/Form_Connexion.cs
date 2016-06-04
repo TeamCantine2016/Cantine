@@ -7,67 +7,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using ProjetCantine.Controller;
 using ProjetCantine.Models;
 
 namespace ProjetCantine
 {
     public partial class Form_Connexion : Form
     {
-        string login, password;
-        SqlConnection con_log = new SqlConnection(DbConnection.connectionString);
-        SqlCommand cmd_log = new SqlCommand();
+        string retour;
+
 
         public Form_Connexion()
         {
             InitializeComponent();
         }
         Form_Acceuil form_Acceuil;
+        Ctrl_Connexion control = new Ctrl_Connexion();
+
         private void button_Connexion_Click(object sender, EventArgs e)
         {
-            label_Erreur.Visible = false;
+                DataTable table = new DataTable();
 
-            // vérifie si au moins une des case n'est pas vide
-            if (this.textBox_identifiant.Text.Length == 0 || this.textBox_MotDePasse.Text.Length == 0)
-            {
-                label_Erreur.Visible = true;
-                label_Erreur.Text = "Toutes les cases n'ont pas été remplies";
-            }
-            else
-            {
-                // login non cryptés
-                login = textBox_identifiant.Text.Trim();
-                password = textBox_MotDePasse.Text.Trim();
+                retour = control.tentative_login(textBox_identifiant.Text.Trim(), textBox_MotDePasse.Text.Trim(),table); //fonction qui check les login, avec string retour pour le label d'erreur
                 textBox_MotDePasse.Clear();
+                label_Erreur.Visible = false;
 
-                // ouverture connexion, requete sql et DataReader
-                con_log.Open();
-                cmd_log = new SqlCommand("SELECT pseudo FROM tbl_utilisateur WHERE pseudo = '" + login + "' AND mdp = '" + password + "'", con_log);
-                SqlDataReader dr_log = cmd_log.ExecuteReader();
-
-                if (dr_log.HasRows)                       // contient une rangée uniquement si il y a une correspondance entre login & base de données
+                switch (retour) // retour = "ok" si connexion réussie, sinon message pour label_erreur explicant le problème
                 {
-                    this.textBox_identifiant.Clear();
-                    this.textBox_MotDePasse.Clear();
-                    this.Hide();
+                    case "ok":
+                        this.textBox_identifiant.Clear();
+                        this.Hide();
 
-                    form_Acceuil = new Form_Acceuil();          // A contrôler si le Close() dans deconnecter.click,  detruit l'instance de form_Acceuil() ou non
-                    form_Acceuil.ShowDialog();
+                        form_Acceuil = new Form_Acceuil(table.Rows[0]["nom"].ToString(), table.Rows[0]["prenom"].ToString(), table.Rows[0]["droits"].ToString(), this);          // A contrôler si le Close() dans deconnecter.click,  detruit l'instance de form_Acceuil() ou non
+                        form_Acceuil.ShowDialog();
+                        break;
 
-                    this.Show();
+                    default:
+                        label_Erreur.Visible = true;
+                        label_Erreur.Text = retour;
+                        break;
                 }
-                else
-                {
-                    label_Erreur.Visible = true;
-                    label_Erreur.Text = "Identifiant et/ou password non valide";
-                }
-                con_log.Close();
-            }
         }
 
         private void Form_Connexion_Load(object sender, EventArgs e)
         {
             label_Erreur.Visible = false;
         }
-    }
+
+        private void textBox_identifiant_KeyDown(object sender, KeyEventArgs e) // cliquer sur enter = appuyer sur bouton connexion
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_Connexion.PerformClick();
+            }
+        }
+
+        private void textBox_MotDePasse_KeyDown(object sender, KeyEventArgs e) // cliquer sur enter = appuyer sur bouton connexion
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_Connexion.PerformClick();
+            }
+        }
+    } 
 }
+

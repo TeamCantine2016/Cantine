@@ -60,15 +60,16 @@
             this.textBox_identifiant.Name = "textBox_identifiant";
             this.textBox_identifiant.Size = new System.Drawing.Size(137, 20);
             this.textBox_identifiant.TabIndex = 5;
-            this.textBox_identifiant.Text = "lareine";
+            this.textBox_identifiant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_identifiant_KeyDown);
             // 
             // textBox_MotDePasse
             // 
             this.textBox_MotDePasse.Location = new System.Drawing.Point(110, 57);
             this.textBox_MotDePasse.Name = "textBox_MotDePasse";
+            this.textBox_MotDePasse.PasswordChar = '*';
             this.textBox_MotDePasse.Size = new System.Drawing.Size(137, 20);
             this.textBox_MotDePasse.TabIndex = 10;
-            this.textBox_MotDePasse.Text = "royale";
+            this.textBox_MotDePasse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_MotDePasse_KeyDown);
             // 
             // button_Connexion
             // 
@@ -106,6 +107,7 @@
             this.MaximumSize = new System.Drawing.Size(460, 142);
             this.MinimumSize = new System.Drawing.Size(460, 142);
             this.Name = "Form_Connexion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connexion utilisateur";
             this.ResumeLayout(false);
             this.PerformLayout();
