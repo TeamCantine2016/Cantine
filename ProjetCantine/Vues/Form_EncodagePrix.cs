@@ -35,10 +35,10 @@ namespace ProjetCantine
         private void button_Ajouter_Click(object sender, EventArgs e)
         {
             //Pour donner à la date fin d'un type de repas : date d'insertion de nouveau prix - 1
-            string dateFinPrecedent = dateTimePicker_datedebut.Value.AddDays(-1).ToString("yyyy-MM-dd");
+            string dateFinPrecedent = dateTimePicker_datedebut.Value.AddDays(-1).ToString("yyyyMMdd");
             Ctrl_EncodagePrix controle = new Ctrl_EncodagePrix();
             //Recherche les données à inserer du controleur 
-            String valInsert = controle.ReqInsertPrix(dateTimePicker_datedebut.Value.ToString("yyyy-MM-dd"), textBox_Prix.Text, comboBox_nomRepas.SelectedValue.ToString(), "2050-12-31");
+            String valInsert = controle.ReqInsertPrix(dateTimePicker_datedebut.Value.ToString("yyyyMMdd"), textBox_Prix.Text, comboBox_nomRepas.SelectedValue.ToString(), "2050-12-31");
             //Pour l'insertion du prix, nous renseignons également la date antécédant le prix actuel pour cloturer l'ancien prix (ainsi que le type de repas s'y rapportant)
             controle.InsertPrix("tbl_prix_repas", valInsert, comboBox_nomRepas.SelectedValue.ToString(), dateFinPrecedent);
             this.tA_PrixRepasEncTableAdapter.Fill_PrixRepasEnc(this.db_cantineDataSet2.TA_PrixRepasEnc);

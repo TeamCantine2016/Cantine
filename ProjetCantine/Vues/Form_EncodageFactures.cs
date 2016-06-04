@@ -100,7 +100,10 @@ namespace ProjetCantine.Vues
             // Periode du récapitulatif selon les dateTimePicker
             date_debut = dateTimePicker_debut.Value.ToString("yyyy-MM-dd");
             date_fin = dateTimePicker_fin.Value.ToString("yyyy-MM-dd");
-
+            if (DateTime.Compare(dateTimePicker_debut.Value, dateTimePicker_fin.Value) == 1)
+            {
+                MessageBox.Show("Date de fin inférieure à la date de début.");
+            }
             // afficher dans le titre du groupbox le tuteur concerné
             groupBox_recap.Text = "Récap pour le tuteur : " + ligneTuteur.Cells[1].Value.ToString() + " " + ligneTuteur.Cells[2].Value.ToString() ;
             // reset des pages du tabcontrol
@@ -234,12 +237,7 @@ namespace ProjetCantine.Vues
         }
         //*****************************************************************************************************************************************
 
-        private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
-        {
-            //dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(-2); ; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
-            dateTimePicker_fin.MaxDate = DateTime.Now;
-            dateTimePicker_fin.Value = dateTimePicker_debut.Value.AddDays(1);
-        }
+
 
         private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
         {
@@ -269,5 +267,6 @@ namespace ProjetCantine.Vues
             ApercuFacture facture = new ApercuFacture();
             facture.affichageFacture(path_facture, false);
         }
+
     }
 }
