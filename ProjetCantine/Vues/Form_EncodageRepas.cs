@@ -121,12 +121,12 @@ namespace ProjetCantine.Vues
 
             //Récupération de la date de facture de début et de fin en fonction de la semaine
             //Si aucune période n'est comprise dans cette date, alors on prend la date max selon l'id tuteur
-            dtDebutFactureActuelle = Convert.ToDateTime(controle.PeriodeDebut(id_eleve, startDate.ToString("yyyy-MM-dd"),false));
-            dtFinFactureActuelle = Convert.ToDateTime(controle.PeriodeFin(id_eleve, startDate.ToString("yyyy-MM-dd"),false));
+            dtDebutFactureActuelle = Convert.ToDateTime(controle.PeriodeDebut(id_eleve, startDate.ToString("yyyyMMdd"),false));
+            dtFinFactureActuelle = Convert.ToDateTime(controle.PeriodeFin(id_eleve, startDate.ToString("yyyyMMdd"),false));
 
             //Test pour voir si la période est à cheval sur 2 factures, si oui, dtFactureSuivanteDebut et dtFactureSuivanteFin auront une valeur correspondant aux dates de début et de cloture de facutre du mois suivant, autrement elles vaudront 2000-01-01 (valeur arbitraire à tester)
-            dtFactureSuivanteDebut = Convert.ToDateTime(controle2.PeriodeDebut(id_eleve, dtFinSemaine.ToString("yyyy-MM-dd"),true));
-            dtFactureSuivanteFin = Convert.ToDateTime(controle2.PeriodeFin(id_eleve, dtFinSemaine.ToString("yyyy-MM-dd"),true));
+            dtFactureSuivanteDebut = Convert.ToDateTime(controle2.PeriodeDebut(id_eleve, dtFinSemaine.ToString("yyyyMMdd"),true));
+            dtFactureSuivanteFin = Convert.ToDateTime(controle2.PeriodeFin(id_eleve, dtFinSemaine.ToString("yyyyMMdd"),true));
             //test de la valeur retournée pour créer un flag faactureMoisSuivant
             if (dtFactureSuivanteDebut == Convert.ToDateTime("2000-01-01"))
             {
@@ -217,7 +217,7 @@ namespace ProjetCantine.Vues
             {
 
                 string query = "SELECT repas_id FROM[db_cantine].[dbo].[tbl_relation_repas]";
-                query += "where date_repas = '" + startDate.AddDays(i).ToString("yyyy-MM-dd") + "' and personne_id = '" + id_eleve + "'";
+                query += "where date_repas = '" + startDate.AddDays(i).ToString("yyyyMMdd") + "' and personne_id = '" + id_eleve + "'";
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
 
@@ -360,7 +360,7 @@ namespace ProjetCantine.Vues
                 if (labelEtat.Visible)
                 {
                     Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
-                    String valInsert = controle.ReqInsertRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());
+                    String valInsert = controle.ReqInsertRepas(startDate.AddDays(i).ToString("yyyyMMdd"), id_eleve.ToString(), tab_id_repas[i].ToString());
                     resultat = controle.insertData("tbl_relation_repas", valInsert);
 
                 }
@@ -370,8 +370,8 @@ namespace ProjetCantine.Vues
                     int id = 0;
                     //recuperer l'id repas
                     Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
-                    id = controle.recupIdERepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString());
-                    donnees = controle.ReqUpdateRepas(startDate.AddDays(i).ToString("yyyy-MM-dd"), id_eleve.ToString(), tab_id_repas[i].ToString());
+                    id = controle.recupIdERepas(startDate.AddDays(i).ToString("yyyyMMdd"), id_eleve.ToString());
+                    donnees = controle.ReqUpdateRepas(startDate.AddDays(i).ToString("yyyyMMdd"), id_eleve.ToString(), tab_id_repas[i].ToString());
                     Ctrl_EncodageRepas controle1 = new Ctrl_EncodageRepas();
                     modif = controle1.update(donnees, "tbl_relation_repas", id);
 
@@ -495,7 +495,7 @@ namespace ProjetCantine.Vues
 
         private void btAnnuler_Click(object sender, EventArgs e)
         {
-            this.Close();
+            chargement_Repas(startDate);
         }
 
 

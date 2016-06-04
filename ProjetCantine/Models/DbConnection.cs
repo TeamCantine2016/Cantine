@@ -319,47 +319,31 @@ namespace ProjetCantine.Models
 
         }
 
-        public string recupDataScalar2(string requete)
-        { // recuperer une seule donnée d'une requete
-            String temp = "";
-            try
-            {
-                commande = new SqlCommand(requete, connexion);
-                temp = commande.ExecuteScalar().ToString();
-            }
-            catch (SystemException exception)
-            {
-                MessageBox.Show("Erreur récuperation donnée scalaire.\r\n\r\n" + exception.Message, "Erreur load data", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                connexion.Close();
-            }
-            return temp;
 
-        }
 
         public string recupDataScalarSiVide(string requete)
         { // recuperer une seule donnée d'une requete
+            //Si jamais aucun résultat, on renvoie quand même une valeur vide au lieu d'un message d'erreur(utilisé comme flag dans encodage des repas pour trouver les périodes de factures) 
             String temp = "";
 
             if (connexion.State == ConnectionState.Closed) { connexion.Open(); }
             commande = new SqlCommand(requete, connexion);
             try
             {
-            temp = commande.ExecuteScalar().ToString();
+                temp = commande.ExecuteScalar().ToString();
 
-            }catch (SystemException exception)
+            }
+            catch (SystemException exception)
             {
+                //renvoie d'une valeur vide en cas d'exception
                 temp = "";
                 return temp;
             }
             finally
             {
-            connexion.Close();
+                connexion.Close();
 
             }
-
 
             return temp;
 
@@ -505,7 +489,7 @@ namespace ProjetCantine.Models
         public int recupId(string query)
         { //recupere l'id d'une adresse
             // convertir l'id recu en string en int et retourner la valeur
-            return Convert.ToInt16(recupDataScalar2(query));
+            return Convert.ToInt16(recupDataScalar(query));
         }
     }
 }
