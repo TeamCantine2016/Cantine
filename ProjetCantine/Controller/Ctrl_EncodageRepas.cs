@@ -38,7 +38,7 @@ namespace ProjetCantine.Controller
                 "SELECT tbl_facture.debut_periode"
                 + " FROM tbl_facture INNER JOIN"
                 + " tbl_relation_facture ON tbl_facture.id = tbl_relation_facture.facture_id"
-                + " WHERE(tbl_relation_facture.tuteur_id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id =" + eleveId + ")) and '" + date + "' between tbl_facture.debut_periode and tbl_facture.fin_periode )");
+                + " WHERE(tbl_relation_facture.tuteur_id = (SELECT tbl_relation_tuteur_enfant.tuteur_id FROM tbl_relation_tuteur_enfant WHERE(tbl_relation_tuteur_enfant.enfant_id = " + eleveId + ")) and '" + date + "' between tbl_facture.debut_periode and tbl_facture.fin_periode )");
             if (periodeDebut == "")
             {
                 if (retourVide)
