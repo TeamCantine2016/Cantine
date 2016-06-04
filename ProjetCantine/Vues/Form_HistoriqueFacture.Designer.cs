@@ -104,17 +104,17 @@
             this.groupBox_envoyer.Size = new System.Drawing.Size(190, 110);
             this.groupBox_envoyer.TabIndex = 19;
             this.groupBox_envoyer.TabStop = false;
-            this.groupBox_envoyer.Text = "Filtre des envoies";
+            this.groupBox_envoyer.Text = "Filtre des factures envoyées";
             // 
             // radioButto_Envoyer
             // 
             this.radioButto_Envoyer.AutoSize = true;
             this.radioButto_Envoyer.Location = new System.Drawing.Point(6, 26);
             this.radioButto_Envoyer.Name = "radioButto_Envoyer";
-            this.radioButto_Envoyer.Size = new System.Drawing.Size(64, 17);
+            this.radioButto_Envoyer.Size = new System.Drawing.Size(72, 17);
             this.radioButto_Envoyer.TabIndex = 9;
             this.radioButto_Envoyer.Tag = "Envoyer";
-            this.radioButto_Envoyer.Text = "Envoyer";
+            this.radioButto_Envoyer.Text = "Envoyées";
             this.radioButto_Envoyer.UseVisualStyleBackColor = true;
             this.radioButto_Envoyer.CheckedChanged += new System.EventHandler(this.radioButto_Envoyer_CheckedChanged);
             // 
@@ -123,10 +123,10 @@
             this.radioButton_PasEnvoyer.AutoSize = true;
             this.radioButton_PasEnvoyer.Location = new System.Drawing.Point(6, 49);
             this.radioButton_PasEnvoyer.Name = "radioButton_PasEnvoyer";
-            this.radioButton_PasEnvoyer.Size = new System.Drawing.Size(84, 17);
+            this.radioButton_PasEnvoyer.Size = new System.Drawing.Size(80, 17);
             this.radioButton_PasEnvoyer.TabIndex = 10;
             this.radioButton_PasEnvoyer.Tag = "PasEnvoyer";
-            this.radioButton_PasEnvoyer.Text = "Pas envoyer";
+            this.radioButton_PasEnvoyer.Text = "En suspens";
             this.radioButton_PasEnvoyer.UseVisualStyleBackColor = true;
             this.radioButton_PasEnvoyer.CheckedChanged += new System.EventHandler(this.radioButto_Envoyer_CheckedChanged);
             // 
@@ -136,11 +136,11 @@
             this.radioButton_TousEnvoie.Checked = true;
             this.radioButton_TousEnvoie.Location = new System.Drawing.Point(6, 72);
             this.radioButton_TousEnvoie.Name = "radioButton_TousEnvoie";
-            this.radioButton_TousEnvoie.Size = new System.Drawing.Size(49, 17);
+            this.radioButton_TousEnvoie.Size = new System.Drawing.Size(58, 17);
             this.radioButton_TousEnvoie.TabIndex = 11;
             this.radioButton_TousEnvoie.TabStop = true;
             this.radioButton_TousEnvoie.Tag = "Tous";
-            this.radioButton_TousEnvoie.Text = "Tous";
+            this.radioButton_TousEnvoie.Text = "Toutes";
             this.radioButton_TousEnvoie.UseVisualStyleBackColor = true;
             this.radioButton_TousEnvoie.CheckedChanged += new System.EventHandler(this.radioButto_Envoyer_CheckedChanged);
             // 
@@ -154,17 +154,17 @@
             this.groupBox_Payement.Size = new System.Drawing.Size(190, 110);
             this.groupBox_Payement.TabIndex = 20;
             this.groupBox_Payement.TabStop = false;
-            this.groupBox_Payement.Text = "Filtre des payement";
+            this.groupBox_Payement.Text = "Filtre des payements";
             // 
             // radioButton_payer
             // 
             this.radioButton_payer.AutoSize = true;
             this.radioButton_payer.Location = new System.Drawing.Point(6, 29);
             this.radioButton_payer.Name = "radioButton_payer";
-            this.radioButton_payer.Size = new System.Drawing.Size(52, 17);
+            this.radioButton_payer.Size = new System.Drawing.Size(54, 17);
             this.radioButton_payer.TabIndex = 9;
             this.radioButton_payer.Tag = "Payer";
-            this.radioButton_payer.Text = "Payer";
+            this.radioButton_payer.Text = "Payés";
             this.radioButton_payer.UseVisualStyleBackColor = true;
             this.radioButton_payer.CheckedChanged += new System.EventHandler(this.radioButton_payer_CheckedChanged);
             // 
@@ -173,10 +173,10 @@
             this.radioButton_PasPayer.AutoSize = true;
             this.radioButton_PasPayer.Location = new System.Drawing.Point(6, 52);
             this.radioButton_PasPayer.Name = "radioButton_PasPayer";
-            this.radioButton_PasPayer.Size = new System.Drawing.Size(72, 17);
+            this.radioButton_PasPayer.Size = new System.Drawing.Size(80, 17);
             this.radioButton_PasPayer.TabIndex = 10;
             this.radioButton_PasPayer.Tag = "PasPayer";
-            this.radioButton_PasPayer.Text = "Pas payer";
+            this.radioButton_PasPayer.Text = "En suspens";
             this.radioButton_PasPayer.UseVisualStyleBackColor = true;
             this.radioButton_PasPayer.CheckedChanged += new System.EventHandler(this.radioButton_payer_CheckedChanged);
             // 
@@ -208,7 +208,7 @@
             this.groupBox_filtreDte.Size = new System.Drawing.Size(190, 184);
             this.groupBox_filtreDte.TabIndex = 18;
             this.groupBox_filtreDte.TabStop = false;
-            this.groupBox_filtreDte.Text = "Filtre avec des dates";
+            this.groupBox_filtreDte.Text = "Filtrer par période";
             // 
             // label_dateDeFin
             // 
@@ -225,9 +225,9 @@
             this.checkBox_AfficherDate.AutoSize = true;
             this.checkBox_AfficherDate.Location = new System.Drawing.Point(0, 26);
             this.checkBox_AfficherDate.Name = "checkBox_AfficherDate";
-            this.checkBox_AfficherDate.Size = new System.Drawing.Size(125, 17);
+            this.checkBox_AfficherDate.Size = new System.Drawing.Size(100, 17);
             this.checkBox_AfficherDate.TabIndex = 5;
-            this.checkBox_AfficherDate.Text = "Fitrer avec des dates";
+            this.checkBox_AfficherDate.Text = "Fitrer avec date";
             this.checkBox_AfficherDate.UseVisualStyleBackColor = true;
             this.checkBox_AfficherDate.CheckedChanged += new System.EventHandler(this.checkBox_AfficherDate_CheckedChanged);
             // 

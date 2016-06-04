@@ -259,3 +259,7 @@ C:\Users\Florian\Documents\Visual Studio 2015\Projects\projet final\Cantine\Proj
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\projet final\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\projet final\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
 C:\Users\Florian\Documents\Visual Studio 2015\Projects\projet final\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\Interop.Acrobat.dll
+C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.ResolveComReference.cache
+C:\Users\Florian\Documents\Visual Studio 2015\Projects\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_View_Facture.resources
