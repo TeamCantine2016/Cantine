@@ -75,8 +75,12 @@ namespace ProjetCantine.Vues
             DateTime laDate; // pour y placer la date converti de puis la textbox
             if (DateTime.TryParse(label_dateCloture.Text, out laDate)) // renvoie "true" si la conversion en date est possible et affecte le résultat de la conversion à la variable "laDate"
             {
-                dateTimePicker_debut.Value = DateTime.Now.AddDays(-5); // laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
-                dateTimePicker_fin.Value = DateTime.Now; // initialisation au jour actuel - ajourd'hui
+                //Attention d'abord fixer le min date avec la value! (car si la value est en dessous du min date=> plantage
+                dateTimePicker_debut.MinDate = laDate.AddDays(1); // On sécurise afin de ne plus encoder sur une cloture
+                dateTimePicker_debut.Value = laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
+                dateTimePicker_fin.MinDate = laDate.AddDays(1);
+                dateTimePicker_fin.Value = laDate.AddDays(5); // initialisation sur le lendemain de la cloturation
+
             }
             else
             {
@@ -230,9 +234,9 @@ namespace ProjetCantine.Vues
 
         private void dateTimePicker_debut_ValueChanged(object sender, EventArgs e) // 99% READY - SECURISATION DATETIMEPICKER_FIN
         {
-            dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(-2); ; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
+            //dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(-2); ; //  on sécurise afin que la date de fin ne puisse être inférieure à la date de début
             dateTimePicker_fin.MaxDate = DateTime.Now;
-            dateTimePicker_fin.Value = DateTime.Now;
+            dateTimePicker_fin.Value = dateTimePicker_debut.Value.AddDays(1);
         }
 
         private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
