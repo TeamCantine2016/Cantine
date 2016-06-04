@@ -26,7 +26,7 @@ namespace ProjetCantine.Controller
 
         public string ReqInsertPrix(String datedebut, String prix, String repasId, String datefin)
         {
-            String donnees = prix + "','" + datedebut + "','" + datefin + "','" + repasId;
+            String donnees = "'" + prix + "','" + datedebut + "','" + datefin + "','" + repasId +"'";
 
             return donnees;
 
