@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Ctrl_Connexion.cs" />
     <Compile Include="Outils\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
     <Compile Include="Controller\Ctrl_EncodagePrix.cs" />
@@ -82,16 +83,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Vues\Form_EncodageFactures.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vues\Form_EncodageFactures.designer.cs">
-      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
-    </Compile>
     <Compile Include="Vues\Form_Accueil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vues\Form_Accueil.Designer.cs">
+    <Compile Include="Vues\Form_Accueil.designer.cs">
       <DependentUpon>Form_Accueil.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_Connexion.cs">
@@ -99,6 +94,12 @@
     </Compile>
     <Compile Include="Vues\Form_Connexion.designer.cs">
       <DependentUpon>Form_Connexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageFactures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageFactures.designer.cs">
+      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_EncodageElève.cs">
       <SubType>Form</SubType>
@@ -182,14 +183,14 @@
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_GestionEtablissement.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_HistoriqueFacture.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Vues.Form_RecapRepasFamilleMois.resources" />
-    <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
-      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Accueil.resx">
       <DependentUpon>Form_Accueil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_Connexion.resx">
       <DependentUpon>Form_Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
+      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_EncodageElève.resx">
       <DependentUpon>Form_EncodageElève.cs</DependentUpon>

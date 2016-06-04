@@ -34,6 +34,8 @@
             this.textBox_MotDePasse = new System.Windows.Forms.TextBox();
             this.button_Connexion = new System.Windows.Forms.Button();
             this.label_Erreur = new System.Windows.Forms.Label();
+            this.db_cantineDataSet1 = new ProjetCantine.Models.db_cantineDataSet();
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Identifiant
@@ -60,15 +62,16 @@
             this.textBox_identifiant.Name = "textBox_identifiant";
             this.textBox_identifiant.Size = new System.Drawing.Size(137, 20);
             this.textBox_identifiant.TabIndex = 5;
-            this.textBox_identifiant.Text = "lareine";
+            this.textBox_identifiant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_identifiant_KeyDown);
             // 
             // textBox_MotDePasse
             // 
             this.textBox_MotDePasse.Location = new System.Drawing.Point(110, 57);
             this.textBox_MotDePasse.Name = "textBox_MotDePasse";
+            this.textBox_MotDePasse.PasswordChar = '*';
             this.textBox_MotDePasse.Size = new System.Drawing.Size(137, 20);
             this.textBox_MotDePasse.TabIndex = 10;
-            this.textBox_MotDePasse.Text = "royale";
+            this.textBox_MotDePasse.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_MotDePasse_KeyDown);
             // 
             // button_Connexion
             // 
@@ -91,11 +94,16 @@
             this.label_Erreur.Text = "label_Erreur";
             this.label_Erreur.Visible = false;
             // 
+            // db_cantineDataSet1
+            // 
+            this.db_cantineDataSet1.DataSetName = "db_cantineDataSet";
+            this.db_cantineDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Form_Connexion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 104);
+            this.ClientSize = new System.Drawing.Size(444, 103);
             this.Controls.Add(this.label_Erreur);
             this.Controls.Add(this.button_Connexion);
             this.Controls.Add(this.textBox_MotDePasse);
@@ -106,7 +114,9 @@
             this.MaximumSize = new System.Drawing.Size(460, 142);
             this.MinimumSize = new System.Drawing.Size(460, 142);
             this.Name = "Form_Connexion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connexion utilisateur";
+            ((System.ComponentModel.ISupportInitialize)(this.db_cantineDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,5 +130,6 @@
         private System.Windows.Forms.TextBox textBox_MotDePasse;
         private System.Windows.Forms.Button button_Connexion;
         private System.Windows.Forms.Label label_Erreur;
+        private Models.db_cantineDataSet db_cantineDataSet1;
     }
 }
