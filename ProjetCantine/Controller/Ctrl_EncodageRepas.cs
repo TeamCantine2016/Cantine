@@ -91,7 +91,7 @@ namespace ProjetCantine.Controller
 
         public string ReqInsertRepas(String dateRepas, String eleveId, String repasId)
         {
-            String donnees = dateRepas + "','" + eleveId + "','" + repasId;
+            String donnees = "'"+dateRepas + "','" + eleveId + "','" + repasId +"'";
 
             return donnees;
 
