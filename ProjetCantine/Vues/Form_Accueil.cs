@@ -203,8 +203,11 @@ namespace ProjetCantine
           //  DialogResult dialog = MessageBox.Show("Voulez-vous vraiment fermer l'application / vous déconnecter ?", "Fermeture session", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No);
                 if (MessageBox.Show("Voulez-vous vraiment fermer l'application ", "Fermeture application", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
                 {
-                    //Application.Exit();
+                  
                     e.Cancel = true;
+                }else
+                {
+                  Environment.Exit(1);// pour liberer toutes les instances ou les fichiers ouverts
                 }
             }
         }
