@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using ProjetCantine.Models;
 using System.Collections.Generic;
 using System.Data;
+using ProjetCantine.Outils;
 
 namespace ProjetCantine.Controller
 {
@@ -68,6 +69,13 @@ namespace ProjetCantine.Controller
                 MessageBox.Show(" La dernière facture pour ce tuteur \r\n n'a pas encore été générée");
                 return "> Aucune facture existante.";
             }
+        }
+
+        public float get_TVA()
+        {
+            DbConnection dbTalk = new DbConnection();
+            String query = dbTalk.getQuery("tva");
+            return float.Parse(dbTalk.recupDataScalar(query));
         }
 
         public DataTable convertList(List<String[]> liste)

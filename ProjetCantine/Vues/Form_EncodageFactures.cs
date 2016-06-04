@@ -219,7 +219,8 @@ namespace ProjetCantine.Vues
                 if (facture.affichageFacture(pathNouvelleFacture, true))
                 {
                     // sauvegarder facture
-                    controle.saveFacture(pathNouvelleFacture, label_prix.Text.Trim(new char[] { '€' }), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                    controle.saveFacture(pathNouvelleFacture, (float.Parse(label_prix.Text.Trim(new char[] { '€' })) * (1 + (controle.get_TVA() / 100))).ToString(), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+                    
                     path_facture = pathNouvelleFacture;
                     btEnvoi.Enabled = true;
                 }

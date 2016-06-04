@@ -93,7 +93,7 @@ namespace ProjetCantine.Models
                     laRequete += "INNER JOIN tbl_prix_repas ON tbl_relation_repas.repas_id = tbl_prix_repas.id ";
                     break;
                 case "dernierNumeroFacture":
-                    laRequete = " SELECT MAX(id) as 'facture_id' FROM tbl_facture ";
+                    laRequete = "SELECT IDENT_CURRENT('tbl_facture')";
                     break;
                 case "recupIdEtablissement":
                     laRequete = "SELECT id FROM tbl_etablissement";
