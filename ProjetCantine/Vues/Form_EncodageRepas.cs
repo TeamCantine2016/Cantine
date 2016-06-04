@@ -109,20 +109,36 @@ namespace ProjetCantine.Vues
 
         private void verification_Periode()
         {
-            DateTime dtDebutFacture = new DateTime();
-            DateTime dtFinFacture = new DateTime();
+            DateTime dtDebutFactureActuelle = new DateTime();
+            DateTime dtFinFactureActuelle = new DateTime();
             DateTime dtFinSemaine = new DateTime();
+            DateTime dtFactureSuivanteDebut = new DateTime();
+            DateTime dtFactureSuivanteFin = new DateTime();
+            Boolean factureMoisSuivant;
             dtFinSemaine = startDate.AddDays(4);
             Ctrl_EncodageRepas controle = new Ctrl_EncodageRepas();
             Ctrl_EncodageRepas controle2 = new Ctrl_EncodageRepas();
+
             //Récupération de la date de facture de début et de fin en fonction de la semaine
             //Si aucune période n'est comprise dans cette date, alors on prend la date max selon l'id tuteur
-            dtDebutFacture = Convert.ToDateTime(controle.PeriodeDebut(id_eleve, startDate.ToString("yyyy-MM-dd")));
-            dtFinFacture = Convert.ToDateTime(controle.PeriodeFin(id_eleve, startDate.ToString("yyyy-MM-dd")));
+            dtDebutFactureActuelle = Convert.ToDateTime(controle.PeriodeDebut(id_eleve, startDate.ToString("yyyy-MM-dd"),false));
+            dtFinFactureActuelle = Convert.ToDateTime(controle.PeriodeFin(id_eleve, startDate.ToString("yyyy-MM-dd"),false));
+
+            //Test pour voir si la période est à cheval sur 2 factures, si oui, dtFactureSuivanteDebut et dtFactureSuivanteFin auront une valeur correspondant aux dates de début et de cloture de facutre du mois suivant, autrement elles vaudront 2000-01-01 (valeur arbitraire à tester)
+            dtFactureSuivanteDebut = Convert.ToDateTime(controle2.PeriodeDebut(id_eleve, dtFinSemaine.ToString("yyyy-MM-dd"),true));
+            dtFactureSuivanteFin = Convert.ToDateTime(controle2.PeriodeFin(id_eleve, dtFinSemaine.ToString("yyyy-MM-dd"),true));
+            //test de la valeur retournée pour créer un flag faactureMoisSuivant
+            if (dtFactureSuivanteDebut == Convert.ToDateTime("2000-01-01"))
+            {
+                factureMoisSuivant = false;
+            }else
+            {
+                factureMoisSuivant = true;
+            }
 
             //On regarde si la date de début de repas est comprise dans une période de facturation
-            int debut = DateTime.Compare(startDate, dtDebutFacture); //si le resultat vaut 0 ou 1, la date est = ou supérieure à la periode de début de facture
-            int fin = DateTime.Compare(startDate, dtFinFacture); //si le résultat vaut 1, on est au delà de la dernière facture, sinon on est dans la période
+            int debut = DateTime.Compare(startDate, dtDebutFactureActuelle); //si le resultat vaut 0 ou 1, la date est = ou supérieure à la periode de début de facture
+            int fin = DateTime.Compare(startDate, dtFinFactureActuelle); //si le résultat vaut 1, on est au delà de la dernière facture, sinon on est dans la période
             if (fin == 1)
             {
                 groupBoxLundi.Enabled = true;
@@ -134,51 +150,65 @@ namespace ProjetCantine.Vues
             else if (fin <= 0)
             {
                 //Procédure pour récupérer la différence de jour entre la fin de période facturée et la fin de semaine
-
-                TimeSpan ts = dtFinSemaine - dtFinFacture;
-                int differenceInDays = ts.Days;
-
-                switch (differenceInDays)
+                if (factureMoisSuivant == false) //si il n'y a pas de facture le mois suivant
                 {
-                    case 1:
-                        groupBoxLundi.Enabled = true;
-                        groupBoxMardi.Enabled = true;
-                        groupBoxMercredi.Enabled = true;
-                        groupBoxJeudi.Enabled = true;
-                        groupBoxVendredi.Enabled = false;
-                        break;
-                    case 2:
-                        groupBoxLundi.Enabled = true;
-                        groupBoxMardi.Enabled = true;
-                        groupBoxMercredi.Enabled = true;
-                        groupBoxJeudi.Enabled = false;
-                        groupBoxVendredi.Enabled = false;
-                        break;
-                    case 3:
-                        groupBoxLundi.Enabled = true;
-                        groupBoxMardi.Enabled = true;
-                        groupBoxMercredi.Enabled = false;
-                        groupBoxJeudi.Enabled = false;
-                        groupBoxVendredi.Enabled = false;
-                        break;
-                    case 4:
-                        groupBoxLundi.Enabled = true;
-                        groupBoxMardi.Enabled = false;
-                        groupBoxMercredi.Enabled = false;
-                        groupBoxJeudi.Enabled = false;
-                        groupBoxVendredi.Enabled = false;
-                        break;
-                    default:
-                        groupBoxLundi.Enabled = false;
-                        groupBoxMardi.Enabled = false;
-                        groupBoxMercredi.Enabled = false;
-                        groupBoxJeudi.Enabled = false;
-                        groupBoxVendredi.Enabled = false;
-                        break;
+                    TimeSpan ts = dtFinSemaine - dtFinFactureActuelle;
+                    int differenceInDays = ts.Days;
+                    affichageDifferenceJour(differenceInDays);
+                  
+                }else //Si il y a une facture le mois suivant
+                {
+                    TimeSpan ts = dtFinSemaine - dtFactureSuivanteFin;
+                    int differenceInDays = ts.Days;
+                    affichageDifferenceJour(differenceInDays);
                 }
             }
         }
 
+
+        private void affichageDifferenceJour(int differenceInDays)
+        {
+            switch (differenceInDays)
+            {
+                case 1:
+                    groupBoxLundi.Enabled = false;
+                    groupBoxMardi.Enabled = false;
+                    groupBoxMercredi.Enabled = false;
+                    groupBoxJeudi.Enabled = false;
+                    groupBoxVendredi.Enabled = true;
+                    break;
+                case 2:
+                    groupBoxLundi.Enabled = false;
+                    groupBoxMardi.Enabled = false;
+                    groupBoxMercredi.Enabled = false;
+                    groupBoxJeudi.Enabled = true;
+                    groupBoxVendredi.Enabled = true;
+                    break;
+                case 3:
+                    groupBoxLundi.Enabled = false;
+                    groupBoxMardi.Enabled = false;
+                    groupBoxMercredi.Enabled = true;
+                    groupBoxJeudi.Enabled = true;
+                    groupBoxVendredi.Enabled = true;
+                    break;
+                case 4:
+                    groupBoxLundi.Enabled = false;
+                    groupBoxMardi.Enabled = true;
+                    groupBoxMercredi.Enabled = true;
+                    groupBoxJeudi.Enabled = true;
+                    groupBoxVendredi.Enabled = true;
+                    break;
+                default:
+                    groupBoxLundi.Enabled = false;
+                    groupBoxMardi.Enabled = false;
+                    groupBoxMercredi.Enabled = false;
+                    groupBoxJeudi.Enabled = false;
+                    groupBoxVendredi.Enabled = false;
+                    break;
+            }
+
+
+        }
 
         private void chargement_Repas(DateTime startDate)
         {

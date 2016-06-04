@@ -13,11 +13,56 @@ namespace ProjetCantine
 {
     public partial class Form_Acceuil : Form
     {
-        public Form_Acceuil()
+        public Form_Acceuil(string nom, string prenom, string droits, Form_Connexion form)
         {
             InitializeComponent();
-        }
+            label_Nom.Text = nom + " " + prenom;
+            this.form_connexion = form;
 
+            switch (droits) // affichage amélioré du rang de l'utilisateur connecté
+            {
+                case "admin":
+                    label_Rang.Text = "Administrateur";
+                    break;
+
+                case "superuser":
+
+                    label_Rang.Text = "Super user";
+                    break;
+                case "user":
+
+                    label_Rang.Text = "Simple utilisateur";
+                    break;
+            }
+            if (label_Rang.Text != "Administrateur") // affichage ou non des menu en fonciton du rang
+            {
+                gestionDesUtilisateursToolStripMenuItem.Visible = false; // le seul menu non accesible aux super_user
+                if (label_Rang.Text == "Simple utilisateur")
+                {
+                    administrationToolStripMenuItem.Visible = false;
+
+                    gestionÉtablissementToolStripMenuItem.Visible = false;
+                    gestionDesÉlèvesToolStripMenuItem.Visible = false;
+                    visualisationDesFamillesToolStripMenuItem.Visible = false;
+
+                    paramétrageDesRepasEtPrixToolStripMenuItem.Visible = false;
+                    // encodageDesRepasParÉlèveToolStripMenuItem.Visible = false; TOUS
+
+                    facturationToolStripMenuItem.Visible = false;
+                    //générationDesFacturesToolStripMenuItem.Visible = false;
+                    //historiqueDesFacturesToolStripMenuItem.Visible = false;
+
+                    //toolStripMenuItem2.Visible = false; Tous
+
+
+                }
+
+            }
+
+        }
+        //Form_Acceuil form_acceuil;
+        bool flag = false;
+        Form_Connexion form_connexion;
         Form_GestionEleve form_GestionEleve;
         Form_VisualisationFamille form_VisuFamille;
         Form_GestionUtilisateur form_GestionUtilisateur;
@@ -27,7 +72,7 @@ namespace ProjetCantine
         Form_EncodageFactures form_EncodageFactures;
         Form_RecapRepasFamilleMois form_RecapRepasFamilleMois;
         Form_GestionEtablissement form_GestionEtablissement;
-
+        
 
         private void gestionDesÉlèvesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -77,11 +122,6 @@ namespace ProjetCantine
                 form_ParamRepasPrix.WindowState = FormWindowState.Maximized;
             }
             else form_ParamRepasPrix.Activate();
-        }
-
-        private void déconnecterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void configurationDuMenuDeLaSemaineToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,6 +195,35 @@ namespace ProjetCantine
             else form_EncodageRepas.Activate();
         }
 
+        private void Form_Acceuil_FormClosing(object sender, FormClosingEventArgs e) // confirmation fermeture avec la croix
+        {
+            if(flag == false )
+            {
+
+          //  DialogResult dialog = MessageBox.Show("Voulez-vous vraiment fermer l'application / vous déconnecter ?", "Fermeture session", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No);
+                if (MessageBox.Show("Voulez-vous vraiment fermer l'application ", "Fermeture application", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                {
+                    //Application.Exit();
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void déconnecterToolStripMenuItem1_Click(object sender, EventArgs e) // déconnecter
+        {
+            flag = true;
+            if (MessageBox.Show("Voulez-vous vraiment vous déconnecter ?", "Fermeture session", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.Close();
+                form_connexion.Show();
+            }
+            flag = false;     
+        }
+
+        private void quitterToolStripMenuItem1_Click(object sender, EventArgs e) //bouton quitter
+        {
+            Application.Exit();
+        }
     }
 
 }
