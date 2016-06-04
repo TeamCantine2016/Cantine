@@ -277,6 +277,7 @@
             this.button_modifier.TabIndex = 17;
             this.button_modifier.Text = "Modifier le chemin du fichier";
             this.button_modifier.UseVisualStyleBackColor = true;
+            this.button_modifier.Click += new System.EventHandler(this.button_modifier_Click);
             // 
             // button_visualisation
             // 
@@ -286,6 +287,7 @@
             this.button_visualisation.TabIndex = 16;
             this.button_visualisation.Text = "Visualisation";
             this.button_visualisation.UseVisualStyleBackColor = true;
+            this.button_visualisation.Click += new System.EventHandler(this.button_visualisation_Click);
             // 
             // Form_HistoriqueFacture
             // 
