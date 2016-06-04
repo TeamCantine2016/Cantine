@@ -288,3 +288,6 @@ C:\Users\Christopher\Desktop\ecoooooooooole 3\projet cantine_OK - Copie\ProjetCa
 C:\Users\Christopher\Desktop\ecoooooooooole 3\projet cantine_OK - Copie\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 C:\Users\Christopher\Desktop\ecoooooooooole 3\projet cantine_OK - Copie\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
 C:\Users\Christopher\Desktop\ecoooooooooole 3\projet cantine_OK - Copie\ProjetCantine\obj\Debug\ProjetCantine.csproj.GenerateResource.Cache
+D:\GitHub\Cantine\ProjetCantine\obj\Debug\Interop.AcroPDFLib.dll
+D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.csproj.ResolveComReference.cache
+D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_View_Facture.resources
