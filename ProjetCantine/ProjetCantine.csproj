@@ -176,7 +176,6 @@
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageElève.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionEleve.resources" />
-    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_VisualisationFamille.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Properties.Resources.resources" />
