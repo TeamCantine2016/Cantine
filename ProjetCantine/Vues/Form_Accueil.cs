@@ -227,6 +227,22 @@ namespace ProjetCantine
         {
             Application.Exit();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            String chemin = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            chemin += "\\Cantine\\Guide Utilisateur.docx";
+            try
+            {
+                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fichier d'aide introuvable, vérifiez que votre guide utilisateur est bien présent à cette adresse : " + chemin);
+            }
+        }
+
     }
 
 }
