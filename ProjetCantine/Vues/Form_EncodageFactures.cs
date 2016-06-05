@@ -49,7 +49,7 @@ namespace ProjetCantine.Vues
             dGdVw_DetailFamille_CellClick(null, null);
         }
 
-        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 97% READY - Remplir DGV-Membre - Gestion date dernière clôture
+        private void dGdVw_DetailFamille_CellClick(object sender, DataGridViewCellEventArgs e) // 99% READY - Remplir DGV-Membre - Gestion date dernière clôture
         {
             // vider le tabcontrol et le recap tuteur
             tabDetail.TabPages.Clear();
@@ -78,11 +78,15 @@ namespace ProjetCantine.Vues
             if (DateTime.TryParse(label_dateCloture.Text, out laDate)) // renvoie "true" si la conversion en date est possible et affecte le résultat de la conversion à la variable "laDate"
             {
                 //Attention d'abord fixer le min date avec la value! (car si la value est en dessous du min date=> plantage
+                //On initialise d'abord pour éviter tout conflit
+                dateTimePicker_debut.MinDate = DateTime.Parse("1979/01/01");
+                dateTimePicker_fin.MinDate = DateTime.Now.AddDays(-1);
+                dateTimePicker_fin.MaxDate = DateTime.Now.AddDays(1);
+
                 dateTimePicker_debut.MinDate = laDate.AddDays(1); // On sécurise afin de ne plus encoder sur une cloture
                 dateTimePicker_debut.Value = laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
-                dateTimePicker_fin.MinDate = laDate.AddDays(1);
-                dateTimePicker_fin.Value = laDate.AddDays(5); // initialisation sur le lendemain de la cloturation
-
+                dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(1);
+                dateTimePicker_fin.Value = DateTime.Now; // initialisation sur le lendemain de la cloturation
             }
             else
             {
@@ -183,8 +187,6 @@ namespace ProjetCantine.Vues
             }
         }
 
-
-        //*****************************************************************************************************************************************
         private void btApercu_Click(object sender, EventArgs e) // 99% Ready - CREATION FACTURE 
         {
             Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
@@ -235,9 +237,6 @@ namespace ProjetCantine.Vues
                 }
             }
         }
-        //*****************************************************************************************************************************************
-
-
 
         private void initialiserRecapTuteur() // 99% - READY pour initialiser le labels de récap tuteur
         {

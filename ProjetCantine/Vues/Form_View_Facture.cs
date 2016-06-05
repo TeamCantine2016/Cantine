@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetCantine.Vues
@@ -31,7 +24,7 @@ namespace ProjetCantine.Vues
                 bt_enregistrer.Visible = true;
                 lb_Message.Visible = false;
             }
-
+            
             wb_view_pdf.Navigate(pdfpath);
         }
 
