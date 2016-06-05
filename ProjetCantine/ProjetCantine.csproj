@@ -57,6 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Ctrl_Connexion.cs" />
+    <Compile Include="Models\personne.cs" />
+    <Compile Include="Models\utilisateur.cs" />
     <Compile Include="Outils\ApercuFacture.cs" />
     <Compile Include="Controller\Ctrl_EncodageFactures.cs" />
     <Compile Include="Controller\Ctrl_EncodagePrix.cs" />
@@ -174,7 +176,6 @@
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageElève.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionEleve.resources" />
-    <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Form_VisualisationFamille.resources" />
     <EmbeddedResource Include="obj\Debug\ProjetCantine.Properties.Resources.resources" />
