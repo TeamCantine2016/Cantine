@@ -1,0 +1,9 @@
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\UnitTestProjetCantine.dll
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\UnitTestProjetCantine.pdb
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\ProjetCantine.exe
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\ProjetCantine.pdb
+D:\GitHub\Cantine\UnitTestProjetCantine\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\GitHub\Cantine\UnitTestProjetCantine\obj\Debug\UnitTestProjetCantine.csprojResolveAssemblyReference.cache
+D:\GitHub\Cantine\UnitTestProjetCantine\obj\Debug\UnitTestProjetCantine.dll
+D:\GitHub\Cantine\UnitTestProjetCantine\obj\Debug\UnitTestProjetCantine.pdb

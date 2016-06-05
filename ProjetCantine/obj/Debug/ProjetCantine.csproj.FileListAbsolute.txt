@@ -28,7 +28,6 @@ D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_Connexion.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageElève.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionEleve.resources
-D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
 D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Properties.Resources.resources
@@ -315,3 +314,4 @@ C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCant
 C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateurs.resources
 C:\Users\Daniel\Source\Repos\Cantine2\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateurs.resources
+D:\GitHub\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateurs.resources

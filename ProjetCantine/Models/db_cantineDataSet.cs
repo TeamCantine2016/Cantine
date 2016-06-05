@@ -5,6 +5,7 @@
     partial class db_cantineDataSet
     {
     }
+  
 }
 
 namespace ProjetCantine.Models.db_cantineDataSetTableAdapters

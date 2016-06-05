@@ -7,7 +7,7 @@ using ProjetCantine;
 
 namespace ProjetCantine
 {
-    class utilisateur
+    public class utilisateur
     {
         private int id;
         private string pseudo;

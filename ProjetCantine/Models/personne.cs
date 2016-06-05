@@ -7,7 +7,7 @@ using ProjetCantine;
 
 namespace ProjetCantine
 {
-    class personne
+    public class personne
     {
         private string prenom;
         private string nom;

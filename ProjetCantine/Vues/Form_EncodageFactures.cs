@@ -19,6 +19,14 @@ namespace ProjetCantine.Vues
         {
             InitializeComponent();
         }
+        public Form_EncodageFactures(String labelchaud1, String labelchaud2, String labelfroid, String labelaucun)
+        {
+            labelchaud1 = label_Total_Chaud1.Text;
+            labelchaud2 = label_Total_Chaud2.Text;
+            labelfroid = label_Total_Froid.Text;
+            labelaucun = label_Total_Aucun.Text; 
+            
+        }
 
         private void Form_EncodageFactures_Load(object sender, EventArgs e) // 99% READY - FILL UP DATAGRIDS 
         {
