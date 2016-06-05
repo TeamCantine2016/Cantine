@@ -63,7 +63,6 @@ C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCan
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_EncodageRepas.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_EncodageUtilisateur.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionEleve.resources
-C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateur.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Vues.Form_HistoriqueFacture.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_ParamRepasPrix.resources
 C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_VisualisationFamille.resources
@@ -315,3 +314,4 @@ C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCant
 C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateurs.resources
 C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCantine\bin\Debug\ProjetCantine.exe
 C:\Users\Administrateur\Documents\Visual Studio 2015\Projects\Cantine\ProjetCantine\bin\Debug\ProjetCantine.pdb
+C:\Users\Francois\Documents\Visual Studio 2015\Projects\Github\Cantine\ProjetCantine\obj\Debug\ProjetCantine.Form_GestionUtilisateurs.resources

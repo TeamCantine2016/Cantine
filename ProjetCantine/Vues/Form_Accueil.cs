@@ -230,8 +230,7 @@ namespace ProjetCantine
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            String chemin = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            chemin += "\\Cantine\\Guide Utilisateur.docx";
+            String chemin = "C:\\BDD\\Guide\\Guide_Utilisateur.pdf";
             try
             {
                 System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo(chemin, "");
