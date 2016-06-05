@@ -97,23 +97,29 @@
     <Compile Include="Vues\Form_Connexion.designer.cs">
       <DependentUpon>Form_Connexion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vues\Form_EncodageElève.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageElève.designer.cs">
+      <DependentUpon>Form_EncodageElève.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vues\Form_EncodageFactures.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vues\Form_EncodageFactures.designer.cs">
       <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vues\Form_EncodageElève.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vues\Form_EncodageElève.Designer.cs">
-      <DependentUpon>Form_EncodageElève.cs</DependentUpon>
-    </Compile>
     <Compile Include="Vues\Form_EncodageRepas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Vues\Form_EncodageRepas.Designer.cs">
       <DependentUpon>Form_EncodageRepas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageTuteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vues\Form_EncodageTuteur.designer.cs">
+      <DependentUpon>Form_EncodageTuteur.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_EncodageUtilisateur.cs">
       <SubType>Form</SubType>
@@ -124,7 +130,7 @@
     <Compile Include="Vues\Form_GestionEleve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vues\Form_GestionEleve.Designer.cs">
+    <Compile Include="Vues\Form_GestionEleve.designer.cs">
       <DependentUpon>Form_GestionEleve.cs</DependentUpon>
     </Compile>
     <Compile Include="Vues\Form_GestionEtablissement.cs">
@@ -190,14 +196,17 @@
     <EmbeddedResource Include="Vues\Form_Connexion.resx">
       <DependentUpon>Form_Connexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
-      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_EncodageElève.resx">
       <DependentUpon>Form_EncodageElève.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Form_EncodageFactures.resx">
+      <DependentUpon>Form_EncodageFactures.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_EncodageRepas.resx">
       <DependentUpon>Form_EncodageRepas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vues\Form_EncodageTuteur.resx">
+      <DependentUpon>Form_EncodageTuteur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vues\Form_EncodageUtilisateur.resx">
       <DependentUpon>Form_EncodageUtilisateur.cs</DependentUpon>
