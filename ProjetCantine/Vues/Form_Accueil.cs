@@ -65,7 +65,7 @@ namespace ProjetCantine
         Form_Connexion form_connexion;
         Form_GestionEleve form_GestionEleve;
         Form_VisualisationFamille form_VisuFamille;
-        Form_GestionUtilisateur form_GestionUtilisateur;
+        Form_GestionUtilisateurs form_GestionUtilisateur;
         Form_ParamRepasPrix form_ParamRepasPrix;
         Form_EncodageRepas form_EncodageRepas;
         Form_HistoriqueFacture form_HistoriqueFacture;
@@ -104,7 +104,7 @@ namespace ProjetCantine
         {
             if (form_GestionUtilisateur == null)
             {
-                form_GestionUtilisateur = new Form_GestionUtilisateur();
+                form_GestionUtilisateur = new Form_GestionUtilisateurs();
                 form_GestionUtilisateur.MdiParent = this;
                 form_GestionUtilisateur.Show();
                 form_GestionUtilisateur.WindowState = FormWindowState.Maximized;
@@ -207,7 +207,7 @@ namespace ProjetCantine
                     e.Cancel = true;
                 }else
                 {
-                  Environment.Exit(1);// pour liberer toutes les instances ou les fichiers ouverts
+                  Application.Exit();// à corriger
                 }
             }
         }

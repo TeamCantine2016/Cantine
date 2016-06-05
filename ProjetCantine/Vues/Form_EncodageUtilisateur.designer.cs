@@ -4,6 +4,14 @@
     {
         /// <summary>
         /// Required designer variable.
+        Form_GestionUtilisateurs lien;
+        int type_encodage;
+        string personne;
+        int saved_id_util;
+        int saved_id_pers;
+        int saved_id_typepers;
+        int saved_id_adr;
+        string[] tab_personne = new string[19];
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
@@ -28,7 +36,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label_Identifiant = new System.Windows.Forms.Label();
             this.label_MotDePasse = new System.Windows.Forms.Label();
             this.label_Confirmation = new System.Windows.Forms.Label();
@@ -48,7 +55,7 @@
             this.textBox_Ville = new System.Windows.Forms.TextBox();
             this.textBox_Rue = new System.Windows.Forms.TextBox();
             this.textBox_Prenom = new System.Windows.Forms.TextBox();
-            this.comboBox_Type = new System.Windows.Forms.ComboBox();
+            this.comboBox_Droits = new System.Windows.Forms.ComboBox();
             this.label_Numero = new System.Windows.Forms.Label();
             this.label_Cp = new System.Windows.Forms.Label();
             this.textBox_Cp = new System.Windows.Forms.TextBox();
@@ -59,8 +66,8 @@
             this.radioButton_Inactif = new System.Windows.Forms.RadioButton();
             this.button_Valider = new System.Windows.Forms.Button();
             this.button_Annuler = new System.Windows.Forms.Button();
-            this.tblutilisateurBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.tblutilisateurBindingSource)).BeginInit();
+            this.label_type_personne = new System.Windows.Forms.Label();
+            this.textBox_Type_personne = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_Identifiant
@@ -218,16 +225,19 @@
             this.textBox_Prenom.Size = new System.Drawing.Size(304, 20);
             this.textBox_Prenom.TabIndex = 30;
             // 
-            // comboBox_Type
+            // comboBox_Droits
             // 
-            this.comboBox_Type.DataSource = this.tblutilisateurBindingSource;
-            this.comboBox_Type.DisplayMember = "droits";
-            this.comboBox_Type.FormattingEnabled = true;
-            this.comboBox_Type.Location = new System.Drawing.Point(89, 90);
-            this.comboBox_Type.Name = "comboBox_Type";
-            this.comboBox_Type.Size = new System.Drawing.Size(150, 21);
-            this.comboBox_Type.TabIndex = 20;
-            this.comboBox_Type.ValueMember = "droits";
+            this.comboBox_Droits.DisplayMember = "droits";
+            this.comboBox_Droits.FormattingEnabled = true;
+            this.comboBox_Droits.Items.AddRange(new object[] {
+            "admin",
+            "user",
+            "superuser"});
+            this.comboBox_Droits.Location = new System.Drawing.Point(89, 90);
+            this.comboBox_Droits.Name = "comboBox_Droits";
+            this.comboBox_Droits.Size = new System.Drawing.Size(150, 21);
+            this.comboBox_Droits.TabIndex = 20;
+            this.comboBox_Droits.ValueMember = "droits";
             // 
             // label_Numero
             // 
@@ -257,6 +267,7 @@
             // textBox_Numero
             // 
             this.textBox_Numero.Location = new System.Drawing.Point(318, 195);
+            this.textBox_Numero.MaxLength = 5;
             this.textBox_Numero.Name = "textBox_Numero";
             this.textBox_Numero.Size = new System.Drawing.Size(75, 20);
             this.textBox_Numero.TabIndex = 45;
@@ -306,6 +317,7 @@
             this.button_Valider.TabIndex = 80;
             this.button_Valider.Text = "Valider / Modifier";
             this.button_Valider.UseVisualStyleBackColor = true;
+            this.button_Valider.Click += new System.EventHandler(this.button_Valider_Click);
             // 
             // button_Annuler
             // 
@@ -317,12 +329,32 @@
             this.button_Annuler.UseVisualStyleBackColor = true;
             this.button_Annuler.Click += new System.EventHandler(this.button_Annuler_Click);
             // 
+            // label_type_personne
+            // 
+            this.label_type_personne.AutoSize = true;
+            this.label_type_personne.Location = new System.Drawing.Point(175, 314);
+            this.label_type_personne.Name = "label_type_personne";
+            this.label_type_personne.Size = new System.Drawing.Size(93, 13);
+            this.label_type_personne.TabIndex = 91;
+            this.label_type_personne.Text = "Type de personne";
+            // 
+            // textBox_Type_personne
+            // 
+            this.textBox_Type_personne.Enabled = false;
+            this.textBox_Type_personne.Location = new System.Drawing.Point(293, 311);
+            this.textBox_Type_personne.Name = "textBox_Type_personne";
+            this.textBox_Type_personne.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Type_personne.TabIndex = 92;
+            this.textBox_Type_personne.Text = "Personnel";
+            // 
             // Form_EncodageUtilisateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(406, 404);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Type_personne);
+            this.Controls.Add(this.label_type_personne);
             this.Controls.Add(this.button_Annuler);
             this.Controls.Add(this.button_Valider);
             this.Controls.Add(this.radioButton_Inactif);
@@ -333,7 +365,7 @@
             this.Controls.Add(this.textBox_Cp);
             this.Controls.Add(this.label_Cp);
             this.Controls.Add(this.label_Numero);
-            this.Controls.Add(this.comboBox_Type);
+            this.Controls.Add(this.comboBox_Droits);
             this.Controls.Add(this.textBox_Prenom);
             this.Controls.Add(this.textBox_Rue);
             this.Controls.Add(this.textBox_Ville);
@@ -357,7 +389,6 @@
             this.Name = "Form_EncodageUtilisateur";
             this.Text = "Paramètres de l\'utilisateur";
             this.Load += new System.EventHandler(this.Form_EncodageUtilisateur_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tblutilisateurBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,7 +415,7 @@
         private System.Windows.Forms.TextBox textBox_Ville;
         private System.Windows.Forms.TextBox textBox_Rue;
         private System.Windows.Forms.TextBox textBox_Prenom;
-        private System.Windows.Forms.ComboBox comboBox_Type;
+        private System.Windows.Forms.ComboBox comboBox_Droits;
         private System.Windows.Forms.Label label_Numero;
         private System.Windows.Forms.Label label_Cp;
         private System.Windows.Forms.TextBox textBox_Cp;
@@ -395,6 +426,7 @@
         private System.Windows.Forms.RadioButton radioButton_Inactif;
         private System.Windows.Forms.Button button_Valider;
         private System.Windows.Forms.Button button_Annuler;
-        private System.Windows.Forms.BindingSource tblutilisateurBindingSource;
+        private System.Windows.Forms.Label label_type_personne;
+        private System.Windows.Forms.TextBox textBox_Type_personne;
     }
 }
