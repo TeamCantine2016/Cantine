@@ -136,6 +136,7 @@
             this.dGdVw_DetailEleve.Location = new System.Drawing.Point(200, 59);
             this.dGdVw_DetailEleve.Name = "dGdVw_DetailEleve";
             this.dGdVw_DetailEleve.ReadOnly = true;
+            this.dGdVw_DetailEleve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGdVw_DetailEleve.Size = new System.Drawing.Size(686, 161);
             this.dGdVw_DetailEleve.TabIndex = 4;
             this.dGdVw_DetailEleve.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGdVw_DetailEleve_CellClick);
