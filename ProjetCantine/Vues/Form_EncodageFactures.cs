@@ -81,12 +81,18 @@ namespace ProjetCantine.Vues
                 //On initialise d'abord pour éviter tout conflit
                 dateTimePicker_debut.MinDate = DateTime.Parse("1979/01/01");
                 dateTimePicker_fin.MinDate = DateTime.Now.AddDays(-1);
-                dateTimePicker_fin.MaxDate = DateTime.Now.AddDays(1);
-
-                dateTimePicker_debut.MinDate = laDate.AddDays(1); // On sécurise afin de ne plus encoder sur une cloture
+                dateTimePicker_fin.MaxDate = DateTime.Now.AddDays(10);
+                if (laDate == DateTime.Now)
+                {
+                    dateTimePicker_debut.MinDate = laDate;
+                }
+                else
+                {
+                    dateTimePicker_debut.MinDate = laDate.AddDays(1);
+                }
                 dateTimePicker_debut.Value = laDate.AddDays(1); // initialisation à un jour après dernière date de clôture
-                dateTimePicker_fin.MinDate = dateTimePicker_debut.Value.AddDays(1);
-                dateTimePicker_fin.Value = DateTime.Now; // initialisation sur le lendemain de la cloturation
+                dateTimePicker_fin.MinDate = dateTimePicker_debut.Value;
+                dateTimePicker_fin.Value = dateTimePicker_debut.Value.AddDays(1); // initialisation sur le lendemain de la cloturation
             }
             else
             {
@@ -189,51 +195,58 @@ namespace ProjetCantine.Vues
 
         private void btApercu_Click(object sender, EventArgs e) // 99% Ready - CREATION FACTURE 
         {
-            Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
-
-            // capturer la periode de la facture définie
-            DateTime debut = dateTimePicker_debut.Value;
-            DateTime fin = dateTimePicker_fin.Value;
-
-            // capturer l'index de la ligne cliqué
-            int i = dGdVw_DetailFamille.CurrentRow.Index;
-
-            // capturer la ligne cliqué
-            DataGridViewRow lineSelected = dGdVw_DetailFamille.Rows[i];
-
-            // initialisation des variables dont source est la ligne cliquée
-            string codeClient = lineSelected.Cells[0].Value.ToString();
-            string nomClient = lineSelected.Cells[1].Value.ToString();
-            string prenomClient = lineSelected.Cells[2].Value.ToString();
-            string adresseClient = lineSelected.Cells[4].Value.ToString();
-            string villeClient = lineSelected.Cells[5].Value.ToString();
-            string paysClient = lineSelected.Cells[6].Value.ToString();
-
-            // initialiser le nouveau numéro de Facture
-            int numeroFacture = controle.get_dernierNumeroFactureDisponible();
-
-            // créer objet Facture
-            ApercuFacture facture = new ApercuFacture();
-
-            // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
-            String pathNouvelleFacture = facture.facture( lesEnfants, numeroFacture, debut, fin, codeClient, nomClient, prenomClient, adresseClient, villeClient, paysClient);
-
-            // teste si le fichier a bien été creer           
-            if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
-            { // si je ne reçois pas un path, alors message d'erreur
-                MessageBox.Show(pathNouvelleFacture);
+            if (dateTimePicker_fin.Value == DateTime.Now)
+            {
+                MessageBox.Show("Vous ne pouvez pas générer une facture incluant aujourd'hui!", "Au plus tard hier", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-            {   // si je reçois un path, c'est ok
-                // MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
-                // afficher facture avec programme externe
-                if (facture.affichageFacture(pathNouvelleFacture, true))
-                {
-                    // sauvegarder facture
-                    controle.saveFacture(pathNouvelleFacture, (float.Parse(label_prix.Text.Trim(new char[] { '€' })) * (1 + (controle.get_TVA() / 100))).ToString(), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
-                    
-                    path_facture = pathNouvelleFacture;
-                    btEnvoi.Enabled = true;
+            {
+                Ctrl_EncodageFactures controle = new Ctrl_EncodageFactures();
+
+                // capturer la periode de la facture définie
+                DateTime debut = dateTimePicker_debut.Value;
+                DateTime fin = dateTimePicker_fin.Value;
+
+                // capturer l'index de la ligne cliqué
+                int i = dGdVw_DetailFamille.CurrentRow.Index;
+
+                // capturer la ligne cliqué
+                DataGridViewRow lineSelected = dGdVw_DetailFamille.Rows[i];
+
+                // initialisation des variables dont source est la ligne cliquée
+                string codeClient = lineSelected.Cells[0].Value.ToString();
+                string nomClient = lineSelected.Cells[1].Value.ToString();
+                string prenomClient = lineSelected.Cells[2].Value.ToString();
+                string adresseClient = lineSelected.Cells[4].Value.ToString();
+                string villeClient = lineSelected.Cells[5].Value.ToString();
+                string paysClient = lineSelected.Cells[6].Value.ToString();
+
+                // initialiser le nouveau numéro de Facture
+                int numeroFacture = controle.get_dernierNumeroFactureDisponible();
+
+                // créer objet Facture
+                ApercuFacture facture = new ApercuFacture();
+
+                // créer facture avec Apercufacture.cs et récupérer chemin d'accès (path) de la facture créé
+                String pathNouvelleFacture = facture.facture(lesEnfants, numeroFacture, debut, fin, codeClient, nomClient, prenomClient, adresseClient, villeClient, paysClient);
+
+                // teste si le fichier a bien été creer           
+                if (pathNouvelleFacture.LastIndexOf(".pdf") == -1)
+                { // si je ne reçois pas un path, alors message d'erreur
+                    MessageBox.Show(pathNouvelleFacture);
+                }
+                else
+                {   // si je reçois un path, c'est ok
+                    // MessageBox.Show("La création à bien été éffectué à l'adresse: " + pathNouvelleFacture);
+                    // afficher facture avec programme externe
+                    if (facture.affichageFacture(pathNouvelleFacture, true))
+                    {
+                        // sauvegarder facture
+                        controle.saveFacture(pathNouvelleFacture, (float.Parse(label_prix.Text.Trim(new char[] { '€' })) * (1 + (controle.get_TVA() / 100))).ToString(), dateTimePicker_debut.Value.ToString("yyyyMMdd"), dateTimePicker_fin.Value.ToString("yyyyMMdd"), numeroFacture, codeClient);
+
+                        path_facture = pathNouvelleFacture;
+                        btEnvoi.Enabled = true;
+                    }
                 }
             }
         }

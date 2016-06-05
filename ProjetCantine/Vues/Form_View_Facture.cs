@@ -24,8 +24,8 @@ namespace ProjetCantine.Vues
                 bt_enregistrer.Visible = true;
                 lb_Message.Visible = false;
             }
-            
-            wb_view_pdf.Navigate(pdfpath);
+
+            this.wb_view_pdf.Url = new Uri(String.Format("file:///{0}", pdfpath));
         }
 
         private void bt_annuler_Click_1(object sender, EventArgs e)
